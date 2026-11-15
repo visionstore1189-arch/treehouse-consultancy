@@ -64,6 +64,6 @@ export function metadataFor(locale: Locale, path: string): Metadata {
       description,
       images: ["/brand/social-card.png"],
     },
-    icons: { icon: "/favicon.svg" },
+    icons: { icon: "/favicon.svg?v=treehouse-sixbar-2026" },
   };
 }
