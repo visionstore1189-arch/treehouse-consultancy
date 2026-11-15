@@ -5,7 +5,7 @@ type Membership = {
   status: string;
   organizations: { name: string } | null;
 };
-type Subscription = { organization_id: string; plan: string; status: string };
+type Subscription = { organization_id: string; plan: string; status: string; current_period_end?: string | null };
 export const onRequestGet: PagesFunction<AuthEnv> = async ({ request, env }) => {
   if (!authEnabled(env)) return response({ error: "auth_not_configured" }, 503);
   const identity = await session(request, env);
@@ -24,17 +24,23 @@ export const onRequestGet: PagesFunction<AuthEnv> = async ({ request, env }) => 
     if (!res.ok) return response({ error: "access_records_unavailable" }, 503);
     const memberships = await res.json() as Membership[];
     const subsRes = await supa(env,
-      "/rest/v1/organization_subscriptions?select=organization_id,plan,status",
+      "/rest/v1/organization_subscriptions?select=organization_id,plan,status,current_period_end",
       { method: "GET" }, identity.accessToken);
     if (!subsRes.ok) return response({ error: "access_records_unavailable" }, 503);
     const subscriptions = await subsRes.json() as Subscription[];
-    const account = memberships.map(m => ({
-      organizationId: m.organization_id,
-      organizationName: m.organizations?.name || "Organisation",
-      role: m.role,
-      subscription: subscriptions.find(s => s.organization_id === m.organization_id)?.status || "pending",
-      plan: subscriptions.find(s => s.organization_id === m.organization_id)?.plan || "none",
-    }));
+    const account = memberships.map(m => {
+      const subscription = subscriptions.find(s => s.organization_id === m.organization_id);
+      const periodValid = !subscription?.current_period_end ||
+        Date.parse(subscription.current_period_end) > Date.now();
+      const entitled = !!subscription && ["active", "trialing"].includes(subscription.status) && periodValid;
+      return {
+        organizationId: m.organization_id,
+        organizationName: m.organizations?.name || "Organisation",
+        role: m.role,
+        subscription: entitled ? subscription?.status : "pending",
+        plan: subscription?.plan || "none",
+      };
+    });
     const allowed = account.some(a => a.subscription === "active" || a.subscription === "trialing");
     const result = response({
       authenticated: true,
