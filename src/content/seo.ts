@@ -68,9 +68,9 @@ export const seo = {
     ),
   },
   about: {
-    title: t("About Treehouse Consultancy", "عن تري هاوس للاستشارات"),
+    title: t("About Treehouse Consulting", "عن تري هاوس للاستشارات"),
     description: t(
-      "Meet Treehouse Consultancy: a UK regulatory advisory and technology firm led by former regulators, serving the United Kingdom and the Gulf.",
+      "Meet Treehouse Consulting: a UK regulatory advisory and technology firm led by former regulators, serving the United Kingdom and the Gulf.",
       "تعرّف على تري هاوس للاستشارات، شركة بريطانية للاستشارات التنظيمية والتقنية الرقابية يقودها مسؤولون رقابيون سابقون وتخدم المملكة المتحدة والخليج.",
     ),
   },
