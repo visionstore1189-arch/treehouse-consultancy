@@ -164,7 +164,7 @@ export function RecoverPasswordForm({ locale }: { locale: Locale }) {
     setState("sending");
     try {
       const r = await fetch("/api/auth/recover", { method: "POST", credentials: "same-origin",
-        headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email }) });
+        headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email, locale }) });
       setState(r.ok ? "done" : "error");
     } catch { setState("error"); }
   }
