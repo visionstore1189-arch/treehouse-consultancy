@@ -42,6 +42,7 @@ import { Reveal } from "./reveal";
 import { AssessmentExplorer, CoverageTable, InsightsList } from "./explorers";
 import { EnquiryForm } from "./enquiry-form";
 import { MutabiqVisual, MutabiqProof } from "./mutabiq-visual";
+import { SampleReportSection } from "./sample-report";
 import { mutabiqAssets } from "@/content/mutabiq-assets";
 const serviceIcons = [ScanLine, Landmark, Layers3, Orbit, Fingerprint];
 export function MarketCards({ locale }: { locale: Locale }) {
@@ -433,6 +434,7 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
               </div>
             </div>
           </section>
+          <SampleReportSection locale={locale} />
           <Closing locale={locale} />
         </>
       );
@@ -474,6 +476,7 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
               <AssessmentExplorer locale={locale} />
             </div>
           </section>
+          <SampleReportSection locale={locale} />
           <Closing locale={locale} />
         </>
       );

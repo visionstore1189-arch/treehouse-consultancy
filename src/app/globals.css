@@ -3188,3 +3188,25 @@ html[lang="ar"] .footer-column a {
 .mutabiq-proof span { color: #51685c; font-size: 12px; }
 @media (max-width: 900px) { .mutabiq-hero-grid { grid-template-columns: 1fr; } }
 @media (max-width: 600px) { .mutabiq-proof { grid-template-columns: 1fr; } .mutabiq-visual figcaption { font-size: 11px; } }
+
+/* Sample report: render only when the full server-side form and private file delivery are enabled. */
+.sample-report-section { background: #edf2ed; }
+.sample-report-layout { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(24px, 5vw, 80px); align-items: start; }
+.sample-report-layout h2 { font-size: clamp(30px, 3vw, 46px); max-width: 610px; }
+.sample-report-layout p { max-width: 620px; }
+.sample-report-card { padding: clamp(18px, 3vw, 32px); background: white; border: 1px solid #dce6de; border-radius: 12px; box-shadow: 0 15px 42px rgb(15 53 47 / 6%); }
+.sample-report-form { display: grid; gap: 18px; }
+.sample-report-form fieldset { border: 0; padding: 0; display: grid; gap: 14px; }
+.sample-report-form label { display: grid; gap: 6px; font-size: 12px; }
+.sample-report-form input:not([type="checkbox"]), .sample-report-form select { padding: 13px 14px; width: 100%; border: 1px solid #b3c8bc; border-radius: 6px; background: white; font: inherit; font-size: 14px; }
+.sample-report-form .consent { display: flex; align-items: flex-start; }
+.sample-report-form .consent input { flex: 0 0 auto; margin-top: 4px; }
+.sample-report-form .button { width: 100%; }
+.sample-report-success { display: grid; gap: 12px; }
+.sample-report-success h3 { font-size: 24px; }
+.sample-report-error { color: #9a2929; font-size: 13px; }
+@media (max-width: 900px) { .sample-report-layout { grid-template-columns: 1fr; } }
+/* Wider, readable illustrations in the steps list */
+.steps-list .step-row:has(.mutabiq-visual) { grid-template-columns: 80px minmax(0, .75fr) minmax(0, 1.5fr); }
+@media (max-width: 1100px) { .steps-list .step-row:has(.mutabiq-visual) { grid-template-columns: 60px minmax(0, 1fr); } .steps-list .step-row:has(.mutabiq-visual) .step-output-wrap { grid-column: 2; } }
+@media (max-width: 650px) { .steps-list .step-row:has(.mutabiq-visual) { grid-template-columns: 50px minmax(0, 1fr); } .steps-list .step-row:has(.mutabiq-visual) .step-output-wrap { grid-column: 1 / -1; } }
