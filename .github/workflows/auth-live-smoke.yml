@@ -1,4 +1,4 @@
-name: Verify MUTABIQ fixed Cloudflare preview auth connection
+name: Verify MUTABIQ fixed Cloudflare production auth connection
 on:
   push:
     branches: [verify-auth-runtime-health-2026]
@@ -14,7 +14,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          HOST="https://4ecfca3a.treehouse-consultancy.pages.dev"
+          HOST="https://treehouse-consultancy.pages.dev"
           for route in "/api/auth/status" "/api/auth/me"; do
             code="$(curl --max-time 20 -sSL -o /tmp/result.json -w '%{http_code}' "$HOST$route")"
             echo "Route $route status $code body:"
@@ -40,7 +40,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          base="https://4ecfca3a.treehouse-consultancy.pages.dev"
+          base="https://treehouse-consultancy.pages.dev"
           code="$(curl -sSL --max-time 25 -o /tmp/final-status.json -w '%{http_code}' "$base/api/auth/status")"
           cat /tmp/final-status.json
           echo "Live auth health HTTP status: $code"
