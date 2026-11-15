@@ -2,10 +2,10 @@ import { readFile, readdir, copyFile } from "node:fs/promises";
 import path from "node:path";
 const expected = [
   "",
-  "mutabiq",
-  "mutabiq/how-it-works",
-  "mutabiq/coverage",
-  "mutabiq/demo",
+  "tibqa",
+  "tibqa/how-it-works",
+  "tibqa/coverage",
+  "tibqa/demo",
   "services",
   "services/compliance-assessment",
   "services/licensing-and-authorisation",
@@ -17,14 +17,8 @@ const expected = [
   "saudi-arabia",
   "markets",
   "sectors",
-  "insights",
   "about",
   "contact",
-  "privacy",
-  "cookies",
-  "terms",
-  "client/login",
-  "client/portal",
 ];
 await copyFile("scripts/not-found.html", "out/404.html");
 let count = 0;
@@ -47,7 +41,7 @@ for (const locale of ["en", "ar"])
       throw new Error(`No canonical: ${file}`);
     count++;
   }
-for (const name of ["sitemap.xml", "robots.txt", "_headers", "_routes.json"])
+for (const name of ["sitemap.xml", "robots.txt", "_headers", "_routes.json", "_redirects"])
   await readFile(path.join("out", name));
 console.log(
   `Static export verified: ${count} bilingual pages, metadata, language direction and Cloudflare support files.`,
