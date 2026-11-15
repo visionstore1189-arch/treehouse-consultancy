@@ -3,6 +3,8 @@ import assert from "node:assert/strict";
 import { authEnabled, sameOrigin, readBody } from "../functions/api/auth/_shared";
 import { onRequestPost as signIn } from "../functions/api/auth/login";
 import { onRequestGet as getMe } from "../functions/api/auth/me";
+import { onRequestGet as healthCheck } from "../functions/api/auth/status";
+import { onRequestPost as establishSession } from "../functions/api/auth/establish";
 import type { AuthEnv } from "../functions/api/auth/_shared";
 
 const env: AuthEnv = {
@@ -68,6 +70,31 @@ test("existing valid credentials cannot log in without approved organisation mem
   const res = await signIn({ env, request: request("/api/auth/login", {
     email: "unapproved@example.com", password: "long-password"
   }) } as never);
+  assert.equal(res.status, 403);
+  assert.equal(res.headers.get("set-cookie"), null);
+});
+
+test("Cloudflare login readiness checks actual Supabase Auth health endpoint", async (t) => {
+  t.mock.method(globalThis, "fetch", async (url: string, init?: RequestInit) => {
+    assert.match(String(url), /\/auth\/v1\/health$/);
+    assert.equal(new Headers(init?.headers).get("apikey")?.startsWith("sb_publishable_"), true);
+    return Response.json({ status: "ok" });
+  });
+  const res = await healthCheck({ env: {} } as never);
+  assert.equal(res.status, 200);
+  assert.deepEqual(await res.json(), { ready: true });
+});
+test("recovery tokens do not establish a session without pre-approved membership", async (t) => {
+  t.mock.method(globalThis, "fetch", async (url: string) => {
+    if (String(url).endsWith("/auth/v1/user"))
+      return Response.json({ id: "11111111-1111-4111-8111-111111111111", email: "unapproved@example.com" });
+    if (String(url).includes("/rest/v1/organization_memberships")) return Response.json([]);
+    throw new Error("Unexpected URL");
+  });
+  const res = await establishSession({
+    env,
+    request: request("/api/auth/establish", {access_token:"access.test", refresh_token:"refresh.test"})
+  } as never);
   assert.equal(res.status, 403);
   assert.equal(res.headers.get("set-cookie"), null);
 });
