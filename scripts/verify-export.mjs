@@ -19,6 +19,10 @@ const expected = [
   "sectors",
   "about",
   "contact",
+  "client/login",
+  "client/portal",
+  "client/recover-password",
+  "client/reset-password",
 ];
 await copyFile("scripts/not-found.html", "out/404.html");
 let count = 0;
