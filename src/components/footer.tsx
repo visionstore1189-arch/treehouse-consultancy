@@ -30,14 +30,6 @@ export function Footer({ locale }: { locale: Locale }) {
               </Link>
             ))}
           </div>
-          <div className="footer-column">
-            <p>{ui.information[locale]}</p>
-            {(["privacy", "cookies", "terms"] as const).map((k) => (
-              <Link key={k} href={href(locale, k)}>
-                {ui[k][locale]}
-              </Link>
-            ))}
-          </div>
         </div>
         <div className="footer-bottom">
           <p>{ui.disclaimer[locale]}</p>
