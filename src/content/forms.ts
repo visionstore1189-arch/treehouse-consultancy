@@ -23,12 +23,12 @@ export const formCopy = {
   send: t("Send enquiry", "إرسال الاستفسار"),
   sending: t("Sending…", "جارٍ الإرسال…"),
   offline: t(
-    "Online enquiries are not yet available.",
-    "الاستفسارات الإلكترونية غير متاحة حالياً.",
+    "Online enquiries open shortly.",
+    "ستُفتح الاستفسارات الإلكترونية قريبًا.",
   ),
   offlineBody: t(
-    "This form is not connected to a monitored inbox yet. No information can be submitted. Please return once Treehouse has opened online enquiries.",
-    "هذا النموذج غير متصل ببريد مراقب بعد. لا يمكن إرسال أي معلومات. يرجى العودة بعد تفعيل تري هاوس للاستفسارات الإلكترونية.",
+    "",
+    "",
   ),
   success: t(
     "Thank you. Your enquiry has been received. A member of our team will contact you within two working days.",
@@ -67,7 +67,7 @@ export const formCopy = {
     t("Shaped around your requirements", "بما يناسب متطلباتك"),
   ],
   subjects: [
-    t("MUTABIQ demonstration", "عرض توضيحي لمطابق"),
+    t("TIBQA demonstration", "عرض توضيحي لطبقًا"),
     t("Advisory services", "خدمات استشارية"),
     t("Other", "أخرى"),
   ],
