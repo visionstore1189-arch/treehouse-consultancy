@@ -3210,3 +3210,108 @@ html[lang="ar"] .footer-column a {
 .steps-list .step-row:has(.mutabiq-visual) { grid-template-columns: 80px minmax(0, .75fr) minmax(0, 1.5fr); }
 @media (max-width: 1100px) { .steps-list .step-row:has(.mutabiq-visual) { grid-template-columns: 60px minmax(0, 1fr); } .steps-list .step-row:has(.mutabiq-visual) .step-output-wrap { grid-column: 2; } }
 @media (max-width: 650px) { .steps-list .step-row:has(.mutabiq-visual) { grid-template-columns: 50px minmax(0, 1fr); } .steps-list .step-row:has(.mutabiq-visual) .step-output-wrap { grid-column: 1 / -1; } }
+
+
+/* TREEHOUSE 2026 | supplied MUTABIQ branding, portal and market presentation */
+.market-grid { direction: ltr; }
+html[lang="ar"] .market-card { direction: rtl; text-align: right; }
+
+.mutabiq-brand-mark { max-width: 100%; align-items: flex-start; }
+.mutabiq-logo-art { display: block !important; position: relative; width: clamp(150px, 21vw, 280px); aspect-ratio: 1764 / 302; max-width: 100%; height: auto; line-height: 0; }
+.mutabiq-logo-art img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.mutabiq-logo-art .mutabiq-wordmark-light { position: absolute; inset: 0; opacity: 0; }
+.product-page-hero .mutabiq-logo-art .mutabiq-wordmark-dark,
+.portal-login-section .mutabiq-logo-art .mutabiq-wordmark-dark { opacity: 0; }
+.product-page-hero .mutabiq-logo-art .mutabiq-wordmark-light,
+.portal-login-section .mutabiq-logo-art .mutabiq-wordmark-light { opacity: 1; }
+.mutabiq-logo-arabic { display: flex !important; align-items: center; gap: 11px; }
+.mutabiq-logo-arabic img { flex: none; width: 43px; height: 43px; }
+.mutabiq-logo-arabic > span { font-size: clamp(28px, 3vw, 38px); font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+.assessment-top .mutabiq-logo-art { width: 162px; }
+.assessment-top .mutabiq-logo-arabic img { width: 29px; height: 29px; }
+.assessment-top .mutabiq-logo-arabic > span { font-size: 24px; }
+.mutabiq-brand-mark small { display: block; font-size: 10px; letter-spacing: .08em; margin-top: 8px; }
+.product-page-hero .mutabiq-brand-mark small { color: #a9dfc7; }
+
+.nav-mutabiq-symbol { height: 17px; width: 17px; object-fit: contain; flex: none; }
+.header-portal-link { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid #0c5c4680; padding: 11px 12px; color: var(--forest); background: #e9f2eb; border-radius: 4px; font-weight: 800; font-size: 10px; letter-spacing: .02em; white-space: nowrap; min-height: 44px; transition: background 180ms ease, transform 180ms ease; }
+.header-portal-link:hover { background: #d9ebdf; transform: translateY(-1px); }
+.header-portal-link img { width: 19px; height: 19px; object-fit: contain; }
+.footer-portal-link { display: inline-flex; align-items: center; gap: 9px; font-weight: 700; }
+.footer-portal-link img { width: 20px; height: 20px; }
+.mobile-menu nav .mobile-portal-link { display: flex; gap: 10px; align-items: center; justify-content: flex-start; background: #0b302b; color: #f1f9f3; padding: 17px; margin-top: 20px; border-radius: 6px; font-weight: 800; font-size: 17px; border: none; }
+.mobile-portal-link img { width: 28px; height: 28px; }
+.mobile-portal-link svg { margin-inline-start: auto; }
+
+.client-access-band { position: relative; isolation: isolate; overflow: hidden; padding-block: clamp(58px, 6vw, 96px); background: linear-gradient(125deg,#0b2c2c 0%,#09252b 55%,#0a3b32 100%); color: #f3faf5; }
+.client-access-band:after { content: ""; pointer-events: none; position: absolute; inset: 0; z-index: -1; background: radial-gradient(ellipse at 85% 20%, #176f553d, transparent 60%), linear-gradient(90deg,#8ed4b509 1px, transparent 1px); background-size: auto, calc(100% / 14) 100%; }
+.client-access-inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(240px, .62fr); gap: clamp(30px, 6vw, 100px); align-items: center; }
+.client-access-kicker { display: inline-flex; align-items: center; gap: 9px; color: #9ad8b8; text-transform: uppercase; font-size: 11px; font-weight: 750; letter-spacing: .12em; }
+.client-access-wordmark { display: block; width: clamp(180px, 21vw, 265px); height: auto; margin: 21px 0 23px; }
+.client-access-band h2 { font-size: clamp(32px, 4vw, 56px); color: #f7faf7; line-height: 1.15; }
+.client-access-copy > p:last-child { margin-top: 17px; max-width: 610px; font-size: 15px; line-height: 1.85; color: #bcd4c9; }
+.client-access-actions { display: grid; gap: 17px; align-content: center; }
+.client-access-button { display: flex; align-items: center; gap: 14px; background: #a8e5c7; color: #092b2b; font-size: clamp(12px, 1.1vw, 15px); font-weight: 850; padding: 20px 22px; border-radius: 6px; box-shadow: 0 14px 34px #0003; }
+.client-access-button > svg:last-child { margin-inline-start: auto; }
+.client-access-button:hover { background: #cef7e2; }
+.client-access-actions > small { font-size: 12px; color: #b9d5c7; }
+.client-access-secure { display: flex; gap: 8px; align-items: center; color: #c8e4d2; font-size: 11px; }
+
+.portal-login-section { min-height: min(810px, 88svh); display: flex; align-items: center; background: radial-gradient(ellipse at 18% 30%, #12654d55, transparent 47%), linear-gradient(135deg,#092329,#0d3531); color: #f3faf5; }
+.portal-login-layout { display: grid; grid-template-columns: minmax(0, 1.07fr) minmax(0, .93fr); gap: clamp(28px, 7vw, 125px); align-items: center; }
+.portal-login-intro { min-width: 0; }
+.portal-login-intro .wordmark { margin-top: 38px; margin-bottom: 35px; }
+.portal-login-intro h1 { font-size: clamp(40px,4.5vw,65px); max-width: 650px; line-height: 1.11; color: #f5fcf7; }
+.portal-intro-lead { margin-top: 24px; max-width: 580px; color: #c4dacf; font-size: 16px; line-height: 1.9; }
+.portal-trust-info { display: grid; gap: 16px; margin: 30px 0; }
+.portal-trust-info span { display: flex; align-items: flex-start; gap: 10px; color: #cde7d9; font-size: 12px; line-height: 1.6; }
+.portal-trust-info svg { color: #9edcb9; flex: none; }
+.portal-login-intro .application-domain { display: inline-block; color: #cae7d5; border: 1px solid #9fdfb955; border-radius: 4px; padding: 10px 16px; margin-top: 4px; font-size: 11px; word-break: break-all; }
+.portal-signin-card { border: 1px solid #c9e0d0; border-radius: 13px; padding: clamp(25px,3.4vw,46px); color: #12312c; background: #f9fcfa; box-shadow: 0 25px 70px #0005; }
+.portal-signin-topline { display: flex; align-items: center; gap: 12px; color: #1a614a; font-size: 10px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+.portal-signin-topline img { width: 34px; height: 34px; }
+.portal-signin-topline svg { margin-inline-start: auto; }
+.portal-signin-card h2 { font-size: clamp(28px,2.8vw,40px); margin-top: 26px; color: #102f2f; }
+.portal-signin-card > p { font-size: 12px; color: #506c60; line-height: 1.8; margin-top: 16px; }
+.portal-inactive-form { display: grid; gap: 17px; margin-top: 30px; }
+.portal-inactive-form label { display: grid; gap: 8px; color: #12382f; font-size: 12px; font-weight: 700; }
+.portal-inactive-form input { width: 100%; height: 51px; border: 1px solid #d4dfd8; border-radius: 5px; padding: 12px 14px; background: #eff3ef; color: #567264; }
+.portal-inactive-form input:disabled { opacity: 1; cursor: not-allowed; }
+.portal-connect-button { display: flex; justify-content: center; align-items: center; gap: 12px; width: 100%; min-height: 51px; margin-top: 5px; text-align: center; font-size: 12px; font-weight: 800; }
+.portal-signin-card > .portal-connect-button { margin-top: 28px; }
+.portal-connect-button:disabled { opacity: .6; }
+.portal-access-note { display: flex; align-items: flex-start; gap: 12px; margin-top: 24px; padding: 17px 16px; background: #eaf3eb; border-left: 3px solid #257451; border-radius: 4px; color: #2d5b47; font-size: 12px; line-height: 1.7; }
+.portal-access-note svg { flex: none; margin-top: 2px; }
+.portal-support-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 25px; color: #0a644a; font-weight: 750; font-size: 12px; }
+.portal-closed-note { display: grid; justify-items: start; align-content: center; gap: 26px; max-width: 720px; min-height: 500px; }
+.portal-closed-note h1 { font-size: clamp(32px,4vw,52px); color: #f2faf5; }
+.portal-closed-note p { color: #c5ded0; }
+.portal-closed-note > svg { color: #a1e3bf; }
+.portal-closed-note > .button { display: inline-flex; align-items: center; gap: 14px; }
+@media (max-width: 1400px) {
+  .header-portal-link { padding: 10px 11px; }
+  .header-portal-link span { display: none; }
+}
+@media (max-width: 1100px) {
+  .client-access-inner { grid-template-columns: 1fr 1fr; }
+  .portal-login-layout { gap: 34px; }
+}
+@media (max-width: 900px) {
+  .client-access-inner, .portal-login-layout { grid-template-columns: 1fr; }
+  .client-access-actions { max-width: 520px; }
+  .portal-login-section { min-height: 0; }
+  .portal-login-intro .wordmark { margin-top: 24px; }
+}
+@media (max-width: 600px) {
+  .header-portal-link { display: none; }
+  .client-access-band { padding-block: 56px; }
+  .client-access-button { padding: 18px; }
+  .portal-login-section { padding-block: 58px; }
+  .portal-signin-card { border-radius: 9px; }
+  .portal-login-intro h1 { font-size: 38px; }
+  .mutabiq-logo-art { width: 198px; }
+  .client-access-wordmark { width: 225px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .header-portal-link, .client-access-button { transition: none; }
+}
