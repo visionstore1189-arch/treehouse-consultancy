@@ -17,7 +17,7 @@ export function metadataFor(locale: Locale, path: string): Metadata {
     search?.title[locale] ||
     a?.title[locale] ||
     p?.title[locale] ||
-    "Treehouse Consultancy";
+    "Treehouse Consulting";
   const description =
     search?.description[locale] ||
     a?.description[locale] ||
@@ -53,7 +53,7 @@ export function metadataFor(locale: Locale, path: string): Metadata {
       title,
       description,
       url: href(locale, path),
-      siteName: "Treehouse Consultancy",
+      siteName: "Treehouse Consulting",
       locale: locale === "en" ? "en_GB" : "ar_SA",
       type: a ? "article" : "website",
       images: [{ url: "/brand/social-card.png", width: 1200, height: 630 }],
