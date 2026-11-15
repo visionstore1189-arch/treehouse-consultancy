@@ -1,9 +1,9 @@
 export const config = {
   // The approved v3 canonical, regardless of preview host and legacy .com variables.
   siteUrl: "https://treehouseconsultancy.co.uk",
-  formsEnabled: process.env.NEXT_PUBLIC_FORMS_ENABLED === "true",
+  formsEnabled: false, // v3: activate only after signed-off privacy, inbox, Turnstile, storage and consent validation
   turnstileSiteKey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "",
-  sampleReportEnabled: process.env.NEXT_PUBLIC_SAMPLE_REPORT_ENABLED === "true",
+  sampleReportEnabled: false, // v3: hidden until the forms and final legal notice are live
   tibqaAppUrl:
     process.env.NEXT_PUBLIC_TIBQA_APP_URL ||
     "https://app.treehouseconsultancy.co.uk",
