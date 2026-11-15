@@ -1,4 +1,4 @@
-# Treehouse Consultancy website
+# Treehouse Consulting website
 
 A bilingual Next.js corporate website prepared for Cloudflare Pages Free. The public website exports to `out/`. Three enquiry forms use a separate Cloudflare Pages Function; the existing Mutabiq application remains separate.
 
