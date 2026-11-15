@@ -2,7 +2,7 @@ import type { Locale } from "@/lib/config";
 export type Bilingual = { en: string; ar: string };
 export const t = (en: string, ar: string): Bilingual => ({ en, ar });
 export const ui = {
-  brand: t("Treehouse Consultancy", "تري هاوس للاستشارات"),
+  brand: t("Treehouse Consulting", "تري هاوس للاستشارات"),
   nav: [
     t("MUTABIQ", "مطابق"),
     t("Services", "الخدمات"),
@@ -116,7 +116,7 @@ export const ui = {
     "اطلب عرضاً توضيحياً لمطابق، أو تحدث إلى فريقنا حول أولوياتك التنظيمية.",
   ),
   disclaimer: t(
-    "Treehouse Consultancy provides regulatory advisory and technology services. It is not a law firm and does not provide legal advice. Nothing on this website implies approval or endorsement by any regulator.",
+    "Treehouse Consulting provides regulatory advisory and technology services. It is not a law firm and does not provide legal advice. Nothing on this website implies approval or endorsement by any regulator.",
     "تقدم تري هاوس خدمات استشارية وتقنية في المجال التنظيمي، وليست مكتب محاماة ولا تقدم مشورة قانونية. لا يتضمن هذا الموقع ما يفيد اعتماد أي جهة رقابية أو تأييدها.",
   ),
   footerLine: t(
@@ -132,7 +132,7 @@ export const ui = {
   cookies: t("Cookies", "ملفات الارتباط"),
   terms: t("Terms", "الشروط"),
   copyright: t(
-    "Treehouse Consultancy. All rights reserved.",
+    "Treehouse Consulting. All rights reserved.",
     "تري هاوس للاستشارات. جميع الحقوق محفوظة.",
   ),
   market: t("Market", "السوق"),
@@ -805,7 +805,7 @@ export type PageContent = {
 export const pages: Record<string, PageContent> = {
   "": {
     title: t(
-      "Treehouse Consultancy | Regulatory Advisory and Regulatory Technology",
+      "Treehouse Consulting | Regulatory Advisory and Regulatory Technology",
       "تري هاوس للاستشارات | الاستشارات التنظيمية والتقنية الرقابية",
     ),
     intro: ui.homeIntro,
