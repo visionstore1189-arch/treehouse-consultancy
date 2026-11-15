@@ -4,6 +4,7 @@ export const config = {
   ).replace(/\/$/, ""),
   formsEnabled: process.env.NEXT_PUBLIC_FORMS_ENABLED === "true",
   turnstileSiteKey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "",
+  sampleReportEnabled: process.env.NEXT_PUBLIC_SAMPLE_REPORT_ENABLED === "true",
   mutabiqAppUrl:
     process.env.NEXT_PUBLIC_MUTABIQ_APP_URL ||
     "https://app.treehouseconsultancy.com",
