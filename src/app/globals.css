@@ -3520,3 +3520,21 @@ html[lang="ar"] .market-card { direction: rtl; text-align: right; }
   .tibqa-tour-image-shell img { animation: none; }
   .tibqa-tour-tab { transition: none; }
 }
+
+/* TIBQA customer access: homepage-only CTA below Three Markets. */
+.client-access-band .tibqa-logo-art .tibqa-wordmark-dark { opacity: 0; }
+.client-access-band .tibqa-logo-art .tibqa-wordmark-light { opacity: 1; }
+.client-access-band .tibqa-brand-mark small { color: #a9dfc7; }
+.client-access-band .client-access-actions p { margin: 0; }
+.client-access-band .client-access-button:focus-visible,
+.portal-home-back:focus-visible { outline: 3px solid #a8e5c7; outline-offset: 4px; }
+.portal-home-back { display: inline-flex; align-items: center; gap: 9px; color: #b6ddcb; font-size: 13px; font-weight: 700; text-decoration: none; }
+.portal-home-back:hover { color: #fff; }
+.portal-home-back svg { flex: 0 0 auto; }
+.portal-signin-card .customer-login-form .portal-connect-button:not(:disabled):hover { filter: brightness(1.06); }
+@media (max-width: 600px) {
+  .client-access-band { padding-block: 52px; }
+  .client-access-wordmark { width: 205px; }
+  .client-access-button { min-height: 66px; padding: 16px 17px; }
+  .portal-login-layout { gap: 32px; }
+}
