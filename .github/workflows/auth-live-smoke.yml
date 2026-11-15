@@ -1,0 +1,36 @@
+name: Verify deployed MUTABIQ auth runtime
+on:
+  push:
+    branches:
+      - verify-auth-runtime-health-2026
+permissions:
+  contents: read
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Cloudflare can reach Supabase Auth
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL="https://treehouse-consultancy.pages.dev/api/auth/status"
+          curl -fLsS --retry 4 --retry-delay 3 --max-time 25 "$URL" -o /tmp/status.json
+          cat /tmp/status.json
+          grep -Eq '"ready"[[:space:]]*:[[:space:]]*true' /tmp/status.json
+      - name: Protected session endpoint requires authentication
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL="https://treehouse-consultancy.pages.dev/api/auth/me"
+          CODE="$(curl -sSL --max-time 25 -o /tmp/auth-me.json -w '%{http_code}' "$URL")"
+          echo "Anonymous account access status: $CODE"
+          test "$CODE" = "401"
+      - name: Login form API rejects malformed credentials
+        shell: bash
+        run: |
+          set -euo pipefail
+          HOST="https://treehouse-consultancy.pages.dev"
+          CODE="$(curl -sSL --max-time 25 -o /tmp/auth-login.json -w '%{http_code}'             -X POST -H "Origin: $HOST" -H 'Content-Type: application/json'             --data '{"email":"not-an-email","password":"not-a-real-password"}'             "$HOST/api/auth/login")"
+          echo "Invalid form response status: $CODE"
+          test "$CODE" = "400"
