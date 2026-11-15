@@ -7,7 +7,6 @@ import {
   ArrowDown,
   ArrowUpRight,
   ShieldCheck,
-  LockKeyhole,
   FileText,
   Landmark,
   Orbit,
@@ -45,7 +44,6 @@ import { TIBQAVisual, TIBQAProof } from "./tibqa-visual";
 import { TibqaTour } from "./tibqa-tour";
 import { SampleReportSection } from "./sample-report";
 import { tibqaAssets } from "@/content/tibqa-assets";
-import { CustomerLoginForm, CustomerPortal, RecoverPasswordForm, SetPasswordForm } from "./customer-auth";
 const serviceIcons = [ScanLine, Landmark, Layers3, Orbit, Fingerprint];
 const marketDisplayOrder = ["saudi-arabia", "uk", "uae"];
 const orderedMarkets = [...markets].sort(
@@ -164,11 +162,7 @@ function Home({ locale }: { locale: Locale }) {
             </Link>
           </Reveal>
           <Reveal delay={0.08}>
-            {tibqaAssets.visualsEnabled ? (
-              <TIBQAVisual locale={locale} id="overview" />
-            ) : (
-              <AssessmentExplorer locale={locale} />
-            )}
+            <TIBQAVisual locale={locale} id="overview" />
           </Reveal>
         </div>
       </section>
@@ -553,7 +547,7 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                   {ui.explore[locale]}
                 </Button>
               </div>
-              <AssessmentExplorer locale={locale} />
+              <TIBQAVisual locale={locale} id="overview" />
             </div>
           </section>
           <Closing locale={locale} />
@@ -624,7 +618,7 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                   {ui.explore[locale]}
                 </Button>
               </div>
-              <AssessmentExplorer locale={locale} />
+              <TIBQAVisual locale={locale} id="overview" />
             </div>
           </section>
           <Closing locale={locale} />
