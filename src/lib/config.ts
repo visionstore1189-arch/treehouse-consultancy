@@ -8,8 +8,13 @@ export const config = {
   mutabiqAppUrl:
     process.env.NEXT_PUBLIC_MUTABIQ_APP_URL ||
     "https://app.treehouseconsultancy.com",
-  // Fail closed: no authentication is implemented in this public site.
-  portalConnected: false,
+  // This static website never verifies passwords or client subscriptions.
+  // Only enable linking to a real, independently secured application after its
+  // authentication, MFA and organisation-based entitlements have been audited.
+  mutabiqLoginUrl: process.env.NEXT_PUBLIC_MUTABIQ_LOGIN_URL || "",
+  portalConnected:
+    process.env.NEXT_PUBLIC_MUTABIQ_PORTAL_CONNECTED === "true" &&
+    /^https:\/\//.test(process.env.NEXT_PUBLIC_MUTABIQ_LOGIN_URL || ""),
 } as const;
 export type Locale = "en" | "ar";
 export const href = (locale: Locale, path = "") =>
