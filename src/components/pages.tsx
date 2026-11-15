@@ -757,7 +757,7 @@ export function SitePage({ locale, path }: { locale: Locale; path: string }) {
       ? {
           "@context": "https://schema.org",
           "@type": "Organization",
-          name: "Treehouse Consultancy",
+          name: "Treehouse Consulting",
           url: config.siteUrl,
           logo: `${config.siteUrl}/brand/treehouse-official.png`,
         }
