@@ -1,0 +1,8 @@
+# Permanent legacy MUTABIQ product path migration to TIBQA.
+# These apply to the Cloudflare Pages static site in both languages.
+/mutabiq /tibqa/ 301
+/mutabiq/ /tibqa/ 301
+/mutabiq/* /tibqa/:splat 301
+/ar/mutabiq /ar/tibqa/ 301
+/ar/mutabiq/ /ar/tibqa/ 301
+/ar/mutabiq/* /ar/tibqa/:splat 301
