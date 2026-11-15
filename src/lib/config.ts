@@ -8,8 +8,10 @@ export const config = {
   mutabiqAppUrl:
     process.env.NEXT_PUBLIC_MUTABIQ_APP_URL ||
     "https://app.treehouseconsultancy.com",
-  // Enable the login UI only after the real Cloudflare auth functions, Supabase project, invitation settings and RLS are configured.
-  authLoginEnabled: process.env.NEXT_PUBLIC_AUTH_LOGIN_ENABLED === "true",
+  // Treehouse Supabase owner, organisation and RLS are configured. Cloudflare Functions
+  // have the public project settings; use NEXT_PUBLIC_AUTH_LOGIN_ENABLED=false as a kill switch.
+  // This enables account sign-in, NOT access to the separate MUTABIQ application.
+  authLoginEnabled: process.env.NEXT_PUBLIC_AUTH_LOGIN_ENABLED !== "false",
   // This static website never verifies passwords or client subscriptions.
   // Only enable linking to a real, independently secured application after its
   // authentication, MFA and organisation-based entitlements have been audited.

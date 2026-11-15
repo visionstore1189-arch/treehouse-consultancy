@@ -1,7 +1,7 @@
 # MUTABIQ — Real email/password customer login (Supabase + Cloudflare Pages)
 
 ## Deployment status
-This pull request prepares an actual password-based login frontend, user sessions, account status and invitations/password reset flow, implemented through Cloudflare Pages Functions and Supabase Auth REST APIs. **It is intentionally OFF until a Supabase project is created and approved for this client.** No customer credentials, passwords, or privileged keys are present in the repository.
+The Treehouse Consulting organisation, verified owner account, and three RLS-enabled tables have been provisioned in the approved London Supabase project `rylvuhuqjofliceipbka`. The Cloudflare Pages Functions connect with the project's **public publishable key** and URL committed as fallback configuration; **no privileged service keys or customer passwords** are committed. The login frontend is enabled for approved organisation members, with a build-time emergency kill switch. Supabase validates passwords server-side; the existing MUTABIQ application remains disconnected.
 
 The static corporate website can continue to run on Cloudflare Pages. Authentication endpoints execute in Cloudflare Pages Functions, backed by Supabase Auth.
 
@@ -16,19 +16,17 @@ Treehouse's client should own the Supabase organisation/project and grant its we
 - Confirm MFA enforcement appropriate for financial-sector users **before** confidential MUTABIQ data is exposed.
 - Run Supabase database/security advisors. Perform at least a two-organisation RLS test to verify cross-tenant access is denied.
 
-### 3. Deploy Cloudflare Pages variables
-Under the existing `treehouse-consultancy` Pages project:
-- Server-only variable `SUPABASE_URL`: your Supabase project HTTPS API URL (example: `https://abc.supabase.co`)
-- Server-only variable `SUPABASE_PUBLISHABLE_KEY`: the publishable key (`sb_publishable_...`). Do not use `service_role` or `sb_secret_...` in website code, Cloudflare logs or user-visible files.
-- Build environment variable `NEXT_PUBLIC_AUTH_LOGIN_ENABLED=true` (set this only AFTER successful end-to-end auth tests).
-- Redeploy after updating the variables. The site is a static Next.js export and needs a new build for this feature flag.
+### 3. Cloudflare Pages connection and operational controls
+The approved Supabase project's **public** URL and `sb_publishable_...` key are now in `functions/api/auth/_shared.ts`. Cloudflare Pages Functions access those values directly at runtime, so adding a Cloudflare dashboard binding is **not required** for the default environment. Rotate them using project settings and deploy a code update, or override through server-only Cloudflare bindings `SUPABASE_URL` and `SUPABASE_PUBLISHABLE_KEY`. Never use `service_role`, `sb_secret_...` or a private API token in client code.
+
+The website sign-in UI defaults **on**. Set the build-time variable `NEXT_PUBLIC_AUTH_LOGIN_ENABLED=false` and redeploy to disable it in an incident. The public `GET /api/auth/status` endpoint reports Supabase Auth availability. Only membership-approved users may receive a browser session. `NEXT_PUBLIC_MUTABIQ_PORTAL_CONNECTED` remains **off** until the separate application passes security and entitlement checks.
 
 Never enable `NEXT_PUBLIC_MUTABIQ_PORTAL_CONNECTED` until the separately hosted MUTABIQ application has its own audited authenticated access. This feature flag is separate from the Treehouse customer account login.
 
 ### 4. Invite users — never share passwords
 Supabase Dashboard → Authentication → Users → Add user → **Send invitation**. Only approved email addresses should be invited. The user opens the link and sets a unique password at the site's `/client/reset-password/` page (English/Arabic equivalents). No password should be sent to an agency, client, or ChatGPT.
 
-Create an organisation for each subscribed business. Example admin-only SQL, after its primary contact has accepted invitation:
+Create an organisation for each subscribed business. For new invitees, **provision the active membership before they accept their invitation** because first-password setup now rejects users without approved membership. Example admin-only SQL after the invitation is issued and the `auth.users` record exists:
 
 ```sql
 insert into public.organizations (slug, name)
@@ -58,9 +56,9 @@ The new endpoints are `/api/auth/login`, `me`, `logout`, `recover`, `establish`,
 **This account dashboard is not itself the MUTABIQ application.** It does not provide permission to view assessments, regulatory library documents or customer uploads. When the existing software is connected, its own backend MUST independently authenticate each session, check MFA and verify subscription and tenant-level access before every sensitive operation. Marketing-page account state or browser redirects are never sufficient for authorization.
 
 ### 6. Manual acceptance tests
-1. Environment unconfigured: disabled login inputs, no usable account. API returns 503, no cookies.
-2. Public self-signup disabled; non-invited address can't log in.
-3. Approved invitation sets a new password, sign-in succeeds on English and Arabic pages.
+1. The public `/api/auth/status` endpoint returns 200 only when Supabase Auth is reachable; a failure returns 503.
+2. Public self-signup **must be disabled in Supabase Auth settings**; new accounts without active membership are rejected by our login and invite endpoints.
+3. An approved account with an existing password signs in on English and Arabic pages; invite-only onboarding will be verified once callback URLs and sender email are configured.
 4. Customer A sees only customer A's organisation; customer B data is invisible.
 5. Expired subscription: site shows pending, no app access.
 6. Logout invalidates local browser cookies. Supabase session revocation and MFA policy should be assessed for higher-risk accounts.
@@ -69,5 +67,5 @@ The new endpoints are `/api/auth/login`, `me`, `logout`, `recover`, `establish`,
 9. Confirm the Pages functions are available at `/api/auth/*` and the API responses are never cached.
 
 ## Operational limitations
-A Supabase project, its RLS tables, authorized staff accounts, legal notices and Cloudflare environment settings **must exist before login can be called working**. Since there is currently no Supabase project in the connected account, all login controls remain fail-closed until this setup is approved.
+The database project, owner membership and public Cloudflare authentication connection are configured, and automated login/security checks passed. End-to-end **real-credential** sign-in must be confirmed by the account owner in their own browser because their password must never be shared with an assistant. Before inviting additional clients, configure approved Supabase redirect URLs, disable public signup, configure production SMTP and confirm the legal/privacy notices. Paid access to the future MUTABIQ app is **not** activated by this website login.
 

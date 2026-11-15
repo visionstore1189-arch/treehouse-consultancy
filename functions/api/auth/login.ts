@@ -13,9 +13,23 @@ export const onRequestPost: PagesFunction<AuthEnv> = async ({ request, env }) =>
     });
     if (!res.ok) return response({ error: "invalid_credentials" }, res.status === 429 ? 429 : 401);
     const tokens = await res.json() as Tokens;
-    if (!tokens.access_token || !tokens.refresh_token
-      || !(await verifiedUser(env, tokens.access_token)))
+    if (!tokens.access_token || !tokens.refresh_token)
       return response({ error: "invalid_credentials" }, 401);
+    const user = await verifiedUser(env, tokens.access_token);
+    if (!user) return response({ error: "invalid_credentials" }, 401);
+    // A Supabase account alone never grants Treehouse client access.
+    // Allow only explicitly approved, active organisation members.
+    const membership = await supa(
+      env,
+      "/rest/v1/organization_memberships?select=organization_id&user_id=eq." +
+        encodeURIComponent(user.id) + "&status=eq.active&limit=1",
+      { method: "GET" },
+      tokens.access_token,
+    );
+    if (!membership.ok) return response({ error: "authorization_unavailable" }, 503);
+    const rows: unknown = await membership.json();
+    if (!Array.isArray(rows) || rows.length === 0)
+      return response({ error: "account_not_authorized" }, 403);
     const result = response({ ok: true });
     setTokens(result, tokens);
     return result;
