@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/verify-mutabiq-assets.mjs && next build && node scripts/clean-export.mjs && node scripts/verify-export.mjs",
+    "build": "node scripts/verify-tibqa-assets.mjs && next build && node scripts/clean-export.mjs && node scripts/verify-export.mjs",
     "preview": "wrangler pages dev out --port 8788",
     "typecheck": "next typegen && tsc --noEmit",
     "test": "tsx --test tests/*.test.ts",
