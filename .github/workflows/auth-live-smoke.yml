@@ -1,4 +1,4 @@
-name: Diagnose deployed MUTABIQ auth runtime
+name: Diagnose deployed MUTABIQ auth runtime - followup
 on:
   push:
     branches: [verify-auth-runtime-health-2026]
