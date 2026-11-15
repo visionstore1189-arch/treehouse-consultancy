@@ -3,6 +3,12 @@ export interface AuthEnv {
   SUPABASE_URL?: string;
   SUPABASE_PUBLISHABLE_KEY?: string;
 }
+// The project URL and sb_publishable key are public configuration, NOT privileged secrets.
+// Explicit Cloudflare bindings take precedence for future project rotation.
+const SUPABASE_PROJECT_URL = "https://rylvuhuqjofliceipbka.supabase.co";
+const SUPABASE_PUBLIC_KEY = "sb_publishable_vCVWhaqD8HUMI3VnswXZGg_v4zOoIG9";
+const projectUrl = (env: AuthEnv) => env.SUPABASE_URL ?? SUPABASE_PROJECT_URL;
+const publishableKey = (env: AuthEnv) => env.SUPABASE_PUBLISHABLE_KEY ?? SUPABASE_PUBLIC_KEY;
 export type Tokens = {
   access_token: string;
   refresh_token: string;
@@ -15,9 +21,9 @@ const ACCESS = "__Host-th_access";
 const REFRESH = "__Host-th_refresh";
 export const authEnabled = (env: AuthEnv): boolean => {
   try {
-    const u = new URL(env.SUPABASE_URL || "");
+    const u = new URL(projectUrl(env));
     return u.protocol === "https:" && /^[a-z0-9-]+\.supabase\.co$/i.test(u.hostname)
-      && u.pathname === "/" && !!env.SUPABASE_PUBLISHABLE_KEY;
+      && u.pathname === "/" && publishableKey(env).startsWith("sb_publishable_");
   } catch { return false; }
 };
 export const response = (body: unknown, status = 200): Response => Response.json(body, {
@@ -64,11 +70,11 @@ export const readBody = async (request: Request): Promise<Record<string, unknown
 export const supa = (env: AuthEnv, path: string, init: RequestInit = {}, bearer?: string): Promise<Response> => {
   if (!authEnabled(env) || !path.startsWith("/")) throw new Error("auth_not_configured");
   const headers = new Headers(init.headers);
-  headers.set("apikey", env.SUPABASE_PUBLISHABLE_KEY!);
+  headers.set("apikey", publishableKey(env));
   headers.set("Accept", "application/json");
   if (init.body) headers.set("Content-Type", "application/json");
   if (bearer) headers.set("Authorization", "Bearer " + bearer);
-  return fetch(env.SUPABASE_URL!.replace(/\/$/, "") + path, { ...init, headers, redirect: "error" });
+  return fetch(projectUrl(env).replace(/\/$/, "") + path, { ...init, headers, redirect: "error" });
 };
 const cookie = (req: Request, name: string): string => {
   const part = (req.headers.get("Cookie") || "").split(";").map(v => v.trim())
