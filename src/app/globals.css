@@ -1226,9 +1226,9 @@ html[dir="rtl"] .directional {
   z-index: 1;
 }
 .page-intro {
-  font-size: 16px;
-  line-height: 1.9;
-  color: #b7cac1;
+  font-size: 17px;
+  line-height: 1.85;
+  color: #d8e8df;
   max-width: 790px;
   margin-top: 28px;
   position: relative;
@@ -3157,3 +3157,15 @@ html[lang="ar"] .footer-column a {
 .coverage-panel thead th {
   color: #526b5b;
 }
+
+/* Client review: readable product hero, accessible labels and aligned mobile Markets */
+.art-label { display: inline-block; min-width: 0; }
+.art-coordinate { flex: 0 0 auto; white-space: nowrap; }
+.product-descriptor { font-size: clamp(15px, 1.45vw, 19px); font-weight: 500; color: #e4f5eb; max-width: 800px; margin-top: 24px; }
+.product-page-hero .page-intro { margin-top: 16px; }
+.required-mark { color: #17634f; font-weight: 700; }
+.mobile-markets summary { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-size: 22px; padding: 14px 0; border-bottom: 1px solid var(--line); list-style: none; }
+.mobile-markets summary::-webkit-details-marker { display: none; }
+.mobile-markets .mobile-subnav { padding-inline-start: 20px; }
+.mobile-markets .mobile-subnav a { font-size: 15px; }
+@media (max-width: 600px) { .mobile-markets summary { font-size: 21px; } }

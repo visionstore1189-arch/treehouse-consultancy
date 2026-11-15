@@ -213,7 +213,7 @@ function Home({ locale }: { locale: Locale }) {
           <MarketCards locale={locale} />
         </div>
       </section>
-      <section className="section insights-section">
+      {publishedArticles.length >= 3 && <section className="section insights-section">
         <div className="container">
           <div className="section-heading">
             <div>
@@ -227,7 +227,7 @@ function Home({ locale }: { locale: Locale }) {
           </div>
           <InsightsList locale={locale} compact />
         </div>
-      </section>
+      </section>}
       <Closing locale={locale} />
     </>
   );
@@ -247,6 +247,9 @@ function PageHero({ locale, path }: { locale: Locale; path: string }) {
         <Eyebrow>{p.eyebrow?.[locale] || ui.brand[locale]}</Eyebrow>
         {path === "mutabiq" && <Wordmark locale={locale} />}
         <h1>{p.title[locale]}</h1>
+        {path === "mutabiq" && (
+          <p className="product-descriptor">{ui.productDescriptor[locale]}</p>
+        )}
         <p className="page-intro">{p.intro[locale]}</p>
         {path === "mutabiq" && (
           <div className="button-row">
@@ -354,7 +357,7 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
           <section className="section">
             <div className="container">
               <div className="split-heading">
-                <h2>{ui.tagline[locale]}</h2>
+                <h2>{ui.whatMutabiqDoes[locale]}</h2>
                 <p className="lead">{productNameMeaning[locale]}</p>
               </div>
               <div className="feature-list">
