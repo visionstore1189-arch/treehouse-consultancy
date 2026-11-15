@@ -875,38 +875,12 @@ export const pages: Record<string, PageContent> = {
       "تأسست تري هاوس انطلاقاً من ملاحظة بسيطة: تبدأ معظم المشكلات التنظيمية عندما تفتقر المؤسسة إلى رؤية كاملة ومحدثة لما هو مطلوب منها. أمضت قيادتنا سنوات طويلة في مناصب رقابية عليا وفي تقديم المشورة للجهات الرقابية والمؤسسات في المملكة المتحدة والخليج. بنينا طبقًا لمنح المؤسسات الوضوح الذي يتوقعه المشرف.",
     ),
   },
-  insights: {
-    title: t("Insights and regulatory briefings", "رؤى وإحاطات تنظيمية"),
-    intro: t(
-      "Practical perspectives on regulation, governance and evidenced compliance across our three markets.",
-      "رؤى عملية حول التنظيم والحوكمة والالتزام الموثق عبر أسواقنا الثلاثة.",
-    ),
-  },
   contact: {
     title: ui.talk,
     intro: t(
       "Tell us about your regulatory priorities. All enquiries are treated in confidence and we reply within two working days.",
       "أخبرنا بأولوياتك التنظيمية. تُعامل جميع الاستفسارات بسرية ونرد خلال يومي عمل.",
     ),
-  },
-  privacy: {
-    title: t("Privacy notice", "إشعار الخصوصية"),
-    intro: ui.legalPendingText,
-  },
-  cookies: {
-    title: t("Cookie policy", "سياسة ملفات الارتباط"),
-    intro: ui.noTracking,
-  },
-  terms: {
-    title: t("Website terms", "شروط الموقع"),
-    intro: ui.legalPendingText,
-  },
-  "client/login": { title: ui.loginTitle, intro: ui.loginNotice },
-  "client/recover-password": { title: t("Reset your TIBQA password", "استعادة كلمة مرور طبقًا"), intro: t("Secure account recovery", "استعادة الحساب الآمنة") },
-  "client/reset-password": { title: t("Set your TIBQA password", "تعيين كلمة مرور طبقًا"), intro: t("Accept your invitation or reset your password", "قبول الدعوة أو إعادة تعيين كلمة المرور") },
-  "client/portal": {
-    title: t("Your client workspace", "مساحة عمل العملاء"),
-    intro: ui.portalNotice,
   },
 };
 for (const s of services)
@@ -918,30 +892,15 @@ for (const s of services)
 for (const m of markets)
   pages[m.slug] = { title: m.title, intro: m.intro, eyebrow: m.name };
 export const productNameMeaning = t(
-  "TIBQA means “conforming” in Arabic. It answers one question for every requirement: does your framework conform?",
-  "يعني اسم طبقًا الامتثال الدقيق. ويجيب عن سؤال واحد لكل متطلب: هل يتوافق إطاركم معه؟",
+  'TIBQA comes from the Arabic for "in accordance with". It answers one question for every requirement: is your framework in accordance with it?',
+  '«طبقًا» كلمة تستخدمها الأنظمة بمعنى «وفقًا لـ». تجيب عن سؤال واحد لكل متطلب: هل إطاركم متوافق معه؟',
 );
+// Draft legal notices are deliberately not published until client-approved text is supplied.
+// Privacy, cookie and terms URLs are withheld in the v3 draft launch.
 export const legalContent: Record<string, Bilingual[]> = {
-  privacy: [
-    t(
-      "The final notice must identify the data controller, contact details, purposes and lawful bases, processors, international transfers, retention periods and individual rights.",
-      "يجب أن يحدد الإشعار النهائي جهة التحكم وبيانات الاتصال والأغراض والأسس النظامية والمعالجين والتحويلات الدولية ومدد الاحتفاظ وحقوق الأفراد.",
-    ),
-  ],
-  cookies: [
-    ui.noTracking,
-    t(
-      "No optional cookies are set by this site. If analytics are introduced, consent controls and this policy must be approved before activation.",
-      "لا يضع هذا الموقع ملفات ارتباط اختيارية. إذا أُضيفت أدوات تحليلية، يجب اعتماد ضوابط الموافقة وهذه السياسة قبل تفعيلها.",
-    ),
-  ],
-  terms: [
-    ui.disclaimer,
-    t(
-      "The final terms must confirm the contracting entity, company registration details, permitted use, intellectual property, liability provisions and applicable law.",
-      "يجب أن تحدد الشروط النهائية الجهة المتعاقدة وبيانات تسجيل الشركة والاستخدام المسموح والملكية الفكرية وأحكام المسؤولية والقانون المنطبق.",
-    ),
-  ],
+  privacy: [],
+  cookies: [],
+  terms: [],
 };
 export function textFor(locale: Locale, key: keyof typeof ui) {
   return ui[key];
