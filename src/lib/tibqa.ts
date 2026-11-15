@@ -12,7 +12,7 @@ export interface Entitlement {
   status: "active" | "trialing" | "past_due" | "cancelled";
   features: string[];
 }
-export interface MutabiqIntegration {
+export interface TIBQAIntegration {
   getVerifiedSession(request: Request): Promise<VerifiedSession | null>;
   getEntitlement(session: VerifiedSession): Promise<Entitlement | null>;
   authorise(

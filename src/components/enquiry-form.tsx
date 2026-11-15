@@ -150,6 +150,13 @@ export function EnquiryForm({
       />
     </label>
   );
+  // No enquiry fields or privacy consent links are displayed before the monitored
+  // inbox, final privacy notice, and anti-spam backend are approved.
+  if (!enabled) return (
+    <div className="form-card form-closed-card" role="status">
+      <p>{c.offline[locale]}</p>
+    </div>
+  );
   return (
     <div className="form-card">
       {!enabled && (

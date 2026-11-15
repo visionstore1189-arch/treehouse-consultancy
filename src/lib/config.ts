@@ -1,24 +1,23 @@
 export const config = {
-  siteUrl: (
-    process.env.NEXT_PUBLIC_SITE_URL || "https://treehouseconsultancy.com"
-  ).replace(/\/$/, ""),
-  formsEnabled: process.env.NEXT_PUBLIC_FORMS_ENABLED === "true",
+  // The approved v3 canonical, regardless of preview host and legacy .com variables.
+  siteUrl: "https://treehouseconsultancy.co.uk",
+  formsEnabled: false, // v3: activate only after signed-off privacy, inbox, Turnstile, storage and consent validation
   turnstileSiteKey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "",
-  sampleReportEnabled: process.env.NEXT_PUBLIC_SAMPLE_REPORT_ENABLED === "true",
-  mutabiqAppUrl:
-    process.env.NEXT_PUBLIC_MUTABIQ_APP_URL ||
-    "https://app.treehouseconsultancy.com",
+  sampleReportEnabled: false, // v3: hidden until the forms and final legal notice are live
+  tibqaAppUrl:
+    process.env.NEXT_PUBLIC_TIBQA_APP_URL ||
+    "https://app.treehouseconsultancy.co.uk",
   // Treehouse Supabase owner, organisation and RLS are configured. Cloudflare Functions
   // have the public project settings; use NEXT_PUBLIC_AUTH_LOGIN_ENABLED=false as a kill switch.
-  // This enables account sign-in, NOT access to the separate MUTABIQ application.
+  // This enables account sign-in, NOT access to the separate TIBQA application.
   authLoginEnabled: process.env.NEXT_PUBLIC_AUTH_LOGIN_ENABLED !== "false",
   // This static website never verifies passwords or client subscriptions.
   // Only enable linking to a real, independently secured application after its
   // authentication, MFA and organisation-based entitlements have been audited.
-  mutabiqLoginUrl: process.env.NEXT_PUBLIC_MUTABIQ_LOGIN_URL || "",
+  tibqaLoginUrl: process.env.NEXT_PUBLIC_TIBQA_LOGIN_URL || "",
   portalConnected:
-    process.env.NEXT_PUBLIC_MUTABIQ_PORTAL_CONNECTED === "true" &&
-    /^https:\/\//.test(process.env.NEXT_PUBLIC_MUTABIQ_LOGIN_URL || ""),
+    process.env.NEXT_PUBLIC_TIBQA_PORTAL_CONNECTED === "true" &&
+    /^https:\/\//.test(process.env.NEXT_PUBLIC_TIBQA_LOGIN_URL || ""),
 } as const;
 export type Locale = "en" | "ar";
 export const href = (locale: Locale, path = "") =>

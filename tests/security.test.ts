@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { DatabaseSync } from "node:sqlite";
 import { readFileSync } from "node:fs";
 import { onRequest, configured, type Env } from "../functions/api/enquiry";
-import { canAccess } from "../src/lib/mutabiq";
+import { canAccess } from "../src/lib/tibqa";
 import { enquirySchema } from "../src/lib/form-schema";
 const valid = {
   kind: "contact",

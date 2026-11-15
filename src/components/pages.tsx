@@ -7,7 +7,6 @@ import {
   ArrowDown,
   ArrowUpRight,
   ShieldCheck,
-  LockKeyhole,
   FileText,
   Landmark,
   Orbit,
@@ -41,10 +40,10 @@ import { HeroArt } from "./hero-art";
 import { Reveal } from "./reveal";
 import { AssessmentExplorer, CoverageTable, InsightsList } from "./explorers";
 import { EnquiryForm } from "./enquiry-form";
-import { MutabiqVisual, MutabiqProof } from "./mutabiq-visual";
+import { TIBQAVisual, TIBQAProof } from "./tibqa-visual";
+import { TibqaTour } from "./tibqa-tour";
 import { SampleReportSection } from "./sample-report";
-import { mutabiqAssets } from "@/content/mutabiq-assets";
-import { CustomerLoginForm, CustomerPortal, RecoverPasswordForm, SetPasswordForm } from "./customer-auth";
+import { tibqaAssets } from "@/content/tibqa-assets";
 const serviceIcons = [ScanLine, Landmark, Layers3, Orbit, Fingerprint];
 const marketDisplayOrder = ["saudi-arabia", "uk", "uae"];
 const orderedMarkets = [...markets].sort(
@@ -77,29 +76,6 @@ export function MarketCards({ locale }: { locale: Locale }) {
         </Link>
       ))}
     </div>
-  );
-}
-function ClientAccessBand({ locale }: { locale: Locale }) {
-  return (
-    <section className="client-access-band" aria-labelledby="client-access-title">
-      <div className="container client-access-inner">
-        <div className="client-access-copy">
-          <p className="client-access-kicker"><LockKeyhole size={16} aria-hidden="true" />{ui.portalEyebrow[locale]}</p>
-          <img className="client-access-wordmark" src="/brand/mutabiq-wordmark-light.svg" alt="" aria-hidden="true" width={390} height={67} />
-          <h2 id="client-access-title">{ui.subscriberTitle[locale]}</h2>
-          <p>{ui.subscriberText[locale]}</p>
-        </div>
-        <div className="client-access-actions">
-          <Link href={href(locale, "client/login")} className="client-access-button">
-            <LockKeyhole size={20} aria-hidden="true" />
-            <span>{ui.subscriberAction[locale]}</span>
-            <Arrow diagonal />
-          </Link>
-          {!config.portalConnected && <small>{ui.subscriberAvailability[locale]}</small>}
-          <span className="client-access-secure"><ShieldCheck size={15} aria-hidden="true" /> {ui.loginSecure[locale]}</span>
-        </div>
-      </div>
-    </section>
   );
 }
 export function ServicesList({ locale }: { locale: Locale }) {
@@ -139,7 +115,7 @@ function Home({ locale }: { locale: Locale }) {
             </h1>
             <p>{ui.heroShort[locale]}</p>
             <div className="button-row">
-              <Button to="mutabiq/demo" locale={locale}>
+              <Button to="tibqa/demo" locale={locale}>
                 {ui.demo[locale]}
               </Button>
               <Button to="contact" locale={locale} secondary>
@@ -180,17 +156,13 @@ function Home({ locale }: { locale: Locale }) {
             <Wordmark locale={locale} />
             <h2>{ui.productHeading[locale]}</h2>
             <p>{ui.productIntro[locale]}</p>
-            <Link className="text-link" href={href(locale, "mutabiq")}>
+            <Link className="text-link" href={href(locale, "tibqa")}>
               {ui.explore[locale]}
               <Arrow diagonal />
             </Link>
           </Reveal>
           <Reveal delay={0.08}>
-            {mutabiqAssets.visualsEnabled ? (
-              <MutabiqVisual locale={locale} id="overview" />
-            ) : (
-              <AssessmentExplorer locale={locale} />
-            )}
+            <TIBQAVisual locale={locale} id="overview" />
           </Reveal>
         </div>
       </section>
@@ -263,7 +235,6 @@ function Home({ locale }: { locale: Locale }) {
           <InsightsList locale={locale} compact />
         </div>
       </section>}
-      <ClientAccessBand locale={locale} />
       <Closing locale={locale} />
     </>
   );
@@ -272,9 +243,9 @@ function PageHero({ locale, path }: { locale: Locale; path: string }) {
   const p = pages[path];
   return (
     <section
-      className={`page-hero ${path.startsWith("mutabiq") ? "product-page-hero" : ""}`}
+      className={`page-hero ${path.startsWith("tibqa") ? "product-page-hero" : ""}`}
     >
-      <div className={`container ${path === "mutabiq" && mutabiqAssets.visualsEnabled ? "mutabiq-hero-grid" : ""}`}>
+      <div className={`container ${path === "tibqa" && tibqaAssets.visualsEnabled ? "tibqa-hero-grid" : ""}`}>
         <div className="page-hero-copy">
         <nav className="breadcrumb" aria-label={ui.home[locale]}>
           <Link href={href(locale)}>{ui.home[locale]}</Link>
@@ -282,30 +253,30 @@ function PageHero({ locale, path }: { locale: Locale; path: string }) {
           <span>{p.eyebrow?.[locale] || p.title[locale]}</span>
         </nav>
         <Eyebrow>{p.eyebrow?.[locale] || ui.brand[locale]}</Eyebrow>
-        {path === "mutabiq" && <Wordmark locale={locale} />}
+        {path === "tibqa" && <Wordmark locale={locale} />}
         <h1>{p.title[locale]}</h1>
-        {path === "mutabiq" && (
+        {path === "tibqa" && (
           <p className="product-descriptor">{ui.productDescriptor[locale]}</p>
         )}
         <p className="page-intro">{p.intro[locale]}</p>
-        {path === "mutabiq" && (
+        {path === "tibqa" && (
           <div className="button-row">
-            <Button to="mutabiq/demo" locale={locale}>
+            <Button to="tibqa/demo" locale={locale}>
               {ui.demo[locale]}
             </Button>
-            <Button secondary to="mutabiq/coverage" locale={locale}>
+            <Button secondary to="tibqa/coverage" locale={locale}>
               {ui.coverage[locale]}
             </Button>
           </div>
         )}
-        {!(path === "mutabiq" && mutabiqAssets.visualsEnabled) && (
+        {!(path === "tibqa" && tibqaAssets.visualsEnabled) && (
           <span className="page-hero-art" aria-hidden="true">
             <span /><span /><span />
           </span>
         )}
         </div>
-        {path === "mutabiq" && mutabiqAssets.visualsEnabled && (
-          <div className="mutabiq-hero-image"><MutabiqVisual locale={locale} id="overview" priority /></div>
+        {path === "tibqa" && tibqaAssets.visualsEnabled && (
+          <div className="tibqa-hero-image"><TibqaTour locale={locale} /></div>
         )}
       </div>
     </section>
@@ -338,13 +309,13 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                   <Reveal className="detail-section" key={k}>
                     <span className="overline">0{i + 1}</span>
                     <h2>
-                      {serviceLabels[k === "support" ? "mutabiq" : k][locale]}
+                      {serviceLabels[k === "support" ? "tibqa" : k][locale]}
                     </h2>
                     <p>{service[k][locale]}</p>
                   </Reveal>
                 ),
               )}
-              <Link href={href(locale, "mutabiq")} className="text-link">
+              <Link href={href(locale, "tibqa")} className="text-link">
                 {ui.explore[locale]}
                 <Arrow diagonal />
               </Link>
@@ -381,24 +352,24 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                   ? marketLabels.saudiText[locale]
                   : ui.productIntro[locale]}
               </p>
-              <Button locale={locale} to="mutabiq/demo">
+              <Button locale={locale} to="tibqa/demo">
                 {ui.demo[locale]}
               </Button>
             </div>
-            <AssessmentExplorer locale={locale} />
+            <TIBQAVisual locale={locale} id={market.slug === "saudi-arabia" ? "finding" : "overview"} />
           </div>
         </section>
         <Closing locale={locale} />
       </>
     );
   switch (path) {
-    case "mutabiq":
+    case "tibqa":
       return (
         <>
           <section className="section">
             <div className="container">
               <div className="split-heading">
-                <h2>{ui.whatMutabiqDoes[locale]}</h2>
+                <h2>{ui.whatTIBQADoes[locale]}</h2>
                 <p className="lead">{productNameMeaning[locale]}</p>
               </div>
               <div className="feature-list">
@@ -410,10 +381,10 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                   </Reveal>
                 ))}
               </div>
-              <MutabiqProof locale={locale} />
+              <TIBQAProof locale={locale} />
               <Link
                 className="text-link"
-                href={href(locale, "mutabiq/how-it-works")}
+                href={href(locale, "tibqa/how-it-works")}
               >
                 {ui.how[locale]}
                 <Arrow diagonal />
@@ -441,11 +412,11 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
               <AssessmentExplorer locale={locale} />
             </div>
           </section>
-          {mutabiqAssets.visualsEnabled && (
+          {tibqaAssets.visualsEnabled && (
             <section className="section">
               <div className="container">
                 <h2>{ui.findingsHeading[locale]}</h2>
-                <MutabiqVisual locale={locale} id="finding" />
+                <TIBQAVisual locale={locale} id="finding" />
               </div>
             </section>
           )}
@@ -464,11 +435,10 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
             </div>
           </section>
           <SampleReportSection locale={locale} />
-          <ClientAccessBand locale={locale} />
-          <Closing locale={locale} />
+              <Closing locale={locale} />
         </>
       );
-    case "mutabiq/how-it-works":
+    case "tibqa/how-it-works":
       return (
         <>
           <section className="section">
@@ -486,8 +456,8 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                       <span>{ui.outputs[locale]}</span>
                       <strong>{s.output[locale]}</strong>
                     </div>
-                    {mutabiqAssets.visualsEnabled && i !== 3 && (
-                      <MutabiqVisual locale={locale} id={i === 0 ? "scope" : i === 1 ? "requirements" : i === 2 ? "finding" : "overview"} />
+                    {tibqaAssets.visualsEnabled && i !== 3 && (
+                      <TIBQAVisual locale={locale} id={i === 0 ? "scope" : i === 1 ? "requirements" : i === 2 ? "finding" : "overview"} />
                     )}
                   </div>
                 </Reveal>
@@ -497,20 +467,18 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
           <section className="section product-section">
             <div className="container product-grid">
               <div>
-                <Eyebrow>
-                  {ui.product[locale]} {ui.endorsement[locale]}
-                </Eyebrow>
-                <h2>{ui.verdicts[locale]}</h2>
+                <Eyebrow>{ui.product[locale]} {ui.endorsement[locale]}</Eyebrow>
+                <h2>{ui.whatTIBQADoes[locale]}</h2>
                 <p>{ui.judgement[locale]}</p>
               </div>
-              <AssessmentExplorer locale={locale} />
+              <TIBQAVisual locale={locale} id="overview" />
             </div>
           </section>
           <SampleReportSection locale={locale} />
           <Closing locale={locale} />
         </>
       );
-    case "mutabiq/coverage":
+    case "tibqa/coverage":
       return (
         <>
           <section className="section">
@@ -531,7 +499,7 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
         </>
       );
     case "contact":
-    case "mutabiq/demo":
+    case "tibqa/demo":
       return (
         <section className="section form-section">
           <div className="container form-layout">
@@ -539,7 +507,7 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
               <Wordmark locale={locale} />
               <h2>{formCopy.detailsTitle[locale]}</h2>
               <ul className="check-list">
-                {(path === "mutabiq/demo"
+                {(path === "tibqa/demo"
                   ? formCopy.details
                   : [ui.closingText, ui.judgement]
                 ).map((s, i) => (
@@ -575,11 +543,11 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                 <Wordmark locale={locale} />
                 <h2>{ui.productHeading[locale]}</h2>
                 <p>{ui.productIntro[locale]}</p>
-                <Button to="mutabiq" locale={locale}>
+                <Button to="tibqa" locale={locale}>
                   {ui.explore[locale]}
                 </Button>
               </div>
-              <AssessmentExplorer locale={locale} />
+              <TIBQAVisual locale={locale} id="overview" />
             </div>
           </section>
           <Closing locale={locale} />
@@ -646,11 +614,11 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                 <Wordmark locale={locale} />
                 <h2>{ui.productHeading[locale]}</h2>
                 <p>{ui.productIntro[locale]}</p>
-                <Button to="mutabiq" locale={locale}>
+                <Button to="tibqa" locale={locale}>
                   {ui.explore[locale]}
                 </Button>
               </div>
-              <AssessmentExplorer locale={locale} />
+              <TIBQAVisual locale={locale} id="overview" />
             </div>
           </section>
           <Closing locale={locale} />
@@ -683,51 +651,6 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
           </div>
         </section>
       );
-    case "client/login":
-      return (
-        <section className="section portal-login-section" aria-labelledby="portal-signin-heading">
-          <div className="container portal-login-layout">
-            <div className="portal-login-intro">
-              <p className="client-access-kicker"><LockKeyhole size={16} aria-hidden="true" />{ui.portalEyebrow[locale]}</p>
-              <Wordmark locale={locale} />
-              <h1>{ui.subscriberTitle[locale]}</h1>
-              <p className="portal-intro-lead">{ui.subscriberText[locale]}</p>
-              <div className="portal-trust-info">
-                <span><ShieldCheck size={17} aria-hidden="true" />{ui.loginSecure[locale]}</span>
-                <span><LockKeyhole size={17} aria-hidden="true" />{ui.loginIssue[locale]}</span>
-              </div>
-              <p className="application-domain" dir="ltr">{new URL(config.mutabiqAppUrl).hostname}</p>
-            </div>
-            <div className="portal-signin-card">
-              <div className="portal-signin-topline">
-                <img src="/brand/mutabiq-mark.svg" alt="" aria-hidden="true" width={34} height={34} />
-                <span>{ui.reserved[locale]}</span>
-                <LockKeyhole size={18} aria-hidden="true" />
-              </div>
-              <h2 id="portal-signin-heading">{ui.login[locale]}</h2>
-              <p>{ui.loginNotice[locale]}</p>
-              {config.portalConnected ? (
-                <a className="button button-primary portal-connect-button" href={config.mutabiqLoginUrl} rel="noopener noreferrer">
-                  <LockKeyhole size={16} aria-hidden="true" />{ui.loginActionReady[locale]}<Arrow diagonal />
-                </a>
-              ) : (
-                <CustomerLoginForm locale={locale} />
-              )}
-              <div className="portal-access-note">
-                <ShieldCheck size={19} aria-hidden="true" />
-                <span>{ui.loginIssue[locale]}</span>
-              </div>
-              <Link className="portal-support-link" href={href(locale, "mutabiq/demo")}>{ui.demo[locale]}<Arrow diagonal /></Link>
-            </div>
-          </div>
-        </section>
-      );
-    case "client/portal":
-      return <CustomerPortal locale={locale} />;
-    case "client/recover-password":
-      return <RecoverPasswordForm locale={locale} />;
-    case "client/reset-password":
-      return <SetPasswordForm locale={locale} />;
     default:
       return null;
   }
@@ -744,14 +667,14 @@ export function SitePage({ locale, path }: { locale: Locale; path: string }) {
           url: config.siteUrl,
           logo: `${config.siteUrl}/brand/treehouse-official.png`,
         }
-      : path === "mutabiq"
+      : path === "tibqa"
         ? {
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
-            name: "MUTABIQ by Treehouse",
+            name: "TIBQA by Treehouse",
             applicationCategory: "BusinessApplication",
             operatingSystem: "Web",
-            description: pages.mutabiq.intro[locale],
+            description: pages.tibqa.intro[locale],
             url: config.siteUrl + href(locale, path),
           }
         : article

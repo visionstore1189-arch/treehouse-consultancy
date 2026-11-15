@@ -11,10 +11,6 @@ export function Footer({ locale }: { locale: Locale }) {
           <div className="footer-brand">
             <Brand locale={locale} />
             <p>{ui.footerLine[locale]}</p>
-            <Link className="text-link footer-portal-link" href={href(locale, "client/login")}>
-              <img src="/brand/mutabiq-mark.svg" width={20} height={20} alt="" />
-              {ui.login[locale]}<Arrow diagonal />
-            </Link>
           </div>
           <div className="footer-column">
             <p>{ui.brand[locale]}</p>
@@ -31,14 +27,6 @@ export function Footer({ locale }: { locale: Locale }) {
             {markets.map((m) => (
               <Link key={m.slug} href={href(locale, m.slug)}>
                 {m.name[locale]}
-              </Link>
-            ))}
-          </div>
-          <div className="footer-column">
-            <p>{ui.information[locale]}</p>
-            {(["privacy", "cookies", "terms"] as const).map((k) => (
-              <Link key={k} href={href(locale, k)}>
-                {ui[k][locale]}
               </Link>
             ))}
           </div>

@@ -1,4 +1,4 @@
-# Cloudflare Pages deployment
+> **15 November 2026 — superseded domain/product instructions.** This document contains historical MUTABIQ and .com deployment examples. For the approved TIBQA/طبقًا product name, canonical `treehouseconsultancy.co.uk`, unpublished login and legal pages, and actual launch blockers, follow [TIBQA v3 review handover](TIBQA-V3-REVIEW-HANDOVER.md) instead. Do not point `.co.uk` to `.com` or enable forms from the older steps. No DNS changes should be made until Treehouse confirms its domain plan.\n\n# Cloudflare Pages deployment
 
 This project is compatible with Cloudflare Pages Free using Next.js `output: 'export'`. The export is static HTML, CSS and JavaScript in `out/`. The `functions/` directory is compiled separately by Cloudflare Pages. Do not deploy with a Next.js server adapter or use the OpenNext/Workers SSR preset for this project.
 

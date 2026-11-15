@@ -2,48 +2,64 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
-const page = readFileSync("src/components/pages.tsx", "utf8");
-const content = readFileSync("src/content/site.ts", "utf8");
-const ui = readFileSync("src/components/ui.tsx", "utf8");
-const header = readFileSync("src/components/header.tsx", "utf8");
-const config = readFileSync("src/lib/config.ts", "utf8");
-const favicon = readFileSync("public/favicon.svg", "utf8");
+const read = (path: string) => readFileSync(path, "utf8");
+const page = read("src/components/pages.tsx");
+const content = read("src/content/site.ts");
+const ui = read("src/components/ui.tsx");
+const header = read("src/components/header.tsx");
+const footer = read("src/components/footer.tsx");
+const config = read("src/lib/config.ts");
+const favicon = read("public/favicon.svg");
+const tour = read("src/components/tibqa-tour.tsx");
 
 test("market cards place Saudi Arabia, United Kingdom, then UAE", () => {
   assert.match(page, /marketDisplayOrder = \["saudi-arabia", "uk", "uae"\]/);
   assert.match(page, /orderedMarkets\.map\(\(m, i\)/);
 });
-
-test("brand name is uppercase in English while Arabic stays Arabic", () => {
-  assert.match(content, /product: t\("MUTABIQ", "مطابق"\)/);
-  assert.match(ui, /mutabiq-wordmark\.svg/);
-  assert.match(header, /mutabiq-mark\.svg/);
-  assert.doesNotMatch(content, /\bMutabiq\b/);
+test("English TIBQA and Arabic طبقًا branding replace the retired product name", () => {
+  assert.match(content, /product: t\("TIBQA", "طبقًا"\)/);
+  assert.match(ui, /tibqa-wordmark\.svg/);
+  assert.match(header, /tibqa-mark\.svg/);
+  for (const file of ["src/content/site.ts", "src/content/seo.ts", "src/components/pages.tsx", "src/components/header.tsx", "src/components/footer.tsx", "src/components/ui.tsx"]) {
+    assert.doesNotMatch(read(file), /\bMUTABIQ\b|\bMutabiq\b|مطابق/);
+  }
 });
-
-test("public portal cannot become active without an explicitly configured secure origin", () => {
-  assert.match(config, /NEXT_PUBLIC_MUTABIQ_PORTAL_CONNECTED/);
-  assert.match(config, /NEXT_PUBLIC_MUTABIQ_LOGIN_URL/);
-  assert.match(config, /https:/);
-  assert.match(page, /!config\.portalConnected/);
-  const authUi = readFileSync("src/components/customer-auth.tsx", "utf8");
-  assert.match(page, /CustomerLoginForm/);
-  assert.match(authUi, /disabled=\{!enabled \|\| submitting\}/);
-  assert.match(config, /NEXT_PUBLIC_AUTH_LOGIN_ENABLED/);
+test("old product routes redirect permanently to TIBQA in both languages", () => {
+  const redirects = read("public/_redirects");
+  assert.match(redirects, /\/mutabiq\/\* \/tibqa\/:splat 301/);
+  assert.match(redirects, /\/ar\/mutabiq\/\* \/ar\/tibqa\/:splat 301/);
+  assert.match(content, /"tibqa\/how-it-works"/);
+  assert.match(page, /case "tibqa\/coverage"/);
 });
-
-test("favicon is the supplied six-bar icon and not the old tree glyph", () => {
+test("login and unfinished Insights and legal pages are offline", () => {
+  assert.doesNotMatch(header, /client\/login/);
+  assert.doesNotMatch(footer, /client\/login/);
+  assert.doesNotMatch(content, /"client\/login":|  insights: \{|  privacy: \{\n    title:/);
+  assert.doesNotMatch(page, /<ClientAccessBand/);
+  assert.match(config, /formsEnabled: false/);
+  assert.match(config, /sampleReportEnabled: false/);
+});
+test("TIBQA hero features keyboard accessible, reduced-motion-aware official four-step tour", () => {
+  assert.match(page, /<TibqaTour locale=\{locale\}/);
+  assert.match(tour, /prefers-reduced-motion/);
+  assert.match(tour, /6000/);
+  assert.match(tour, /onMouseEnter/);
+  assert.match(tour, /onKeyDown/);
+  assert.match(tour, /role="tablist"/);
+  assert.match(tour, /"Scope"/);
+  assert.match(tour, /"Map"/);
+  assert.match(tour, /"Assess"/);
+  assert.match(tour, /"Report"/);
+});
+test("favicon stays supplied Treehouse icon", () => {
   assert.equal((favicon.match(/ M\d|d="M\d/g) || []).length > 0, true);
   assert.match(favicon, /#02784f/);
 });
-
-
-test("public brand is Treehouse Consulting throughout website and metadata", () => {
+test("public brand stays Treehouse Consulting and .co.uk is canonical", () => {
   const paths = ["src/content/site.ts", "src/content/seo.ts", "src/lib/routes.ts", "src/components/pages.tsx", "public/brand/social-card.svg"];
   for (const path of paths) {
-    const content = readFileSync(path, "utf8");
-    assert.doesNotMatch(content, /Treehouse Consultancy|TREEHOUSE CONSULTANCY/);
+    assert.doesNotMatch(read(path), /Treehouse Consultancy|TREEHOUSE CONSULTANCY/);
   }
-  assert.match(readFileSync("src/content/site.ts", "utf8"), /Treehouse Consulting/);
-  assert.match(readFileSync("public/brand/social-card.svg", "utf8"), /TREEHOUSE CONSULTING/);
+  assert.match(config, /https:\/\/treehouseconsultancy\.co\.uk/);
+  assert.doesNotMatch(config, /treehouseconsultancy\.com/);
 });

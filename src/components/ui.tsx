@@ -38,15 +38,15 @@ export function Eyebrow({ children }: { children: ReactNode }) {
 }
 export function Wordmark({ locale }: { locale: Locale }) {
   return (
-    <div className="wordmark mutabiq-brand-mark" role="img" aria-label={`${ui.product[locale]} ${ui.endorsement[locale]}`}>
+    <div className="wordmark tibqa-brand-mark" role="img" aria-label={`${ui.product[locale]} ${ui.endorsement[locale]}`}>
       {locale === "en" ? (
-        <span className="mutabiq-logo-art" aria-hidden="true">
-          <img className="mutabiq-wordmark-dark" src="/brand/mutabiq-wordmark.svg" alt="" width={370} height={65} />
-          <img className="mutabiq-wordmark-light" src="/brand/mutabiq-wordmark-light.svg" alt="" width={370} height={65} />
+        <span className="tibqa-logo-art" aria-hidden="true">
+          <img className="tibqa-wordmark-dark" src="/brand/tibqa-wordmark.svg" alt="" width={370} height={65} />
+          <img className="tibqa-wordmark-light" src="/brand/tibqa-wordmark-light.svg" alt="" width={370} height={65} />
         </span>
       ) : (
-        <span className="mutabiq-logo-arabic" aria-hidden="true">
-          <img src="/brand/mutabiq-mark.svg" width={38} height={38} alt="" />
+        <span className="tibqa-logo-arabic" aria-hidden="true">
+          <img src="/brand/tibqa-mark.svg" width={38} height={38} alt="" />
           <span>{ui.product[locale]}</span>
         </span>
       )}
@@ -80,7 +80,7 @@ export function Closing({ locale }: { locale: Locale }) {
           <p>{ui.closingText[locale]}</p>
         </div>
         <div className="button-row">
-          <Button to="mutabiq/demo" locale={locale}>
+          <Button to="tibqa/demo" locale={locale}>
             {ui.demo[locale]}
           </Button>
           <Button to="contact" locale={locale} secondary>
