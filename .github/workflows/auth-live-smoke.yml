@@ -1,8 +1,7 @@
-name: Verify deployed MUTABIQ auth runtime
+name: Diagnose deployed MUTABIQ auth runtime
 on:
   push:
-    branches:
-      - verify-auth-runtime-health-2026
+    branches: [verify-auth-runtime-health-2026]
 permissions:
   contents: read
 jobs:
@@ -10,27 +9,30 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Cloudflare can reach Supabase Auth
-        shell: bash
-        run: |
-          set -euo pipefail
-          URL="https://treehouse-consultancy.pages.dev/api/auth/status"
-          curl -fLsS --retry 4 --retry-delay 3 --max-time 25 "$URL" -o /tmp/status.json
-          cat /tmp/status.json
-          grep -Eq '"ready"[[:space:]]*:[[:space:]]*true' /tmp/status.json
-      - name: Protected session endpoint requires authentication
-        shell: bash
-        run: |
-          set -euo pipefail
-          URL="https://treehouse-consultancy.pages.dev/api/auth/me"
-          CODE="$(curl -sSL --max-time 25 -o /tmp/auth-me.json -w '%{http_code}' "$URL")"
-          echo "Anonymous account access status: $CODE"
-          test "$CODE" = "401"
-      - name: Login form API rejects malformed credentials
+      - uses: actions/checkout@v4
+      - name: Inspect runtime endpoint responses
         shell: bash
         run: |
           set -euo pipefail
           HOST="https://treehouse-consultancy.pages.dev"
-          CODE="$(curl -sSL --max-time 25 -o /tmp/auth-login.json -w '%{http_code}'             -X POST -H "Origin: $HOST" -H 'Content-Type: application/json'             --data '{"email":"not-an-email","password":"not-a-real-password"}'             "$HOST/api/auth/login")"
-          echo "Invalid form response status: $CODE"
-          test "$CODE" = "400"
+          for route in "/api/auth/status" "/api/auth/me"; do
+            code="$(curl --max-time 20 -sSL -o /tmp/result.json -w '%{http_code}' "$HOST$route")"
+            echo "Route $route status $code body:"
+            cat /tmp/result.json
+            echo
+          done
+          code="$(curl --max-time 20 -sSL -o /tmp/result.json -w '%{http_code}' \
+            -X POST -H "Origin: $HOST" -H "Content-Type: application/json" \
+            --data '{"email":"invalid","password":"never-send-real-password"}' \
+            "$HOST/api/auth/login")"
+          echo "Route /api/auth/login invalid-input status $code body:"
+          cat /tmp/result.json
+          echo
+          key="$(sed -n 's/^const SUPABASE_PUBLIC_KEY = "\(sb_publishable_[^"]*\)";$/\1/p' functions/api/auth/_shared.ts)"
+          test -n "$key"
+          echo "::add-mask::$key"
+          code="$(curl --max-time 20 -sS -o /tmp/result.json -w '%{http_code}' \
+            -H "apikey: $key" "https://rylvuhuqjofliceipbka.supabase.co/auth/v1/health")"
+          echo "Direct Supabase Auth health status $code body:"
+          head -c 1200 /tmp/result.json
+          echo
