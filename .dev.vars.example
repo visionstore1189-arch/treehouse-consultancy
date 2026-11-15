@@ -1,0 +1,12 @@
+# Copy to .dev.vars for local Pages Functions development; never commit real values.
+FORMS_ENABLED=false
+PRIVACY_APPROVED=false
+ALLOWED_ORIGINS=http://localhost:8788
+TURNSTILE_SECRET_KEY=
+TURNSTILE_HOSTNAMES=localhost
+RESEND_API_KEY=
+MAIL_FROM=
+MAIL_TO=
+RETENTION_DAYS=90
+PRIVACY_VERSION=pending-client-approval-v1
+RATE_LIMIT_SALT=

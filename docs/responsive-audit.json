@@ -1,0 +1,130 @@
+[
+  {
+    "path": "",
+    "width": 320,
+    "height": 740,
+    "actualWidth": 320,
+    "h1": 1,
+    "overflow": false
+  },
+  {
+    "path": "ar/",
+    "width": 320,
+    "height": 740,
+    "actualWidth": 320,
+    "h1": 1,
+    "overflow": false
+  },
+  {
+    "path": "mutabiq/coverage/",
+    "width": 320,
+    "height": 740,
+    "actualWidth": 320,
+    "h1": 1,
+    "overflow": false
+  },
+  {
+    "path": "ar/mutabiq/coverage/",
+    "width": 320,
+    "height": 740,
+    "actualWidth": 320,
+    "h1": 1,
+    "overflow": false
+  },
+  {
+    "path": "contact/",
+    "width": 320,
+    "height": 740,
+    "actualWidth": 320,
+    "h1": 1,
+    "overflow": false
+  },
+  {
+    "path": "ar/contact/",
+    "width": 320,
+    "height": 740,
+    "actualWidth": 320,
+    "h1": 1,
+    "overflow": false
+  },
+  {
+    "path": "services/licensing-and-authorisation/",
+    "width": 320,
+    "height": 740,
+    "actualWidth": 320,
+    "h1": 1,
+    "overflow": false
+  },
+  {
+    "path": "client/login/",
+    "width": 320,
+    "height": 740,
+    "actualWidth": 320,
+    "h1": 1,
+    "overflow": false
+  },
+  {
+    "path": "",
+    "width": 768,
+    "height": 1024,
+    "actualWidth": 768,
+    "h1": 1,
+    "overflow": false
+  },
+  {
+    "path": "ar/",
+    "width": 768,
+    "height": 1024,
+    "actualWidth": 768,
+    "h1": 1,
+    "overflow": false
+  },
+  {
+    "path": "mutabiq/coverage/",
+    "width": 768,
+    "height": 1024,
+    "actualWidth": 768,
+    "h1": 1,
+    "overflow": false
+  },
+  {
+    "path": "ar/mutabiq/coverage/",
+    "width": 768,
+    "height": 1024,
+    "actualWidth": 768,
+    "h1": 1,
+    "overflow": false
+  },
+  {
+    "path": "contact/",
+    "width": 768,
+    "height": 1024,
+    "actualWidth": 768,
+    "h1": 1,
+    "overflow": false
+  },
+  {
+    "path": "ar/contact/",
+    "width": 768,
+    "height": 1024,
+    "actualWidth": 768,
+    "h1": 1,
+    "overflow": false
+  },
+  {
+    "path": "services/licensing-and-authorisation/",
+    "width": 768,
+    "height": 1024,
+    "actualWidth": 768,
+    "h1": 1,
+    "overflow": false
+  },
+  {
+    "path": "client/login/",
+    "width": 768,
+    "height": 1024,
+    "actualWidth": 768,
+    "h1": 1,
+    "overflow": false
+  }
+]

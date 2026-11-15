@@ -1,0 +1,434 @@
+[
+  {
+    "path": "/",
+    "brokenImages": 0,
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/mutabiq",
+    "brokenImages": 0,
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/mutabiq/how-it-works",
+    "brokenImages": 0,
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/mutabiq/coverage",
+    "brokenImages": 0,
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/mutabiq/demo",
+    "brokenImages": 0,
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/services",
+    "brokenImages": 0,
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/services/compliance-assessment",
+    "brokenImages": 0,
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/services/licensing-and-authorisation",
+    "brokenImages": 0,
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/services/governance-risk-compliance",
+    "brokenImages": 0,
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/services/regulatory-change",
+    "brokenImages": 0,
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/services/independent-assurance",
+    "brokenImages": 0,
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/uk",
+    "brokenImages": 0,
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/uae",
+    "brokenImages": 0,
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/saudi-arabia",
+    "brokenImages": 0,
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/markets",
+    "brokenImages": 0,
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/sectors",
+    "brokenImages": 0,
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/insights",
+    "brokenImages": 0,
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/about",
+    "brokenImages": 0,
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/contact",
+    "brokenImages": 0,
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/privacy",
+    "brokenImages": 0,
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/cookies",
+    "brokenImages": 0,
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/terms",
+    "brokenImages": 0,
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/client/login",
+    "brokenImages": 0,
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/client/portal",
+    "brokenImages": 0,
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/ar/",
+    "brokenImages": 0,
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/ar/mutabiq",
+    "brokenImages": 0,
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/ar/mutabiq/how-it-works",
+    "brokenImages": 0,
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/ar/mutabiq/coverage",
+    "brokenImages": 0,
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/ar/mutabiq/demo",
+    "brokenImages": 0,
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/ar/services",
+    "brokenImages": 0,
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/ar/services/compliance-assessment",
+    "brokenImages": 0,
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/ar/services/licensing-and-authorisation",
+    "brokenImages": 0,
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/ar/services/governance-risk-compliance",
+    "brokenImages": 0,
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/ar/services/regulatory-change",
+    "brokenImages": 0,
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/ar/services/independent-assurance",
+    "brokenImages": 0,
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/ar/uk",
+    "brokenImages": 0,
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/ar/uae",
+    "brokenImages": 0,
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/ar/saudi-arabia",
+    "brokenImages": 0,
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/ar/markets",
+    "brokenImages": 0,
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/ar/sectors",
+    "brokenImages": 0,
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/ar/insights",
+    "brokenImages": 0,
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/ar/about",
+    "brokenImages": 0,
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/ar/contact",
+    "brokenImages": 0,
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/ar/privacy",
+    "brokenImages": 0,
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/ar/cookies",
+    "brokenImages": 0,
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/ar/terms",
+    "brokenImages": 0,
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/ar/client/login",
+    "brokenImages": 0,
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "path": "/ar/client/portal",
+    "brokenImages": 0,
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "width": 390
+  }
+]

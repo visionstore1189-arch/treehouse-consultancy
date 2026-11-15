@@ -1,0 +1,71 @@
+npm notice run treehouse-consultancy@1.0.0 typecheck
+npm notice run next typegen && tsc --noEmit
+Generating route types...
+✓ Types generated successfully
+npm notice run treehouse-consultancy@1.0.0 test
+npm notice run tsx --test tests/*.test.ts
+✔ forms fail closed without every production dependency (15.062542ms)
+✔ rejects cross-origin, wrong method, invalid fields and stale consent (3.891125ms)
+✔ valid submission stores timestamped consent and sends email only after persistence (5.569667ms)
+✔ email failure is truthfully reported as saved and retained for reconciliation (1.773416ms)
+✔ hostname mismatch and action mismatch never store enquiries (1.398291ms)
+✔ action mismatch is rejected (3.6505ms)
+✔ invalid challenge is rejected (0.873125ms)
+✔ per-IP rate limit stops the sixth request (2.220042ms)
+✔ large request is rejected before parsing (0.568666ms)
+✔ demo and regulator requests enforce their own required fields (0.247958ms)
+✔ access contract denies expired, cross-tenant, unpaid and missing-MFA sessions (0.121541ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 189.592833
+npm notice run treehouse-consultancy@1.0.0 build
+npm notice run next build && node scripts/verify-export.mjs
+▲ Next.js 16.4.6 (Turbopack)
+✓ Running next.config.ts took 16ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 469ms
+  Running TypeScript ...
+  Finished TypeScript in 235ms ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/52) ...
+  Generating static pages using 7 workers (13/52)
+  Generating static pages using 7 workers (26/52)
+  Generating static pages using 7 workers (39/52)
+✓ Generating static pages using 7 workers (52/52) in 432ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /_not-found
+├   /[[...slug]]
+│ ├ ● /
+│ ├ ● /mutabiq
+│ ├ ● /mutabiq/how-it-works
+│ └ ● [+21 more paths]
+├   /ar/[[...slug]]
+│ ├ ● /ar
+│ ├ ● /ar/mutabiq
+│ ├ ● /ar/mutabiq/how-it-works
+│ └ ● [+21 more paths]
+├ ○ /robots.txt
+└ ○ /sitemap.xml
+
+
+○  (Static)  prerendered as static content
+●  (SSG)     prerendered as static HTML (uses generateStaticParams)
+
+Static export verified: 48 bilingual pages, metadata, language direction and Cloudflare support files.
+npm notice run treehouse-consultancy@1.0.0 cf:build
+npm notice run wrangler pages functions build --outdir=.cloudflare-build
+
+ ⛅️ wrangler 4.162.0
+────────────────────
+✨ Compiled Worker successfully
+npm notice run treehouse-consultancy@1.0.0 check:links
+npm notice run node scripts/check-links.mjs
+Checked 51 HTML files and 60 unique internal links/assets: no broken targets.

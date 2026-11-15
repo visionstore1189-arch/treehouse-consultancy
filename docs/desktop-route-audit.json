@@ -1,0 +1,482 @@
+[
+  {
+    "locale": "en",
+    "path": "",
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "en",
+    "path": "mutabiq",
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "en",
+    "path": "mutabiq/how-it-works",
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "en",
+    "path": "mutabiq/coverage",
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "en",
+    "path": "mutabiq/demo",
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "en",
+    "path": "services",
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "en",
+    "path": "services/compliance-assessment",
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "en",
+    "path": "services/licensing-and-authorisation",
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "en",
+    "path": "services/governance-risk-compliance",
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "en",
+    "path": "services/regulatory-change",
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "en",
+    "path": "services/independent-assurance",
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "en",
+    "path": "uk",
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "en",
+    "path": "uae",
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "en",
+    "path": "saudi-arabia",
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "en",
+    "path": "markets",
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "en",
+    "path": "sectors",
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "en",
+    "path": "insights",
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "en",
+    "path": "about",
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "en",
+    "path": "contact",
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "en",
+    "path": "privacy",
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "en",
+    "path": "cookies",
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "en",
+    "path": "terms",
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "en",
+    "path": "client/login",
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "en",
+    "path": "client/portal",
+    "dir": "ltr",
+    "h1": 1,
+    "lang": "en",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "ar",
+    "path": "",
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "ar",
+    "path": "mutabiq",
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "ar",
+    "path": "mutabiq/how-it-works",
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "ar",
+    "path": "mutabiq/coverage",
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "ar",
+    "path": "mutabiq/demo",
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "ar",
+    "path": "services",
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "ar",
+    "path": "services/compliance-assessment",
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "ar",
+    "path": "services/licensing-and-authorisation",
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "ar",
+    "path": "services/governance-risk-compliance",
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "ar",
+    "path": "services/regulatory-change",
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "ar",
+    "path": "services/independent-assurance",
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "ar",
+    "path": "uk",
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "ar",
+    "path": "uae",
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "ar",
+    "path": "saudi-arabia",
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "ar",
+    "path": "markets",
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "ar",
+    "path": "sectors",
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "ar",
+    "path": "insights",
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "ar",
+    "path": "about",
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "ar",
+    "path": "contact",
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "ar",
+    "path": "privacy",
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "ar",
+    "path": "cookies",
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "ar",
+    "path": "terms",
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "ar",
+    "path": "client/login",
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  },
+  {
+    "locale": "ar",
+    "path": "client/portal",
+    "dir": "rtl",
+    "h1": 1,
+    "lang": "ar",
+    "overflow": false,
+    "unlabelledControls": 0,
+    "width": 1440
+  }
+]

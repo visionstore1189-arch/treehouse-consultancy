@@ -1,0 +1,5 @@
+name = "treehouse-consultancy"
+pages_build_output_dir = "out"
+compatibility_date = "2026-11-15"
+# Bind a real D1 database named ENQUIRIES in Pages Settings before enabling forms.
+# See docs/DEPLOYMENT.md. No account identifiers or credentials belong in Git.
