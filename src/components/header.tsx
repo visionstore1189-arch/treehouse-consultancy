@@ -38,9 +38,9 @@ export function Header({ locale, path }: { locale: Locale; path: string }) {
   const subnav = (i: number) =>
     i === 0
       ? [
-          { path: "mutabiq", label: ui.explore },
-          { path: "mutabiq/how-it-works", label: ui.how },
-          { path: "mutabiq/coverage", label: ui.coverage },
+          { path: "tibqa", label: ui.explore },
+          { path: "tibqa/how-it-works", label: ui.how },
+          { path: "tibqa/coverage", label: ui.coverage },
         ]
       : i === 1
         ? [
@@ -77,7 +77,7 @@ export function Header({ locale, path }: { locale: Locale; path: string }) {
                   }}
                 >
                   <summary>
-                    {i === 0 && <img src="/brand/mutabiq-mark.svg" alt="" aria-hidden="true" className="nav-mutabiq-symbol" width={16} height={16} />}
+                    {i === 0 && <img src="/brand/tibqa-mark.svg" alt="" aria-hidden="true" className="nav-tibqa-symbol" width={16} height={16} />}
                     {item[locale]}
                     <ChevronDown size={12} />
                   </summary>
@@ -121,11 +121,11 @@ export function Header({ locale, path }: { locale: Locale; path: string }) {
               <span>{locale === "en" ? "العربية" : "English"}</span>
             </Link>
             <Link className="header-portal-link" href={href(locale, "client/login")} aria-label={ui.login[locale]}>
-              <img src="/brand/mutabiq-mark.svg" width={18} height={18} alt="" />
+              <img src="/brand/tibqa-mark.svg" width={18} height={18} alt="" />
               <span>{ui.login[locale]}</span>
               <LockKeyhole size={14} aria-hidden="true" />
             </Link>
-            <Link className="header-cta" href={href(locale, "mutabiq/demo")}>
+            <Link className="header-cta" href={href(locale, "tibqa/demo")}>
               {ui.demo[locale]}
               <Arrow diagonal />
             </Link>
@@ -181,14 +181,14 @@ export function Header({ locale, path }: { locale: Locale; path: string }) {
             ),
           )}
           <Link className="mobile-portal-link" href={href(locale, "client/login")} onClick={close}>
-            <img src="/brand/mutabiq-mark.svg" width={28} height={28} alt="" />
+            <img src="/brand/tibqa-mark.svg" width={28} height={28} alt="" />
             <span>{ui.login[locale]}</span>
             <LockKeyhole size={19} aria-hidden="true" />
           </Link>
         </nav>
         <Link
           className="button button-primary"
-          href={href(locale, "mutabiq/demo")}
+          href={href(locale, "tibqa/demo")}
           onClick={close}
         >
           {ui.demo[locale]}
