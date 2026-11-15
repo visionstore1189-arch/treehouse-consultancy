@@ -26,7 +26,10 @@ test("public portal cannot become active without an explicitly configured secure
   assert.match(config, /NEXT_PUBLIC_MUTABIQ_LOGIN_URL/);
   assert.match(config, /https:/);
   assert.match(page, /!config\.portalConnected/);
-  assert.match(page, /type="password"[^\n]*disabled/);
+  const authUi = readFileSync("src/components/customer-auth.tsx", "utf8");
+  assert.match(page, /CustomerLoginForm/);
+  assert.match(authUi, /disabled=\{!enabled \|\| submitting\}/);
+  assert.match(config, /NEXT_PUBLIC_AUTH_LOGIN_ENABLED/);
 });
 
 test("favicon is the supplied six-bar icon and not the old tree glyph", () => {
