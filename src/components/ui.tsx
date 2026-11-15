@@ -38,8 +38,18 @@ export function Eyebrow({ children }: { children: ReactNode }) {
 }
 export function Wordmark({ locale }: { locale: Locale }) {
   return (
-    <div className="wordmark" role="img" aria-label={`${ui.product[locale]} ${ui.endorsement[locale]}`}>
-      <span>{ui.product[locale]}</span>
+    <div className="wordmark mutabiq-brand-mark" role="img" aria-label={`${ui.product[locale]} ${ui.endorsement[locale]}`}>
+      {locale === "en" ? (
+        <span className="mutabiq-logo-art" aria-hidden="true">
+          <img className="mutabiq-wordmark-dark" src="/brand/mutabiq-wordmark.svg" alt="" width={370} height={65} />
+          <img className="mutabiq-wordmark-light" src="/brand/mutabiq-wordmark-light.svg" alt="" width={370} height={65} />
+        </span>
+      ) : (
+        <span className="mutabiq-logo-arabic" aria-hidden="true">
+          <img src="/brand/mutabiq-mark.svg" width={38} height={38} alt="" />
+          <span>{ui.product[locale]}</span>
+        </span>
+      )}
       <small>{ui.endorsement[locale]}</small>
     </div>
   );

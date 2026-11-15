@@ -1,10 +1,9 @@
 "use client";
 import { useRef, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, ChevronDown, Globe2 } from "lucide-react";
+import { Menu, X, ChevronDown, Globe2, LockKeyhole } from "lucide-react";
 import { ui, services, markets } from "@/content/site";
 import { publishedArticles } from "@/content/articles";
-import { config } from "@/lib/config";
 import { href, type Locale } from "@/lib/config";
 import { Brand, Arrow } from "./ui";
 export function Header({ locale, path }: { locale: Locale; path: string }) {
@@ -78,6 +77,7 @@ export function Header({ locale, path }: { locale: Locale; path: string }) {
                   }}
                 >
                   <summary>
+                    {i === 0 && <img src="/brand/mutabiq-mark.svg" alt="" aria-hidden="true" className="nav-mutabiq-symbol" width={16} height={16} />}
                     {item[locale]}
                     <ChevronDown size={12} />
                   </summary>
@@ -119,6 +119,11 @@ export function Header({ locale, path }: { locale: Locale; path: string }) {
             >
               <Globe2 size={15} />
               <span>{locale === "en" ? "العربية" : "English"}</span>
+            </Link>
+            <Link className="header-portal-link" href={href(locale, "client/login")} aria-label={ui.login[locale]}>
+              <img src="/brand/mutabiq-mark.svg" width={18} height={18} alt="" />
+              <span>{ui.login[locale]}</span>
+              <LockKeyhole size={14} aria-hidden="true" />
             </Link>
             <Link className="header-cta" href={href(locale, "mutabiq/demo")}>
               {ui.demo[locale]}
@@ -175,11 +180,11 @@ export function Header({ locale, path }: { locale: Locale; path: string }) {
               </Link>
             ),
           )}
-          {config.portalConnected && (
-            <Link href={href(locale, "client/login")} onClick={close}>
-              {ui.login[locale]}<Arrow />
-            </Link>
-          )}
+          <Link className="mobile-portal-link" href={href(locale, "client/login")} onClick={close}>
+            <img src="/brand/mutabiq-mark.svg" width={28} height={28} alt="" />
+            <span>{ui.login[locale]}</span>
+            <LockKeyhole size={19} aria-hidden="true" />
+          </Link>
         </nav>
         <Link
           className="button button-primary"

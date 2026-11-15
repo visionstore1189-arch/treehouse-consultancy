@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ui, markets } from "@/content/site";
 import { publishedArticles } from "@/content/articles";
-import { config } from "@/lib/config";
 import { href, type Locale } from "@/lib/config";
 import { Brand, Arrow } from "./ui";
 export function Footer({ locale }: { locale: Locale }) {
@@ -12,11 +11,10 @@ export function Footer({ locale }: { locale: Locale }) {
           <div className="footer-brand">
             <Brand locale={locale} />
             <p>{ui.footerLine[locale]}</p>
-            {config.portalConnected && (
-              <Link className="text-link" href={href(locale, "client/login")}>
-                {ui.login[locale]}<Arrow diagonal />
-              </Link>
-            )}
+            <Link className="text-link footer-portal-link" href={href(locale, "client/login")}>
+              <img src="/brand/mutabiq-mark.svg" width={20} height={20} alt="" />
+              {ui.login[locale]}<Arrow diagonal />
+            </Link>
           </div>
           <div className="footer-column">
             <p>{ui.brand[locale]}</p>
