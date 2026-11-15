@@ -128,7 +128,7 @@ export function EnquiryForm({
     required = true,
   ) => (
     <label className="form-field" key={name}>
-      {c[name][locale]}
+      {c[name][locale]}{required && <span className="required-mark" aria-hidden="true"> *</span>}
       <input
         name={name}
         type={name === "email" ? "email" : name === "phone" ? "tel" : "text"}
@@ -190,7 +190,7 @@ export function EnquiryForm({
               {field("email")}
               {kind === "demo" && field("phone", false)}
               <label className="form-field">
-                {c.country[locale]}
+                {c.country[locale]}<span className="required-mark" aria-hidden="true"> *</span>
                 <select required name="country" defaultValue="">
                   <option value="" disabled>
                     {c.choose[locale]}
@@ -205,7 +205,7 @@ export function EnquiryForm({
               </label>
               {kind === "contact" ? (
                 <label className="form-field">
-                  {c.subject[locale]}
+                  {c.subject[locale]}<span className="required-mark" aria-hidden="true"> *</span>
                   <select name="subject" required defaultValue="">
                     <option value="" disabled>
                       {c.choose[locale]}
@@ -221,7 +221,7 @@ export function EnquiryForm({
                 <>
                   {field("regulator")}
                   <label className="form-field">
-                    {c.sector[locale]}
+                    {c.sector[locale]}<span className="required-mark" aria-hidden="true"> *</span>
                     <select name="sector" required defaultValue="">
                       <option value="" disabled>
                         {c.choose[locale]}
@@ -238,6 +238,7 @@ export function EnquiryForm({
               )}
               <label className="form-field full-width">
                 {kind === "demo" ? c.demoMessage[locale] : c.message[locale]}
+                {kind !== "demo" && <span className="required-mark" aria-hidden="true"> *</span>}
                 <textarea
                   name="message"
                   rows={4}
@@ -256,7 +257,7 @@ export function EnquiryForm({
             <label className="consent">
               <input type="checkbox" name="consent" required />
               <span>
-                {c.consent[locale]}{" "}
+                {c.consent[locale]}<span className="required-mark" aria-hidden="true"> *</span>{" "}
                 <Link href={href(locale, "privacy")}>
                   {ui.privacy[locale]}
                   <span className="sr-only"> →</span>

@@ -128,10 +128,6 @@ export const ui = {
   allTopics: t("All topics", "جميع المواضيع"),
   topic: t("Topic", "الموضوع"),
   complete: t("Complete", "مكتملة"),
-  coverageNote: t(
-    "Coverage is shown as supplied by Treehouse. Confirm the instruments and versions relevant to your firm during scoping.",
-    "تُعرض التغطية وفقاً للمعلومات المقدمة من تري هاوس. تُؤكَّد الأنظمة والإصدارات ذات الصلة بمؤسستكم عند تحديد النطاق.",
-  ),
   requestRegulator: t(
     "Do not see your regulator?",
     "لا تجد الجهة الرقابية التي تهمك؟",
