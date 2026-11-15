@@ -2,8 +2,8 @@ import { t } from "./site";
 
 /** Draft assets are intentionally disabled until approved files are supplied. */
 export const mutabiqAssets = {
-  // Only enable after all eight WebP image assets are committed.
-  visualsEnabled: process.env.NEXT_PUBLIC_MUTABIQ_VISUALS_ENABLED === "true",
+  // All eight supplied illustrative WebP assets are now in the public asset directory.
+  visualsEnabled: true as boolean,
   // Gated PDF route requires private R2, approved privacy and working email.
   sampleReportEnabled: process.env.NEXT_PUBLIC_SAMPLE_REPORT_ENABLED === "true",
   sampleReportFilename: "Mutabiq_Sample_Assessment_Report_v1.pdf",
