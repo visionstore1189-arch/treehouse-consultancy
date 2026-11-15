@@ -882,6 +882,18 @@ export const pages: Record<string, PageContent> = {
       "أخبرنا بأولوياتك التنظيمية. تُعامل جميع الاستفسارات بسرية ونرد خلال يومي عمل.",
     ),
   },
+  // Account access is restored only as a private customer workspace.
+  // It does NOT unlock assessments from the separate TIBQA application.
+  "client/login": { title: ui.loginTitle, intro: ui.loginNotice },
+  "client/portal": { title: t("Your TIBQA account", "حسابك في طبقًا"), intro: ui.portalNotice },
+  "client/recover-password": {
+    title: t("Reset your TIBQA password", "استعادة كلمة مرور طبقًا"),
+    intro: t("Secure account recovery", "استعادة الحساب الآمنة"),
+  },
+  "client/reset-password": {
+    title: t("Set your TIBQA password", "تعيين كلمة مرور طبقًا"),
+    intro: t("Accept your invitation or reset your password", "قبول الدعوة أو إعادة تعيين كلمة المرور"),
+  },
 };
 for (const s of services)
   pages[`services/${s.slug}`] = {

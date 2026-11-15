@@ -31,11 +31,23 @@ test("old product routes redirect permanently to TIBQA in both languages", () =>
   assert.match(content, /"tibqa\/how-it-works"/);
   assert.match(page, /case "tibqa\/coverage"/);
 });
-test("login and unfinished Insights and legal pages are offline", () => {
+test("TIBQA client login is restored directly below homepage Three Markets, not in the navigation", () => {
+  const marketEnd = page.indexOf("<MarketCards locale={locale} />");
+  const loginBand = page.indexOf("<TibqaClientAccessBand locale={locale} />");
+  const insights = page.indexOf("publishedArticles.length >= 3 && <section");
+  assert.ok(marketEnd >= 0 && loginBand > marketEnd && insights > loginBand);
+  assert.match(page, /href=\{href\(locale, "client\/login"\)\}/);
+  assert.match(page, /<CustomerLoginForm locale=\{locale\}/);
   assert.doesNotMatch(header, /client\/login/);
   assert.doesNotMatch(footer, /client\/login/);
-  assert.doesNotMatch(content, /"client\/login":|  insights: \{|  privacy: \{\n    title:/);
-  assert.doesNotMatch(page, /<ClientAccessBand/);
+  for (const route of ['"client/login":', '"client/portal":', '"client/recover-password":', '"client/reset-password":']) {
+    assert.ok(content.includes(route), route);
+  }
+  const authUi = read("src/components/customer-auth.tsx");
+  assert.match(authUi, /fetch\("\/api\/auth\/login"/);
+  assert.match(authUi, /fetch\("\/api\/auth\/me"/);
+  assert.match(config, /NEXT_PUBLIC_AUTH_LOGIN_ENABLED/);
+  assert.doesNotMatch(content, /  insights: \{|  privacy: \{\n    title:/);
   assert.match(config, /formsEnabled: false/);
   assert.match(config, /sampleReportEnabled: false/);
 });

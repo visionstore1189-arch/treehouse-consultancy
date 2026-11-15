@@ -1,5 +1,7 @@
 # Treehouse Consulting — TIBQA v3 client review handover
 
+> **16 November 2026 — direct owner override of the v3 login hold:** The TIBQA client account login is restored on the marketing website at `/client/login/` and `/ar/client/login/`. A dedicated, premium TIBQA account CTA appears on the **homepage directly below “One firm. Three markets.”** The header, footer, and individual TIBQA product pages contain no login promotion. Existing Supabase authentication and the account/organisation status screens are reused. The TIBQA assessment software is still a separate, unconnected application; access to its regulated data is not granted by the website login. Published Insights and unapproved legal pages remain offline.
+
 Source of truth: **Treehouse_Website_Change_List_v3.docx**, dated 15 November 2026. It replaces the v1 instructions. Product English name: **TIBQA**, Arabic name: **طبقًا**, endorsed **by Treehouse / من تري هاوس**. The corporate brand remains Treehouse Consulting, matching the prior client instruction; the final legal firm name must still be confirmed by Treehouse.
 
 ## Implemented in this revision
@@ -12,7 +14,7 @@ Source of truth: **Treehouse_Website_Change_List_v3.docx**, dated 15 November 20
 - Product hero: native accessible four-stage (Scope / Map / Assess / Report) TIBQA tour with manual tabs, left/right/home/end keyboard control, 6-second autoplay, hover and focus pause, hidden-tab pause, and reduced-motion disabling.
 - Arabic tour step labels and captions, RTL layout and "مثال توضيحي" label. The same English-language sample screenshots are used temporarily, until the promised Arabic screenshots arrive.
 - Findings image on Saudi Arabia page; single interactive verdict panel on the TIBQA overview page.
-- Client access promo and login buttons removed. Login, account workspace, password recovery and unpublished Insights routes no longer exist in the public static export (404). This does **not** delete or disable the existing private Supabase users. The external app is still NOT connected.
+- Client access promo and login buttons were initially removed under v3; subsequently, the owner expressly restored a single homepage access band beneath Three Markets, together with account/login/recovery pages. Header and footer login buttons remain absent. Unpublished Insights routes remain 404. Existing Supabase users are preserved; the external assessment app is still NOT connected.
 - Three forms display only the approved neutral line "Online enquiries open shortly." / "ستُفتح الاستفسارات الإلكترونية قريبًا." Until the legal/inbox prerequisites exist, no name, email or consent form is shown.
 - Unapproved privacy, cookies and terms pages are withheld from the public draft rather than publishing fabricated or incomplete legal texts. All forms and sample-report download remain disabled until approved.
 - Primary canonical and sitemap domain set to `https://treehouseconsultancy.co.uk`. Cloudflare Pages draft remains `noindex`, blocked by robots.
@@ -26,7 +28,7 @@ Source of truth: **Treehouse_Website_Change_List_v3.docx**, dated 15 November 20
 4. **Domain (C)**: Treehouse must confirm DNS/ownership and desired go-live before any live host redirect, zone change or defensive domain redirect. The draft is not publicly indexed. App host for future TIBQA: `app.treehouseconsultancy.co.uk`; client files: `clients.treehouseconsultancy.co.uk` with Cloudflare Access. No domain-registration claims are made for `tibqa.com`, `tibqa.co.uk` or `tibqa.ae`.
 5. **Brand/translation**: final vector artwork and native Arabic screenshots when supplied; regulatory Arabic copy requires specialist review.
 6. **Regulatory coverage and library figures**: must be provided or confirmed by Treehouse before publishing coverage status or proof-strip statistics.
-7. **Future client login**: must be restored only after written client approval. Supabase infrastructure was previously configured; do not delete or re-enable it by mistake. Existing subscription status remains a separate permission from regulated assessment application access.
+7. **Future assessment application**: the public TIBQA account login is now restored by explicit owner instruction. The assessment application must remain disconnected until its own secure backend, MFA, permissions, regulator requirements and subscriptions are approved. Existing subscription status remains distinct from regulated assessment application access.
 
 ## Quality gates
 
@@ -36,4 +38,4 @@ Source of truth: **Treehouse_Website_Change_List_v3.docx**, dated 15 November 20
 - `npm run cf:build`
 - `npm run check:links`
 - Manually verify 390px mobile and RTL with browser DevTools; review focus order and accessibility in the new tour.
-- Confirm 301 redirects and 404 unpublished routes in deployed Cloudflare Pages production.
+- Confirm 301 redirects for the retired product name, 200 for English/Arabic TIBQA login and account pages, and 404 for Insights/unapproved legal pages in deployed Cloudflare Pages production.

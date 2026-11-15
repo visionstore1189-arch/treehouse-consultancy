@@ -7,6 +7,7 @@ import {
   ArrowDown,
   ArrowUpRight,
   ShieldCheck,
+  LockKeyhole,
   FileText,
   Landmark,
   Orbit,
@@ -42,6 +43,7 @@ import { AssessmentExplorer, CoverageTable, InsightsList } from "./explorers";
 import { EnquiryForm } from "./enquiry-form";
 import { TIBQAVisual, TIBQAProof } from "./tibqa-visual";
 import { TibqaTour } from "./tibqa-tour";
+import { CustomerLoginForm, CustomerPortal, RecoverPasswordForm, SetPasswordForm } from "./customer-auth";
 import { SampleReportSection } from "./sample-report";
 import { tibqaAssets } from "@/content/tibqa-assets";
 const serviceIcons = [ScanLine, Landmark, Layers3, Orbit, Fingerprint];
@@ -100,6 +102,36 @@ export function ServicesList({ locale }: { locale: Locale }) {
         );
       })}
     </div>
+  );
+}
+function TibqaClientAccessBand({ locale }: { locale: Locale }) {
+  return (
+    <section className="client-access-band" aria-labelledby="tibqa-client-access-heading">
+      <div className="container client-access-inner">
+        <div className="client-access-copy">
+          <p className="client-access-kicker">
+            <LockKeyhole size={15} aria-hidden="true" />
+            {ui.portalEyebrow[locale]}
+          </p>
+          <div className="client-access-wordmark">
+            <Wordmark locale={locale} />
+          </div>
+          <h2 id="tibqa-client-access-heading">{ui.subscriberTitle[locale]}</h2>
+          <p>{ui.subscriberText[locale]}</p>
+        </div>
+        <div className="client-access-actions">
+          <Link className="client-access-button" href={href(locale, "client/login")}>
+            <LockKeyhole size={19} aria-hidden="true" />
+            <span>{ui.subscriberAction[locale]}</span>
+            <Arrow diagonal />
+          </Link>
+          <p className="client-access-secure">
+            <ShieldCheck size={16} aria-hidden="true" />
+            <span>{ui.loginSecure[locale]}</span>
+          </p>
+        </div>
+      </div>
+    </section>
   );
 }
 function Home({ locale }: { locale: Locale }) {
@@ -220,6 +252,7 @@ function Home({ locale }: { locale: Locale }) {
           <MarketCards locale={locale} />
         </div>
       </section>
+      <TibqaClientAccessBand locale={locale} />
       {publishedArticles.length >= 3 && <section className="section insights-section">
         <div className="container">
           <div className="section-heading">
@@ -651,6 +684,51 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
           </div>
         </section>
       );
+    case "client/login":
+      return (
+        <section className="section portal-login-section" aria-labelledby="tibqa-signin-heading">
+          <div className="container portal-login-layout">
+            <div className="portal-login-intro">
+              <p className="client-access-kicker">
+                <LockKeyhole size={16} aria-hidden="true" />
+                {ui.portalEyebrow[locale]}
+              </p>
+              <Wordmark locale={locale} />
+              <h1>{ui.subscriberTitle[locale]}</h1>
+              <p className="portal-intro-lead">{ui.subscriberText[locale]}</p>
+              <div className="portal-trust-info">
+                <span><ShieldCheck size={17} aria-hidden="true" />{ui.loginSecure[locale]}</span>
+                <span><LockKeyhole size={17} aria-hidden="true" />{ui.loginIssue[locale]}</span>
+              </div>
+              <Link href={href(locale)} className="portal-home-back">
+                <Arrow /> {ui.home[locale]}
+              </Link>
+            </div>
+            <div className="portal-signin-card">
+              <div className="portal-signin-topline">
+                <img src="/brand/tibqa-mark.svg" alt="" aria-hidden="true" width={34} height={34} />
+                <span>{ui.reserved[locale]}</span>
+                <LockKeyhole size={18} aria-hidden="true" />
+              </div>
+              <h2 id="tibqa-signin-heading">{ui.login[locale]}</h2>
+              <p>{ui.loginNotice[locale]}</p>
+              <CustomerLoginForm locale={locale} />
+              <div className="portal-access-note">
+                <ShieldCheck size={19} aria-hidden="true" />
+                <span>{locale === "ar"
+                  ? "تسجيل الدخول يتيح عرض حالة الحساب والاشتراك. وسيُربط تطبيق التقييمات الآمن لاحقًا."
+                  : "Sign-in gives access to your account and subscription status. The separate assessment application will be connected later."}</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    case "client/portal":
+      return <CustomerPortal locale={locale} />;
+    case "client/recover-password":
+      return <RecoverPasswordForm locale={locale} />;
+    case "client/reset-password":
+      return <SetPasswordForm locale={locale} />;
     default:
       return null;
   }
