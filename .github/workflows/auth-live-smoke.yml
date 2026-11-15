@@ -46,3 +46,15 @@ jobs:
           echo "Live auth health HTTP status: $code"
           test "$code" = "200"
           grep -Eq '"ready"[[:space:]]*:[[:space:]]*true' /tmp/final-status.json
+      - name: Invalid email/password reaches Supabase and is rejected
+        shell: bash
+        run: |
+          set -euo pipefail
+          host="https://treehouse-consultancy.pages.dev"
+          code="$(curl -sSL --max-time 25 -o /tmp/login-rejected.json -w '%{http_code}' \
+            -X POST -H "Origin: $host" -H "Content-Type: application/json" \
+            --data '{"email":"unregistered-auth-smoke@invalid.example","password":"obviously-invalid-credential"}' \
+            "$host/api/auth/login")"
+          echo "Invalid account login status: $code"
+          cat /tmp/login-rejected.json
+          test "$code" = "401"
