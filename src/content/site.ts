@@ -4,7 +4,7 @@ export const t = (en: string, ar: string): Bilingual => ({ en, ar });
 export const ui = {
   brand: t("Treehouse Consulting", "تري هاوس للاستشارات"),
   nav: [
-    t("MUTABIQ", "مطابق"),
+    t("TIBQA", "طبقًا"),
     t("Services", "الخدمات"),
     t("Markets", "الأسواق"),
     t("Sectors", "القطاعات"),
@@ -13,7 +13,7 @@ export const ui = {
     t("Contact", "تواصل معنا"),
   ],
   navPaths: [
-    "mutabiq",
+    "tibqa",
     "services",
     "markets",
     "sectors",
@@ -23,16 +23,16 @@ export const ui = {
   ],
   demo: t("Request a demonstration", "اطلب عرضاً توضيحياً"),
   talk: t("Speak to our team", "تحدث إلى فريقنا"),
-  explore: t("Explore MUTABIQ", "اكتشف مطابق"),
+  explore: t("Explore TIBQA", "اكتشف طبقًا"),
   coverage: t("See regulatory coverage", "اطّلع على التغطية الرقابية"),
-  login: t("MUTABIQ Login", "دخول عملاء مطابق"),
-  portalEyebrow: t("MUTABIQ · PRIVATE CLIENT ACCESS", "مطابق · بوابة العملاء الخاصة"),
-  subscriberTitle: t("Already subscribed to MUTABIQ?", "هل لديك اشتراك في مطابق؟"),
+  login: t("TIBQA Login", "دخول عملاء طبقًا"),
+  portalEyebrow: t("TIBQA · PRIVATE CLIENT ACCESS", "طبقًا · بوابة العملاء الخاصة"),
+  subscriberTitle: t("Already subscribed to TIBQA?", "هل لديك اشتراك في طبقًا؟"),
   subscriberText: t(
     "Your organisation’s private workspace is where assessments, documents and regulatory evidence will be available after the secure application is connected.",
     "ستتيح مساحة مؤسستك الخاصة الاطلاع على التقييمات والمستندات والأدلة الرقابية بعد ربط التطبيق الآمن."
   ),
-  subscriberAction: t("Access your MUTABIQ account", "الدخول إلى حساب مطابق"),
+  subscriberAction: t("Access your TIBQA account", "الدخول إلى حساب طبقًا"),
   subscriberAvailability: t("Secure sign-in is being prepared.", "يجري إعداد تسجيل الدخول الآمن."),
   loginEmail: t("Work email", "البريد الإلكتروني للعمل"),
   loginPassword: t("Password", "كلمة المرور"),
@@ -71,28 +71,28 @@ export const ui = {
   ],
   pause: t("Pause motion", "إيقاف الحركة"),
   play: t("Resume motion", "تشغيل الحركة"),
-  product: t("MUTABIQ", "مطابق"),
+  product: t("TIBQA", "طبقًا"),
   endorsement: t("by Treehouse", "من تري هاوس"),
   tagline: t("Every requirement, evidenced.", "كل متطلب، بالدليل."),
   productDescriptor: t(
-    "MUTABIQ is the regulatory compliance assessment tool by Treehouse.",
-    "مطابق هي أداة تقييم الالتزام التنظيمي من تري هاوس.",
+    "TIBQA is the regulatory compliance assessment tool by Treehouse.",
+    "طبقًا هي أداة تقييم الالتزام التنظيمي من تري هاوس.",
   ),
-  whatMutabiqDoes: t("What MUTABIQ does", "ماذا يقدّم مطابق"),
+  whatTIBQADoes: t("What TIBQA does", "ماذا يقدّم طبقًا"),
   findingsHeading: t("From regulation to finding", "من النص الرقابي إلى النتيجة"),
   productHeading: t(
     "Every requirement. Every policy. One clear answer.",
     "كل متطلب. كل سياسة. إجابة واحدة واضحة.",
   ),
   productIntro: t(
-    "MUTABIQ is our regulatory compliance assessment tool. It holds regulatory requirements taken directly from the source instruments, and assesses your policies and procedures against each one. The result is a requirement by requirement view of where you stand, with the evidence behind every finding.",
-    "مطابق هي أداتنا لتقييم الالتزام التنظيمي. تحتوي الأداة على المتطلبات التنظيمية مأخوذة مباشرة من نصوص الأنظمة واللوائح، وتقيّم سياساتكم وإجراءاتكم مقابل كل متطلب. والنتيجة صورة واضحة لوضعكم، متطلباً بمتطلب، مع الدليل الداعم لكل نتيجة.",
+    "TIBQA is our regulatory compliance assessment tool. It holds regulatory requirements taken directly from the source instruments, and assesses your policies and procedures against each one. The result is a requirement by requirement view of where you stand, with the evidence behind every finding.",
+    "طبقًا هي أداتنا لتقييم الالتزام التنظيمي. تحتوي الأداة على المتطلبات التنظيمية مأخوذة مباشرة من نصوص الأنظمة واللوائح، وتقيّم سياساتكم وإجراءاتكم مقابل كل متطلب. والنتيجة صورة واضحة لوضعكم، متطلباً بمتطلب، مع الدليل الداعم لكل نتيجة.",
   ),
   why: t("A different perspective.", "منظور مختلف."),
   whyEyebrow: t("THE TREEHOUSE APPROACH", "منهج تري هاوس"),
   serviceHeading: t(
-    "Advisory services, powered by MUTABIQ.",
-    "خدمات استشارية تدعمها تقنية مطابق.",
+    "Advisory services, powered by TIBQA.",
+    "خدمات استشارية تدعمها تقنية طبقًا.",
   ),
   allServices: t("View all services", "جميع الخدمات"),
   marketHeading: t("One firm. Three markets.", "شركة واحدة. ثلاثة أسواق."),
@@ -112,8 +112,8 @@ export const ui = {
   ),
   closingTitle: t("Know where you stand.", "اعرف أين تقف."),
   closingText: t(
-    "Ask us for a demonstration of MUTABIQ, or talk to our team about your regulatory priorities.",
-    "اطلب عرضاً توضيحياً لمطابق، أو تحدث إلى فريقنا حول أولوياتك التنظيمية.",
+    "Ask us for a demonstration of TIBQA, or talk to our team about your regulatory priorities.",
+    "اطلب عرضاً توضيحياً لطبقًا، أو تحدث إلى فريقنا حول أولوياتك التنظيمية.",
   ),
   disclaimer: t(
     "Treehouse Consulting provides regulatory advisory and technology services. It is not a law firm and does not provide legal advice. Nothing on this website implies approval or endorsement by any regulator.",
@@ -150,14 +150,14 @@ export const ui = {
     "Tell us which regulator and sector you need. We add new regulators in response to demand from firms.",
     "أخبرنا بالجهة الرقابية والقطاع الذي تحتاجه. نضيف جهات رقابية جديدة استجابة لاحتياجات المؤسسات.",
   ),
-  how: t("How MUTABIQ works", "كيف يعمل مطابق"),
+  how: t("How TIBQA works", "كيف يعمل طبقًا"),
   outputs: t("What you receive", "ما تحصل عليه"),
   principles: t("Our principles", "مبادئنا"),
   users: t("Who uses it", "لمن صُمّم"),
   verdicts: t("Four verdicts. No ambiguity.", "أربع نتائج واضحة."),
   judgement: t(
-    "MUTABIQ supports professional judgement and does not replace it. Every assessment is reviewed by an experienced regulatory specialist.",
-    "يدعم مطابق الحكم المهني ولا يحلّ محله. يراجع كل تقييم متخصص ذو خبرة في الشؤون التنظيمية.",
+    "TIBQA supports professional judgement and does not replace it. Every assessment is reviewed by an experienced regulatory specialist.",
+    "يدعم طبقًا الحكم المهني ولا يحلّ محله. يراجع كل تقييم متخصص ذو خبرة في الشؤون التنظيمية.",
   ),
   illustration: t(
     "ILLUSTRATIVE METHOD · NOT LIVE CLIENT DATA",
@@ -181,8 +181,8 @@ export const ui = {
     "بوابة العملاء الآمنة",
   ),
   loginNotice: t(
-    "MUTABIQ account sign-in is available only to invited subscribers. Your organisation’s subscription and permissions are checked separately; the existing MUTABIQ software will be connected later.",
-    "تسجيل الدخول إلى حساب مطابق مخصص للمشتركين الذين تلقوا دعوة. يتم التحقق من اشتراك مؤسستك وصلاحياتك بشكل منفصل، وسيُربط تطبيق مطابق الحالي لاحقاً.",
+    "TIBQA account sign-in is available only to invited subscribers. Your organisation’s subscription and permissions are checked separately; the existing TIBQA software will be connected later.",
+    "تسجيل الدخول إلى حساب طبقًا مخصص للمشتركين الذين تلقوا دعوة. يتم التحقق من اشتراك مؤسستك وصلاحياتك بشكل منفصل، وسيُربط تطبيق طبقًا الحالي لاحقاً.",
   ),
   signIn: t("Secure sign-in unavailable", "تسجيل الدخول الآمن غير متاح"),
   portalPreview: t("View reserved portal", "عرض مساحة البوابة المحجوزة"),
@@ -246,7 +246,7 @@ export const serviceLabels = {
   when: t("When firms call us", "متى تحتاج المؤسسات إلينا"),
   what: t("What we do", "ما نقدمه"),
   receive: ui.outputs,
-  mutabiq: t("Supported by MUTABIQ by Treehouse", "بدعم من مطابق من تري هاوس"),
+  tibqa: t("Supported by TIBQA by Treehouse", "بدعم من طبقًا من تري هاوس"),
 };
 export const services = [
   {
@@ -273,8 +273,8 @@ export const services = [
       "سجل للمتطلبات، ونتيجة لكل متطلب، وتقرير للفجوات حسب الأولوية، وخطة معالجة.",
     ),
     support: t(
-      "MUTABIQ links each requirement to document evidence and a clear verdict, creating a traceable assessment.",
-      "يربط مطابق كل متطلب بالأدلة الوثائقية ونتيجة واضحة، لإنشاء تقييم قابل للتتبع.",
+      "TIBQA links each requirement to document evidence and a clear verdict, creating a traceable assessment.",
+      "يربط طبقًا كل متطلب بالأدلة الوثائقية ونتيجة واضحة، لإنشاء تقييم قابل للتتبع.",
     ),
   },
   {
@@ -329,8 +329,8 @@ export const services = [
       "إطار متناسب، ومسؤوليات واضحة، وترتيبات عملية لإعداد التقارير والمراقبة.",
     ),
     support: t(
-      "MUTABIQ maps framework documents to applicable requirements and highlights areas that need stronger evidence.",
-      "يربط مطابق وثائق الإطار بالمتطلبات المنطبقة ويحدد المجالات التي تحتاج إلى أدلة أقوى.",
+      "TIBQA maps framework documents to applicable requirements and highlights areas that need stronger evidence.",
+      "يربط طبقًا وثائق الإطار بالمتطلبات المنطبقة ويحدد المجالات التي تحتاج إلى أدلة أقوى.",
     ),
   },
   {
@@ -357,8 +357,8 @@ export const services = [
       "خطة تغيير مرتبة حسب الأولوية، بمسؤوليات ومراحل واضحة وأدلة إغلاق.",
     ),
     support: t(
-      "MUTABIQ connects changed requirements to findings and actions, preserving the evidence behind remediation.",
-      "يربط مطابق المتطلبات المعدلة بالنتائج والإجراءات، ويحفظ الأدلة الداعمة للمعالجة.",
+      "TIBQA connects changed requirements to findings and actions, preserving the evidence behind remediation.",
+      "يربط طبقًا المتطلبات المعدلة بالنتائج والإجراءات، ويحفظ الأدلة الداعمة للمعالجة.",
     ),
   },
   {
@@ -385,8 +385,8 @@ export const services = [
       "نتائج مستقلة، ومسار واضح للأدلة، وتوصيات متناسبة للإجراء.",
     ),
     support: t(
-      "MUTABIQ provides the requirement register and document evidence that underpin the specialist’s independent review.",
-      "يوفر مطابق سجل المتطلبات والأدلة الوثائقية التي تستند إليها المراجعة المستقلة للمتخصص.",
+      "TIBQA provides the requirement register and document evidence that underpin the specialist’s independent review.",
+      "يوفر طبقًا سجل المتطلبات والأدلة الوثائقية التي تستند إليها المراجعة المستقلة للمتخصص.",
     ),
   },
 ];
@@ -461,11 +461,11 @@ export const markets = [
 export const marketLabels = {
   regulators: t("Regulators covered", "الجهات الرقابية المشمولة"),
   help: t("How we help", "كيف نساعدكم"),
-  status: t("MUTABIQ in this market", "مطابق في هذا السوق"),
-  saudiTitle: t("MUTABIQ for the Insurance Authority.", "مطابق لهيئة التأمين."),
+  status: t("TIBQA in this market", "طبقًا في هذا السوق"),
+  saudiTitle: t("TIBQA for the Insurance Authority.", "طبقًا لهيئة التأمين."),
   saudiText: t(
-    "The complete Insurance Authority library is available in MUTABIQ today. Insurers, reinsurers and insurance service providers can assess their full policy suite against every requirement issued by the Authority.",
-    "مكتبة هيئة التأمين متاحة اليوم كاملة في مطابق. يمكن لشركات التأمين وإعادة التأمين ومقدمي خدمات التأمين تقييم سياساتهم مقابل كل متطلب صادر عن الهيئة.",
+    "The complete Insurance Authority library is available in TIBQA today. Insurers, reinsurers and insurance service providers can assess their full policy suite against every requirement issued by the Authority.",
+    "مكتبة هيئة التأمين متاحة اليوم كاملة في طبقًا. يمكن لشركات التأمين وإعادة التأمين ومقدمي خدمات التأمين تقييم سياساتهم مقابل كل متطلب صادر عن الهيئة.",
   ),
 };
 export const coverage = [
@@ -594,8 +594,8 @@ export const steps = [
   {
     title: t("Map", "الربط"),
     text: t(
-      "MUTABIQ assembles every requirement in scope from the library.",
-      "يجمع مطابق كل متطلب ضمن النطاق من المكتبة.",
+      "TIBQA assembles every requirement in scope from the library.",
+      "يجمع طبقًا كل متطلب ضمن النطاق من المكتبة.",
     ),
     output: t("A complete requirements register", "سجل كامل للمتطلبات"),
   },
@@ -810,22 +810,22 @@ export const pages: Record<string, PageContent> = {
     ),
     intro: ui.homeIntro,
     meta: t(
-      "UK regulatory advisory and technology firm serving financial institutions in the UK, UAE and Saudi Arabia. Home of MUTABIQ, the regulatory compliance assessment tool.",
-      "شركة بريطانية للاستشارات التنظيمية والتقنية الرقابية تخدم المؤسسات المالية في المملكة المتحدة والإمارات والسعودية. مطوّر أداة مطابق لتقييم الالتزام.",
+      "UK regulatory advisory and technology firm serving financial institutions in the UK, UAE and Saudi Arabia. Home of TIBQA, the regulatory compliance assessment tool.",
+      "شركة بريطانية للاستشارات التنظيمية والتقنية الرقابية تخدم المؤسسات المالية في المملكة المتحدة والإمارات والسعودية. مطوّر أداة طبقًا لتقييم الالتزام.",
     ),
   },
-  mutabiq: {
+  tibqa: {
     title: t(
       "Every requirement, evidenced.",
       "كل متطلب، بالدليل.",
     ),
     intro: t(
-      "Regulated firms are expected to know every requirement that applies to them and to show how each is met. In practice this knowledge sits in spreadsheets, in people’s heads and in documents that fall out of date. MUTABIQ replaces that with a single, structured and evidenced view.",
-      "يُتوقع من المؤسسات الخاضعة للتنظيم معرفة كل متطلب ينطبق عليها وإثبات استيفائه. عملياً، تتوزع هذه المعرفة بين جداول البيانات وخبرات الأفراد والوثائق التي تصبح قديمة. يجمع مطابق ذلك في رؤية واحدة منظمة وموثقة.",
+      "Regulated firms are expected to know every requirement that applies to them and to show how each is met. In practice this knowledge sits in spreadsheets, in people’s heads and in documents that fall out of date. TIBQA replaces that with a single, structured and evidenced view.",
+      "يُتوقع من المؤسسات الخاضعة للتنظيم معرفة كل متطلب ينطبق عليها وإثبات استيفائه. عملياً، تتوزع هذه المعرفة بين جداول البيانات وخبرات الأفراد والوثائق التي تصبح قديمة. يجمع طبقًا ذلك في رؤية واحدة منظمة وموثقة.",
     ),
-    eyebrow: t("MUTABIQ by Treehouse", "مطابق من تري هاوس"),
+    eyebrow: t("TIBQA by Treehouse", "طبقًا من تري هاوس"),
   },
-  "mutabiq/how-it-works": {
+  "tibqa/how-it-works": {
     title: t(
       "From regulation to evidenced findings in five steps",
       "من الأنظمة إلى النتائج الموثقة في خمس خطوات",
@@ -833,18 +833,18 @@ export const pages: Record<string, PageContent> = {
     intro: ui.judgement,
     eyebrow: ui.how,
   },
-  "mutabiq/coverage": {
+  "tibqa/coverage": {
     title: t("Regulatory coverage", "التغطية الرقابية"),
     intro: t(
-      "MUTABIQ is built to work with any regulator. One method and one engine serve every market, with a dedicated library for each regulator. The table below shows current coverage.",
-      "صُمّم مطابق للعمل مع أي جهة رقابية. يخدم منهج واحد ومحرك واحد جميع الأسواق، مع مكتبة مخصصة لكل جهة رقابية. يوضح الجدول أدناه التغطية الحالية.",
+      "TIBQA is built to work with any regulator. One method and one engine serve every market, with a dedicated library for each regulator. The table below shows current coverage.",
+      "صُمّم طبقًا للعمل مع أي جهة رقابية. يخدم منهج واحد ومحرك واحد جميع الأسواق، مع مكتبة مخصصة لكل جهة رقابية. يوضح الجدول أدناه التغطية الحالية.",
     ),
   },
-  "mutabiq/demo": {
-    title: t("Request a demonstration of MUTABIQ", "اطلب عرضاً توضيحياً لمطابق"),
+  "tibqa/demo": {
+    title: t("Request a demonstration of TIBQA", "اطلب عرضاً توضيحياً لطبقًا"),
     intro: t(
-      "See MUTABIQ working on a live regulatory library. Demonstrations take around 30 minutes and are led by a regulatory specialist. We will reply within two working days.",
-      "شاهد مطابق يعمل على مكتبة تنظيمية فعلية. تستغرق العروض نحو ٣٠ دقيقة ويقدمها متخصص في الشؤون التنظيمية. سنرد خلال يومي عمل.",
+      "See TIBQA working on a live regulatory library. Demonstrations take around 30 minutes and are led by a regulatory specialist. We will reply within two working days.",
+      "شاهد طبقًا يعمل على مكتبة تنظيمية فعلية. تستغرق العروض نحو ٣٠ دقيقة ويقدمها متخصص في الشؤون التنظيمية. سنرد خلال يومي عمل.",
     ),
   },
   services: {
@@ -853,8 +853,8 @@ export const pages: Record<string, PageContent> = {
       "استشارات تنظيمية تستند إلى الأدلة",
     ),
     intro: t(
-      "Our services cover the full regulatory life cycle, from first licence to ongoing assurance. Each is led by senior specialists and supported by MUTABIQ, so our advice is faster to deliver and easier to evidence.",
-      "تغطي خدماتنا دورة العمل التنظيمي كاملة، من الترخيص الأول حتى التأكيد المستمر. يقودها متخصصون ذوو خبرة ويدعمها مطابق، لتقديم المشورة بكفاءة وبأدلة واضحة.",
+      "Our services cover the full regulatory life cycle, from first licence to ongoing assurance. Each is led by senior specialists and supported by TIBQA, so our advice is faster to deliver and easier to evidence.",
+      "تغطي خدماتنا دورة العمل التنظيمي كاملة، من الترخيص الأول حتى التأكيد المستمر. يقودها متخصصون ذوو خبرة ويدعمها طبقًا، لتقديم المشورة بكفاءة وبأدلة واضحة.",
     ),
   },
   markets: { title: ui.marketHeading, intro: ui.marketIntro },
@@ -871,8 +871,8 @@ export const pages: Record<string, PageContent> = {
       "بخبرة من عملوا في الجانب الرقابي",
     ),
     intro: t(
-      "Treehouse was founded on a simple observation. Most regulatory problems begin with a firm that does not have a complete and current view of what is required of it. Our leadership has spent many years in senior supervisory roles, and in advising regulators and regulated firms in the United Kingdom and the Gulf. We built MUTABIQ to give firms the same clarity a supervisor expects to find.",
-      "تأسست تري هاوس انطلاقاً من ملاحظة بسيطة: تبدأ معظم المشكلات التنظيمية عندما تفتقر المؤسسة إلى رؤية كاملة ومحدثة لما هو مطلوب منها. أمضت قيادتنا سنوات طويلة في مناصب رقابية عليا وفي تقديم المشورة للجهات الرقابية والمؤسسات في المملكة المتحدة والخليج. بنينا مطابق لمنح المؤسسات الوضوح الذي يتوقعه المشرف.",
+      "Treehouse was founded on a simple observation. Most regulatory problems begin with a firm that does not have a complete and current view of what is required of it. Our leadership has spent many years in senior supervisory roles, and in advising regulators and regulated firms in the United Kingdom and the Gulf. We built TIBQA to give firms the same clarity a supervisor expects to find.",
+      "تأسست تري هاوس انطلاقاً من ملاحظة بسيطة: تبدأ معظم المشكلات التنظيمية عندما تفتقر المؤسسة إلى رؤية كاملة ومحدثة لما هو مطلوب منها. أمضت قيادتنا سنوات طويلة في مناصب رقابية عليا وفي تقديم المشورة للجهات الرقابية والمؤسسات في المملكة المتحدة والخليج. بنينا طبقًا لمنح المؤسسات الوضوح الذي يتوقعه المشرف.",
     ),
   },
   insights: {
@@ -902,8 +902,8 @@ export const pages: Record<string, PageContent> = {
     intro: ui.legalPendingText,
   },
   "client/login": { title: ui.loginTitle, intro: ui.loginNotice },
-  "client/recover-password": { title: t("Reset your MUTABIQ password", "استعادة كلمة مرور مطابق"), intro: t("Secure account recovery", "استعادة الحساب الآمنة") },
-  "client/reset-password": { title: t("Set your MUTABIQ password", "تعيين كلمة مرور مطابق"), intro: t("Accept your invitation or reset your password", "قبول الدعوة أو إعادة تعيين كلمة المرور") },
+  "client/recover-password": { title: t("Reset your TIBQA password", "استعادة كلمة مرور طبقًا"), intro: t("Secure account recovery", "استعادة الحساب الآمنة") },
+  "client/reset-password": { title: t("Set your TIBQA password", "تعيين كلمة مرور طبقًا"), intro: t("Accept your invitation or reset your password", "قبول الدعوة أو إعادة تعيين كلمة المرور") },
   "client/portal": {
     title: t("Your client workspace", "مساحة عمل العملاء"),
     intro: ui.portalNotice,
@@ -918,8 +918,8 @@ for (const s of services)
 for (const m of markets)
   pages[m.slug] = { title: m.title, intro: m.intro, eyebrow: m.name };
 export const productNameMeaning = t(
-  "MUTABIQ means “conforming” in Arabic. It answers one question for every requirement: does your framework conform?",
-  "يعني اسم مطابق الامتثال الدقيق. ويجيب عن سؤال واحد لكل متطلب: هل يتوافق إطاركم معه؟",
+  "TIBQA means “conforming” in Arabic. It answers one question for every requirement: does your framework conform?",
+  "يعني اسم طبقًا الامتثال الدقيق. ويجيب عن سؤال واحد لكل متطلب: هل يتوافق إطاركم معه؟",
 );
 export const legalContent: Record<string, Bilingual[]> = {
   privacy: [
