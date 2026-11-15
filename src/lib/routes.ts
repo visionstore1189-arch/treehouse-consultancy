@@ -40,9 +40,6 @@ export function metadataFor(locale: Locale, path: string): Metadata {
     languages[`en-${region}`] = href("en", path);
     languages[`ar-${region}`] = href("ar", path);
   }
-  const noindex =
-    path.startsWith("client/") ||
-    ["privacy", "terms", "cookies"].includes(path);
   return {
     metadataBase: new URL(config.siteUrl),
     title:
@@ -51,7 +48,7 @@ export function metadataFor(locale: Locale, path: string): Metadata {
         : `${title} | ${locale === "en" ? "Treehouse" : "تري هاوس"}`,
     description,
     alternates: { canonical: href(locale, path), languages },
-    robots: { index: !noindex, follow: !path.startsWith("client/") },
+    robots: { index: false, follow: false }, // DRAFT ONLY: remove at approved launch
     openGraph: {
       title,
       description,

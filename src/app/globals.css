@@ -1226,9 +1226,9 @@ html[dir="rtl"] .directional {
   z-index: 1;
 }
 .page-intro {
-  font-size: 16px;
-  line-height: 1.9;
-  color: #b7cac1;
+  font-size: 17px;
+  line-height: 1.85;
+  color: #d8e8df;
   max-width: 790px;
   margin-top: 28px;
   position: relative;
@@ -3157,3 +3157,34 @@ html[lang="ar"] .footer-column a {
 .coverage-panel thead th {
   color: #526b5b;
 }
+
+/* Client review: readable product hero, accessible labels and aligned mobile Markets */
+.art-label { display: inline-block; min-width: 0; }
+.art-coordinate { flex: 0 0 auto; white-space: nowrap; }
+.product-descriptor { font-size: clamp(15px, 1.45vw, 19px); font-weight: 500; color: #e4f5eb; max-width: 800px; margin-top: 24px; }
+.product-page-hero .page-intro { margin-top: 16px; }
+.required-mark { color: #17634f; font-weight: 700; }
+.mobile-markets summary { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-size: 22px; padding: 14px 0; border-bottom: 1px solid var(--line); list-style: none; }
+.mobile-markets summary::-webkit-details-marker { display: none; }
+.mobile-markets .mobile-subnav { padding-inline-start: 20px; }
+.mobile-markets .mobile-subnav a { font-size: 15px; }
+@media (max-width: 600px) { .mobile-markets summary { font-size: 21px; } }
+
+/* Reserved product visuals: enabled only after original Treehouse screenshots arrive */
+.mutabiq-hero-grid { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); align-items: center; gap: clamp(28px, 5vw, 90px); }
+.mutabiq-hero-grid .page-hero-copy { min-width: 0; }
+.mutabiq-hero-image { align-self: center; }
+.mutabiq-visual { margin: 25px 0; max-width: 100%; }
+.mutabiq-browser-frame { padding: 8px; border: 1px solid #d2e0d7; background: #f7f9f6; border-radius: 11px; box-shadow: 0 18px 50px rgba(8, 36, 35, .13); }
+.mutabiq-browser-dots { display: flex; gap: 5px; padding: 3px 4px 10px; }
+.mutabiq-browser-dots i { height: 7px; width: 7px; border-radius: 50%; background: #becdc6; }
+.mutabiq-visual picture, .mutabiq-visual img { display: block; width: 100%; height: auto; }
+.mutabiq-visual img { object-fit: contain; border-radius: 4px; }
+.mutabiq-visual figcaption { margin-top: 12px; font-size: 12px; color: #5b7164; }
+.step-output-wrap { min-width: 0; }
+.step-output-wrap .mutabiq-visual { margin-top: 20px; }
+.mutabiq-proof { border: 1px solid var(--line); margin: 34px 0; padding: 25px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.mutabiq-proof strong { display: block; font-size: 28px; }
+.mutabiq-proof span { color: #51685c; font-size: 12px; }
+@media (max-width: 900px) { .mutabiq-hero-grid { grid-template-columns: 1fr; } }
+@media (max-width: 600px) { .mutabiq-proof { grid-template-columns: 1fr; } .mutabiq-visual figcaption { font-size: 11px; } }

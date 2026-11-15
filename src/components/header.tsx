@@ -3,6 +3,8 @@ import { useRef, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X, ChevronDown, Globe2 } from "lucide-react";
 import { ui, services, markets } from "@/content/site";
+import { publishedArticles } from "@/content/articles";
+import { config } from "@/lib/config";
 import { href, type Locale } from "@/lib/config";
 import { Brand, Arrow } from "./ui";
 export function Header({ locale, path }: { locale: Locale; path: string }) {
@@ -33,6 +35,7 @@ export function Header({ locale, path }: { locale: Locale; path: string }) {
     document.addEventListener("pointerdown", outside);
     return () => document.removeEventListener("pointerdown", outside);
   }, []);
+  const showInsights = publishedArticles.length >= 3;
   const subnav = (i: number) =>
     i === 0
       ? [
@@ -48,7 +51,10 @@ export function Header({ locale, path }: { locale: Locale; path: string }) {
               label: s.title,
             })),
           ]
-        : markets.map((m) => ({ path: m.slug, label: m.name }));
+        : [
+            { path: "markets", label: ui.allMarkets },
+            ...markets.map((m) => ({ path: m.slug, label: m.name })),
+          ];
   return (
     <>
       <a className="skip-link" href="#main">
@@ -59,7 +65,7 @@ export function Header({ locale, path }: { locale: Locale; path: string }) {
           <Brand locale={locale} />
           <nav className="desktop-nav" aria-label={ui.menu[locale]}>
             {ui.nav.map((item, i) =>
-              i < 3 ? (
+              i === 4 && !showInsights ? null : i < 3 ? (
                 <details
                   key={i}
                   className="nav-dropdown"
@@ -151,16 +157,29 @@ export function Header({ locale, path }: { locale: Locale; path: string }) {
           </button>
         </div>
         <nav aria-label={ui.menu[locale]}>
-          {ui.nav.map((item, i) => (
-            <Link key={i} href={href(locale, ui.navPaths[i])} onClick={close}>
-              {item[locale]}
-              <Arrow />
+          {ui.nav.map((item, i) =>
+            i === 4 && !showInsights ? null : i === 2 ? (
+              <details className="mobile-markets" key={i}>
+                <summary>{item[locale]}<ChevronDown size={17} /></summary>
+                <div className="mobile-subnav">
+                  {subnav(2).map((s) => (
+                    <Link key={s.path} href={href(locale, s.path)} onClick={close}>
+                      {s.label[locale]}<Arrow />
+                    </Link>
+                  ))}
+                </div>
+              </details>
+            ) : (
+              <Link key={i} href={href(locale, ui.navPaths[i])} onClick={close}>
+                {item[locale]}<Arrow />
+              </Link>
+            ),
+          )}
+          {config.portalConnected && (
+            <Link href={href(locale, "client/login")} onClick={close}>
+              {ui.login[locale]}<Arrow />
             </Link>
-          ))}
-          <Link href={href(locale, "client/login")} onClick={close}>
-            {ui.login[locale]}
-            <Arrow />
-          </Link>
+          )}
         </nav>
         <Link
           className="button button-primary"

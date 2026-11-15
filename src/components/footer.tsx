@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { ui, markets } from "@/content/site";
+import { publishedArticles } from "@/content/articles";
+import { config } from "@/lib/config";
 import { href, type Locale } from "@/lib/config";
 import { Brand, Arrow } from "./ui";
 export function Footer({ locale }: { locale: Locale }) {
@@ -10,23 +12,21 @@ export function Footer({ locale }: { locale: Locale }) {
           <div className="footer-brand">
             <Brand locale={locale} />
             <p>{ui.footerLine[locale]}</p>
-            <Link className="text-link" href={href(locale, "client/login")}>
-              {ui.login[locale]}
-              <Arrow diagonal />
-            </Link>
+            {config.portalConnected && (
+              <Link className="text-link" href={href(locale, "client/login")}>
+                {ui.login[locale]}<Arrow diagonal />
+              </Link>
+            )}
           </div>
           <div className="footer-column">
             <p>{ui.brand[locale]}</p>
-            {ui.nav
-              .filter((_, i) => i !== 2)
-              .map((n, i) => (
-                <Link
-                  key={i}
-                  href={href(locale, ui.navPaths[i >= 2 ? i + 1 : i])}
-                >
+            {ui.nav.map((n, i) =>
+              i === 2 || (i === 4 && publishedArticles.length < 3) ? null : (
+                <Link key={i} href={href(locale, ui.navPaths[i])}>
                   {n[locale]}
                 </Link>
-              ))}
+              ),
+            )}
           </div>
           <div className="footer-column">
             <p>{ui.nav[2][locale]}</p>

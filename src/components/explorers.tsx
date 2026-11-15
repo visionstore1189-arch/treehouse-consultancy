@@ -2,7 +2,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { FileCheck2, ChevronRight, Search, ArrowUpRight } from "lucide-react";
-import { ui, verdicts, coverage, markets } from "@/content/site";
+import { ui, verdicts, coverage, markets, coverageStatusLabels } from "@/content/site";
+import coverageSettings from "@/content/coverage-status.json";
 import { articles, articleTopics, readingMinutes } from "@/content/articles";
 import { href, type Locale } from "@/lib/config";
 import { Wordmark } from "./ui";
@@ -79,6 +80,12 @@ export function AssessmentExplorer({ locale }: { locale: Locale }) {
     </div>
   );
 }
+function coverageStatus(id: string, fallback: string): keyof typeof coverageStatusLabels {
+  const value = (coverageSettings as Record<string, string>)[id] || fallback;
+  return Object.prototype.hasOwnProperty.call(coverageStatusLabels, value)
+    ? value as keyof typeof coverageStatusLabels
+    : "underReview";
+}
 export function CoverageTable({
   locale,
   market,
@@ -105,13 +112,9 @@ export function CoverageTable({
               </option>
             ))}
           </select>
-          <span className="result-count" aria-live="polite">
-            {rows.length.toLocaleString(locale)} /{" "}
-            {coverage.length.toLocaleString(locale)}
-          </span>
+
         </div>
       )}
-      <p className="table-hint">{ui.tableHint[locale]}</p>
       <div
         className="table-scroll"
         tabIndex={0}
@@ -136,7 +139,7 @@ export function CoverageTable({
                 <td>
                   <span className="coverage-status">
                     <span className="status-dot" />
-                    {ui[r.status][locale]}
+                    {coverageStatusLabels[coverageStatus(r.id, r.status)][locale]}
                   </span>
                 </td>
               </tr>
@@ -144,7 +147,6 @@ export function CoverageTable({
           </tbody>
         </table>
       </div>
-      <p className="coverage-note">{ui.coverageNote[locale]}</p>
     </div>
   );
 }

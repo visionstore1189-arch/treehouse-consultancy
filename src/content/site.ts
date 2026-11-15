@@ -60,6 +60,12 @@ export const ui = {
   product: t("Mutabiq", "مطابق"),
   endorsement: t("by Treehouse", "من تري هاوس"),
   tagline: t("Every requirement, evidenced.", "كل متطلب، بالدليل."),
+  productDescriptor: t(
+    "Mutabiq is the regulatory compliance assessment tool by Treehouse.",
+    "مطابق هي أداة تقييم الالتزام التنظيمي من تري هاوس.",
+  ),
+  whatMutabiqDoes: t("What Mutabiq does", "ماذا يقدّم مطابق"),
+  findingsHeading: t("From regulation to finding", "من النص الرقابي إلى النتيجة"),
   productHeading: t(
     "Every requirement. Every policy. One clear answer.",
     "كل متطلب. كل سياسة. إجابة واحدة واضحة.",
@@ -122,10 +128,6 @@ export const ui = {
   allTopics: t("All topics", "جميع المواضيع"),
   topic: t("Topic", "الموضوع"),
   complete: t("Complete", "مكتملة"),
-  coverageNote: t(
-    "Coverage is shown as supplied by Treehouse. Confirm the instruments and versions relevant to your firm during scoping.",
-    "تُعرض التغطية وفقاً للمعلومات المقدمة من تري هاوس. تُؤكَّد الأنظمة والإصدارات ذات الصلة بمؤسستكم عند تحديد النطاق.",
-  ),
   requestRegulator: t(
     "Do not see your regulator?",
     "لا تجد الجهة الرقابية التي تهمك؟",
@@ -195,6 +197,12 @@ export const ui = {
   ),
   back: t("Back to insights", "العودة إلى الرؤى"),
   minuteRead: t("min read", "دقائق للقراءة"),
+};
+export const coverageStatusLabels = {
+  complete: t("Complete", "مكتملة"),
+  inProgress: t("In progress", "قيد التنفيذ"),
+  planned: t("Planned", "مخططة"),
+  underReview: t("Under review", "قيد المراجعة"),
 };
 export const why = [
   {
@@ -794,8 +802,8 @@ export const pages: Record<string, PageContent> = {
   },
   mutabiq: {
     title: t(
-      "Mutabiq: the regulatory compliance assessment tool",
-      "مطابق: أداة تقييم الالتزام التنظيمي",
+      "Every requirement, evidenced.",
+      "كل متطلب، بالدليل.",
     ),
     intro: t(
       "Regulated firms are expected to know every requirement that applies to them and to show how each is met. In practice this knowledge sits in spreadsheets, in people’s heads and in documents that fall out of date. Mutabiq replaces that with a single, structured and evidenced view.",
