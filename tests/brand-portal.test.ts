@@ -33,3 +33,14 @@ test("favicon is the supplied six-bar icon and not the old tree glyph", () => {
   assert.equal((favicon.match(/ M\d|d="M\d/g) || []).length > 0, true);
   assert.match(favicon, /#02784f/);
 });
+
+
+test("public brand is Treehouse Consulting throughout website and metadata", () => {
+  const paths = ["src/content/site.ts", "src/content/seo.ts", "src/lib/routes.ts", "src/components/pages.tsx", "public/brand/social-card.svg"];
+  for (const path of paths) {
+    const content = readFileSync(path, "utf8");
+    assert.doesNotMatch(content, /Treehouse Consultancy|TREEHOUSE CONSULTANCY/);
+  }
+  assert.match(readFileSync("src/content/site.ts", "utf8"), /Treehouse Consulting/);
+  assert.match(readFileSync("public/brand/social-card.svg", "utf8"), /TREEHOUSE CONSULTING/);
+});
