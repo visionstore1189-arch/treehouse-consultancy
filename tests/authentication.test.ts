@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { authEnabled, sameOrigin, readBody } from "../functions/api/auth/_shared";
+import { authEnabled, sameOrigin, readBody, supa } from "../functions/api/auth/_shared";
 import { onRequestPost as signIn } from "../functions/api/auth/login";
 import { onRequestGet as getMe } from "../functions/api/auth/me";
 import { onRequestGet as healthCheck } from "../functions/api/auth/status";
@@ -97,4 +97,15 @@ test("recovery tokens do not establish a session without pre-approved membership
   } as never);
   assert.equal(res.status, 403);
   assert.equal(res.headers.get("set-cookie"), null);
+});
+
+test("Supabase HTTP requests use Cloudflare-compatible manual redirects and never forward tokens to redirects", async (t) => {
+  t.mock.method(globalThis, "fetch", async (_url: string, init?: RequestInit) => {
+    assert.equal(init?.redirect, "manual");
+    assert.equal(new Headers(init?.headers).get("apikey")?.startsWith("sb_publishable_"), true);
+    return new Response(null, { status: 302, headers: { Location: "https://attacker.example/" } });
+  });
+  const res = await supa({}, "/auth/v1/health", { method: "GET" });
+  assert.equal(res.status, 302);
+  assert.equal(res.ok, false);
 });
