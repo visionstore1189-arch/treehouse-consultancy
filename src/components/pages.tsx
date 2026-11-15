@@ -41,6 +41,8 @@ import { HeroArt } from "./hero-art";
 import { Reveal } from "./reveal";
 import { AssessmentExplorer, CoverageTable, InsightsList } from "./explorers";
 import { EnquiryForm } from "./enquiry-form";
+import { MutabiqVisual, MutabiqProof } from "./mutabiq-visual";
+import { mutabiqAssets } from "@/content/mutabiq-assets";
 const serviceIcons = [ScanLine, Landmark, Layers3, Orbit, Fingerprint];
 export function MarketCards({ locale }: { locale: Locale }) {
   return (
@@ -155,7 +157,11 @@ function Home({ locale }: { locale: Locale }) {
             </Link>
           </Reveal>
           <Reveal delay={0.08}>
-            <AssessmentExplorer locale={locale} />
+            {mutabiqAssets.visualsEnabled ? (
+              <MutabiqVisual locale={locale} id="overview" />
+            ) : (
+              <AssessmentExplorer locale={locale} />
+            )}
           </Reveal>
         </div>
       </section>
@@ -238,7 +244,8 @@ function PageHero({ locale, path }: { locale: Locale; path: string }) {
     <section
       className={`page-hero ${path.startsWith("mutabiq") ? "product-page-hero" : ""}`}
     >
-      <div className="container">
+      <div className={`container ${path === "mutabiq" && mutabiqAssets.visualsEnabled ? "mutabiq-hero-grid" : ""}`}>
+        <div className="page-hero-copy">
         <nav className="breadcrumb" aria-label={ui.home[locale]}>
           <Link href={href(locale)}>{ui.home[locale]}</Link>
           <span>/</span>
@@ -261,11 +268,15 @@ function PageHero({ locale, path }: { locale: Locale; path: string }) {
             </Button>
           </div>
         )}
-        <span className="page-hero-art" aria-hidden="true">
-          <span />
-          <span />
-          <span />
-        </span>
+        {!(path === "mutabiq" && mutabiqAssets.visualsEnabled) && (
+          <span className="page-hero-art" aria-hidden="true">
+            <span /><span /><span />
+          </span>
+        )}
+        </div>
+        {path === "mutabiq" && mutabiqAssets.visualsEnabled && (
+          <div className="mutabiq-hero-image"><MutabiqVisual locale={locale} id="overview" priority /></div>
+        )}
       </div>
     </section>
   );
@@ -369,6 +380,7 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                   </Reveal>
                 ))}
               </div>
+              <MutabiqProof locale={locale} />
               <Link
                 className="text-link"
                 href={href(locale, "mutabiq/how-it-works")}
@@ -399,6 +411,14 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
               <AssessmentExplorer locale={locale} />
             </div>
           </section>
+          {mutabiqAssets.visualsEnabled && (
+            <section className="section">
+              <div className="container">
+                <h2>{ui.findingsHeading[locale]}</h2>
+                <MutabiqVisual locale={locale} id="finding" />
+              </div>
+            </section>
+          )}
           <section className="section">
             <div className="container">
               <h2>{ui.principles[locale]}</h2>
@@ -428,10 +448,15 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                     <h2>{s.title[locale]}</h2>
                     <p>{s.text[locale]}</p>
                   </div>
-                  <div className="step-output">
-                    <FileText size={22} />
-                    <span>{ui.outputs[locale]}</span>
-                    <strong>{s.output[locale]}</strong>
+                  <div className="step-output-wrap">
+                    <div className="step-output">
+                      <FileText size={22} />
+                      <span>{ui.outputs[locale]}</span>
+                      <strong>{s.output[locale]}</strong>
+                    </div>
+                    {mutabiqAssets.visualsEnabled && i !== 3 && (
+                      <MutabiqVisual locale={locale} id={i === 0 ? "scope" : i === 1 ? "requirements" : i === 2 ? "finding" : "overview"} />
+                    )}
                   </div>
                 </Reveal>
               ))}
