@@ -1,30 +1,30 @@
 import { t } from "./site";
 export const seo = {
-  mutabiq: {
+  tibqa: {
     title: t(
-      "MUTABIQ by Treehouse | Regulatory Compliance Assessment Tool",
-      "مطابق من تري هاوس | أداة تقييم الالتزام التنظيمي",
+      "TIBQA by Treehouse | Regulatory Compliance Assessment Tool",
+      "طبقًا من تري هاوس | أداة تقييم الالتزام التنظيمي",
     ),
     description: t(
-      "MUTABIQ assesses your policies and procedures against every applicable regulatory requirement, taken directly from the source, and reports a clear verdict for each.",
-      "يقيّم مطابق سياساتكم وإجراءاتكم مقابل كل متطلب تنظيمي منطبق، مأخوذ من المصدر مباشرة، ويصدر نتيجة واضحة لكل متطلب.",
+      "TIBQA assesses your policies and procedures against every applicable regulatory requirement, taken directly from the source, and reports a clear verdict for each.",
+      "يقيّم طبقًا سياساتكم وإجراءاتكم مقابل كل متطلب تنظيمي منطبق، مأخوذ من المصدر مباشرة، ويصدر نتيجة واضحة لكل متطلب.",
     ),
   },
-  "mutabiq/how-it-works": {
-    title: t("How MUTABIQ Works | Treehouse", "كيف يعمل مطابق | تري هاوس"),
+  "tibqa/how-it-works": {
+    title: t("How TIBQA Works | Treehouse", "كيف يعمل طبقًا | تري هاوس"),
     description: t(
-      "From regulatory library to evidenced findings in five steps. See how MUTABIQ assesses policies against regulatory requirements.",
-      "من المكتبة التنظيمية إلى النتائج الموثقة في خمس خطوات. تعرّف على كيفية تقييم مطابق للسياسات مقابل المتطلبات التنظيمية.",
+      "From regulatory library to evidenced findings in five steps. See how TIBQA assesses policies against regulatory requirements.",
+      "من المكتبة التنظيمية إلى النتائج الموثقة في خمس خطوات. تعرّف على كيفية تقييم طبقًا للسياسات مقابل المتطلبات التنظيمية.",
     ),
   },
-  "mutabiq/coverage": {
+  "tibqa/coverage": {
     title: t(
-      "MUTABIQ Regulatory Coverage | UK, UAE and Saudi Arabia | Treehouse",
-      "التغطية الرقابية لمطابق | المملكة المتحدة والإمارات والسعودية",
+      "TIBQA Regulatory Coverage | UK, UAE and Saudi Arabia | Treehouse",
+      "التغطية الرقابية لطبقًا | المملكة المتحدة والإمارات والسعودية",
     ),
     description: t(
-      "See the regulators and markets covered by MUTABIQ across the UK, the UAE and Saudi Arabia.",
-      "اطّلع على الجهات الرقابية والأسواق التي يغطيها مطابق في المملكة المتحدة والإمارات والسعودية.",
+      "See the regulators and markets covered by TIBQA across the UK, the UAE and Saudi Arabia.",
+      "اطّلع على الجهات الرقابية والأسواق التي يغطيها طبقًا في المملكة المتحدة والإمارات والسعودية.",
     ),
   },
   services: {
@@ -63,8 +63,8 @@ export const seo = {
       "الاستشارات التنظيمية في السعودية | ساما وهيئة السوق المالية وهيئة التأمين",
     ),
     description: t(
-      "Regulatory advisory and compliance assessment for financial institutions in Saudi Arabia. MUTABIQ library available for the Insurance Authority.",
-      "استشارات تنظيمية وتقييم الالتزام للمؤسسات المالية في السعودية. مكتبة هيئة التأمين متاحة في مطابق.",
+      "Regulatory advisory and compliance assessment for financial institutions in Saudi Arabia. TIBQA library available for the Insurance Authority.",
+      "استشارات تنظيمية وتقييم الالتزام للمؤسسات المالية في السعودية. مكتبة هيئة التأمين متاحة في طبقًا.",
     ),
   },
   about: {
