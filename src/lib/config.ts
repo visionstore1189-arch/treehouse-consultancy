@@ -1,7 +1,6 @@
 export const config = {
-  siteUrl: (
-    process.env.NEXT_PUBLIC_SITE_URL || "https://treehouseconsultancy.co.uk"
-  ).replace(/\/$/, ""),
+  // The approved v3 canonical, regardless of preview host and legacy .com variables.
+  siteUrl: "https://treehouseconsultancy.co.uk",
   formsEnabled: process.env.NEXT_PUBLIC_FORMS_ENABLED === "true",
   turnstileSiteKey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "",
   sampleReportEnabled: process.env.NEXT_PUBLIC_SAMPLE_REPORT_ENABLED === "true",
