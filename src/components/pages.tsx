@@ -44,6 +44,7 @@ import { EnquiryForm } from "./enquiry-form";
 import { MutabiqVisual, MutabiqProof } from "./mutabiq-visual";
 import { SampleReportSection } from "./sample-report";
 import { mutabiqAssets } from "@/content/mutabiq-assets";
+import { CustomerLoginForm, CustomerPortal, RecoverPasswordForm, SetPasswordForm } from "./customer-auth";
 const serviceIcons = [ScanLine, Landmark, Layers3, Orbit, Fingerprint];
 const marketDisplayOrder = ["saudi-arabia", "uk", "uae"];
 const orderedMarkets = [...markets].sort(
@@ -710,19 +711,7 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                   <LockKeyhole size={16} aria-hidden="true" />{ui.loginActionReady[locale]}<Arrow diagonal />
                 </a>
               ) : (
-                <div className="portal-inactive-form" aria-label={ui.login[locale]}>
-                  <label>
-                    <span>{ui.loginEmail[locale]}</span>
-                    <input type="email" autoComplete="username" disabled aria-disabled="true" />
-                  </label>
-                  <label>
-                    <span>{ui.loginPassword[locale]}</span>
-                    <input type="password" autoComplete="current-password" disabled aria-disabled="true" />
-                  </label>
-                  <button type="button" className="button button-primary portal-connect-button" disabled>
-                    <LockKeyhole size={16} aria-hidden="true" />{ui.loginActionPending[locale]}
-                  </button>
-                </div>
+                <CustomerLoginForm locale={locale} />
               )}
               <div className="portal-access-note">
                 <ShieldCheck size={19} aria-hidden="true" />
@@ -734,17 +723,11 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
         </section>
       );
     case "client/portal":
-      return (
-        <section className="section portal-login-section">
-          <div className="container portal-closed-note">
-            <LockKeyhole size={36} aria-hidden="true" />
-            <Wordmark locale={locale} />
-            <h1>{ui.loginSecure[locale]}</h1>
-            <p>{ui.portalNotice[locale]}</p>
-            <Link className="button button-primary" href={href(locale, "client/login")}>{ui.login[locale]}<Arrow /></Link>
-          </div>
-        </section>
-      );
+      return <CustomerPortal locale={locale} />;
+    case "client/recover-password":
+      return <RecoverPasswordForm locale={locale} />;
+    case "client/reset-password":
+      return <SetPasswordForm locale={locale} />;
     default:
       return null;
   }
