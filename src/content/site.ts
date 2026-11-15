@@ -181,8 +181,8 @@ export const ui = {
     "بوابة العملاء الآمنة",
   ),
   loginNotice: t(
-    "Your secure sign-in will be activated when Treehouse connects the existing MUTABIQ application and verifies subscriptions, organisation permissions and multi-factor authentication. This website does not accept passwords.",
-    "سيُفعَّل تسجيل الدخول الآمن عند ربط تري هاوس تطبيق مطابق القائم والتحقق من الاشتراكات وصلاحيات المؤسسات والمصادقة متعددة العوامل. هذا الموقع لا يستقبل كلمات المرور.",
+    "MUTABIQ account sign-in is available only to invited subscribers. Your organisation’s subscription and permissions are checked separately; the existing MUTABIQ software will be connected later.",
+    "تسجيل الدخول إلى حساب مطابق مخصص للمشتركين الذين تلقوا دعوة. يتم التحقق من اشتراك مؤسستك وصلاحياتك بشكل منفصل، وسيُربط تطبيق مطابق الحالي لاحقاً.",
   ),
   signIn: t("Secure sign-in unavailable", "تسجيل الدخول الآمن غير متاح"),
   portalPreview: t("View reserved portal", "عرض مساحة البوابة المحجوزة"),
@@ -902,6 +902,8 @@ export const pages: Record<string, PageContent> = {
     intro: ui.legalPendingText,
   },
   "client/login": { title: ui.loginTitle, intro: ui.loginNotice },
+  "client/recover-password": { title: t("Reset your MUTABIQ password", "استعادة كلمة مرور مطابق"), intro: t("Secure account recovery", "استعادة الحساب الآمنة") },
+  "client/reset-password": { title: t("Set your MUTABIQ password", "تعيين كلمة مرور مطابق"), intro: t("Accept your invitation or reset your password", "قبول الدعوة أو إعادة تعيين كلمة المرور") },
   "client/portal": {
     title: t("Your client workspace", "مساحة عمل العملاء"),
     intro: ui.portalNotice,
