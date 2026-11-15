@@ -9,10 +9,7 @@ export function TIBQAVisual({ locale, id, priority = false }: { locale: Locale; 
     <figure className="tibqa-visual">
       <div className="tibqa-browser-frame">
         <div className="tibqa-browser-dots" aria-hidden="true"><i /><i /><i /></div>
-        <picture>
-          <source type="image/webp" srcSet={`${base}-1600.webp 1600w, ${base}-3200.webp 3200w`} sizes="(max-width: 900px) 100vw, 50vw" />
-          <img src={`${base}-1600.webp`} alt={asset.alt[locale]} width={1600} height={1000} decoding="async" loading={priority ? "eager" : "lazy"} />
-        </picture>
+        <img src={base} alt={asset.alt[locale]} width={1600} height={1000} decoding="async" loading={priority ? "eager" : "lazy"} />
       </div>
       <figcaption>{locale === "ar" ? "مثال توضيحي" : "Illustrative example"}</figcaption>
     </figure>
