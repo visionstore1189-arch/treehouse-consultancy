@@ -1,4 +1,4 @@
-name: Diagnose deployed MUTABIQ auth runtime - followup
+name: Verify MUTABIQ live auth connection
 on:
   push:
     branches: [verify-auth-runtime-health-2026]
@@ -36,3 +36,13 @@ jobs:
           echo "Direct Supabase Auth health status $code body:"
           head -c 1200 /tmp/result.json
           echo
+      - name: Assert live Supabase authentication connection is healthy
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://treehouse-consultancy.pages.dev"
+          code="$(curl -sSL --max-time 25 -o /tmp/final-status.json -w '%{http_code}' "$base/api/auth/status")"
+          cat /tmp/final-status.json
+          echo "Live auth health HTTP status: $code"
+          test "$code" = "200"
+          grep -Eq '"ready"[[:space:]]*:[[:space:]]*true' /tmp/final-status.json
