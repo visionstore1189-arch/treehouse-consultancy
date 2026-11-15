@@ -45,10 +45,14 @@ import { MutabiqVisual, MutabiqProof } from "./mutabiq-visual";
 import { SampleReportSection } from "./sample-report";
 import { mutabiqAssets } from "@/content/mutabiq-assets";
 const serviceIcons = [ScanLine, Landmark, Layers3, Orbit, Fingerprint];
+const marketDisplayOrder = ["saudi-arabia", "uk", "uae"];
+const orderedMarkets = [...markets].sort(
+  (a, b) => marketDisplayOrder.indexOf(a.slug) - marketDisplayOrder.indexOf(b.slug)
+);
 export function MarketCards({ locale }: { locale: Locale }) {
   return (
     <div className="market-grid">
-      {markets.map((m, i) => (
+      {orderedMarkets.map((m, i) => (
         <Link className="market-card" href={href(locale, m.slug)} key={m.slug}>
           <div className="market-card-top">
             <span className="market-number">0{i + 1}</span>
@@ -72,6 +76,29 @@ export function MarketCards({ locale }: { locale: Locale }) {
         </Link>
       ))}
     </div>
+  );
+}
+function ClientAccessBand({ locale }: { locale: Locale }) {
+  return (
+    <section className="client-access-band" aria-labelledby="client-access-title">
+      <div className="container client-access-inner">
+        <div className="client-access-copy">
+          <p className="client-access-kicker"><LockKeyhole size={16} aria-hidden="true" />{ui.portalEyebrow[locale]}</p>
+          <img className="client-access-wordmark" src="/brand/mutabiq-wordmark-light.svg" alt="" aria-hidden="true" width={390} height={67} />
+          <h2 id="client-access-title">{ui.subscriberTitle[locale]}</h2>
+          <p>{ui.subscriberText[locale]}</p>
+        </div>
+        <div className="client-access-actions">
+          <Link href={href(locale, "client/login")} className="client-access-button">
+            <LockKeyhole size={20} aria-hidden="true" />
+            <span>{ui.subscriberAction[locale]}</span>
+            <Arrow diagonal />
+          </Link>
+          {!config.portalConnected && <small>{ui.subscriberAvailability[locale]}</small>}
+          <span className="client-access-secure"><ShieldCheck size={15} aria-hidden="true" /> {ui.loginSecure[locale]}</span>
+        </div>
+      </div>
+    </section>
   );
 }
 export function ServicesList({ locale }: { locale: Locale }) {
@@ -126,7 +153,7 @@ function Home({ locale }: { locale: Locale }) {
               {ui.scroll[locale]}
             </a>
             <div>
-              {markets.map((m) => (
+              {orderedMarkets.map((m) => (
                 <Link href={href(locale, m.slug)} key={m.slug}>
                   {m.name[locale]}
                 </Link>
@@ -235,6 +262,7 @@ function Home({ locale }: { locale: Locale }) {
           <InsightsList locale={locale} compact />
         </div>
       </section>}
+      <ClientAccessBand locale={locale} />
       <Closing locale={locale} />
     </>
   );
@@ -435,6 +463,7 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
             </div>
           </section>
           <SampleReportSection locale={locale} />
+          <ClientAccessBand locale={locale} />
           <Closing locale={locale} />
         </>
       );
@@ -655,65 +684,64 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
       );
     case "client/login":
       return (
-        <section className="section portal-section">
-          <div className="container login-layout">
-            <div>
-              <Eyebrow>{ui.reserved[locale]}</Eyebrow>
+        <section className="section portal-login-section" aria-labelledby="portal-signin-heading">
+          <div className="container portal-login-layout">
+            <div className="portal-login-intro">
+              <p className="client-access-kicker"><LockKeyhole size={16} aria-hidden="true" />{ui.portalEyebrow[locale]}</p>
               <Wordmark locale={locale} />
-              <p>{ui.portalNotice[locale]}</p>
-              <p className="application-domain" dir="ltr">
-                {new URL(config.mutabiqAppUrl).hostname}
-              </p>
+              <h1>{ui.subscriberTitle[locale]}</h1>
+              <p className="portal-intro-lead">{ui.subscriberText[locale]}</p>
+              <div className="portal-trust-info">
+                <span><ShieldCheck size={17} aria-hidden="true" />{ui.loginSecure[locale]}</span>
+                <span><LockKeyhole size={17} aria-hidden="true" />{ui.loginIssue[locale]}</span>
+              </div>
+              <p className="application-domain" dir="ltr">{new URL(config.mutabiqAppUrl).hostname}</p>
             </div>
-            <div className="login-card">
-              <LockKeyhole size={32} strokeWidth={1} />
-              <h2>{ui.login[locale]}</h2>
+            <div className="portal-signin-card">
+              <div className="portal-signin-topline">
+                <img src="/brand/mutabiq-mark.svg" alt="" aria-hidden="true" width={34} height={34} />
+                <span>{ui.reserved[locale]}</span>
+                <LockKeyhole size={18} aria-hidden="true" />
+              </div>
+              <h2 id="portal-signin-heading">{ui.login[locale]}</h2>
               <p>{ui.loginNotice[locale]}</p>
-              <button className="button button-primary" disabled>
-                {ui.signIn[locale]}
-                <LockKeyhole size={16} />
-              </button>
-              <Link href={href(locale, "client/portal")} className="text-link">
-                {ui.portalPreview[locale]}
-                <Arrow />
-              </Link>
+              {config.portalConnected ? (
+                <a className="button button-primary portal-connect-button" href={config.mutabiqLoginUrl} rel="noopener noreferrer">
+                  <LockKeyhole size={16} aria-hidden="true" />{ui.loginActionReady[locale]}<Arrow diagonal />
+                </a>
+              ) : (
+                <div className="portal-inactive-form" aria-label={ui.login[locale]}>
+                  <label>
+                    <span>{ui.loginEmail[locale]}</span>
+                    <input type="email" autoComplete="username" disabled aria-disabled="true" />
+                  </label>
+                  <label>
+                    <span>{ui.loginPassword[locale]}</span>
+                    <input type="password" autoComplete="current-password" disabled aria-disabled="true" />
+                  </label>
+                  <button type="button" className="button button-primary portal-connect-button" disabled>
+                    <LockKeyhole size={16} aria-hidden="true" />{ui.loginActionPending[locale]}
+                  </button>
+                </div>
+              )}
+              <div className="portal-access-note">
+                <ShieldCheck size={19} aria-hidden="true" />
+                <span>{ui.loginIssue[locale]}</span>
+              </div>
+              <Link className="portal-support-link" href={href(locale, "mutabiq/demo")}>{ui.demo[locale]}<Arrow diagonal /></Link>
             </div>
           </div>
         </section>
       );
     case "client/portal":
       return (
-        <section className="section portal-section">
-          <div className="container">
-            <div className="notice">
-              <LockKeyhole />
-              <strong>{ui.portalNotice[locale]}</strong>
-            </div>
-            <div className="portal-shell">
-              <aside>
-                <Wordmark locale={locale} />
-                {ui.portalAreas.map((s, i) => (
-                  <span key={i}>
-                    <CircleDot size={16} />
-                    {s[locale]}
-                  </span>
-                ))}
-              </aside>
-              <div className="portal-content">
-                <Eyebrow>{ui.reserved[locale]}</Eyebrow>
-                <div className="portal-grid">
-                  {ui.portalAreas.map((s, i) => (
-                    <div key={i}>
-                      <LockKeyhole size={20} />
-                      <h2>{s[locale]}</h2>
-                      <p>{ui.connectionPending[locale]}</p>
-                      <div className="skeleton" />
-                      <div className="skeleton short" />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+        <section className="section portal-login-section">
+          <div className="container portal-closed-note">
+            <LockKeyhole size={36} aria-hidden="true" />
+            <Wordmark locale={locale} />
+            <h1>{ui.loginSecure[locale]}</h1>
+            <p>{ui.portalNotice[locale]}</p>
+            <Link className="button button-primary" href={href(locale, "client/login")}>{ui.login[locale]}<Arrow /></Link>
           </div>
         </section>
       );
@@ -737,7 +765,7 @@ export function SitePage({ locale, path }: { locale: Locale; path: string }) {
         ? {
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
-            name: "Mutabiq by Treehouse",
+            name: "MUTABIQ by Treehouse",
             applicationCategory: "BusinessApplication",
             operatingSystem: "Web",
             description: pages.mutabiq.intro[locale],
@@ -796,6 +824,8 @@ export function SitePage({ locale, path }: { locale: Locale; path: string }) {
               </Link>
             </article>
           </>
+        ) : path.startsWith("client/") ? (
+          <InnerContent locale={locale} path={path} />
         ) : (
           <>
             <PageHero locale={locale} path={path} />
