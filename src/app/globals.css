@@ -3315,3 +3315,36 @@ html[lang="ar"] .market-card { direction: rtl; text-align: right; }
 @media (prefers-reduced-motion: reduce) {
   .header-portal-link, .client-access-button { transition: none; }
 }
+
+
+/* Secure MUTABIQ account UX; live API disabled until Supabase is configured. */
+.customer-login-form { margin-top: 26px; }
+.customer-login-form input:not(:disabled), .auth-single-card input:not(:disabled) {
+  background: #ffffff; border: 1px solid #9bb9aa; color: #183039;
+}
+.customer-login-form input:focus-visible, .auth-single-card input:focus-visible {
+  outline: 3px solid #62b889; outline-offset: 2px;
+}
+.auth-error { color: #b42318 !important; font-size: 12px; line-height: 1.6; }
+.auth-note { padding: 12px 14px; border: 1px solid #c3d5c9; background: #f1f6f1;
+  border-radius: 5px; color: #43614f !important; font-size: 12px; }
+.auth-single-card { width: min(520px, calc(100% - 40px)); margin-inline: auto; background: #fcfefb;
+  padding: clamp(24px,4vw,48px); border-radius: 12px; box-shadow: 0 20px 62px #0004; }
+.auth-single-card h1 { color: #15362b; font-size: clamp(30px,3.5vw,44px); }
+.auth-single-card > p { color: #506e60; margin-block: 18px; }
+.auth-single-card .portal-inactive-form { margin-top: 20px; }
+.auth-single-card .button-primary { width: 100%; justify-content: center; margin-top: 8px; }
+.account-view { width: 100%; display: grid; gap: 18px; }
+.account-identity, .account-organization { width: 100%; background: #f9fcfa; color: #173b30;
+  border-radius: 8px; border: 1px solid #d4e6d8; padding: 22px; }
+.account-identity { display: grid; gap: 6px; }
+.account-identity span { font-size: 12px; color: #597263; }
+.account-identity strong { font-size: 17px; overflow-wrap: anywhere; }
+.account-organization h2 { color: #0b3b30; font-size: clamp(22px,2vw,30px); margin-bottom: 20px; }
+.account-property { display: flex; justify-content: space-between; gap: 15px; padding: 11px 0;
+  border-top: 1px solid #dfede4; font-size: 13px; }
+.account-property strong { color: #0d694a; }
+.account-pending { font-size: 13px; color: #d3e6d8 !important; line-height: 1.8; }
+.account-signout { display: inline-flex; align-items: center; gap: 10px;
+  justify-content: center; margin-top: 12px; }
+@media (max-width:600px) { .account-property { flex-direction: column; gap: 2px; } }
