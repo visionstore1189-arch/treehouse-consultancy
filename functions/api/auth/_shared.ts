@@ -74,7 +74,9 @@ export const supa = (env: AuthEnv, path: string, init: RequestInit = {}, bearer?
   headers.set("Accept", "application/json");
   if (init.body) headers.set("Content-Type", "application/json");
   if (bearer) headers.set("Authorization", "Bearer " + bearer);
-  return fetch(projectUrl(env).replace(/\/$/, "") + path, { ...init, headers, redirect: "error" });
+  // Cloudflare Workers supports redirect "manual" or "follow", never "error".
+  // Never auto-follow auth redirects: caller treats 3xx responses as failures.
+  return fetch(projectUrl(env).replace(/\/$/, "") + path, { ...init, headers, redirect: "manual" });
 };
 const cookie = (req: Request, name: string): string => {
   const part = (req.headers.get("Cookie") || "").split(";").map(v => v.trim())
