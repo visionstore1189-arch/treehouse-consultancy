@@ -113,7 +113,7 @@ export function HeroArt({ locale }: { locale: Locale }) {
       <div className="art-orbit orbit-two" />
       <div className="art-topline">
         <span className="status-dot" />
-        {ui.structure[locale]}
+        <span className="art-label">{ui.structure[locale]}</span>
         <span className="art-coordinate" dir="ltr">
           TH / 01
         </span>

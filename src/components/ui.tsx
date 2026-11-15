@@ -38,7 +38,7 @@ export function Eyebrow({ children }: { children: ReactNode }) {
 }
 export function Wordmark({ locale }: { locale: Locale }) {
   return (
-    <div className="wordmark">
+    <div className="wordmark" role="img" aria-label={`${ui.product[locale]} ${ui.endorsement[locale]}`}>
       <span>{ui.product[locale]}</span>
       <small>{ui.endorsement[locale]}</small>
     </div>
