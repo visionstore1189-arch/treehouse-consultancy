@@ -7,7 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .filter(
       (p) =>
         !p.startsWith("client/") &&
-        !["privacy", "cookies", "terms"].includes(p),
+        !["privacy", "cookies", "terms", "insights"].includes(p),
     )
     .flatMap((p) =>
       (["en", "ar"] as const).map((locale) => ({
