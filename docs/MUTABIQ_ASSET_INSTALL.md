@@ -15,7 +15,7 @@ If assets are available locally, open `public/brand/` in the GitHub Code tab, cr
 
 The PNGs supplied to the assistant's working session were 2048×1280, not the 3200×2000 originals described in the client specification. The 3200px files provided for deployment are therefore proportional upscales; no new detail is invented. Request the original higher-resolution exports from Treehouse for the final 2x artwork if needed.
 
-Set the **build-time** environment variable `NEXT_PUBLIC_MUTABIQ_VISUALS_ENABLED=true` after the files exist. The build guard `scripts/verify-mutabiq-assets.mjs` refuses deployment if this flag is true but any WebP is missing. Until then, visuals are hidden to prevent broken images.
+After all eight WebP files are uploaded together, the Next.js build automatically detects the complete set and enables the visuals. No Cloudflare environment-variable edit is necessary. A partial upload leaves the visuals hidden, preventing broken images.
 
 The image locations and English/Arabic alt text are defined in `src/content/mutabiq-assets.ts`, with rendering in `src/components/mutabiq-visual.tsx` and slots already included in `src/components/pages.tsx`. On the Arabic pages, use the original English screenshots pending approved Arabic exports.
 
