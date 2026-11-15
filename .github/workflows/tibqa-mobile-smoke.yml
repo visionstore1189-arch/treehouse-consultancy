@@ -1,0 +1,85 @@
+name: TIBQA v3 temporary mobile browser audit
+on:
+  push:
+    branches: [qa-tibqa-v3-mobile-browser-2026]
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Install headless Chromium automation
+        run: |
+          npm install --prefix /tmp/tibqa-qa --no-save --no-audit --no-fund playwright@latest
+          /tmp/tibqa-qa/node_modules/.bin/playwright install chromium
+      - name: Check product URLs and unpublished pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE="https://tibqa-v3-brand-tour-client-r.treehouse-consultancy.pages.dev"
+          for path in "/mutabiq/" "/ar/mutabiq/" "/mutabiq/coverage/" "/ar/mutabiq/demo/"; do
+            code="$(curl -sS -o /dev/null -w '%{http_code}' "$BASE$path")"
+            echo "REDIRECT $path: $code"
+            test "$code" = "301"
+          done
+          for path in "/client/login/" "/ar/client/login/" "/insights/" "/ar/insights/" "/privacy/" "/ar/privacy/"; do
+            code="$(curl -sS -o /dev/null -w '%{http_code}' "$BASE$path")"
+            echo "NOT FOUND $path: $code"
+            test "$code" = "404"
+          done
+      - name: Check English and Arabic mobile layouts, labels and product interactions
+        shell: bash
+        run: |
+          node <<'NODE'
+          const { chromium } = require('/tmp/tibqa-qa/node_modules/playwright');
+          const base = 'https://tibqa-v3-brand-tour-client-r.treehouse-consultancy.pages.dev';
+          (async () => {
+            const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
+            const pages = ['/', '/ar/', '/tibqa/', '/ar/tibqa/', '/contact/', '/ar/contact/', '/saudi-arabia/', '/ar/saudi-arabia/'];
+            let failures = [];
+            for (const viewport of [{ width:390,height:844 },{ width:1440,height:900 }]) {
+              for (const path of pages) {
+                const page = await browser.newPage({ viewport, reducedMotion:'reduce' });
+                const errors = [];
+                page.on('pageerror', e=>errors.push(e.message));
+                try {
+                  const response = await page.goto(base + path, { waitUntil:'domcontentloaded', timeout:25000 });
+                  await page.waitForTimeout(800);
+                  const result = await page.evaluate(() => ({
+                    title: document.title,
+                    viewport: window.innerWidth,
+                    scroll: document.documentElement.scrollWidth,
+                    canonical: document.querySelector('link[rel="canonical"]')?.href,
+                    rtl: document.documentElement.dir === 'rtl',
+                    h1: !!document.querySelector('h1'),
+                    retired: /MUTABIQ|Mutabiq|مطابق/.test(document.body.innerText),
+                    tour: !!document.querySelector('.tibqa-tour')
+                  }));
+                  const ok = response?.status() === 200 && result.scroll <= result.viewport + 3
+                    && result.canonical?.startsWith('https://treehouseconsultancy.co.uk')
+                    && result.rtl === path.startsWith('/ar/')
+                    && result.h1 && !result.retired && errors.length===0;
+                  console.log(JSON.stringify({path,viewport:viewport.width,code:response?.status(),...result,errors,pass:ok}));
+                  if (!ok) failures.push({path,viewport:viewport.width,result,errors});
+                  if(path.includes('/tibqa/') && result.tour) {
+                    const names = path.startsWith('/ar/')? ['النطاق','المتطلبات','التقييم','التقرير']:['Scope','Map','Assess','Report'];
+                    const tabs = page.getByRole('tab');
+                    if(await tabs.count()!==4)failures.push({path,kind:'tab-count'});
+                    for(let i=0;i<4;i++) {
+                      if ((await tabs.nth(i).innerText()).indexOf(names[i]) === -1) failures.push({path,kind:'labels',i});
+                    }
+                    await tabs.nth(1).click();
+                    if(await tabs.nth(1).getAttribute('aria-selected')!=='true')failures.push({path,kind:'manual-selection'});
+                    await tabs.nth(1).press('Home');
+                    if(await tabs.nth(0).getAttribute('aria-selected')!=='true')failures.push({path,kind:'keyboard'});
+                  }
+                } catch(err) {console.error(path,err.message);failures.push({path,error:err.message});}
+                await page.close();
+              }
+            }
+            await browser.close();
+            console.log('TOTAL FAILED MOBILE/DESKTOP CASES:',failures.length);
+            if(failures.length){console.log(JSON.stringify(failures));process.exitCode=1;}
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE
