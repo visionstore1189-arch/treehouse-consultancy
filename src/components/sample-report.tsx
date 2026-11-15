@@ -14,7 +14,7 @@ type TurnstileApi = {
 };
 const copy = {
   title: { en: "See a sample assessment report", ar: "اطّلع على نموذج تقرير تقييم" },
-  body: { en: "A four page example of what a MUTABIQ assessment delivers: the summary, results by policy area, priority findings and the method.", ar: "نموذج من أربع صفحات يوضح ما يقدمه تقييم مطابق: الملخص والنتائج حسب مجال السياسة والنتائج ذات الأولوية والمنهجية." },
+  body: { en: "A four page example of what a TIBQA assessment delivers: the summary, results by policy area, priority findings and the method.", ar: "نموذج من أربع صفحات يوضح ما يقدمه تقييم طبقًا: الملخص والنتائج حسب مجال السياسة والنتائج ذات الأولوية والمنهجية." },
   button: { en: "Get the sample report", ar: "احصل على نموذج التقرير" },
   ready: { en: "Thank you. Your sample report is ready.", ar: "شكراً لك. نموذج التقرير جاهز للتنزيل." },
   download: { en: "Download the report", ar: "تنزيل التقرير" },
@@ -91,7 +91,7 @@ export function SampleReportSection({ locale }: { locale: Locale }) {
     <section className="section sample-report-section">
       <div className="container sample-report-layout">
         <div>
-          <span className="overline">MUTABIQ · {locale === "ar" ? "نموذج تقرير" : "Sample report"}</span>
+          <span className="overline">TIBQA · {locale === "ar" ? "نموذج تقرير" : "Sample report"}</span>
           <h2>{copy.title[locale]}</h2>
           <p className="lead">{copy.body[locale]}</p>
           <p>{copy.note[locale]}</p>
