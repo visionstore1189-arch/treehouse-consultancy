@@ -45,7 +45,8 @@ test("password sign-in verifies Supabase user before setting HttpOnly cookies", 
   assert.match(res.headers.get("set-cookie") || "", /SameSite=Lax/);
   assert.match(res.headers.get("cache-control") || "", /no-store/);
 });
-test("portal state requires backend-authenticated identity and ignores fake cookies", async () => {
+test("portal state requires backend-authenticated identity and ignores fake cookies", async (t) => {
+  t.mock.method(globalThis, "fetch", async () => Response.json({ error: "unauthorized" }, { status: 401 }));
   const res = await getMe({ env, request: new Request("https://treehouse.test/api/auth/me", {headers: {Cookie: "__Host-th_access=garbage"}}) } as never);
   assert.equal(res.status, 401);
   const body = await res.json() as {authenticated: boolean};
