@@ -23,9 +23,22 @@ export const onRequestPost: PagesFunction<AuthEnv> = async ({ request, env }) =>
         expires_in: 3600,
       };
     } else return response({ error: "invalid_input" }, 400);
-    if (!tokens.access_token || !tokens.refresh_token
-      || !(await verifiedUser(env, tokens.access_token)))
+    if (!tokens.access_token || !tokens.refresh_token)
       return response({ error: "invalid_or_expired_link" }, 401);
+    const user = await verifiedUser(env, tokens.access_token);
+    if (!user) return response({ error: "invalid_or_expired_link" }, 401);
+    // Invitations and recovery are usable only for pre-approved organisation users.
+    const membership = await supa(
+      env,
+      "/rest/v1/organization_memberships?select=organization_id&user_id=eq." +
+        encodeURIComponent(user.id) + "&status=eq.active&limit=1",
+      { method: "GET" },
+      tokens.access_token,
+    );
+    if (!membership.ok) return response({ error: "authorization_unavailable" }, 503);
+    const rows: unknown = await membership.json();
+    if (!Array.isArray(rows) || rows.length === 0)
+      return response({ error: "account_not_authorized" }, 403);
     const result = response({ ok: true });
     setTokens(result, tokens);
     return result;
