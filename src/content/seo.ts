@@ -2,28 +2,28 @@ import { t } from "./site";
 export const seo = {
   mutabiq: {
     title: t(
-      "Mutabiq by Treehouse | Regulatory Compliance Assessment Tool",
+      "MUTABIQ by Treehouse | Regulatory Compliance Assessment Tool",
       "مطابق من تري هاوس | أداة تقييم الالتزام التنظيمي",
     ),
     description: t(
-      "Mutabiq assesses your policies and procedures against every applicable regulatory requirement, taken directly from the source, and reports a clear verdict for each.",
+      "MUTABIQ assesses your policies and procedures against every applicable regulatory requirement, taken directly from the source, and reports a clear verdict for each.",
       "يقيّم مطابق سياساتكم وإجراءاتكم مقابل كل متطلب تنظيمي منطبق، مأخوذ من المصدر مباشرة، ويصدر نتيجة واضحة لكل متطلب.",
     ),
   },
   "mutabiq/how-it-works": {
-    title: t("How Mutabiq Works | Treehouse", "كيف يعمل مطابق | تري هاوس"),
+    title: t("How MUTABIQ Works | Treehouse", "كيف يعمل مطابق | تري هاوس"),
     description: t(
-      "From regulatory library to evidenced findings in five steps. See how Mutabiq assesses policies against regulatory requirements.",
+      "From regulatory library to evidenced findings in five steps. See how MUTABIQ assesses policies against regulatory requirements.",
       "من المكتبة التنظيمية إلى النتائج الموثقة في خمس خطوات. تعرّف على كيفية تقييم مطابق للسياسات مقابل المتطلبات التنظيمية.",
     ),
   },
   "mutabiq/coverage": {
     title: t(
-      "Mutabiq Regulatory Coverage | UK, UAE and Saudi Arabia | Treehouse",
+      "MUTABIQ Regulatory Coverage | UK, UAE and Saudi Arabia | Treehouse",
       "التغطية الرقابية لمطابق | المملكة المتحدة والإمارات والسعودية",
     ),
     description: t(
-      "See the regulators and markets covered by Mutabiq across the UK, the UAE and Saudi Arabia.",
+      "See the regulators and markets covered by MUTABIQ across the UK, the UAE and Saudi Arabia.",
       "اطّلع على الجهات الرقابية والأسواق التي يغطيها مطابق في المملكة المتحدة والإمارات والسعودية.",
     ),
   },
@@ -63,7 +63,7 @@ export const seo = {
       "الاستشارات التنظيمية في السعودية | ساما وهيئة السوق المالية وهيئة التأمين",
     ),
     description: t(
-      "Regulatory advisory and compliance assessment for financial institutions in Saudi Arabia. Mutabiq library available for the Insurance Authority.",
+      "Regulatory advisory and compliance assessment for financial institutions in Saudi Arabia. MUTABIQ library available for the Insurance Authority.",
       "استشارات تنظيمية وتقييم الالتزام للمؤسسات المالية في السعودية. مكتبة هيئة التأمين متاحة في مطابق.",
     ),
   },
