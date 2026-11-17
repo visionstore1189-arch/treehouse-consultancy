@@ -3905,3 +3905,12 @@ html[dir="rtl"] .brand.treehouse-official-brand > img { object-position: right c
 
 .portal-login-section .account-signout { color: #f2faf5; border-color: #9dbdb0; background: transparent; }
 .portal-login-section .account-signout:hover { color: #fff; background: #153f38; }
+
+/* Match the signed-in area to the client's approved navy/green/mint brand. */
+.portal-login-section { background: var(--navy); }
+.portal-closed-note p { color: #c8d9e5; }
+.account-identity, .account-organization { color: var(--ink); }
+.account-organization h2, .auth-single-card h1, .auth-single-card label { color: var(--navy); }
+.account-property strong { color: var(--forest); }
+.account-access-status { background: #102b4b; border-color: #8ea8b9; }
+.portal-login-section .account-signout:hover { background: #173553; }
