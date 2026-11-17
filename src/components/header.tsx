@@ -6,6 +6,7 @@ import { ui, services, markets } from "@/content/site";
 import { publishedArticles } from "@/content/articles";
 import { href, type Locale } from "@/lib/config";
 import { Brand, Arrow } from "./ui";
+import { SiteProgress } from "./site-progress";
 export function Header({ locale, path }: { locale: Locale; path: string }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
@@ -139,6 +140,7 @@ export function Header({ locale, path }: { locale: Locale; path: string }) {
             </button>
           </div>
         </div>
+        <SiteProgress locale={locale} />
       </header>
       <dialog
         className="mobile-menu"
