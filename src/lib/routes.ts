@@ -56,12 +56,21 @@ export function metadataFor(locale: Locale, path: string): Metadata {
       siteName: "Treehouse Consulting",
       locale: locale === "en" ? "en_GB" : "ar_SA",
       type: a ? "article" : "website",
+      images: [{ url: "/brand/social-card-v5.png", width: 1200, height: 630, alt: "Dawabit by Treehouse" }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: ["/brand/social-card-v5.png"],
     },
-    icons: { icon: "/favicon.svg?v=treehouse-v4-2026" },
+    icons: {
+      icon: [
+        { url: "/brand/treehouse-favicon-v4.svg", type: "image/svg+xml" },
+        { url: "/brand/treehouse-favicon-32-v4.png", type: "image/png", sizes: "32x32" },
+        { url: "/brand/treehouse-favicon-512-v4.png", type: "image/png", sizes: "512x512" },
+      ],
+      apple: [{ url: "/brand/treehouse-favicon-180-v4.png", sizes: "180x180" }],
+    },
   };
 }

@@ -24,8 +24,8 @@ export const frequentlyAsked = [
   { question: t("How do we see it?", "كيف نطّلع عليها؟"), answer: t("Request a demonstration. We tailor each one to your sector and regulator.", "اطلبوا عرضًا توضيحيًا، ونعدّه بما يناسب قطاعكم وجهتكم التنظيمية.") },
 ];
 export const artificialIntelligenceText = t(
-  "Dawabit uses artificial intelligence to read regulatory text and your documents, and to propose a verdict for each requirement with the wording it relies on. It does not decide alone. Every verdict shows its source article and the passage in your document, and every assessment is reviewed by an experienced regulatory specialist before it is reported. Dawabit supports professional judgement and does not replace it. It is not legal advice.",
-  "تستخدم «ضوابط» الذكاء الاصطناعي لقراءة النصوص التنظيمية ومستنداتكم واقتراح حكم لكل متطلب مع بيان النص الذي يستند إليه. ولا تنفرد الأداة بالقرار؛ يُظهر كل حكم المادة المصدر والفقرة المقابلة في مستندكم، ويراجع كل تقييم مختص تنظيمي متمرس قبل إصدار التقرير. «ضوابط» تدعم الحكم المهني ولا تحل محله، وليست استشارة قانونية.",
+  "Dawabit uses artificial intelligence to read regulatory text and your documents, and to propose a verdict for each requirement with the wording it relies on. It does not decide alone. Every verdict shows its source article and the passage in your document, and every assessment is reviewed by an experienced regulatory specialist before it is reported. It is not legal advice.",
+  "تستخدم «ضوابط» الذكاء الاصطناعي لقراءة النصوص التنظيمية ومستنداتكم واقتراح حكم لكل متطلب مع بيان النص الذي يستند إليه. ولا تنفرد الأداة بالقرار؛ يُظهر كل حكم المادة المصدر والفقرة المقابلة في مستندكم، ويراجع كل تقييم مختص تنظيمي متمرس قبل إصدار التقرير. وليست الأداة استشارة قانونية.",
 );
 export const sectorClassificationNote = t(
   "Sector list follows the National Classification of Economic Activities (ISIC4).",
@@ -43,9 +43,7 @@ export const libraryMaintenanceText = t(
 // do not invent dates or render bracketed placeholders in public HTML.
 
 export const officialGraphicManifest = {
-  // The exact official v5 exports exist in the user's uploaded pack. The GitHub
-  // connector cannot transfer binary uploads; install the supplied binaries at
-  // these exact filenames before enabling the graphics and screenshots.
+  // Exact original v5 exports; hashes are checked on every build.
   overview: { en: "/brand/dawabit-screens/Dawabit_Screen_1_Overview_v5.jpg", ar: "/brand/dawabit-screens/Dawabit_Screen_1_Overview_v5_AR.jpg" },
   verdictDefinitions: { en: "/brand/dawabit/graphics/Verdict_Panel_1_Definitions_EN_Dark_v2.png", ar: "/brand/dawabit/graphics/Verdict_Panel_1_Definitions_AR_Light_v2.png" },
   workedExamples: { en: "/brand/dawabit/graphics/Verdict_Panel_2_Worked_Examples_EN_Light_v2.png", ar: "/brand/dawabit/graphics/Verdict_Panel_2_Worked_Examples_AR_Light_v2.png" },
@@ -55,4 +53,4 @@ export const officialGraphicManifest = {
   methodStrip: { en: "/brand/dawabit/graphics/How_It_Works_Strip_EN_Light_v2.png", ar: "/brand/dawabit/graphics/How_It_Works_Strip_AR_Light_v2.png" },
   sectorGrid: { en: "/brand/dawabit/graphics/Sector_Grid_EN_Light_v2.png", ar: "/brand/dawabit/graphics/Sector_Grid_AR_Light_v2.png" },
 } as const;
-export const approvedVisualsInstalled = false; // Set true ONLY after official v5 images are supplied, copied and verified.
+export const approvedVisualsInstalled = true; // Set true ONLY after official v5 images are supplied, copied and verified.

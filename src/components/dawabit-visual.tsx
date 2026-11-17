@@ -63,8 +63,8 @@ const graphicAlt: Record<GraphicId, { en: string; ar: string }> = {
     ar: "ملخص نتائج التقييم يوضح الملاحظات التنظيمية والأدلة والإجراءات المقترحة حسب الأولوية. مثال توضيحي.",
   },
   badgeStrip: {
-    en: "Illustrated assessment workflow badges identifying regulatory evidence and review stages. Illustrative example.",
-    ar: "شريط توضيحي يعرّف مراحل الأدلة التنظيمية والتقييم والمراجعة. مثال توضيحي.",
+    en: "Four verdict badges: Addressed, Partially Addressed, Gap and Out of Document Scope. Illustrative example.",
+    ar: "شريط النتائج الأربع: مستوفى، ومستوفى جزئيًا، وفجوة، وخارج نطاق المستند. مثال توضيحي.",
   },
   methodStrip: {
     en: "Five-step method from scoping and regulatory mapping to document assessment, specialist review and report. Illustrative example.",
@@ -110,12 +110,22 @@ export function DawabitGraphic({ locale, id, dark = false }: { locale: Locale; i
     );
   }
   const path = officialGraphicManifest[id][locale];
+  // Half the original export dimensions; reserve the exact aspect ratio before load.
+  const sizes: Record<GraphicId, [number, number]> = {
+    overview: [1600, 1000], verdictDefinitions: [1500, 560],
+    workedExamples: [1500, 880], evidenceChain: [1500, 500],
+    resultsSummary: [1500, 600], badgeStrip: locale === "ar" ? [980, 210] : [1100, 210],
+    methodStrip: [1600, 430], sectorGrid: [1600, 560],
+  };
+  const [width, height] = sizes[id];
   return (
     <figure className={`dawabit-graphic ${dark ? "dawabit-graphic-dark" : ""}`}>
-      <img src={path} width={1600} height={900}
+      <img src={path} width={width} height={height}
         alt={graphicAlt[id][locale]}
         loading="lazy" decoding="async" />
-      <figcaption>{locale === "ar" ? "مثال توضيحي" : "ILLUSTRATIVE EXAMPLE"}</figcaption>
+      <figcaption>{locale === "ar" ? "مثال توضيحي" : "ILLUSTRATIVE EXAMPLE"}
+        {" · "}<a href={path} target="_blank" rel="noopener noreferrer">{locale === "ar" ? "عرض بالحجم الكامل" : "View full size"}</a>
+      </figcaption>
     </figure>
   );
 }

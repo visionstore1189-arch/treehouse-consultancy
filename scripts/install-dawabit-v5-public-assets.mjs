@@ -16,7 +16,7 @@ const root = path.resolve(process.cwd());
 const from = path.resolve(process.argv[2] ?? ".");
 const manifestPath = path.join(from, "APPROVED_PUBLIC_ASSETS_MANIFEST.json");
 const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
-if (!Array.isArray(manifest.assets) || manifest.assets.length < 20) {
+if (!Array.isArray(manifest.assets) || manifest.assets.length !== 53) {
   throw new Error("Expected the complete approved-public-assets manifest.");
 }
 const deny = /(?:Dawabit_Screen_[234]_|client.?1|requirements.?guide|sample.?report|demo_v|product.?tour|password|secret|tibqa|mutabiq)/i;
@@ -37,12 +37,21 @@ for (const requiredFile of required) {
     throw new Error("Missing approved image in v5 package: " + requiredFile);
   }
 }
+const trusted = JSON.parse(await readFile(path.join(root, "docs/APPROVED_PUBLIC_ASSETS_MANIFEST.json"), "utf8"));
+const trustedAssets = new Map(trusted.assets.map(item => [item.path, item]));
+if (included.size !== 53 || trustedAssets.size !== 53) throw new Error("Expected 53 unique approved paths.");
+// Validate every input before writing any destination or activation flag.
+const validated = [];
 let copied = 0;
 for (const item of manifest.assets) {
   const rel = item.path;
   if (typeof rel !== "string" || !rel.startsWith("public/brand/") ||
       rel.includes("..") || path.isAbsolute(rel) || deny.test(rel)) {
     throw new Error("Rejected disallowed asset path: " + rel);
+  }
+  const approved = trustedAssets.get(rel);
+  if (!approved || approved.sha256 !== item.sha256 || approved.bytes !== item.bytes) {
+    throw new Error("Asset does not match the trusted original developer-pack manifest: " + rel);
   }
   const input = path.resolve(from, rel);
   const target = path.resolve(root, rel);
@@ -54,6 +63,9 @@ for (const item of manifest.assets) {
   if (actual !== item.sha256 || data.length !== item.bytes) {
     throw new Error("Original bytes do not match manifest for: " + rel);
   }
+  validated.push({ input, target });
+}
+for (const { input, target } of validated) {
   await mkdir(path.dirname(target), { recursive: true });
   await copyFile(input, target);
   copied += 1;
@@ -69,7 +81,7 @@ const flags = [
 for (const [file, before, after] of flags) {
   const target = path.resolve(root, file);
   const original = await readFile(target, "utf8");
-  if (!original.includes(before)) throw new Error("Expected visual flag missing: " + file);
+  if (!original.includes(before) && !original.includes(after)) throw new Error("Expected visual flag missing: " + file);
   await writeFile(target, original.replace(before, after), "utf8");
 }
 console.log("Installed " + copied + " byte-verified public v5 assets, including " + required.length + " required images.");

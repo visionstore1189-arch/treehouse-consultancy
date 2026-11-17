@@ -222,10 +222,10 @@ export const coverageStatusLabels = {
 };
 export const why = [
   {
-    title: t("The supervisor’s view.", "نظرة المشرف."),
+    title: t("A requirement-led view.", "رؤية تنطلق من المتطلبات."),
     text: t(
-      "Our work is led by people who have supervised regulated firms. We know what a regulator looks for and how findings are formed.",
-      "يقود أعمالنا أشخاص سبق لهم الإشراف على مؤسسات مرخصة، ونعرف ما تبحث عنه الجهة الرقابية وكيف تتشكل النتائج.",
+      "We start with the requirements that apply to your organisation and review the evidence behind each finding.",
+      "نبدأ بالمتطلبات المنطبقة على جهتكم ونراجع الأدلة التي تستند إليها كل نتيجة.",
     ),
   },
   {
@@ -450,8 +450,8 @@ export const markets = [
       "الاستشارات التنظيمية في المملكة العربية السعودية",
     ),
     intro: t(
-      "Financial regulation in the Kingdom is developing quickly, with new and revised requirements across banking, capital markets and insurance. Firms need to keep pace and to show their regulator that they have done so. We support institutions supervised by the Saudi Central Bank, the Capital Market Authority and the Insurance Authority.",
-      "يشهد التنظيم المالي في المملكة تطوراً سريعاً، مع متطلبات جديدة ومحدثة في قطاعات المصارف والأسواق المالية والتأمين. ندعم المؤسسات الخاضعة لإشراف البنك المركزي السعودي وهيئة السوق المالية وهيئة التأمين.",
+      "Regulation in the Kingdom is developing quickly across financial services, technology, health, energy, transport and other sectors. Firms need to keep pace and evidence how they meet the requirements that apply to them.",
+      "يتطور التنظيم في المملكة سريعًا في الخدمات المالية والتقنية والصحة والطاقة والنقل وغيرها من القطاعات. وتحتاج الجهات إلى مواكبة المتطلبات المنطبقة عليها وتوثيق كيفية استيفائها.",
     ),
     help: t(
       "Compliance assessment; licensing readiness; governance and risk frameworks; regulatory change and remediation; independent assurance.",

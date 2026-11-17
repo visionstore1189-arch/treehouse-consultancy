@@ -1,12 +1,7 @@
 import { t } from "./site";
-/**
- * Client v5 official images were supplied in conversation uploads, but the binary
- * screenshots cannot be copied through the text-only GitHub connector.
- * Keep visualsEnabled=false until exact originals exist under public/brand.
- * The official SVG logo masters are installed separately under public/brand.
- */
+/** Exact v5 original public images verified by docs/APPROVED_PUBLIC_ASSETS_MANIFEST.json. */
 export const dawabitAssets = {
-  visualsEnabled: false as boolean,
+  visualsEnabled: true as boolean,
   sampleReportEnabled: false as boolean,
   sampleReportFilename: "Dawabit_Sample_Assessment_Report_v5.pdf",
   imageBase: "/brand/dawabit-screens/",

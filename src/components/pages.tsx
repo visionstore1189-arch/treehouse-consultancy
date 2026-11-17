@@ -399,6 +399,7 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                       {serviceLabels[k === "support" ? "dawabit" : k][locale]}
                     </h2>
                     <p>{service[k][locale]}</p>
+                    {k === "receive" && service.slug === "compliance-assessment" && <DawabitGraphic locale={locale} id="resultsSummary" />}
                   </Reveal>
                 ),
               )}
@@ -406,7 +407,6 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                 {ui.explore[locale]}
                 <Arrow diagonal />
               </Link>
-              {service.slug === "compliance-assessment" && <DawabitGraphic locale={locale} id="resultsSummary" />}
               {service.slug === "independent-assurance" && <DawabitGraphic locale={locale} id="evidenceChain" />}
             </div>
           </div>
@@ -694,7 +694,7 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                   {ui.explore[locale]}
                 </Button>
               </div>
-              <DawabitVisual locale={locale} id="overview" />
+              <DawabitGraphic locale={locale} id="evidenceChain" />
             </div>
           </section>
           <Closing locale={locale} />
@@ -730,6 +730,7 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                   </article>
                 ))}
               </div>
+              <DawabitGraphic locale={locale} id="badgeStrip" />
               <div className="dawabit-other-sectors">
                 <h2>{ui.otherSectors[locale]}</h2>
                 <ul>{sectors.filter(x=>!x.featured).map(x=><li key={x.code}><span>{x.code}</span>{x.title[locale]}</li>)}</ul>

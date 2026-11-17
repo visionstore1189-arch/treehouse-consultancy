@@ -107,6 +107,7 @@ test("public product has only overview and no v3 screenshots/tour", () => {
 test("unverified former-regulator claims do not appear in buyer-facing metadata", () => {
   const seo = read("src/content/seo.ts");
   assert.doesNotMatch(seo, /former regulators|former regulatory officials|مسؤولون رقابيون سابقون/i);
+  assert.doesNotMatch(readFileSync("src/content/site.ts", "utf8"), /led by people who have supervised|سبق لهم الإشراف/);
   assert.match(seo, /الجهات الخاضعة للتنظيم/);
 });
 

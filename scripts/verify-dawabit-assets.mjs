@@ -1,5 +1,6 @@
 import { readFile, readdir, stat } from "node:fs/promises";
 import path from "node:path";
+import { createHash } from "node:crypto";
 
 const requiredSvg = [
   "public/brand/treehouse-logo-primary-v4.svg",
@@ -63,6 +64,18 @@ if (overviewEnabled !== panelsEnabled) {
   throw new Error("Official screenshot and infographic activation flags must be reviewed and enabled together.");
 }
 if (panelsEnabled) {
+  const manifest = JSON.parse(await readFile("docs/APPROVED_PUBLIC_ASSETS_MANIFEST.json", "utf8"));
+  if (manifest.asset_count !== 53 || manifest.assets.length !== 53 || new Set(manifest.assets.map(a => a.path)).size !== 53) {
+    throw new Error("Expected 53 unique official public originals.");
+  }
+  for (const asset of manifest.assets) {
+    if (!asset.path.startsWith("public/brand/") || asset.path.includes("..") || asset.path.includes("\\")) throw new Error("Invalid original asset path");
+    const bytes = await readFile(asset.path);
+    if (bytes.length !== asset.bytes || createHash("sha256").update(bytes).digest("hex") !== asset.sha256) {
+      throw new Error("Official original bytes changed: " + asset.path);
+    }
+  }
+  console.log("SHA-256 verified all 53 public assets against the original developer ZIP manifest.");
   // Never enable official visuals until the exact original files are installed,
   // not just their paths entered into a manifest or replaced with new renders.
   const urls = [

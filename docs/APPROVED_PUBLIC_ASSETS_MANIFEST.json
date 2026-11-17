@@ -1,0 +1,527 @@
+{
+  "purpose": "Original v5 approved PUBLIC website assets only. Excludes confidential screens 2-4, report, demo, tour and Client1 guide.",
+  "asset_count": 53,
+  "assets": [
+    {
+      "path": "public/brand/dawabit-by-treehouse-lockup-ar-light-v1.svg",
+      "source_name": "dawabit-by-treehouse-lockup-ar-light-v1.svg",
+      "bytes": 16479,
+      "sha256": "d2cd9d43ea763f6e5444c0ad220a228a4b0298bbc351186ce33c75a966382a0b",
+      "source_path": "2_Logos/arabic/dawabit-by-treehouse-lockup-ar-light-v1.svg"
+    },
+    {
+      "path": "public/brand/dawabit-by-treehouse-lockup-ar-v1.svg",
+      "source_name": "dawabit-by-treehouse-lockup-ar-v1.svg",
+      "bytes": 16479,
+      "sha256": "84cddca69ee5a57f29f3672b2b1aee963b8442489248216904c0bc8970c44834",
+      "source_path": "2_Logos/arabic/dawabit-by-treehouse-lockup-ar-v1.svg"
+    },
+    {
+      "path": "public/brand/dawabit-logo-mono-navy-v4.png",
+      "source_name": "dawabit-logo-mono-navy-v4.png",
+      "bytes": 48936,
+      "sha256": "e6b68fdee6169c727f723fb46ce9140878165e264162820d59be7a54c36b56ff",
+      "dimensions": [
+        2400,
+        489
+      ],
+      "source_path": "2_Logos/png/dawabit-logo-mono-navy-v4.png"
+    },
+    {
+      "path": "public/brand/dawabit-logo-mono-navy-v4.svg",
+      "source_name": "dawabit-logo-mono-navy-v4.svg",
+      "bytes": 5140,
+      "sha256": "615bc1ecfcb01f73dc17fc19d11c387284ed3b09fad4a9f5eee66c2705105110",
+      "source_path": "2_Logos/svg/dawabit-logo-mono-navy-v4.svg"
+    },
+    {
+      "path": "public/brand/dawabit-logo-mono-white-v4.png",
+      "source_name": "dawabit-logo-mono-white-v4.png",
+      "bytes": 37955,
+      "sha256": "dcbe004f196cf553d4a54c467c5496fc862b3a79745df37ebedb5e9ad1145b15",
+      "dimensions": [
+        2400,
+        489
+      ],
+      "source_path": "2_Logos/png/dawabit-logo-mono-white-v4.png"
+    },
+    {
+      "path": "public/brand/dawabit-logo-mono-white-v4.svg",
+      "source_name": "dawabit-logo-mono-white-v4.svg",
+      "bytes": 5140,
+      "sha256": "51e2cdb8719e67d6838b1c7cb7163c96424c2d397d309e0ad465470b926af9fe",
+      "source_path": "2_Logos/svg/dawabit-logo-mono-white-v4.svg"
+    },
+    {
+      "path": "public/brand/dawabit-logo-primary-v4.png",
+      "source_name": "dawabit-logo-primary-v4.png",
+      "bytes": 48945,
+      "sha256": "b680202cc80d89abd796c977fa45abf6b8ad00f370fe67fff3b8da203763a67a",
+      "dimensions": [
+        2400,
+        489
+      ],
+      "source_path": "2_Logos/png/dawabit-logo-primary-v4.png"
+    },
+    {
+      "path": "public/brand/dawabit-logo-primary-v4.svg",
+      "source_name": "dawabit-logo-primary-v4.svg",
+      "bytes": 5140,
+      "sha256": "b1496eeea560a758c6885d50620cea886fbfc2fac23cf7ba88eade5e0bccf6a2",
+      "source_path": "2_Logos/svg/dawabit-logo-primary-v4.svg"
+    },
+    {
+      "path": "public/brand/dawabit-logo-reversed-v4.png",
+      "source_name": "dawabit-logo-reversed-v4.png",
+      "bytes": 38012,
+      "sha256": "4e184e35b4cef03903b5cd9acebca1d014e89930229741376bedd419de144898",
+      "dimensions": [
+        2400,
+        489
+      ],
+      "source_path": "2_Logos/png/dawabit-logo-reversed-v4.png"
+    },
+    {
+      "path": "public/brand/dawabit-logo-reversed-v4.svg",
+      "source_name": "dawabit-logo-reversed-v4.svg",
+      "bytes": 5140,
+      "sha256": "801e900a2c31247e9356d62b15d16b65ff7f331297472aec7bb39cf4eca9e644",
+      "source_path": "2_Logos/svg/dawabit-logo-reversed-v4.svg"
+    },
+    {
+      "path": "public/brand/dawabit-screens/Dawabit_Screen_1_Overview_v5.jpg",
+      "source_name": "Dawabit_Screen_1_Overview_v5.jpg",
+      "bytes": 356641,
+      "sha256": "825705963ae41a46f5045703f98c5ea3b5ad5858003b1f6e064a8818f756093e",
+      "dimensions": [
+        3200,
+        2000
+      ],
+      "source_path": "3_Product_Screens/Dawabit_Screen_1_Overview_v5.jpg"
+    },
+    {
+      "path": "public/brand/dawabit-screens/Dawabit_Screen_1_Overview_v5_AR.jpg",
+      "source_name": "Dawabit_Screen_1_Overview_v5_AR.jpg",
+      "bytes": 293566,
+      "sha256": "16da94b8876d8671965ca82554792a7c11df5faffd0e346f8a1cedba1817b11e",
+      "dimensions": [
+        3200,
+        2000
+      ],
+      "source_path": "3_Product_Screens/Dawabit_Screen_1_Overview_v5_AR.jpg"
+    },
+    {
+      "path": "public/brand/dawabit-wordmark-ar-light-v1.svg",
+      "source_name": "dawabit-wordmark-ar-light-v1.svg",
+      "bytes": 5189,
+      "sha256": "84a8c92e153c0e49d7ba665f277f00979cb0f151deae95ef375f00de3529897f",
+      "source_path": "2_Logos/arabic/dawabit-wordmark-ar-light-v1.svg"
+    },
+    {
+      "path": "public/brand/dawabit-wordmark-ar-v1.svg",
+      "source_name": "dawabit-wordmark-ar-v1.svg",
+      "bytes": 5189,
+      "sha256": "cefa99828839fda24dc6e70dc567a1a8223690819bc6af6d4c9663657f27b660",
+      "source_path": "2_Logos/arabic/dawabit-wordmark-ar-v1.svg"
+    },
+    {
+      "path": "public/brand/dawabit/graphics/How_It_Works_Strip_AR_Light_v2.png",
+      "source_name": "How_It_Works_Strip_AR_Light_v2.png",
+      "bytes": 106207,
+      "sha256": "8c0400524bd42507bc2c989d8ffa1ecfd5a1a6f250a6659082c318342257903c",
+      "dimensions": [
+        3200,
+        860
+      ],
+      "source_path": "5_Explainer_Graphics/How_It_Works_Strip_AR_Light_v2.png"
+    },
+    {
+      "path": "public/brand/dawabit/graphics/How_It_Works_Strip_EN_Dark_v2.png",
+      "source_name": "How_It_Works_Strip_EN_Dark_v2.png",
+      "bytes": 114322,
+      "sha256": "447a8a9694cd508cec78efac045fce71f49b8238a9a7917dee7bba008ba3956d",
+      "dimensions": [
+        3200,
+        860
+      ],
+      "source_path": "5_Explainer_Graphics/How_It_Works_Strip_EN_Dark_v2.png"
+    },
+    {
+      "path": "public/brand/dawabit/graphics/How_It_Works_Strip_EN_Light_v2.png",
+      "source_name": "How_It_Works_Strip_EN_Light_v2.png",
+      "bytes": 113416,
+      "sha256": "5f65ed3854736a0c00d31973a30cfd0b8ef3285c76d741c38bc1c5295c74a6fa",
+      "dimensions": [
+        3200,
+        860
+      ],
+      "source_path": "5_Explainer_Graphics/How_It_Works_Strip_EN_Light_v2.png"
+    },
+    {
+      "path": "public/brand/dawabit/graphics/Sector_Grid_AR_Light_v2.png",
+      "source_name": "Sector_Grid_AR_Light_v2.png",
+      "bytes": 161216,
+      "sha256": "f7c60cd075087d831df2fbbd9725533c49a83d57d76606ed2aabfbff64d54f15",
+      "dimensions": [
+        3200,
+        1120
+      ],
+      "source_path": "5_Explainer_Graphics/Sector_Grid_AR_Light_v2.png"
+    },
+    {
+      "path": "public/brand/dawabit/graphics/Sector_Grid_EN_Dark_v2.png",
+      "source_name": "Sector_Grid_EN_Dark_v2.png",
+      "bytes": 172481,
+      "sha256": "c11f7bb87bb438acd15ec9577e24c281f34b32f9875cde55f0ae07fb4fac1f16",
+      "dimensions": [
+        3200,
+        1120
+      ],
+      "source_path": "5_Explainer_Graphics/Sector_Grid_EN_Dark_v2.png"
+    },
+    {
+      "path": "public/brand/dawabit/graphics/Sector_Grid_EN_Light_v2.png",
+      "source_name": "Sector_Grid_EN_Light_v2.png",
+      "bytes": 170385,
+      "sha256": "fdda4197cf9b14d70985aa9f6aceba525dceb0771036242253e8b31ee9cc92ff",
+      "dimensions": [
+        3200,
+        1120
+      ],
+      "source_path": "5_Explainer_Graphics/Sector_Grid_EN_Light_v2.png"
+    },
+    {
+      "path": "public/brand/dawabit/graphics/Verdict_Panel_1_Definitions_AR_Light_v2.png",
+      "source_name": "Verdict_Panel_1_Definitions_AR_Light_v2.png",
+      "bytes": 137841,
+      "sha256": "9c28f34763948de59a6b1491cde5b98ca2a7343d2d3f1e160a93072a0cd2d1b4",
+      "dimensions": [
+        3000,
+        1120
+      ],
+      "source_path": "4_Verdict_Panels/Verdict_Panel_1_Definitions_AR_Light_v2.png"
+    },
+    {
+      "path": "public/brand/dawabit/graphics/Verdict_Panel_1_Definitions_EN_Dark_v2.png",
+      "source_name": "Verdict_Panel_1_Definitions_EN_Dark_v2.png",
+      "bytes": 163913,
+      "sha256": "0c2a6f41549bdc18540df826a82785ae766ebc2d7c71af0e900e5f43dfc0610c",
+      "dimensions": [
+        3000,
+        1120
+      ],
+      "source_path": "4_Verdict_Panels/Verdict_Panel_1_Definitions_EN_Dark_v2.png"
+    },
+    {
+      "path": "public/brand/dawabit/graphics/Verdict_Panel_1_Definitions_EN_Light_v2.png",
+      "source_name": "Verdict_Panel_1_Definitions_EN_Light_v2.png",
+      "bytes": 161537,
+      "sha256": "448ce7dfb7123965cd1e8d43211617666ca3450fdc3acd8c3d836a88a2799125",
+      "dimensions": [
+        3000,
+        1120
+      ],
+      "source_path": "4_Verdict_Panels/Verdict_Panel_1_Definitions_EN_Light_v2.png"
+    },
+    {
+      "path": "public/brand/dawabit/graphics/Verdict_Panel_2_Worked_Examples_AR_Light_v2.png",
+      "source_name": "Verdict_Panel_2_Worked_Examples_AR_Light_v2.png",
+      "bytes": 200631,
+      "sha256": "708af793e66467b9784beb7ed7b7add309bc173600c6d978ed3bc02ed1fc95f7",
+      "dimensions": [
+        3000,
+        1760
+      ],
+      "source_path": "4_Verdict_Panels/Verdict_Panel_2_Worked_Examples_AR_Light_v2.png"
+    },
+    {
+      "path": "public/brand/dawabit/graphics/Verdict_Panel_2_Worked_Examples_EN_Dark_v2.png",
+      "source_name": "Verdict_Panel_2_Worked_Examples_EN_Dark_v2.png",
+      "bytes": 217294,
+      "sha256": "a6386fb6094d9432351c74da6d870dff33b41588f29710741124b452f6384521",
+      "dimensions": [
+        3000,
+        1760
+      ],
+      "source_path": "4_Verdict_Panels/Verdict_Panel_2_Worked_Examples_EN_Dark_v2.png"
+    },
+    {
+      "path": "public/brand/dawabit/graphics/Verdict_Panel_2_Worked_Examples_EN_Light_v2.png",
+      "source_name": "Verdict_Panel_2_Worked_Examples_EN_Light_v2.png",
+      "bytes": 214809,
+      "sha256": "4574630f124faa77dc158b92350d4bbe52cf8425044bcdf5a1dd804c4a08f7d9",
+      "dimensions": [
+        3000,
+        1760
+      ],
+      "source_path": "4_Verdict_Panels/Verdict_Panel_2_Worked_Examples_EN_Light_v2.png"
+    },
+    {
+      "path": "public/brand/dawabit/graphics/Verdict_Panel_3_Evidence_Chain_AR_Light_v2.png",
+      "source_name": "Verdict_Panel_3_Evidence_Chain_AR_Light_v2.png",
+      "bytes": 102542,
+      "sha256": "073900539a4b99029b8a32377d6051be8c9c7ed542603bd03773eaec81916631",
+      "dimensions": [
+        3000,
+        1000
+      ],
+      "source_path": "4_Verdict_Panels/Verdict_Panel_3_Evidence_Chain_AR_Light_v2.png"
+    },
+    {
+      "path": "public/brand/dawabit/graphics/Verdict_Panel_3_Evidence_Chain_EN_Dark_v2.png",
+      "source_name": "Verdict_Panel_3_Evidence_Chain_EN_Dark_v2.png",
+      "bytes": 111138,
+      "sha256": "ec2862845e9b96f7ab61f263c1b69a486a16ed453baa334630f4e523217cc2f5",
+      "dimensions": [
+        3000,
+        1000
+      ],
+      "source_path": "4_Verdict_Panels/Verdict_Panel_3_Evidence_Chain_EN_Dark_v2.png"
+    },
+    {
+      "path": "public/brand/dawabit/graphics/Verdict_Panel_3_Evidence_Chain_EN_Light_v2.png",
+      "source_name": "Verdict_Panel_3_Evidence_Chain_EN_Light_v2.png",
+      "bytes": 108994,
+      "sha256": "10b0332be4c4536fb2894b2fa9fe242283b648eb03135356ecf50b3240d33b2a",
+      "dimensions": [
+        3000,
+        1000
+      ],
+      "source_path": "4_Verdict_Panels/Verdict_Panel_3_Evidence_Chain_EN_Light_v2.png"
+    },
+    {
+      "path": "public/brand/dawabit/graphics/Verdict_Panel_4_Results_Summary_AR_Light_v2.png",
+      "source_name": "Verdict_Panel_4_Results_Summary_AR_Light_v2.png",
+      "bytes": 136985,
+      "sha256": "4c746f5593ac5f6f37ff4d92825061343e1541b177ad9e09f331ee66a0a06920",
+      "dimensions": [
+        3000,
+        1200
+      ],
+      "source_path": "4_Verdict_Panels/Verdict_Panel_4_Results_Summary_AR_Light_v2.png"
+    },
+    {
+      "path": "public/brand/dawabit/graphics/Verdict_Panel_4_Results_Summary_EN_Dark_v2.png",
+      "source_name": "Verdict_Panel_4_Results_Summary_EN_Dark_v2.png",
+      "bytes": 143291,
+      "sha256": "765947a87a9662b7bb205a8f0a8263c4f8f11bd7f82e36cef3ce93c74dc63b6e",
+      "dimensions": [
+        3000,
+        1200
+      ],
+      "source_path": "4_Verdict_Panels/Verdict_Panel_4_Results_Summary_EN_Dark_v2.png"
+    },
+    {
+      "path": "public/brand/dawabit/graphics/Verdict_Panel_4_Results_Summary_EN_Light_v2.png",
+      "source_name": "Verdict_Panel_4_Results_Summary_EN_Light_v2.png",
+      "bytes": 143031,
+      "sha256": "582f4e6f9eddfefc97f98e043ecb79a441dfbd4dbad15d2e31089fd461e461c0",
+      "dimensions": [
+        3000,
+        1200
+      ],
+      "source_path": "4_Verdict_Panels/Verdict_Panel_4_Results_Summary_EN_Light_v2.png"
+    },
+    {
+      "path": "public/brand/dawabit/graphics/Verdict_Panel_5_Badge_Strip_AR_Light_v2.png",
+      "source_name": "Verdict_Panel_5_Badge_Strip_AR_Light_v2.png",
+      "bytes": 33424,
+      "sha256": "df0a6a37ca315a69463615012fc07631e8b5d97cf4d25b8979c06d524ad9a407",
+      "dimensions": [
+        1960,
+        420
+      ],
+      "source_path": "4_Verdict_Panels/Verdict_Panel_5_Badge_Strip_AR_Light_v2.png"
+    },
+    {
+      "path": "public/brand/dawabit/graphics/Verdict_Panel_5_Badge_Strip_EN_Dark_v2.png",
+      "source_name": "Verdict_Panel_5_Badge_Strip_EN_Dark_v2.png",
+      "bytes": 37717,
+      "sha256": "6143c38696e1215e3fcabd2be978f6ff4d57aaedc93e49ce229079dd5550217d",
+      "dimensions": [
+        2200,
+        420
+      ],
+      "source_path": "4_Verdict_Panels/Verdict_Panel_5_Badge_Strip_EN_Dark_v2.png"
+    },
+    {
+      "path": "public/brand/dawabit/graphics/Verdict_Panel_5_Badge_Strip_EN_Light_v2.png",
+      "source_name": "Verdict_Panel_5_Badge_Strip_EN_Light_v2.png",
+      "bytes": 37255,
+      "sha256": "302bd1590bdfce2bd63329048f5b822892c5232fa745fa3e255e5dddd3d2ad24",
+      "dimensions": [
+        2200,
+        420
+      ],
+      "source_path": "4_Verdict_Panels/Verdict_Panel_5_Badge_Strip_EN_Light_v2.png"
+    },
+    {
+      "path": "public/brand/social-card-v5.png",
+      "source_name": "social-card-v5.png",
+      "bytes": 51185,
+      "sha256": "09a94799976dba09a6b7ed57391d168ac144e3fbe3f1534d5ba2c09119ad1032",
+      "dimensions": [
+        1200,
+        630
+      ],
+      "source_path": "2_Logos/social-card-v5.png"
+    },
+    {
+      "path": "public/brand/treehouse-favicon-180-v4.png",
+      "source_name": "treehouse-favicon-180-v4.png",
+      "bytes": 2473,
+      "sha256": "0f82cb8052f9dff490482571d84997bee094d07b1253ca9aa86cad81d1af3ffc",
+      "dimensions": [
+        180,
+        180
+      ],
+      "source_path": "2_Logos/favicon/treehouse-favicon-180-v4.png"
+    },
+    {
+      "path": "public/brand/treehouse-favicon-32-v4.png",
+      "source_name": "treehouse-favicon-32-v4.png",
+      "bytes": 502,
+      "sha256": "88feab886ac116fd73c6c8945680b631c0c916eb6703dd75e4f4484be3367d81",
+      "dimensions": [
+        32,
+        32
+      ],
+      "source_path": "2_Logos/favicon/treehouse-favicon-32-v4.png"
+    },
+    {
+      "path": "public/brand/treehouse-favicon-512-v4.png",
+      "source_name": "treehouse-favicon-512-v4.png",
+      "bytes": 7727,
+      "sha256": "0193a12a4f1e22c6093d0f1f7eb02accaf86aafaead8080d1e6bcd1f817ed2a3",
+      "dimensions": [
+        512,
+        512
+      ],
+      "source_path": "2_Logos/favicon/treehouse-favicon-512-v4.png"
+    },
+    {
+      "path": "public/brand/treehouse-favicon-v4.svg",
+      "source_name": "treehouse-favicon-v4.svg",
+      "bytes": 368,
+      "sha256": "98c0072b7854b510cb31b8b3037d0c8e05eb81611117b74fc2acee3ec3b27e70",
+      "source_path": "2_Logos/favicon/treehouse-favicon-v4.svg"
+    },
+    {
+      "path": "public/brand/treehouse-logo-mono-navy-v4.png",
+      "source_name": "treehouse-logo-mono-navy-v4.png",
+      "bytes": 41867,
+      "sha256": "28b20006ff5b3efe6f157cb880b64f210bcdc283902ec0f07fa8a7a1bd0d0d18",
+      "dimensions": [
+        2400,
+        430
+      ],
+      "source_path": "2_Logos/png/treehouse-logo-mono-navy-v4.png"
+    },
+    {
+      "path": "public/brand/treehouse-logo-mono-navy-v4.svg",
+      "source_name": "treehouse-logo-mono-navy-v4.svg",
+      "bytes": 6601,
+      "sha256": "45b59385e9ed77e3f6d3215ef32e46d1b190d0218a05ab93f4314a9c3aff02db",
+      "source_path": "2_Logos/svg/treehouse-logo-mono-navy-v4.svg"
+    },
+    {
+      "path": "public/brand/treehouse-logo-mono-white-v4.png",
+      "source_name": "treehouse-logo-mono-white-v4.png",
+      "bytes": 32709,
+      "sha256": "8e158385cde9bc99fd2277262f5372d4893339bbb486142826dd0820e2e6076c",
+      "dimensions": [
+        2400,
+        430
+      ],
+      "source_path": "2_Logos/png/treehouse-logo-mono-white-v4.png"
+    },
+    {
+      "path": "public/brand/treehouse-logo-mono-white-v4.svg",
+      "source_name": "treehouse-logo-mono-white-v4.svg",
+      "bytes": 6601,
+      "sha256": "34140437d13f8e458f2a13db5b274e3f492764e8ef3abb7db08694b8bf93a5c7",
+      "source_path": "2_Logos/svg/treehouse-logo-mono-white-v4.svg"
+    },
+    {
+      "path": "public/brand/treehouse-logo-primary-v4.png",
+      "source_name": "treehouse-logo-primary-v4.png",
+      "bytes": 41899,
+      "sha256": "d67b13a06aa95b806735784904bf8435128fb7e6a08c6dead34f8c905637fb63",
+      "dimensions": [
+        2400,
+        430
+      ],
+      "source_path": "2_Logos/png/treehouse-logo-primary-v4.png"
+    },
+    {
+      "path": "public/brand/treehouse-logo-primary-v4.svg",
+      "source_name": "treehouse-logo-primary-v4.svg",
+      "bytes": 6601,
+      "sha256": "b47fb9a5905dc64d381cf909ac34875aa01a55662b85111715a5eb40470c45cf",
+      "source_path": "2_Logos/svg/treehouse-logo-primary-v4.svg"
+    },
+    {
+      "path": "public/brand/treehouse-logo-reversed-v4.png",
+      "source_name": "treehouse-logo-reversed-v4.png",
+      "bytes": 32852,
+      "sha256": "aaee7aa11ae644b90bfe7278e16f95a0e940c2a87649c0f5dd519e7c2cd1b5ce",
+      "dimensions": [
+        2400,
+        430
+      ],
+      "source_path": "2_Logos/png/treehouse-logo-reversed-v4.png"
+    },
+    {
+      "path": "public/brand/treehouse-logo-reversed-v4.svg",
+      "source_name": "treehouse-logo-reversed-v4.svg",
+      "bytes": 6601,
+      "sha256": "c9d97d174d72b1b3643ed2042a29bc9d1aa1324646f7327f92c7041edcae7696",
+      "source_path": "2_Logos/svg/treehouse-logo-reversed-v4.svg"
+    },
+    {
+      "path": "public/brand/treehouse-mark-v4.svg",
+      "source_name": "treehouse-mark-v4.svg",
+      "bytes": 313,
+      "sha256": "e04156ae1d24d51c36174ff5e58cb7c4ffb232036b3ea79ff011613e692496ce",
+      "source_path": "2_Logos/svg/treehouse-mark-v4.svg"
+    },
+    {
+      "path": "public/brand/treehouse-wordmark-only-primary-v4.png",
+      "source_name": "treehouse-wordmark-only-primary-v4.png",
+      "bytes": 30441,
+      "sha256": "d3abc214f4f1f5b7b1355df13b272c6ef7109f8a5389ada73d74c144e1285736",
+      "dimensions": [
+        2400,
+        308
+      ],
+      "source_path": "2_Logos/png/treehouse-wordmark-only-primary-v4.png"
+    },
+    {
+      "path": "public/brand/treehouse-wordmark-only-primary-v4.svg",
+      "source_name": "treehouse-wordmark-only-primary-v4.svg",
+      "bytes": 2844,
+      "sha256": "88b728fbe475b452386ab0da7d8934c845709f7476d4012253538ad52e191985",
+      "source_path": "2_Logos/svg/treehouse-wordmark-only-primary-v4.svg"
+    },
+    {
+      "path": "public/brand/treehouse-wordmark-only-reversed-v4.png",
+      "source_name": "treehouse-wordmark-only-reversed-v4.png",
+      "bytes": 23958,
+      "sha256": "199dedaea4470eb82739ea84d5a747cf4a611d211939087b1632a216d60a19da",
+      "dimensions": [
+        2400,
+        308
+      ],
+      "source_path": "2_Logos/png/treehouse-wordmark-only-reversed-v4.png"
+    },
+    {
+      "path": "public/brand/treehouse-wordmark-only-reversed-v4.svg",
+      "source_name": "treehouse-wordmark-only-reversed-v4.svg",
+      "bytes": 2844,
+      "sha256": "39005b82ec54cbc330a1114fa65c9506d1a85ec2430745f96a9aab1351937506",
+      "source_path": "2_Logos/svg/treehouse-wordmark-only-reversed-v4.svg"
+    }
+  ],
+  "provenance": "Exact bytes from Dawabit_Developer_Pack_v5.zip, independently matched to extracted Desktop/icase pack. Replaces downsampled conversation attachments; public allowlist unchanged.",
+  "source_archive_sha256": "e392bd745fbafd8f6620dfa88d9c5215e8989cc981fe98fab7d8848b5238c442"
+}
