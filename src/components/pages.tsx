@@ -677,9 +677,9 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                 <div>
                   <Eyebrow>{ui.product[locale]} {ui.endorsement[locale]}</Eyebrow>
                   <h2>{locale==="ar"?"فتح العرض التوضيحي":"Open the demonstration"}</h2>
-                  <p>{locale==="ar"?"يتاح العرض التوضيحي للمستخدمين المعتمدين فقط بعد تفعيل حماية الوصول من جهة الخادم.":"Demonstration access is reserved for approved visitors. Access details will be supplied once server-side protection is enabled."}</p>
+                  <p>{locale==="ar"?"هل لديكم صلاحية وصول معتمدة؟ سجّلوا الدخول لفتح العرض التوضيحي.":"Already have approved access? Sign in to open your demonstration."}</p>
                 </div>
-                <div className="dawabit-demo-lock"><ShieldCheck size={36} strokeWidth={1.2} aria-hidden="true"/><span>{locale==="ar"?"الوصول بانتظار التفعيل":"PROTECTED ACCESS PENDING"}</span></div>
+                <a className="button button-primary" href={href(locale, "client/portal")} target="_blank" rel="noopener noreferrer">{locale === "ar" ? "فتح العرض التوضيحي" : "Open the demonstration"}<ArrowUpRight size={18} aria-hidden="true" /></a>
               </div>
             </section>
           )}

@@ -69,7 +69,9 @@ test("requested client login is available while confidential demo remains gated"
   const publicPanelsReady = /approvedVisualsInstalled = true/.test(read("src/content/dawabit-v5.ts"));
   const publicOverviewReady = /visualsEnabled: true/.test(read("src/content/dawabit-assets.ts"));
   assert.equal(publicPanelsReady, publicOverviewReady, "Public images must activate together after original-byte checks");
-  assert.match(page, /PROTECTED ACCESS PENDING/);
+  assert.doesNotMatch(page, /PROTECTED ACCESS PENDING/);
+  assert.match(page, /href=\{href\(locale, "client\/portal"\)\} target="_blank"/);
+  assert.doesNotMatch(page, /<iframe/);
 });
 
 test("official supplied Arabic vector art and favicon installed", () => {

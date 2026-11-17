@@ -5,8 +5,8 @@ export const config = {
   formsEnabled: false, // E1 + E3: monitored mailbox and approved privacy notice required.
   turnstileSiteKey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "",
   sampleReportEnabled: false, // Not publicly downloadable; send only on request.
-  // Account UI remains unpublished while the firm decides E9; backend and
-  // existing Supabase users are preserved, never exposed as demo access.
+  // The user approved shared website login for server-authorized demonstration
+  // and client resources. A separate production assessment engine is not configured.
   authLoginEnabled: true, // Explicitly requested by the user on 17 November 2026.
   dawabitAppUrl: "",
   dawabitLoginUrl: "",
