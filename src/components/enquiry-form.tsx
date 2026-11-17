@@ -199,9 +199,8 @@ export function EnquiryForm({
             <div className="form-grid">
               {field("name")}
               {field("organisation")}
-              {field("role")}
+              {kind !== "demo" && field("role")}
               {field("email")}
-              {kind === "demo" && field("phone", false)}
               <label className="form-field">
                 {c.country[locale]}<span className="required-mark" aria-hidden="true"> *</span>
                 <select required name="country" defaultValue="">
@@ -232,7 +231,7 @@ export function EnquiryForm({
                 </label>
               ) : (
                 <>
-                  {field("regulator")}
+                  {kind === "coverage" && field("regulator")}
                   <label className="form-field">
                     {c.sector[locale]}<span className="required-mark" aria-hidden="true"> *</span>
                     <select name="sector" required defaultValue="">
@@ -251,12 +250,12 @@ export function EnquiryForm({
               )}
               <label className="form-field full-width">
                 {kind === "demo" ? c.demoMessage[locale] : c.message[locale]}
-                {kind !== "demo" && <span className="required-mark" aria-hidden="true"> *</span>}
+                <span className="required-mark" aria-hidden="true"> *</span>
                 <textarea
                   name="message"
                   rows={4}
                   maxLength={5000}
-                  required={kind !== "demo"}
+                  required
                 />
               </label>
             </div>
