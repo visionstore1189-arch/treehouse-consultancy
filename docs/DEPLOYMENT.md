@@ -110,6 +110,17 @@ This is **not** a page of the corporate site. The validated, immutable HTML is a
 
 See `docs/CLIENT1-CLOUDFLARE-ACCESS-RELEASE-GATE.md`. **Do not perform the confidential upload in an unprotected project**, even momentarily.
 
+### New N1/E4 security-page publication gate
+The exact six-topic English/Arabic page source and responsive layout now exist in `src/content/security-publication.ts`, but are **not exported, indexed, linked or included in the menu** until all these public build-time values are set by a firm-authorised release operator:
+
+- `NEXT_PUBLIC_DAWABIT_E4_SECURITY_APPROVED=true`: written firm E4 approval covering the full paragraph copy, not an inferred technical state.
+- `NEXT_PUBLIC_DAWABIT_HOSTING_LOCATION_EN` and `NEXT_PUBLIC_DAWABIT_HOSTING_LOCATION_AR`: actual verified hosting provider/country wording in both languages.
+- `NEXT_PUBLIC_DAWABIT_RETENTION_EN` and `NEXT_PUBLIC_DAWABIT_RETENTION_AR`: approved retention period in both languages.
+- `NEXT_PUBLIC_DAWABIT_SAUDI_HOSTING_CONFIRMED=true`: firm has verified the v5 Saudi-residency availability statement.
+- `NEXT_PUBLIC_DAWABIT_DOCUMENTS_NOT_USED_FOR_TRAINING=true`: firm has verified the client-supplied non-training assurance. If the true statement differs, **edit and reapprove the security page wording** rather than enabling a false assurance.
+
+Values are **public text**, not secrets; never store confidential provider credentials in these variables. Security-page SEO/menu/footer/product/demo links and sitemap all follow the same gate. This feature flag is not a substitute for server-enforced security of the separate demonstration or Client 1 document. For the precise G4 request-form fields and current client fulfilment matrix see [DAWABIT-V5-CLIENT-DEMAND-RECHECK-20261117.md](DAWABIT-V5-CLIENT-DEMAND-RECHECK-20261117.md).
+
 ## 8. Editorial and client approval gates (v5 Part E)
 
 Required confirmations before production sign-off:
