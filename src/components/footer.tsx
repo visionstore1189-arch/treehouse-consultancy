@@ -39,6 +39,11 @@ export function Footer({ locale }: { locale: Locale }) {
             ))}
           </div>
         </div>
+        <nav className="footer-legal-links" aria-label={locale === "ar" ? "روابط قانونية" : "Legal information"}>
+          <Link href={href(locale, "privacy")}>{locale === "ar" ? "إشعار الخصوصية" : "Privacy notice"}</Link>
+          <Link href={href(locale, "terms")}>{locale === "ar" ? "شروط استخدام الموقع" : "Website terms"}</Link>
+          <Link href={href(locale, "cookies")}>{locale === "ar" ? "سياسة ملفات تعريف الارتباط" : "Cookie policy"}</Link>
+        </nav>
         <div className="footer-bottom">
           <p>{ui.disclaimer[locale]}</p>
           <p className="dawabit-trademark">{locale === "ar" ? "«ضوابط» علامة تجارية لتري هاوس للاستشارات. © 2026 تري هاوس للاستشارات. جميع الحقوق محفوظة." : "Dawabit is a trade mark of Treehouse Consulting. © 2026 Treehouse Consulting. All rights reserved."}</p>

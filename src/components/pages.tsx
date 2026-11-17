@@ -452,7 +452,7 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
               </Button>
             </div>
             {market.slug === "saudi-arabia" ? (
-              approvedVisualsInstalled ? <DawabitGraphic locale={locale} id="workedExamples" /> : <DawabitVisual locale={locale} />
+              <DawabitGraphic locale={locale} id="workedExamples" />
             ) : <DawabitGraphic locale={locale} id="badgeStrip" />}
 
           </div>

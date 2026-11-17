@@ -11,7 +11,7 @@ export function DawabitVisual({ locale, id = "overview", priority = false }: { l
         <div className="dawabit-browser-dots" aria-hidden="true"><i /><i /><i /></div>
         <img
           src={dawabitAssets.imageBase + (locale === "ar" ? asset.arFile : asset.file)}
-          alt={asset.alt[locale]} width={1600} height={1000} loading={priority ? "eager" : "lazy"} decoding="async"
+          alt={asset.alt[locale]} width={2048} height={1280} loading={priority ? "eager" : "lazy"} decoding="async"
         />
       </div>
       <figcaption>{locale === "ar" ? "مثال توضيحي" : "ILLUSTRATIVE EXAMPLE"}</figcaption>
@@ -35,6 +35,17 @@ export function DawabitVisual({ locale, id = "overview", priority = false }: { l
 }
 
 type GraphicId = keyof typeof officialGraphicManifest;
+/** Intrinsic dimensions of the exact original v5 exports; these prevent layout shift. */
+const graphicSizes: Record<GraphicId, { width: number; height: number }> = {
+  overview: { width: 2048, height: 1280 },
+  verdictDefinitions: { width: 2048, height: 764 },
+  workedExamples: { width: 2048, height: 1201 },
+  evidenceChain: { width: 2048, height: 682 },
+  resultsSummary: { width: 2048, height: 819 },
+  badgeStrip: { width: 2048, height: 390 },
+  methodStrip: { width: 2048, height: 550 },
+  sectorGrid: { width: 2048, height: 716 },
+};
 const conceptStages = [
   { en: "Regulatory requirement", ar: "المتطلب التنظيمي" },
   { en: "Document evidence", ar: "دليل المستند" },

@@ -3,6 +3,7 @@ import { pages } from "@/content/site";
 import { seo } from "@/content/seo";
 import { publishedArticles } from "@/content/articles";
 import { config, href, type Locale } from "./config";
+import { approvedVisualsInstalled } from "@/content/dawabit-v5";
 export const routePaths = [
   ...Object.keys(pages),
   ...publishedArticles.map((a) => `insights/${a.slug}`),
