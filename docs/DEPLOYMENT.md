@@ -9,7 +9,7 @@
 
 - Repository: `visionstore1189-arch/treehouse-consultancy`.
 - Production branch: `main`, connected to Cloudflare Pages project `treehouse-consultancy`. **Do not force push, overwrite or merge to production until the firm authorises release.**
-- Review changes on `dawabit-v5-release-hardening-20261117` in draft PR **#12**, targeting `dawabit-v5-client-rebrand-staging-2026`.
+- The complete audited v5 public site is in `dawabit-v5-client-rebrand-staging-2026`, incorporating merged public-asset hardening PR #12 and premium polish PR #13. Production release PR #11 remains draft and is not authorised for merge.
 - Next.js is a **static export** (`npm run build` generates `out/`). Cloudflare Pages Functions in `functions/` are built separately. Use Node.js 24 and the committed lockfile.
 - The approved product is **Dawabit by Treehouse** / **ضوابط من تري هاوس**. Use only the verified official logos and colours navy `#0B1F3A`, green `#0B8457`, mint `#2FCB8B`.
 - The firm’s proposed primary website is `treehouseconsulting.co.uk`; the currently deployed website uses `treehouseconsultancy.co.uk`. Registration, DNS migration, primary-domain and redirect choices require **E2 approval**. Preserve business email records throughout.
@@ -56,6 +56,9 @@ Cloudflare Pages Functions must remain available for `/api/*` routes. A simple s
 **Safe staging review:** use a Cloudflare Pages preview deployment only with non-confidential content, robots/noindex, no working customer login, no open sample report and no unprotected demo URL. Do not represent staging as production.
 
 ## 4. Domain migration — hold until firm authorisation (E2)
+
+**Registered names independently verified in Hostinger (17 Nov 2026):** `treehouseconsulting.co.uk` (active) and `dawabit.co` (active). Domain registration does not establish DNS delegation or final firm authorisation. New `dawabit.co` public redirect Worker, fail-closed protected-demo CTA and email-safe account operations are documented in [TREEHOUSE-DAWABIT-HOSTINGER-CLOUDFLARE-DOMAINS.md](TREEHOUSE-DAWABIT-HOSTINGER-CLOUDFLARE-DOMAINS.md). No nameserver, MX, DNSSEC, Cloudflare Access or production domain changes have been performed in this Chat-mode connection.
+
 
 1. Confirm ownership and DNS state for both corporate domains. Record all current MX, SPF, DKIM, DMARC, DNSSEC, subdomain, verification and service records; back up the zone.
 2. Verify that the intended primary domain has been registered, is in the correct Cloudflare account and can issue TLS certificates.
@@ -136,8 +139,8 @@ Do not guess any missing approval, bypass the client's hold instruction or expos
 
 ## 10. Current evidence and truthful status
 
-On 17 November 2026, staging CI passed **33 regression tests** and **152/152 responsive cases**. All 16 official SVG masters matched the uploaded originals byte-for-byte. The **remaining 37 PNG/JPG public files are not yet present in the staging repository**, so the public image activation flags are still false.
+On **17 November 2026**, the v5 staging website includes all **53 original approved public assets** (16 SVG and 37 PNG/JPG; verified byte-for-byte); its official image flags are enabled. Premium polish PR #13 merged into staging after **43 automated tests and 176/176 responsive browser-route checks passed**. The current domain-routing changes are isolated on a separate staging-target PR and require their own successful CI.
 
-The connected Cloudflare account showed the existing corporate Pages project and the separate `dawabit-demo` Worker; its dashboard still offered **Set up Zero Trust**. This was a **read-only inspection**, not a successful security configuration. The public corporate site still displayed superseded branding.
+The connected Hostinger account displays `treehouseconsulting.co.uk` and `dawabit.co` as **Active**. **Active means registered; it does not mean the correct nameservers, DNS zone, Cloudflare Pages custom domain, HTTPS or mail delivery are configured.** Those settings were not editable through the Browser tool in this chat.
 
-**Do not claim that the v5 site is launched, the 37 raster images are published, enquiries are operational, or confidential guides are Access-protected until each has been independently verified.**
+The current Treehouse company-domain website still displays the retired product copy. The separate `dawabit-demo` Worker has not been verified as protected with Cloudflare Access, and the confidential Client 1 guide is not cleared for publication. The final production PR #11 remains draft. None of the domain, DNS, email, Zero Trust, customer login or production changes should be called live until their direct acceptance checks and firm Part E approvals pass.
