@@ -76,7 +76,7 @@ export const ui = {
   tagline: t("Every requirement, evidenced.", "كل متطلب، بالدليل."),
   productDescriptor: t(
     "Dawabit is the regulatory compliance assessment tool by Treehouse.",
-    "ضوابط هي أداة تقييم الالتزام التنظيمي من تري هاوس.",
+    "«ضوابط» أداة تقييم الالتزام التنظيمي من تري هاوس.",
   ),
   whatDawabitDoes: t("What Dawabit does", "ماذا يقدّم ضوابط"),
   findingsHeading: t("From regulation to finding", "من النص الرقابي إلى النتيجة"),
@@ -151,6 +151,8 @@ export const ui = {
     "أخبرنا بالجهة الرقابية والقطاع الذي تحتاجه. نضيف جهات رقابية جديدة استجابة لاحتياجات المؤسسات.",
   ),
   how: t("How Dawabit works", "كيف يعمل ضوابط"),
+  ai: t("How Dawabit uses artificial intelligence", "كيف تستخدم ضوابط الذكاء الاصطناعي"),
+  otherSectors: t("Also covered on request", "قطاعات أخرى عند الطلب"),
   outputs: t("What you receive", "ما تحصل عليه"),
   principles: t("Our principles", "مبادئنا"),
   users: t("Who uses it", "لمن صُمّم"),
@@ -540,44 +542,25 @@ export const coverage = [
   },
 ] as const;
 export const sectors = [
-  {
-    title: t("Banking and finance companies", "المصارف وشركات التمويل"),
-    text: t(
-      "Prudential, conduct and governance requirements for banks and lenders.",
-      "المتطلبات الاحترازية والسلوكية ومتطلبات الحوكمة للمصارف وجهات التمويل.",
-    ),
-  },
-  {
-    title: t("Insurance", "التأمين"),
-    text: t(
-      "Insurers, reinsurers, brokers and service providers.",
-      "شركات التأمين وإعادة التأمين والوسطاء ومقدمو الخدمات.",
-    ),
-  },
-  {
-    title: t("Payments and electronic money", "المدفوعات والنقود الإلكترونية"),
-    text: t(
-      "Licensing, safeguarding and ongoing compliance for payment firms.",
-      "الترخيص وحماية الأموال والالتزام المستمر لشركات المدفوعات.",
-    ),
-  },
-  {
-    title: t(
-      "Capital markets and asset management",
-      "الأسواق المالية وإدارة الأصول",
-    ),
-    text: t(
-      "Investment firms, fund managers and capital market institutions.",
-      "شركات الاستثمار ومديرو الصناديق ومؤسسات السوق المالية.",
-    ),
-  },
-  {
-    title: t("Digital assets", "الأصول الرقمية"),
-    text: t(
-      "Firms entering or operating under virtual asset regimes.",
-      "المؤسسات التي تدخل أو تعمل ضمن أنظمة الأصول الافتراضية.",
-    ),
-  },
+  { code: "K", featured: true, title: t("Financial and insurance activities","الأنشطة المالية وأنشطة التأمين"), text: t("Regulatory obligations across banking, finance and insurance.","الالتزامات التنظيمية في المصارف والتمويل والتأمين.") },
+  { code: "J", featured: true, title: t("Information and communication","المعلومات والاتصالات"), text: t("Technology, communications and digital services.","التقنية والاتصالات والخدمات الرقمية.") },
+  { code: "Q", featured: true, title: t("Human health and social work activities","أنشطة صحة الإنسان والعمل الاجتماعي"), text: t("Healthcare services and social care providers.","الخدمات الصحية ومقدمو الرعاية الاجتماعية.") },
+  { code: "H", featured: true, title: t("Transportation and storage","النقل والتخزين"), text: t("Transport operators, logistics and supply chains.","مشغلو النقل والخدمات اللوجستية وسلاسل الإمداد.") },
+  { code: "D", featured: true, title: t("Electricity, gas, steam and air conditioning supply","إمدادات الكهرباء والغاز والبخار وتكييف الهواء"), text: t("Energy and essential utility providers.","قطاع الطاقة ومقدمو خدمات المرافق الأساسية.") },
+  { code: "B", featured: true, title: t("Mining and quarrying","التعدين واستغلال المحاجر"), text: t("Extractive industries and associated operations.","الصناعات الاستخراجية والعمليات المرتبطة بها.") },
+  { code: "C", featured: true, title: t("Manufacturing","الصناعة التحويلية"), text: t("Production, industrial operations and quality controls.","الإنتاج والعمليات الصناعية وضوابط الجودة.") },
+  { code: "F", featured: true, title: t("Construction","التشييد"), text: t("Built-environment projects and construction firms.","مشاريع البناء والمنشآت وشركات التشييد.") },
+  { code: "L", featured: true, title: t("Real estate activities","الأنشطة العقارية"), text: t("Property operators and real estate services.","المشغّلون العقاريون والخدمات العقارية.") },
+  { code: "P", featured: true, title: t("Education","التعليم"), text: t("Education providers and training organisations.","المؤسسات التعليمية وجهات التدريب.") },
+  { code: "A", featured: false, title: t("Agriculture, forestry and fishing","الزراعة والحراجة وصيد الأسماك"), text: t("Sector-specific controls on request.","ضوابط خاصة بالقطاع عند الطلب.") },
+  { code: "E", featured: false, title: t("Water supply; sewerage, waste management and remediation activities","إمدادات المياه وأنشطة الصرف الصحي وإدارة النفايات ومعالجتها"), text: t("Sector-specific controls on request.","ضوابط خاصة بالقطاع عند الطلب.") },
+  { code: "G", featured: false, title: t("Wholesale and retail trade; repair of motor vehicles and motorcycles","تجارة الجملة والتجزئة وإصلاح المركبات ذات المحركات والدراجات النارية"), text: t("Sector-specific controls on request.","ضوابط خاصة بالقطاع عند الطلب.") },
+  { code: "I", featured: false, title: t("Accommodation and food service activities","أنشطة الإقامة والخدمات الغذائية"), text: t("Sector-specific controls on request.","ضوابط خاصة بالقطاع عند الطلب.") },
+  { code: "M", featured: false, title: t("Professional, scientific and technical activities","الأنشطة المهنية والعلمية والتقنية"), text: t("Sector-specific controls on request.","ضوابط خاصة بالقطاع عند الطلب.") },
+  { code: "N", featured: false, title: t("Administrative and support service activities","أنشطة الخدمات الإدارية وخدمات الدعم"), text: t("Sector-specific controls on request.","ضوابط خاصة بالقطاع عند الطلب.") },
+  { code: "O", featured: false, title: t("Public administration and defence; compulsory social security","الإدارة العامة والدفاع والضمان الاجتماعي الإلزامي"), text: t("Sector-specific controls on request.","ضوابط خاصة بالقطاع عند الطلب.") },
+  { code: "R", featured: false, title: t("Arts, entertainment and recreation","الفنون والترفيه والتسلية"), text: t("Sector-specific controls on request.","ضوابط خاصة بالقطاع عند الطلب.") },
+  { code: "S", featured: false, title: t("Other service activities","أنشطة الخدمات الأخرى"), text: t("Sector-specific controls on request.","ضوابط خاصة بالقطاع عند الطلب.") },
 ];
 export const steps = [
   {
@@ -810,8 +793,8 @@ export const pages: Record<string, PageContent> = {
     ),
     intro: ui.homeIntro,
     meta: t(
-      "UK regulatory advisory and technology firm serving regulated organisations in the UK, UAE and Saudi Arabia. Home of Dawabit, the regulatory compliance assessment tool.",
-      "شركة بريطانية للاستشارات التنظيمية والتقنية الرقابية تخدم المؤسسات المالية في المملكة المتحدة والإمارات والسعودية. مطوّر أداة ضوابط لتقييم الالتزام.",
+      "Treehouse Consulting is a UK regulatory advisory and technology firm serving regulated organisations in the UK, UAE and Saudi Arabia. Home of Dawabit, the regulatory compliance assessment tool.",
+      "شركة بريطانية للاستشارات التنظيمية والتقنية الرقابية تخدم الجهات الخاضعة للتنظيم في المملكة المتحدة والإمارات والسعودية. مطوّر أداة ضوابط لتقييم الالتزام.",
     ),
   },
   dawabit: {
@@ -843,8 +826,8 @@ export const pages: Record<string, PageContent> = {
   "dawabit/demo": {
     title: t("Request a demonstration of Dawabit", "اطلب عرضاً توضيحياً لضوابط"),
     intro: t(
-      "See Dawabit working on a live regulatory library. Demonstrations take around 30 minutes and are led by a regulatory specialist. We will reply within two working days.",
-      "شاهد ضوابط يعمل على مكتبة تنظيمية فعلية. تستغرق العروض نحو ٣٠ دقيقة ويقدمها متخصص في الشؤون التنظيمية. سنرد خلال يومي عمل.",
+      "Request a demonstration of Dawabit, tailored to your sector and regulator. We will reply within two working days with access details.",
+      "اطلب عرضًا توضيحيًا لضوابط مصممًا لقطاعكم وجهتكم التنظيمية. سنرد خلال يومي عمل بتفاصيل الوصول.",
     ),
   },
   services: {
@@ -867,12 +850,12 @@ export const pages: Record<string, PageContent> = {
   },
   about: {
     title: t(
-      "Built by people who have sat on the regulator’s side of the table",
-      "بخبرة من عملوا في الجانب الرقابي",
+      "Regulatory intelligence. Evidence you can follow.",
+      "خبرة تنظيمية وأدلة يمكن تتبعها",
     ),
     intro: t(
-      "Treehouse was founded on a simple observation. Most regulatory problems begin with a firm that does not have a complete and current view of what is required of it. Our leadership has spent many years in senior supervisory roles, and in advising regulators and regulated firms in the United Kingdom and the Gulf. We built Dawabit to give firms the same clarity a supervisor expects to find.",
-      "تأسست تري هاوس انطلاقاً من ملاحظة بسيطة: تبدأ معظم المشكلات التنظيمية عندما تفتقر المؤسسة إلى رؤية كاملة ومحدثة لما هو مطلوب منها. أمضت قيادتنا سنوات طويلة في مناصب رقابية عليا وفي تقديم المشورة للجهات الرقابية والمؤسسات في المملكة المتحدة والخليج. بنينا ضوابط لمنح المؤسسات الوضوح الذي يتوقعه المشرف.",
+      "Regulatory clarity begins with a complete view of what applies, what the evidence says and what remains to be addressed. Treehouse Consulting combines advisory expertise with Dawabit to help regulated organisations in the UK, UAE and Saudi Arabia work from a structured, evidence-led assessment.",
+      "يبدأ الوضوح التنظيمي بفهم كامل للمتطلبات المنطبقة والأدلة المتاحة والفجوات المتبقية. تجمع تري هاوس للاستشارات بين الخبرة الاستشارية وأداة «ضوابط» لمساعدة الجهات الخاضعة للتنظيم في المملكة المتحدة والإمارات والسعودية على التقييم المنظم والقائم على الأدلة.",
     ),
   },
   contact: {
@@ -882,18 +865,7 @@ export const pages: Record<string, PageContent> = {
       "أخبرنا بأولوياتك التنظيمية. تُعامل جميع الاستفسارات بسرية ونرد خلال يومي عمل.",
     ),
   },
-  // Account access is restored only as a private customer workspace.
-  // It does NOT unlock assessments from the separate Dawabit application.
-  "client/login": { title: ui.loginTitle, intro: ui.loginNotice },
-  "client/portal": { title: t("Your Dawabit account", "حسابك في ضوابط"), intro: ui.portalNotice },
-  "client/recover-password": {
-    title: t("Reset your Dawabit password", "استعادة كلمة مرور ضوابط"),
-    intro: t("Secure account recovery", "استعادة الحساب الآمنة"),
-  },
-  "client/reset-password": {
-    title: t("Set your Dawabit password", "تعيين كلمة مرور ضوابط"),
-    intro: t("Accept your invitation or reset your password", "قبول الدعوة أو إعادة تعيين كلمة المرور"),
-  },
+
 };
 for (const s of services)
   pages[`services/${s.slug}`] = {
