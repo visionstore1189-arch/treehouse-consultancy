@@ -120,6 +120,7 @@ function Home({ locale }: { locale: Locale }) {
                 {ui.talk[locale]}
               </Button>
             </div>
+            <p className="hero-language-note">{locale === "ar" ? "نخدم القطاعات المالية وغير المالية. باللغتين العربية والإنجليزية." : "Used across financial and non-financial sectors. English and Arabic."}</p>
           </div>
           <HeroArt locale={locale} />
           <div className="hero-bottom">
@@ -159,9 +160,56 @@ function Home({ locale }: { locale: Locale }) {
               <Arrow diagonal />
             </Link>
           </Reveal>
-          <Reveal delay={0.08}>
-            <DawabitVisual locale={locale} id="overview" />
+          <Reveal delay={0.08} className="home-dawabit-diagram">
+            <div className="home-dawabit-diagram-head">
+              <ShieldCheck size={28} strokeWidth={1.25} aria-hidden="true" />
+              <span>{locale === "ar" ? "من المتطلب إلى التقرير" : "FROM OBLIGATION TO EVIDENCE"}</span>
+            </div>
+            <div className="home-dawabit-proof-flow">
+              {steps.map((step, i) => (
+                <div key={i} className="home-dawabit-proof-step">
+                  <span>{String(i + 1).padStart(2, "0")}</span>
+                  <strong>{step.title[locale]}</strong>
+                </div>
+              ))}
+            </div>
+            <p>{ui.tagline[locale]}</p>
           </Reveal>
+        </div>
+      </section>
+      <section className="section dawabit-method-section">
+        <div className="container">
+          <div className="section-heading">
+            <div>
+              <Eyebrow>{ui.how[locale]}</Eyebrow>
+              <h2>{locale === "ar" ? "من النص التنظيمي إلى نتيجة يمكن تتبعها." : "Five steps. A clear line from regulation to result."}</h2>
+            </div>
+            <Link className="text-link" href={href(locale, "dawabit/how-it-works")}>{ui.how[locale]} <Arrow diagonal /></Link>
+          </div>
+          <div className="dawabit-method-grid">
+            {steps.map((step, i) => (
+              <div className="dawabit-method-card" key={i}>
+                <span>{String(i + 1).padStart(2, "0")}</span>
+                <h3>{step.title[locale]}</h3>
+                <p>{step.output[locale]}</p>
+              </div>
+            ))}
+          </div>
+          <DawabitGraphic locale={locale} id="methodStrip" />
+        </div>
+      </section>
+      <section className="section dawabit-sector-teaser">
+        <div className="container">
+          <div className="section-heading">
+            <div>
+              <Eyebrow>{ui.nav[3][locale]}</Eyebrow>
+              <h2>{locale === "ar" ? "الوضوح التنظيمي عبر القطاعات." : "Regulatory clarity across sectors."}</h2>
+            </div>
+            <Link className="text-link" href={href(locale, "sectors")}>{locale === "ar" ? "جميع القطاعات" : "Explore all sectors"} <Arrow diagonal /></Link>
+          </div>
+          <div className="home-sector-tags">
+            {sectors.filter(s=>s.featured).slice(0,6).map(s=><span key={s.code}><b>{s.code}</b>{s.title[locale]}</span>)}
+          </div>
         </div>
       </section>
       <section className="section why-section">
