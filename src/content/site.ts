@@ -830,13 +830,21 @@ export const pages: Record<string, PageContent> = {
       "اطلب عرضًا توضيحيًا لضوابط مصممًا لقطاعكم وجهتكم التنظيمية. سنرد خلال يومي عمل بتفاصيل الوصول.",
     ),
   },
+  "dawabit/faq": {
+    title: t("Dawabit frequently asked questions", "الأسئلة الشائعة عن ضوابط"),
+    intro: t(
+      "Clear answers about the Dawabit assessment process, regulatory coverage, evidence and ways to engage.",
+      "إجابات واضحة عن منهج تقييم ضوابط والتغطية التنظيمية والأدلة وطرق العمل معنا.",
+    ),
+    eyebrow: t("Dawabit by Treehouse", "ضوابط من تري هاوس"),
+  },
   services: {
     title: t(
       "Regulatory advisory, delivered with evidence",
       "استشارات تنظيمية تستند إلى الأدلة",
     ),
     intro: t(
-      "Our services cover the full regulatory life cycle, from first licence to ongoing assurance. Each is led by senior specialists and supported by Dawabit, so our advice is faster to deliver and easier to evidence.",
+      "Our services cover the regulatory life cycle, from first licensing to ongoing assurance. Experienced specialists lead the work, with Dawabit providing a structured evidence base.",
       "تغطي خدماتنا دورة العمل التنظيمي كاملة، من الترخيص الأول حتى التأكيد المستمر. يقودها متخصصون ذوو خبرة ويدعمها ضوابط، لتقديم المشورة بكفاءة وبأدلة واضحة.",
     ),
   },
