@@ -24,7 +24,7 @@ export const protectedDemoHref = (() => {
     const u = new URL(config.protectedDemoUrl);
     if (
       u.protocol !== "https:" ||
-      !["demo.treehouseconsulting.co.uk", "demo.treehouseconsultancy.co.uk"].includes(u.hostname) ||
+      u.hostname !== "demo.treehouseconsulting.co.uk" ||
       u.username || u.password || u.search || u.hash || u.pathname !== "/"
     ) return "";
     return u.href;
