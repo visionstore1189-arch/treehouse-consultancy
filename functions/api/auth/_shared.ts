@@ -2,6 +2,12 @@
 export interface AuthEnv {
   SUPABASE_URL?: string;
   SUPABASE_PUBLISHABLE_KEY?: string;
+  /**
+   * Must be set to the literal string "true" by Treehouse in Cloudflare
+   * ONLY after client v5 E9, security, legal and app access are approved.
+   * Marketing-site UI flags never grant backend access.
+   */
+  DAWABIT_CLIENT_LOGIN_APPROVED?: string;
 }
 // The project URL and sb_publishable key are public configuration, NOT privileged secrets.
 // Explicit Cloudflare bindings take precedence for future project rotation.
@@ -20,6 +26,9 @@ type Session = { user: { id: string; email?: string }; accessToken: string; toke
 const ACCESS = "__Host-th_access";
 const REFRESH = "__Host-th_refresh";
 export const authEnabled = (env: AuthEnv): boolean => {
+  // Do not let deployed functions silently turn on a client sign-in flow.
+  // The firm has explicitly held client login pending its Part E9 decision.
+  if (env.DAWABIT_CLIENT_LOGIN_APPROVED !== "true") return false;
   try {
     const u = new URL(projectUrl(env));
     return u.protocol === "https:" && /^[a-z0-9-]+\.supabase\.co$/i.test(u.hostname)
