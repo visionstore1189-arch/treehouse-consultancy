@@ -3803,3 +3803,57 @@ html[dir="rtl"] .brand.treehouse-official-brand > img { object-position: right c
   .dawabit-deliverable-card { transition:none; }
   .dawabit-deliverable-card:hover { transform:none; }
 }
+
+
+/* V5 visual QA: dark global header and footer contrast repair.
+   Verified against 390px English and Arabic client-requested screenshots.
+   Uses original reversed SVG artwork on dark surfaces, never retouches logos. */
+.site-header { color: #F5F9FC; border-bottom-color: rgba(210,234,239,.18); }
+.site-header .brand.treehouse-official-brand > .treehouse-logo-primary { opacity: 0; }
+.site-header .brand.treehouse-official-brand > .treehouse-logo-reversed { opacity: 1; }
+.site-header .desktop-nav, .site-header .desktop-nav > a,
+.site-header .nav-dropdown > summary, .site-header .language-switch {
+  color: #F5F9FC;
+}
+.site-header .desktop-nav [aria-current="page"],
+.site-header .desktop-nav > a:hover,
+.site-header .nav-dropdown > summary:hover,
+.site-header .language-switch:hover { color: #81E4B9; }
+.site-header .nav-popover {
+  color: #0B1F3A; background: #FBFCF8;
+  border-color: #D5E1E1;
+}
+.site-header .nav-popover a { color: #0B1F3A; }
+.site-header .nav-popover a:hover,
+.site-header .nav-popover [aria-current="page"] {
+  color: #08764E; background: #E6F4ED; border-radius: 4px;
+}
+.site-header .menu-trigger {
+  color: #F5F9FC; border-color: rgba(221,245,247,.6);
+  background: rgba(255,255,255,.06);
+}
+.site-header .menu-trigger svg { width: 23px; height: 23px; stroke: currentColor; stroke-width: 2; }
+.site-header .menu-trigger:hover { color: #A2F0CA; background: rgba(255,255,255,.13); }
+.site-header a:focus-visible, .site-header button:focus-visible,
+.site-header summary:focus-visible {
+  outline: 3px solid #2FCB8B; outline-offset: 4px;
+}
+.mobile-menu { background: #F6F8F4; color: #0B1F3A; }
+.mobile-menu .brand.treehouse-official-brand > .treehouse-logo-primary { opacity: 1; }
+.mobile-menu .brand.treehouse-official-brand > .treehouse-logo-reversed { opacity: 0; }
+.mobile-menu .icon-button { color: #0B1F3A; border-color: #A7B7B9; }
+.mobile-menu .icon-button svg { stroke: currentColor; stroke-width: 2; }
+.mobile-menu summary, .mobile-menu nav a { color: #0B1F3A; }
+.mobile-menu nav a:hover { color: #076B4B; }
+.mobile-menu a:focus-visible, .mobile-menu summary:focus-visible,
+.mobile-menu button:focus-visible {
+  outline: 3px solid #0B8457; outline-offset: 4px;
+}
+.site-footer { color: #D3E4E9; }
+.site-footer .footer-brand p { color: #BBD0D9; }
+.site-footer .footer-column > p { color: #A6F0CA; }
+.site-footer .footer-column a { color: #D7E8EE; }
+.site-footer .footer-column a:hover { color: #8CE7BA; text-decoration: underline; text-underline-offset: 4px; }
+.site-footer .footer-bottom { border-top-color: rgba(218,241,246,.23); }
+.site-footer .footer-bottom p, .site-footer .footer-bottom small { color: #BDCFDA; }
+.site-footer a:focus-visible { outline: 3px solid #2FCB8B; outline-offset: 4px; }
