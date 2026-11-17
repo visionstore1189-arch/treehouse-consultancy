@@ -1,8 +1,9 @@
 import { t } from "./site";
 /**
- * Official v5 files only. The client has not yet provided the public Overview
- * screen JPEG/PNG and English master logo in this conversation.
- * Never fall back to an earlier product's screenshots.
+ * Client v5 official images were supplied in conversation uploads, but the binary
+ * screenshots cannot be copied through the text-only GitHub connector.
+ * Keep visualsEnabled=false until exact originals exist under public/brand.
+ * The official SVG logo masters are installed separately under public/brand.
  */
 export const dawabitAssets = {
   visualsEnabled: false as boolean,
