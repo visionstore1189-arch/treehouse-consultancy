@@ -226,29 +226,33 @@ test("large request is rejected before parsing", async () => {
     400,
   );
 });
-test("demo and regulator requests enforce their own required fields", () => {
+test("G4 demonstration form requires six fields but not role, regulator or phone", () => {
+  const { role: _role, ...sixFieldBase } = valid;
+  const demo = { ...sixFieldBase, kind: "demo", sector: "Financial and insurance activities" };
+  assert.equal(enquirySchema.safeParse(demo).success, true);
+  assert.equal(enquirySchema.safeParse({ ...demo, message: "" }).success, false);
+  assert.equal(enquirySchema.safeParse({ ...demo, sector: "" }).success, false);
+  assert.equal(enquirySchema.safeParse({ ...demo, country: "" }).success, false);
+  assert.equal(enquirySchema.safeParse({ ...demo, organisation: "" }).success, false);
+  assert.equal(enquirySchema.safeParse({ ...demo, email: "" }).success, false);
+  assert.equal(enquirySchema.safeParse({ ...demo, name: "" }).success, false);
+});
+test("contact and coverage retain their distinct required details", () => {
   assert.equal(
-    enquirySchema.safeParse({ ...valid, kind: "demo" }).success,
+    enquirySchema.safeParse({ ...valid, kind: "coverage", regulator: "FCA", sector: "Banking" }).success,
+    true,
+  );
+  assert.equal(
+    enquirySchema.safeParse({ ...valid, kind: "coverage", regulator: "", sector: "Banking" }).success,
     false,
   );
   assert.equal(
-    enquirySchema.safeParse({
-      ...valid,
-      kind: "coverage",
-      regulator: "FCA",
-      sector: "Banking",
-    }).success,
-    true,
+    enquirySchema.safeParse({ ...valid, kind: "coverage", regulator: "FCA", sector: "Banking", role: "" }).success,
+    false,
   );
   assert.equal(
-    enquirySchema.safeParse({
-      ...valid,
-      kind: "demo",
-      regulator: "FCA",
-      sector: "Banking",
-      message: "",
-    }).success,
-    true,
+    enquirySchema.safeParse({ ...valid, kind: "contact", role: "" }).success,
+    false,
   );
 });
 test("access contract denies expired, cross-tenant, unpaid and missing-MFA sessions", () => {

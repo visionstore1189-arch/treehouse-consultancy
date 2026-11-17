@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ui, markets } from "@/content/site";
 import { publishedArticles } from "@/content/articles";
+import { securityPublication } from "@/content/security-publication";
 import { href, type Locale } from "@/lib/config";
 import { Brand, Arrow } from "./ui";
 export function Footer({ locale }: { locale: Locale }) {
@@ -24,6 +25,7 @@ export function Footer({ locale }: { locale: Locale }) {
           </div>
           <div className="footer-column">
             <p>{locale === "ar" ? "المعلومات" : "Product information"}</p>
+            {securityPublication.ready && <Link href={href(locale, "dawabit/security")}>{securityPublication.menu[locale]}</Link>}
             <Link href={href(locale, "dawabit/faq")}>{locale === "ar" ? "الأسئلة الشائعة" : "Frequently asked questions"}</Link>
             <Link href={href(locale, "dawabit/how-it-works")}>{ui.how[locale]}</Link>
             <Link href={href(locale, "dawabit/coverage")}>{ui.coverage[locale]}</Link>
@@ -47,9 +49,6 @@ export function Footer({ locale }: { locale: Locale }) {
         <div className="footer-bottom">
           <p>{ui.disclaimer[locale]}</p>
           <p className="dawabit-trademark">{locale === "ar" ? "«ضوابط» علامة تجارية لتري هاوس للاستشارات. © 2026 تري هاوس للاستشارات. جميع الحقوق محفوظة." : "Dawabit is a trade mark of Treehouse Consulting. © 2026 Treehouse Consulting. All rights reserved."}</p>
-          <small>
-            © {new Date().getFullYear()} {ui.copyright[locale]}
-          </small>
         </div>
       </div>
     </footer>

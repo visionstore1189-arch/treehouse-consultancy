@@ -20,6 +20,11 @@ const routes = [
   "uk", "uae", "saudi-arabia", "about", "contact",
   "privacy", "terms", "cookies"
 ];
+// The client's N1 page only exists after verified E4 approval. Detect the
+// actual exported EN and AR pages so every newly published route is tested.
+const approvedSecurityExport = ["out/dawabit/security/index.html", "out/ar/dawabit/security/index.html"]
+  .every(file => fs.existsSync(path.resolve(file)));
+if (approvedSecurityExport) routes.push("dawabit/security");
 const widths = [360, 390, 768, 1024];
 const screenshotsDir = path.resolve("qa-screenshots");
 fs.mkdirSync(screenshotsDir, { recursive: true });

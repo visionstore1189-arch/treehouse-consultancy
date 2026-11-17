@@ -10,6 +10,16 @@ export const seo = {
       "تُقيّم «ضوابط» سياساتكم وإجراءاتكم مقابل كل متطلب تنظيمي ينطبق عليكم، مأخوذ مباشرة من المصدر، وتقدم نتيجة واضحة مدعومة بالدليل لكل متطلب.",
     ),
   },
+  "dawabit/security": {
+    title: t(
+      "Security and data handling | Dawabit by Treehouse",
+      "الأمن ومعالجة البيانات | ضوابط من تري هاوس",
+    ),
+    description: t(
+      "How Dawabit by Treehouse handles confidential documents, access, encryption, retention and data protection. Published only after client-approved security facts are verified.",
+      "كيف تتعامل «ضوابط من تري هاوس» مع المستندات السرية والوصول والتشفير والاحتفاظ بالبيانات، بعد اعتماد تفاصيل الحماية.",
+    ),
+  },
   "dawabit/how-it-works": {
     title: t("How Dawabit Works | Treehouse", "كيف تعمل «ضوابط» | تري هاوس"),
     description: t(

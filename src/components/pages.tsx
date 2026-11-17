@@ -43,6 +43,7 @@ import { AssessmentExplorer, CoverageTable, InsightsList } from "./explorers";
 import { DawabitVisual, DawabitGraphic, DawabitProof } from "./dawabit-visual";
 import { DawabitProcessExplorer } from "./dawabit-process-explorer";
 import { targetRoles, engagementOptions, frequentlyAsked, artificialIntelligenceText, sectorClassificationNote, otherSectorsCoverage, libraryMaintenanceText, approvedVisualsInstalled } from "@/content/dawabit-v5";
+import { securityPublication } from "@/content/security-publication";
 import { EnquiryForm } from "./enquiry-form";
 const serviceIcons = [ScanLine, Landmark, Layers3, Orbit, Fingerprint];
 const marketDisplayOrder = ["saudi-arabia", "uk", "uae"];
@@ -552,6 +553,11 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
               </div>
               <p className="dawabit-engagement-foot">{locale==="ar"?"أخبرونا بقطاعكم وجهتكم التنظيمية لنقترح الخيار الأنسب.":"Tell us your sector and regulator and we will propose the right option."}</p>
               <Button locale={locale} to="dawabit/demo">{ui.demo[locale]}</Button>
+              {securityPublication.ready && (
+                <Link className="text-link dawabit-security-entry" href={href(locale,"dawabit/security")}>
+                  <ShieldCheck size={17} aria-hidden="true" />{securityPublication.menu[locale]} <Arrow diagonal />
+                </Link>
+              )}
             </div>
           </section>
           <section className="section dawabit-principles-section">
@@ -660,6 +666,11 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                   ))}
                 </ul>
                 <div className="aside-note"><ShieldCheck size={25} strokeWidth={1}/><p>{formCopy.confidential[locale]}</p></div>
+                {path==="dawabit/demo" && securityPublication.ready && (
+                  <Link className="text-link dawabit-security-entry" href={href(locale,"dawabit/security")}>
+                    {securityPublication.menu[locale]} <Arrow diagonal />
+                  </Link>
+                )}
               </aside>
               <EnquiryForm locale={locale} kind={path==="contact"?"contact":"demo"} />
             </div>
@@ -752,6 +763,43 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
           <Closing locale={locale} />
         </>
       );
+    case "dawabit/security":
+      // The route itself is omitted from staticParams/sitemap until E4; no
+      // unapproved hosting or retention assertions are ever exported.
+      if (!securityPublication.ready) return null;
+      return (
+        <>
+          <section className="section dawabit-security-section">
+            <div className="container">
+              <div className="dawabit-security-heading">
+                <Eyebrow>{ui.product[locale]} {ui.endorsement[locale]}</Eyebrow>
+                <h2>{securityPublication.heading[locale]}</h2>
+                <p>{securityPublication.intro[locale]}</p>
+              </div>
+              <div className="dawabit-security-grid">
+                {securityPublication.items.map((item, index) => (
+                  <article className="dawabit-security-card" key={item.title.en}>
+                    <div className="dawabit-security-card-top">
+                      <span>{String(index+1).padStart(2,"0")}</span>
+                      <ShieldCheck size={21} strokeWidth={1.5} aria-hidden="true"/>
+                    </div>
+                    <h3>{item.title[locale]}</h3>
+                    <p>{item.text[locale]}</p>
+                  </article>
+                ))}
+              </div>
+              <div className="dawabit-security-action">
+                <div>
+                  <h3>{locale==="ar"?"هل لديكم متطلبات خاصة باستضافة البيانات؟":"Have specific data-handling requirements?"}</h3>
+                  <p>{locale==="ar"?"أخبرونا بقطاعكم وجهتكم التنظيمية ومتطلبات حماية البيانات في مؤسستكم.":"Tell us your sector, regulator and organisation's data-handling requirements."}</p>
+                </div>
+                <Button locale={locale} to="contact">{ui.talk[locale]}</Button>
+              </div>
+            </div>
+          </section>
+          <Closing locale={locale} />
+        </>
+      );
     case "dawabit/faq":
       return (
         <>
@@ -761,7 +809,10 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                 {frequentlyAsked.map((qa,i)=>(
                   <details key={i}>
                     <summary><span>{String(i+1).padStart(2,"0")}</span>{qa.question[locale]}</summary>
-                    <p>{qa.answer[locale]}</p>
+                    <p>{i===5 && securityPublication.ready
+                      ? (locale==="ar"?"راجعوا صفحة الأمن ومعالجة البيانات للاطلاع على التفاصيل المعتمدة.":"See Security and data handling for the approved details.")
+                      : qa.answer[locale]}</p>
+                    {i===5 && securityPublication.ready && <Link className="text-link" href={href(locale,"dawabit/security")}>{securityPublication.menu[locale]} <Arrow diagonal /></Link>}
                   </details>
                 ))}
               </div>

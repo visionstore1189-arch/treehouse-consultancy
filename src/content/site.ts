@@ -1,4 +1,5 @@
 import type { Locale } from "@/lib/config";
+import { securityPublication, securityPublicationReady } from "./security-publication";
 export type Bilingual = { en: string; ar: string };
 export const t = (en: string, ar: string): Bilingual => ({ en, ar });
 export const ui = {
@@ -887,6 +888,16 @@ export const pages: Record<string, PageContent> = {
   },
 
 };
+// Build the full client's N1 security page only AFTER confirmed hosting,
+// Saudi residency, training, retention and formal E4 publication approval.
+// Without E4 the route, sitemap and menus remain absent.
+if (securityPublicationReady) {
+  pages["dawabit/security"] = {
+    title: securityPublication.heading,
+    intro: securityPublication.intro,
+    eyebrow: securityPublication.menu,
+  };
+}
 for (const s of services)
   pages[`services/${s.slug}`] = {
     title: s.title,

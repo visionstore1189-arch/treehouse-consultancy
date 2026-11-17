@@ -4,7 +4,6 @@ import Link from "next/link";
 import {
   ShieldCheck,
   ArrowRight,
-  CircleAlert,
   CheckCircle2,
 } from "lucide-react";
 import { config, href, type Locale } from "@/lib/config";
@@ -165,15 +164,6 @@ export function EnquiryForm({
   );
   return (
     <div className="form-card">
-      {!enabled && (
-        <div className="notice" role="status">
-          <CircleAlert size={20} />
-          <div>
-            <strong>{c.offline[locale]}</strong>
-            <p>{c.offlineBody[locale]}</p>
-          </div>
-        </div>
-      )}
       {status === "success" || status === "saved" ? (
         <div className="form-success" role="status">
           <CheckCircle2 size={36} />
@@ -199,9 +189,8 @@ export function EnquiryForm({
             <div className="form-grid">
               {field("name")}
               {field("organisation")}
-              {field("role")}
+              {kind !== "demo" && field("role")}
               {field("email")}
-              {kind === "demo" && field("phone", false)}
               <label className="form-field">
                 {c.country[locale]}<span className="required-mark" aria-hidden="true"> *</span>
                 <select required name="country" defaultValue="">
@@ -232,7 +221,7 @@ export function EnquiryForm({
                 </label>
               ) : (
                 <>
-                  {field("regulator")}
+                  {kind === "coverage" && field("regulator")}
                   <label className="form-field">
                     {c.sector[locale]}<span className="required-mark" aria-hidden="true"> *</span>
                     <select name="sector" required defaultValue="">
@@ -251,12 +240,12 @@ export function EnquiryForm({
               )}
               <label className="form-field full-width">
                 {kind === "demo" ? c.demoMessage[locale] : c.message[locale]}
-                {kind !== "demo" && <span className="required-mark" aria-hidden="true"> *</span>}
+                <span className="required-mark" aria-hidden="true"> *</span>
                 <textarea
                   name="message"
                   rows={4}
                   maxLength={5000}
-                  required={kind !== "demo"}
+                  required
                 />
               </label>
             </div>

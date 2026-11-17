@@ -11,8 +11,8 @@ export const formCopy = {
   subject: t("Subject", "الموضوع"),
   message: t("Message", "الرسالة"),
   demoMessage: t(
-    "What would you like to see? (optional)",
-    "ما الذي تود مشاهدته؟ (اختياري)",
+    "What would you like to see?",
+    "ما الذي تود مشاهدته؟",
   ),
   choose: t("Please select", "يرجى الاختيار"),
   other: t("Other", "أخرى"),
@@ -22,21 +22,13 @@ export const formCopy = {
   ),
   send: t("Send enquiry", "إرسال الاستفسار"),
   sending: t("Sending…", "جارٍ الإرسال…"),
-  offline: t(
-    "Online enquiries open shortly.",
-    "ستُفتح الاستفسارات الإلكترونية قريبًا.",
-  ),
-  offlineBody: t(
-    "",
-    "",
-  ),
   success: t(
     "Thank you. Your enquiry has been received. A member of our team will contact you within two working days.",
     "شكراً لك. تم استلام استفسارك. سيتواصل معك أحد أعضاء فريقنا خلال يومي عمل.",
   ),
   successDemo: t(
-    "Thank you. A member of our team will contact you within two working days to arrange your demonstration.",
-    "شكراً لك. سيتواصل معك أحد أعضاء فريقنا خلال يومي عمل لترتيب عرضك التوضيحي.",
+    "Thank you. We will be in touch within two working days.",
+    "شكرًا لكم. سنتواصل معكم خلال يومي عمل.",
   ),
   error: t(
     "Your enquiry could not be submitted. Please try again later.",

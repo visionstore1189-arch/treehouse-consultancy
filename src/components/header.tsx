@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Menu, X, ChevronDown, Globe2 } from "lucide-react";
 import { ui, services, markets } from "@/content/site";
 import { publishedArticles } from "@/content/articles";
+import { securityPublication } from "@/content/security-publication";
 import { href, type Locale } from "@/lib/config";
 import { Brand, Arrow } from "./ui";
 import { SiteProgress } from "./site-progress";
@@ -42,6 +43,7 @@ export function Header({ locale, path }: { locale: Locale; path: string }) {
           { path: "dawabit", label: ui.explore },
           { path: "dawabit/how-it-works", label: ui.how },
           { path: "dawabit/coverage", label: ui.coverage },
+          ...(securityPublication.ready ? [{ path: "dawabit/security", label: securityPublication.menu }] : []),
           { path: "dawabit/faq", label: { en: "Frequently asked questions", ar: "الأسئلة الشائعة" } },
           { path: "dawabit/demo", label: ui.demo },
         ]
