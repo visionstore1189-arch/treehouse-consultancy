@@ -135,13 +135,13 @@ export function CustomerPortal({ locale }: { locale: Locale }) {
               <div className="account-identity">
                 <span>{t.email}</span><strong dir="ltr">{account.user.email}</strong>
               </div>
-              {!account.subscriptionActive && <p className="account-pending">{t.awaiting}</p>}
+              {!account.subscriptionActive && !account.resources?.length && <p className="account-pending">{t.awaiting}</p>}
               {account.organizations.map((o) => (
                 <div key={o.organizationId} className="account-organization">
                   <h2>{o.organizationName}</h2>
                   <div className="account-property"><span>{t.role}</span><strong>{o.role}</strong></div>
-                  <div className="account-property"><span>{t.subscription}</span><strong>{o.subscription}</strong></div>
-                  <div className="account-property"><span>{t.plan}</span><strong>{o.plan}</strong></div>
+                  {!account.resources?.length && <div className="account-property"><span>{t.subscription}</span><strong>{o.subscription}</strong></div>}
+                  {!account.resources?.length && <div className="account-property"><span>{t.plan}</span><strong>{o.plan}</strong></div>}
                 </div>
               ))}
               {account.resources?.map(resource => <a className="button button-primary" key={resource.id} href={resource.url} target="_blank" rel="noopener noreferrer">{locale === "ar" ? "افتح دليل العميل الخاص" : "Open your private client guide"}<ArrowRight size={17} /></a>)}

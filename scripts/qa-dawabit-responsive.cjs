@@ -89,7 +89,7 @@ async function main() {
             if (result.brokenImages.length) reasons.push("Broken images");
             if (pageErrors.length) reasons.push("JavaScript page error");
 
-            if (width === 390 && ["", "dawabit", "contact"].includes(route)) {
+            if (width === 390 && ["", "dawabit", "contact", "client/login", "client/portal"].includes(route)) {
               const filename = (locale === "ar" ? "arabic" : "english") + "-" +
                 (route || "home").replaceAll("/", "-") + "-390.png";
               await page.screenshot({

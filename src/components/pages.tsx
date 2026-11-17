@@ -269,6 +269,7 @@ function Home({ locale }: { locale: Locale }) {
           <MarketCards locale={locale} />
         </div>
       </section>
+      {config.authLoginEnabled && <section className="client-access-band" aria-labelledby="client-access-heading"><div className="container client-access-inner"><div><Eyebrow>{locale === "ar" ? "دخول العملاء" : "CLIENT ACCESS"}</Eyebrow><h2 id="client-access-heading">{locale === "ar" ? "مساحة عمل ضوابط الخاصة بكم" : "Your Dawabit workspace"}</h2><p>{ui.subscriberText[locale]}</p></div><div className="client-access-actions"><Button locale={locale} to="client/login">{ui.login[locale]}</Button></div></div></section>}
       <section className="section dawabit-deliverables-section" aria-labelledby="home-dawabit-deliverables">
         <div className="container">
           <div className="section-heading">
