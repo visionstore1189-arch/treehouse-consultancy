@@ -42,6 +42,10 @@ const conceptStages = [
   { en: "Evidenced result", ar: "نتيجة موثقة" },
 ] as const;
 const graphicAlt: Record<GraphicId, { en: string; ar: string }> = {
+  overview: {
+    en: "Dawabit regulatory assessment overview showing example requirements, evidence and reported findings. Illustrative example.",
+    ar: "نظرة عامة توضيحية لتقييم «ضوابط» تعرض المتطلبات والأدلة والنتائج. مثال توضيحي.",
+  },
   verdictDefinitions: {
     en: "Diagram explaining the four regulatory requirement verdicts: Addressed, Partially Addressed, Gap and Out of Document Scope. Illustrative example.",
     ar: "مخطط يشرح نتائج تقييم المتطلبات التنظيمية الأربع: مستوفى، ومستوفى جزئيًا، وفجوة، وخارج نطاق المستند. مثال توضيحي.",
