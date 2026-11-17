@@ -41,11 +41,11 @@ import { HeroArt } from "./hero-art";
 import { Reveal } from "./reveal";
 import { AssessmentExplorer, CoverageTable, InsightsList } from "./explorers";
 import { EnquiryForm } from "./enquiry-form";
-import { TIBQAVisual, TIBQAProof } from "./tibqa-visual";
-import { TibqaTour } from "./tibqa-tour";
+import { DawabitVisual, DawabitProof } from "./dawabit-visual";
+import { DawabitTour } from "./dawabit-tour";
 import { CustomerLoginForm, CustomerPortal, RecoverPasswordForm, SetPasswordForm } from "./customer-auth";
 import { SampleReportSection } from "./sample-report";
-import { tibqaAssets } from "@/content/tibqa-assets";
+import { dawabitAssets } from "@/content/dawabit-assets";
 const serviceIcons = [ScanLine, Landmark, Layers3, Orbit, Fingerprint];
 const marketDisplayOrder = ["saudi-arabia", "uk", "uae"];
 const orderedMarkets = [...markets].sort(
@@ -104,9 +104,9 @@ export function ServicesList({ locale }: { locale: Locale }) {
     </div>
   );
 }
-function TibqaClientAccessBand({ locale }: { locale: Locale }) {
+function DawabitClientAccessBand({ locale }: { locale: Locale }) {
   return (
-    <section className="client-access-band" aria-labelledby="tibqa-client-access-heading">
+    <section className="client-access-band" aria-labelledby="dawabit-client-access-heading">
       <div className="container client-access-inner">
         <div className="client-access-copy">
           <p className="client-access-kicker">
@@ -116,7 +116,7 @@ function TibqaClientAccessBand({ locale }: { locale: Locale }) {
           <div className="client-access-wordmark">
             <Wordmark locale={locale} />
           </div>
-          <h2 id="tibqa-client-access-heading">{ui.subscriberTitle[locale]}</h2>
+          <h2 id="dawabit-client-access-heading">{ui.subscriberTitle[locale]}</h2>
           <p>{ui.subscriberText[locale]}</p>
         </div>
         <div className="client-access-actions">
@@ -147,7 +147,7 @@ function Home({ locale }: { locale: Locale }) {
             </h1>
             <p>{ui.heroShort[locale]}</p>
             <div className="button-row">
-              <Button to="tibqa/demo" locale={locale}>
+              <Button to="dawabit/demo" locale={locale}>
                 {ui.demo[locale]}
               </Button>
               <Button to="contact" locale={locale} secondary>
@@ -188,13 +188,13 @@ function Home({ locale }: { locale: Locale }) {
             <Wordmark locale={locale} />
             <h2>{ui.productHeading[locale]}</h2>
             <p>{ui.productIntro[locale]}</p>
-            <Link className="text-link" href={href(locale, "tibqa")}>
+            <Link className="text-link" href={href(locale, "dawabit")}>
               {ui.explore[locale]}
               <Arrow diagonal />
             </Link>
           </Reveal>
           <Reveal delay={0.08}>
-            <TIBQAVisual locale={locale} id="overview" />
+            <DawabitVisual locale={locale} id="overview" />
           </Reveal>
         </div>
       </section>
@@ -252,7 +252,7 @@ function Home({ locale }: { locale: Locale }) {
           <MarketCards locale={locale} />
         </div>
       </section>
-      <TibqaClientAccessBand locale={locale} />
+      <DawabitClientAccessBand locale={locale} />
       {publishedArticles.length >= 3 && <section className="section insights-section">
         <div className="container">
           <div className="section-heading">
@@ -276,9 +276,9 @@ function PageHero({ locale, path }: { locale: Locale; path: string }) {
   const p = pages[path];
   return (
     <section
-      className={`page-hero ${path.startsWith("tibqa") ? "product-page-hero" : ""}`}
+      className={`page-hero ${path.startsWith("dawabit") ? "product-page-hero" : ""}`}
     >
-      <div className={`container ${path === "tibqa" && tibqaAssets.visualsEnabled ? "tibqa-hero-grid" : ""}`}>
+      <div className={`container ${path === "dawabit" && dawabitAssets.visualsEnabled ? "dawabit-hero-grid" : ""}`}>
         <div className="page-hero-copy">
         <nav className="breadcrumb" aria-label={ui.home[locale]}>
           <Link href={href(locale)}>{ui.home[locale]}</Link>
@@ -286,30 +286,30 @@ function PageHero({ locale, path }: { locale: Locale; path: string }) {
           <span>{p.eyebrow?.[locale] || p.title[locale]}</span>
         </nav>
         <Eyebrow>{p.eyebrow?.[locale] || ui.brand[locale]}</Eyebrow>
-        {path === "tibqa" && <Wordmark locale={locale} />}
+        {path === "dawabit" && <Wordmark locale={locale} />}
         <h1>{p.title[locale]}</h1>
-        {path === "tibqa" && (
+        {path === "dawabit" && (
           <p className="product-descriptor">{ui.productDescriptor[locale]}</p>
         )}
         <p className="page-intro">{p.intro[locale]}</p>
-        {path === "tibqa" && (
+        {path === "dawabit" && (
           <div className="button-row">
-            <Button to="tibqa/demo" locale={locale}>
+            <Button to="dawabit/demo" locale={locale}>
               {ui.demo[locale]}
             </Button>
-            <Button secondary to="tibqa/coverage" locale={locale}>
+            <Button secondary to="dawabit/coverage" locale={locale}>
               {ui.coverage[locale]}
             </Button>
           </div>
         )}
-        {!(path === "tibqa" && tibqaAssets.visualsEnabled) && (
+        {!(path === "dawabit" && dawabitAssets.visualsEnabled) && (
           <span className="page-hero-art" aria-hidden="true">
             <span /><span /><span />
           </span>
         )}
         </div>
-        {path === "tibqa" && tibqaAssets.visualsEnabled && (
-          <div className="tibqa-hero-image"><TibqaTour locale={locale} /></div>
+        {path === "dawabit" && dawabitAssets.visualsEnabled && (
+          <div className="dawabit-hero-image"><DawabitTour locale={locale} /></div>
         )}
       </div>
     </section>
@@ -342,13 +342,13 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                   <Reveal className="detail-section" key={k}>
                     <span className="overline">0{i + 1}</span>
                     <h2>
-                      {serviceLabels[k === "support" ? "tibqa" : k][locale]}
+                      {serviceLabels[k === "support" ? "dawabit" : k][locale]}
                     </h2>
                     <p>{service[k][locale]}</p>
                   </Reveal>
                 ),
               )}
-              <Link href={href(locale, "tibqa")} className="text-link">
+              <Link href={href(locale, "dawabit")} className="text-link">
                 {ui.explore[locale]}
                 <Arrow diagonal />
               </Link>
@@ -385,24 +385,24 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                   ? marketLabels.saudiText[locale]
                   : ui.productIntro[locale]}
               </p>
-              <Button locale={locale} to="tibqa/demo">
+              <Button locale={locale} to="dawabit/demo">
                 {ui.demo[locale]}
               </Button>
             </div>
-            <TIBQAVisual locale={locale} id={market.slug === "saudi-arabia" ? "finding" : "overview"} />
+            <DawabitVisual locale={locale} id={market.slug === "saudi-arabia" ? "finding" : "overview"} />
           </div>
         </section>
         <Closing locale={locale} />
       </>
     );
   switch (path) {
-    case "tibqa":
+    case "dawabit":
       return (
         <>
           <section className="section">
             <div className="container">
               <div className="split-heading">
-                <h2>{ui.whatTIBQADoes[locale]}</h2>
+                <h2>{ui.whatDawabitDoes[locale]}</h2>
                 <p className="lead">{productNameMeaning[locale]}</p>
               </div>
               <div className="feature-list">
@@ -414,10 +414,10 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                   </Reveal>
                 ))}
               </div>
-              <TIBQAProof locale={locale} />
+              <DawabitProof locale={locale} />
               <Link
                 className="text-link"
-                href={href(locale, "tibqa/how-it-works")}
+                href={href(locale, "dawabit/how-it-works")}
               >
                 {ui.how[locale]}
                 <Arrow diagonal />
@@ -445,11 +445,11 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
               <AssessmentExplorer locale={locale} />
             </div>
           </section>
-          {tibqaAssets.visualsEnabled && (
+          {dawabitAssets.visualsEnabled && (
             <section className="section">
               <div className="container">
                 <h2>{ui.findingsHeading[locale]}</h2>
-                <TIBQAVisual locale={locale} id="finding" />
+                <DawabitVisual locale={locale} id="finding" />
               </div>
             </section>
           )}
@@ -471,7 +471,7 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
               <Closing locale={locale} />
         </>
       );
-    case "tibqa/how-it-works":
+    case "dawabit/how-it-works":
       return (
         <>
           <section className="section">
@@ -489,8 +489,8 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                       <span>{ui.outputs[locale]}</span>
                       <strong>{s.output[locale]}</strong>
                     </div>
-                    {tibqaAssets.visualsEnabled && i !== 3 && (
-                      <TIBQAVisual locale={locale} id={i === 0 ? "scope" : i === 1 ? "requirements" : i === 2 ? "finding" : "overview"} />
+                    {dawabitAssets.visualsEnabled && i !== 3 && (
+                      <DawabitVisual locale={locale} id={i === 0 ? "scope" : i === 1 ? "requirements" : i === 2 ? "finding" : "overview"} />
                     )}
                   </div>
                 </Reveal>
@@ -501,17 +501,17 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
             <div className="container product-grid">
               <div>
                 <Eyebrow>{ui.product[locale]} {ui.endorsement[locale]}</Eyebrow>
-                <h2>{ui.whatTIBQADoes[locale]}</h2>
+                <h2>{ui.whatDawabitDoes[locale]}</h2>
                 <p>{ui.judgement[locale]}</p>
               </div>
-              <TIBQAVisual locale={locale} id="overview" />
+              <DawabitVisual locale={locale} id="overview" />
             </div>
           </section>
           <SampleReportSection locale={locale} />
           <Closing locale={locale} />
         </>
       );
-    case "tibqa/coverage":
+    case "dawabit/coverage":
       return (
         <>
           <section className="section">
@@ -532,7 +532,7 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
         </>
       );
     case "contact":
-    case "tibqa/demo":
+    case "dawabit/demo":
       return (
         <section className="section form-section">
           <div className="container form-layout">
@@ -540,7 +540,7 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
               <Wordmark locale={locale} />
               <h2>{formCopy.detailsTitle[locale]}</h2>
               <ul className="check-list">
-                {(path === "tibqa/demo"
+                {(path === "dawabit/demo"
                   ? formCopy.details
                   : [ui.closingText, ui.judgement]
                 ).map((s, i) => (
@@ -576,11 +576,11 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                 <Wordmark locale={locale} />
                 <h2>{ui.productHeading[locale]}</h2>
                 <p>{ui.productIntro[locale]}</p>
-                <Button to="tibqa" locale={locale}>
+                <Button to="dawabit" locale={locale}>
                   {ui.explore[locale]}
                 </Button>
               </div>
-              <TIBQAVisual locale={locale} id="overview" />
+              <DawabitVisual locale={locale} id="overview" />
             </div>
           </section>
           <Closing locale={locale} />
@@ -647,11 +647,11 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                 <Wordmark locale={locale} />
                 <h2>{ui.productHeading[locale]}</h2>
                 <p>{ui.productIntro[locale]}</p>
-                <Button to="tibqa" locale={locale}>
+                <Button to="dawabit" locale={locale}>
                   {ui.explore[locale]}
                 </Button>
               </div>
-              <TIBQAVisual locale={locale} id="overview" />
+              <DawabitVisual locale={locale} id="overview" />
             </div>
           </section>
           <Closing locale={locale} />
@@ -686,7 +686,7 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
       );
     case "client/login":
       return (
-        <section className="section portal-login-section" aria-labelledby="tibqa-signin-heading">
+        <section className="section portal-login-section" aria-labelledby="dawabit-signin-heading">
           <div className="container portal-login-layout">
             <div className="portal-login-intro">
               <p className="client-access-kicker">
@@ -706,11 +706,11 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
             </div>
             <div className="portal-signin-card">
               <div className="portal-signin-topline">
-                <img src="/brand/tibqa-mark.svg" alt="" aria-hidden="true" width={34} height={34} />
+                <img src="/brand/dawabit-mark.svg" alt="" aria-hidden="true" width={34} height={34} />
                 <span>{ui.reserved[locale]}</span>
                 <LockKeyhole size={18} aria-hidden="true" />
               </div>
-              <h2 id="tibqa-signin-heading">{ui.login[locale]}</h2>
+              <h2 id="dawabit-signin-heading">{ui.login[locale]}</h2>
               <p>{ui.loginNotice[locale]}</p>
               <CustomerLoginForm locale={locale} />
               <div className="portal-access-note">
@@ -745,14 +745,14 @@ export function SitePage({ locale, path }: { locale: Locale; path: string }) {
           url: config.siteUrl,
           logo: `${config.siteUrl}/brand/treehouse-official.png`,
         }
-      : path === "tibqa"
+      : path === "dawabit"
         ? {
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
-            name: "TIBQA by Treehouse",
+            name: "Dawabit by Treehouse",
             applicationCategory: "BusinessApplication",
             operatingSystem: "Web",
-            description: pages.tibqa.intro[locale],
+            description: pages.dawabit.intro[locale],
             url: config.siteUrl + href(locale, path),
           }
         : article
