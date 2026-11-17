@@ -9,7 +9,7 @@
 
 - Repository: `visionstore1189-arch/treehouse-consultancy`.
 - Production branch: `main`, connected to Cloudflare Pages project `treehouse-consultancy`. **Do not force push, overwrite or merge to production until the firm authorises release.**
-- The complete audited v5 public site is in `dawabit-v5-client-rebrand-staging-2026`, incorporating merged public-asset hardening PR #12 and premium polish PR #13. Production release PR #11 remains draft and is not authorised for merge.
+- The complete audited v5 public site is in `dawabit-v5-client-rebrand-staging-2026`, incorporating historic hardening branch `dawabit-v5-release-hardening-20261117` through merged PR #12 and premium polish PR #13. Production release PR #11 remains draft and is not authorised for merge.
 - Next.js is a **static export** (`npm run build` generates `out/`). Cloudflare Pages Functions in `functions/` are built separately. Use Node.js 24 and the committed lockfile.
 - The approved product is **Dawabit by Treehouse** / **ضوابط من تري هاوس**. Use only the verified official logos and colours navy `#0B1F3A`, green `#0B8457`, mint `#2FCB8B`.
 - The firm’s proposed primary website is `treehouseconsulting.co.uk`; the currently deployed website uses `treehouseconsultancy.co.uk`. Registration, DNS migration, primary-domain and redirect choices require **E2 approval**. Preserve business email records throughout.
