@@ -170,3 +170,12 @@ test("legal placeholders contain no internal client approval instructions", () =
   assert.match(site, /يجري استكمال الإشعار القانوني/);
   assert.match(config, /formsEnabled: false/);
 });
+
+test("official reversed header logo and mobile navigation remain visible on navy", () => {
+  const css = read("src/app/globals.css");
+  assert.match(css, /V5 visual QA: dark global header and footer contrast repair/);
+  assert.match(css, /\.site-header \.brand\.treehouse-official-brand > \.treehouse-logo-reversed \{ opacity: 1; \}/);
+  assert.match(css, /\.site-header \.menu-trigger svg \{ width: 23px; height: 23px; stroke: currentColor;/);
+  assert.match(css, /\.mobile-menu \.brand\.treehouse-official-brand > \.treehouse-logo-primary \{ opacity: 1; \}/);
+  assert.match(css, /\.site-footer \.footer-column a \{ color: #D7E8EE; \}/);
+});
