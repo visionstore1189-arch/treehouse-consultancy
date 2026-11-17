@@ -151,3 +151,14 @@ test("unapproved former-supervisor claims are not published while v5 E6 awaits s
   }
   assert.match(site, /The regulatory perspective\./);
 });
+
+test("deployment instructions follow the controlling v5 specification and preserve launch gates", () => {
+  const instructions = read("docs/DEPLOYMENT.md");
+  assert.match(instructions, /Treehouse_Website_Change_List_v5/);
+  assert.match(instructions, /dawabit-v5-release-hardening-20261117/);
+  assert.match(instructions, /E1:/);
+  assert.match(instructions, /E10:/);
+  assert.match(instructions, /main.*production/);
+  assert.match(instructions, /pages\.dev/);
+  assert.doesNotMatch(instructions, /approved TIBQA|MUTABIQ_APP_URL|\/ar\/mutabiq\//i);
+});
