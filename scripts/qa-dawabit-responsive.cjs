@@ -1,4 +1,4 @@
-/* Dawabit v5: bilingual responsive audit for the local static export.
+/* Dawabit v5: all-public-route bilingual responsive audit for the local static export.
  * This is intentionally localhost-only. No customer site, demo or login is probed.
  * Set PLAYWRIGHT_PACKAGE to an installed Playwright module path.
  */
@@ -13,7 +13,10 @@ if (!/^http:\/\/(127\.0\.0\.1|localhost)(:\d+)?$/.test(base)) {
 
 const routes = [
   "", "dawabit", "dawabit/how-it-works", "dawabit/coverage",
-  "dawabit/demo", "dawabit/faq", "services", "sectors", "markets",
+  "dawabit/demo", "dawabit/faq", "services",
+  "services/compliance-assessment", "services/licensing-and-authorisation",
+  "services/governance-risk-compliance", "services/regulatory-change",
+  "services/independent-assurance", "sectors", "markets",
   "uk", "uae", "saudi-arabia", "about", "contact"
 ];
 const widths = [360, 390, 768, 1024];
