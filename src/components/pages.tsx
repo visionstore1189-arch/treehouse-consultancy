@@ -452,7 +452,7 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
               </Button>
             </div>
             {market.slug === "saudi-arabia" ? (
-              approvedVisualsInstalled ? <DawabitGraphic locale={locale} id="workedExamples" /> : <DawabitVisual locale={locale} />
+              <DawabitGraphic locale={locale} id="workedExamples" />
             ) : <DawabitGraphic locale={locale} id="badgeStrip" />}
 
           </div>
@@ -694,7 +694,7 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                   {ui.explore[locale]}
                 </Button>
               </div>
-              <DawabitVisual locale={locale} id="overview" />
+              <DawabitGraphic locale={locale} id="badgeStrip" />
             </div>
           </section>
           <Closing locale={locale} />
