@@ -56,14 +56,12 @@ export function metadataFor(locale: Locale, path: string): Metadata {
       siteName: "Treehouse Consulting",
       locale: locale === "en" ? "en_GB" : "ar_SA",
       type: a ? "article" : "website",
-      images: [{ url: "/brand/social-card.png", width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: ["/brand/social-card.png"],
     },
-    icons: { icon: "/favicon.svg?v=treehouse-sixbar-2026" },
+    icons: { icon: "/favicon.svg?v=treehouse-v4-2026" },
   };
 }
