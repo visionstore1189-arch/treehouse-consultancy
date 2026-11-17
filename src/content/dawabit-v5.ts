@@ -35,6 +35,13 @@ export const otherSectorsCoverage = t(
   "Dawabit is built to work with any regulator. Libraries for sectors outside financial services are prepared for each engagement. Tell us your sector and regulator.",
   "صُممت «ضوابط» للعمل مع أي جهة تنظيمية. وتُعدّ مكتبات القطاعات خارج الخدمات المالية لكل تكليف. أخبرونا بقطاعكم وجهتكم التنظيمية.",
 );
+export const libraryMaintenanceText = t(
+  "Regulatory libraries are maintained by our specialists. New and amended instruments are added as they are published.",
+  "يتولى مختصونا تحديث المكتبات التنظيمية. وتُضاف الأنظمة واللوائح الجديدة والمعدلة عند صدورها.",
+);
+// The client's current review dates are awaiting confirmation (E4/E5);
+// do not invent dates or render bracketed placeholders in public HTML.
+
 export const officialGraphicManifest = {
   // The exact official v5 exports exist in the user's uploaded pack. The GitHub
   // connector cannot transfer binary uploads; install the supplied binaries at
