@@ -3761,3 +3761,45 @@ html[dir="rtl"] .dawabit-faq-list details > p { padding: 15px 37px 24px 0; }
 .site-footer .brand.treehouse-official-brand > .treehouse-logo-reversed, .mobile-menu .brand.treehouse-official-brand > .treehouse-logo-reversed { opacity: 1; }
 html[dir="rtl"] .brand.treehouse-official-brand > img { object-position: right center; }
 @media(max-width: 600px) { .brand.treehouse-official-brand { width: 159px; height: 49px; } }
+
+
+/* V5 homepage: deliverables and specialist-assurance editorial modules. */
+.dawabit-deliverables-section { background:#f5f7f5; }
+.dawabit-deliverables-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(14px,2vw,26px); margin:clamp(24px,3.6vw,48px) 0 28px; }
+.dawabit-deliverable-card { min-width:0; min-height:275px; display:flex; flex-direction:column; padding:clamp(22px,3vw,38px); border:1px solid #dfe8e6; border-radius:20px; background:#fff; box-shadow:0 14px 50px rgba(11,31,58,.035); transition:box-shadow .25s ease, transform .25s ease; }
+.dawabit-deliverable-card:hover { transform:translateY(-4px); box-shadow:0 18px 52px rgba(11,31,58,.075); }
+.dawabit-deliverable-top { display:flex; justify-content:space-between; align-items:center; gap:14px; margin-bottom:42px; color:#0b8457; }
+.dawabit-deliverable-top span { letter-spacing:.12em; font-size:12px; font-weight:700; }
+.dawabit-deliverable-card h3 { color:#0b1f3a; font-size:clamp(20px,2.1vw,28px); line-height:1.22; margin:0 0 15px; }
+.dawabit-deliverable-card p { color:#52646b; line-height:1.68; margin:0; max-width:38ch; }
+.dawabit-assurance-section { background:#0b1f3a; color:#edf6f1; }
+.dawabit-assurance-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.93fr); align-items:center; gap:clamp(32px,7vw,110px); }
+.dawabit-assurance-section h2 { color:#fff; font-size:clamp(29px,3.6vw,54px); line-height:1.13; margin:16px 0 24px; max-width:16ch; }
+.dawabit-assurance-section p { color:#b8cadd; line-height:1.72; max-width:65ch; }
+.dawabit-assurance-section .eyebrow { color:#2fcb8b; }
+.dawabit-assurance-section .text-link { color:#a7f0d0; }
+.dawabit-assurance-legal { font-size:13px; margin:16px 0 28px; }
+.dawabit-assurance-steps { border:1px solid rgba(161,196,197,.22); border-radius:20px; background:rgba(255,255,255,.035); padding:8px clamp(16px,3vw,32px); }
+.dawabit-assurance-step { display:flex; align-items:flex-start; gap:18px; padding:26px 0; border-bottom:1px solid rgba(161,196,197,.18); }
+.dawabit-assurance-step:last-child { border-bottom:0; }
+.dawabit-assurance-step > span { flex:none; font-size:12px; letter-spacing:.12em; color:#2fcb8b; font-weight:750; padding-top:5px; }
+.dawabit-assurance-step > div { flex:1; min-width:0; }
+.dawabit-assurance-step strong { color:#fff; font-weight:650; display:block; font-size:clamp(17px,1.5vw,21px); }
+.dawabit-assurance-step p { margin:6px 0 0; font-size:14px; }
+.dawabit-assurance-step svg { flex:none; color:#2fcb8b; margin-top:4px; }
+@media (max-width:900px) {
+  .dawabit-deliverables-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .dawabit-assurance-grid { grid-template-columns:1fr; }
+  .dawabit-assurance-section h2 { max-width:22ch; }
+}
+@media (max-width:620px) {
+  .dawabit-deliverables-grid { grid-template-columns:1fr; gap:14px; }
+  .dawabit-deliverable-card { min-height:0; padding:24px; }
+  .dawabit-deliverable-top { margin-bottom:20px; }
+  .dawabit-assurance-steps { padding:0 20px; }
+  .dawabit-assurance-step { padding:22px 0; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .dawabit-deliverable-card { transition:none; }
+  .dawabit-deliverable-card:hover { transform:none; }
+}
