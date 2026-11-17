@@ -34,7 +34,7 @@ export function redirectDestination(rawUrl) {
 
   // Intentionally restrict to an explicit route map rather than allowing
   // arbitrary host/path forwarding or rehosting of sensitive client content.
-  const pathname = source.pathname.replace(/\\+/g, "/").replace(/\/+$/, "") || "/";
+  const pathname = source.pathname.replace(/\/+/g, "/").replace(/\/+$/, "") || "/";
   const selected = PAGES.get(pathname) || (
     pathname.startsWith("/ar/") ? "/ar/dawabit/" : "/dawabit/"
   );
