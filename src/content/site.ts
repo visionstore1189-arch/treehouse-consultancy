@@ -200,12 +200,12 @@ export const ui = {
   ],
   connectionPending: t("Connection pending", "بانتظار الربط"),
   legalPending: t(
-    "Publication pending client approval",
-    "بانتظار اعتماد العميل للنشر",
+    "Legal notice being finalised",
+    "يجري استكمال الإشعار القانوني",
   ),
   legalPendingText: t(
-    "This page is reserved for the final notice approved by Treehouse. Online enquiries are disabled until the privacy notice, data handling arrangements and monitored inbox are ready.",
-    "هذه الصفحة مخصصة للإشعار النهائي الذي تعتمده تري هاوس. تبقى الاستفسارات الإلكترونية معطلة حتى اعتماد إشعار الخصوصية وترتيبات معالجة البيانات والبريد المراقب.",
+    "The final notice is not yet published. Please contact enquiries@treehouseconsulting.co.uk for information. Online forms remain unavailable until the privacy notice is in place.",
+    "لم يُنشر الإشعار النهائي بعد. للاستفسار يرجى مراسلتنا عبر enquiries@treehouseconsulting.co.uk. تبقى النماذج الإلكترونية غير متاحة حتى نشر إشعار الخصوصية.",
   ),
   noTracking: t(
     "No advertising or analytics trackers are active. Fonts are served from this website. A security challenge will be loaded only when online forms are enabled.",
