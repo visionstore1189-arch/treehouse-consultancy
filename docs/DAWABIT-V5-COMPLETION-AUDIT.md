@@ -29,7 +29,7 @@ This document records what can be verified from the working GitHub branch, the c
 | A7–A8 | Five-step method, evidence chain next to step 04 | Text structure staged; conceptual fallback only | Original Evidence Chain and How It Works Strip graphics must be installed |
 | A9 | Verdict graphics used once, not duplicated | Static explanatory fallback and deliberate content gates | Replace with precise original panels, visually review |
 | A10, S1–S3 | All-sector messaging and 19 ISIC4 sections | English/Arabic copy and sectors staged | E5 regulator status approval and E7 native Arabic classification review |
-| A11 | Mobile and tablet test at 360/390/768/1024, both languages | Automated 14-route × 2-locale × 4-width = 112-case browser test in release-hardening workflow; screenshot artifacts | Repeat after official image binaries, legal approvals and final deployment |
+| A11 | Mobile and tablet test at 360/390/768/1024, both languages | Automated 19-route × 2-locale × 4-width = 152-case browser test in release-hardening workflow; screenshot artifacts | Repeat after official image binaries, legal approvals and final deployment |
 | G1–G2 | Private demo custom domain and server-side access | Existing Worker demo is separate; **no public link in staged site** | Assign authorised custom domain; enforce Access/Worker gate before serving bytes; remove/bind default Workers URL |
 | G3 | Public screen 1 only; screens 2–4, tour, interactive demo, PDF behind protection | Public detailed screens, product tour and PDF excluded | Verify all alternative URLs, redirects, preview domains and access policies |
 | G4 | Tailored demo request form and agreed response text | Request page staged, enquiries disabled | E1 monitored inbox, E3 legal and anti-spam backend |
@@ -70,7 +70,7 @@ Never place screen 2/3/4, the interactive demonstration HTML, sample PDF, privat
 ## Deployment acceptance evidence required
 
 1. Passing GitHub CI for the exact reviewed commit: typecheck, tests, build, Cloudflare Functions and link integrity.
-2. 112 responsive browser cases, 0 exceptions or overflow issues, and six full-page 390px English/Arabic captures.
+2. 152 responsive browser cases, 0 exceptions or overflow issues, and six full-page 390px English/Arabic captures.
 3. Official visual file-by-file audit: original checksums, size, alt text, contrast, half-resolution display, real image loading, caption and no CLS.
 4. An approved Cloudflare demo protection policy and observed denied/allowed/revoked access, including default Worker routes and preview hosts.
 5. Demo request form delivery to the actual monitored address, legal-consent version, spam/rate-limit and data-processing checks.
