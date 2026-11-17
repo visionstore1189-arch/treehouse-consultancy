@@ -36,9 +36,8 @@ export function Eyebrow({ children }: { children: ReactNode }) {
     </p>
   );
 }
-// The client-supplied English master logos have not been uploaded yet.
-// Never fabricate or retype the English logo as a replacement master asset.
-const englishLogoPackInstalled = false;
+// Exact client-supplied vector masters, imported unchanged from v4 brand pack.
+const englishLogoPackInstalled = true;
 export function Wordmark({ locale }: { locale: Locale }) {
   return (
     <div className="wordmark dawabit-brand-mark" role="img" aria-label={`${ui.product[locale]} ${ui.endorsement[locale]}`}>
@@ -63,9 +62,9 @@ export function Wordmark({ locale }: { locale: Locale }) {
 }
 export function Brand({ locale = "en" }: { locale?: Locale }) {
   return (
-    <Link href={href(locale)} aria-label={`${ui.brand[locale]} — ${ui.home[locale]}`} className="brand dawabit-brand-fallback">
-      <img src="/brand/treehouse-favicon-v4.svg" alt="" width={42} height={42} />
-      <span>{ui.brand[locale]}</span>
+    <Link href={href(locale)} aria-label={`${ui.brand[locale]} — ${ui.home[locale]}`} className="brand treehouse-official-brand">
+      <img className="treehouse-logo-primary" src="/brand/treehouse-logo-primary-v4.svg" width={350} height={75} alt="" />
+      <img className="treehouse-logo-reversed" src="/brand/treehouse-logo-reversed-v4.svg" width={350} height={75} alt="" />
     </Link>
   );
 }
