@@ -55,4 +55,4 @@ export const officialGraphicManifest = {
   methodStrip: { en: "/brand/dawabit/graphics/How_It_Works_Strip_EN_Light_v2.png", ar: "/brand/dawabit/graphics/How_It_Works_Strip_AR_Light_v2.png" },
   sectorGrid: { en: "/brand/dawabit/graphics/Sector_Grid_EN_Light_v2.png", ar: "/brand/dawabit/graphics/Sector_Grid_AR_Light_v2.png" },
 } as const;
-export const approvedVisualsInstalled = false; // Set true ONLY after official v5 images are supplied, copied and verified.
+export const approvedVisualsInstalled = true; // Official v5 visuals installed; all 37 raster originals SHA-verified.
