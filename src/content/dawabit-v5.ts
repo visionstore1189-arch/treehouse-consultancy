@@ -43,9 +43,8 @@ export const libraryMaintenanceText = t(
 // do not invent dates or render bracketed placeholders in public HTML.
 
 export const officialGraphicManifest = {
-  // The exact official v5 exports exist in the user's uploaded pack. The GitHub
-  // connector cannot transfer binary uploads; install the supplied binaries at
-  // these exact filenames before enabling the graphics and screenshots.
+  // Original approved v5 image exports were installed byte-for-byte from the
+  // client's source pack into GitHub staging. Protected screens 2–4 stay excluded.
   overview: { en: "/brand/dawabit-screens/Dawabit_Screen_1_Overview_v5.jpg", ar: "/brand/dawabit-screens/Dawabit_Screen_1_Overview_v5_AR.jpg" },
   verdictDefinitions: { en: "/brand/dawabit/graphics/Verdict_Panel_1_Definitions_EN_Dark_v2.png", ar: "/brand/dawabit/graphics/Verdict_Panel_1_Definitions_AR_Light_v2.png" },
   workedExamples: { en: "/brand/dawabit/graphics/Verdict_Panel_2_Worked_Examples_EN_Light_v2.png", ar: "/brand/dawabit/graphics/Verdict_Panel_2_Worked_Examples_AR_Light_v2.png" },
