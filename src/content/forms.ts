@@ -35,8 +35,8 @@ export const formCopy = {
     "شكراً لك. تم استلام استفسارك. سيتواصل معك أحد أعضاء فريقنا خلال يومي عمل.",
   ),
   successDemo: t(
-    "Thank you. A member of our team will contact you within two working days to arrange your demonstration.",
-    "شكراً لك. سيتواصل معك أحد أعضاء فريقنا خلال يومي عمل لترتيب عرضك التوضيحي.",
+    "Thank you. We will be in touch within two working days.",
+    "شكرًا لكم. سنتواصل معكم خلال يومي عمل.",
   ),
   error: t(
     "Your enquiry could not be submitted. Please try again later.",
