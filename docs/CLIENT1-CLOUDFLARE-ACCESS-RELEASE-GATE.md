@@ -3,10 +3,10 @@
 **Classification:** confidential operational checklist. **Status:** Not deployed / not access-tested by this GitHub change.
 
 ## Non-negotiable isolation
-- Create a **new** Cloudflare Pages project named `dawabit-client1` by direct upload. Do **not** add content to the existing `treehouse-consultancy` project or the public GitHub repository.
+- Create a **new** Cloudflare Pages project named `<private-pages-project>` by direct upload. Do **not** add content to the existing `treehouse-consultancy` project or the public GitHub repository.
 - Upload **only** the unchanged `site/index.html`, `site/_headers`, `site/robots.txt` at the new project's root. Never upload `checksum.txt`, the private Word instructions, a ZIP pack containing secrets, or the guide to any public site.
-- The encrypted HTML is exactly **595,988 bytes**. Expected SHA-256: `4b1a3ae5acc567035ad3f4697d5c9851e56bf743c4ebdc323c3ed9e14c1b4a7b`. Verify before upload and after authenticated retrieval. Do not edit, reformat, minify, compress or inject scripts.
-- Custom hostname: `client1.treehouseconsultancy.co.uk`. Cloudflare DNS zone is already under the firm's account, but check for any existing record before assignment.
+- The encrypted HTML is exactly **595,988 bytes**. Expected SHA-256: `<compare-to-private-checksum-file>`. Verify before upload and after authenticated retrieval. Do not edit, reformat, minify, compress or inject scripts.
+- Custom hostname: `<firm-approved-private-client-hostname>`. Cloudflare DNS zone is already under the firm's account, but check for any existing record before assignment.
 - Keep independent in-page password protection, without requesting or storing its password.
 - Do not add the hostname to public navigation, source code, sitemap, SEO metadata or public documentation.
 
@@ -14,7 +14,7 @@
 1. Complete Cloudflare Zero Trust onboarding with the Free plan, under the firm's Cloudflare account.
 2. Enable the **One-time PIN** identity provider explicitly. Current Cloudflare documentation notes that One-time PIN is **not automatically added** for new Zero Trust organisations.
 3. Obtain **the exact named user email addresses from the firm**. Create a self-hosted Access application matching the entire custom hostname and a specific **Emails** allow list. No “everyone”, wildcard domain, or broad “email domain” rules. Set policy/application session lifetime to **24 hours**.
-4. Protect `dawabit-client1.pages.dev` production hostname as well, with the **same named-email policy**. Never rely solely on a custom-hostname Access application.
+4. Protect `<private-pages-project>.pages.dev` production hostname as well, with the **same named-email policy**. Never rely solely on a custom-hostname Access application.
 5. Turn on **Pages preview-deployment protection** (Workers & Pages > project > Settings > General > Enable access policy). This **does not** automatically protect the project's main `pages.dev` hostname or custom domain. Follow Cloudflare's documented additional Access application / hostname procedure.
 6. Verify randomly generated preview URLs, branch aliases, and every known deployment URL. Do not distribute links or enable client access while **any** route serves confidential HTML without Access.
 7. Remove access immediately when firm instructs; test revocation. Do not change the final hostname after owner tags are created, because the HTML stores these in browser-local storage by origin.
