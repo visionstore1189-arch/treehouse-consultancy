@@ -33,7 +33,7 @@ import {
 } from "@/content/site";
 import { publishedArticles, readingMinutes } from "@/content/articles";
 import { formCopy } from "@/content/forms";
-import { config, href, type Locale } from "@/lib/config";
+import { config, protectedDemoHref, href, type Locale } from "@/lib/config";
 import { Header } from "./header";
 import { Footer } from "./footer";
 import { Button, Eyebrow, Wordmark, Closing, Arrow } from "./ui";
@@ -670,9 +670,19 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                 <div>
                   <Eyebrow>{ui.product[locale]} {ui.endorsement[locale]}</Eyebrow>
                   <h2>{locale==="ar"?"فتح العرض التوضيحي":"Open the demonstration"}</h2>
-                  <p>{locale==="ar"?"يتاح العرض التوضيحي للمستخدمين المعتمدين فقط بعد تفعيل حماية الوصول من جهة الخادم.":"Demonstration access is reserved for approved visitors. Access details will be supplied once server-side protection is enabled."}</p>
+                  <p>{protectedDemoHref
+                    ? (locale==="ar"?"يفتح العرض التوضيحي في نافذة جديدة، ويستلزم تسجيل الدخول عبر حماية الوصول المعتمدة.":"The demonstration opens in a new tab and requires the firm's approved access sign-in.")
+                    : (locale==="ar"?"يتاح العرض التوضيحي للمستخدمين المعتمدين فقط بعد تفعيل حماية الوصول من جهة الخادم.":"Demonstration access is reserved for approved visitors. Access details will be supplied once server-side protection is enabled.")}</p>
                 </div>
-                <div className="dawabit-demo-lock"><ShieldCheck size={36} strokeWidth={1.2} aria-hidden="true"/><span>{locale==="ar"?"الوصول بانتظار التفعيل":"PROTECTED ACCESS PENDING"}</span></div>
+                {protectedDemoHref ? (
+                  <a className="dawabit-demo-launch" href={protectedDemoHref} target="_blank" rel="noopener noreferrer">
+                    <ShieldCheck size={20} aria-hidden="true" />
+                    <span>{locale==="ar"?"فتح العرض التوضيحي":"Open the demonstration"}</span>
+                    <Arrow diagonal />
+                  </a>
+                ) : (
+                  <div className="dawabit-demo-lock"><ShieldCheck size={36} strokeWidth={1.2} aria-hidden="true"/><span>{locale==="ar"?"الوصول بانتظار التفعيل":"PROTECTED ACCESS PENDING"}</span></div>
+                )}
               </div>
             </section>
           )}
