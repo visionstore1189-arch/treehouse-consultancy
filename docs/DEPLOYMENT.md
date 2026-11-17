@@ -14,22 +14,14 @@
 - The approved product is **Dawabit by Treehouse** / **ضوابط من تري هاوس**. Use only the verified official logos and colours navy `#0B1F3A`, green `#0B8457`, mint `#2FCB8B`.
 - The firm’s proposed primary website is `treehouseconsulting.co.uk`; the currently deployed website uses `treehouseconsultancy.co.uk`. Registration, DNS migration, primary-domain and redirect choices require **E2 approval**. Preserve business email records throughout.
 
-## 2. Public official assets — install before visual sign-off
+## 2. Public official assets — installed, awaiting final visual acceptance
 
-The developer pack's public graphics are not interchangeable with example reconstructions. The **53-file, checksum-manifested, public-only** archive is `Dawabit_v5_APPROVED_PUBLIC_ASSETS_staging.zip`. Original SVG masters have already been compared against the repository byte-for-byte.
+**Completed on staging**: all 53 official original public assets are now in GitHub, including 16 SVG logos/favicons and 37 PNG/JPG files. The English/Arabic Overview screenshots, verdict panels, explainer graphics, favicon PNGs and updated OpenGraph social image are present at the exact paths referenced by the site. The 37 new binaries were compared against their original byte-for-byte Git object hashes; zero mismatches. Rendering flags are **enabled** in the staged source.
 
-The approved ZIP contains all public logo variants, favicons, social image, **only screen 1 (Overview)** in English/Arabic, 15 verdict panels, and six explainer graphics. It excludes confidential guides, screenshots 2–4, animated product tour, demo HTML and sample report.
+The prior manual ZIP upload workflow is **not needed** for this v5 delivery and must not be triggered a second time. To verify in a fresh staging checkout:
 
-**Single-upload workflow** (not yet executed):
-1. In GitHub select `dawabit-v5-release-hardening-20261117`.
-2. Upload the original approved ZIP into `asset-import/` with the exact expected filename.
-3. The workflow `.github/workflows/import-dawabit-v5-public-assets.yml` rejects disallowed files, checks all SHA-256 digests, installs them at their exact paths, enables public rendering flags only after successful verification, runs validation, commits approved originals and removes the one-time archive.
-4. Review the new commit and the public image paths. The rendering flags must remain off until that import **actually succeeds**. Re-run browser QA after import.
-
-Offline equivalent on a trusted checkout:
 ```sh
 npm ci
-npm run assets:install -- /absolute/path/to/extracted-public-archive
 npm run check:assets
 npm run typecheck
 npm test
@@ -38,7 +30,9 @@ npm run cf:build
 npm run check:links
 ```
 
-Do not rename, recompress, visually alter or regenerate the original image masters.
+Review the six real mobile screenshot artifacts from the latest staging QA workflow. Confirm official images render with the right language and natural aspect ratios. Confidential screenshots 2–4, guide HTML, live demo, animated product tour and sample report remain excluded from this site's public directory.
+
+**Original public images in GitHub are not the same as a deployed live website.** Production release still requires the firm's Part E approvals and secured confidential destinations.
 
 ## 3. Cloudflare Pages staging and production
 
