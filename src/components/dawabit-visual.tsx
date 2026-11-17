@@ -35,8 +35,45 @@ export function DawabitVisual({ locale, id = "overview", priority = false }: { l
 }
 
 type GraphicId = keyof typeof officialGraphicManifest;
+const conceptStages = [
+  { en: "Regulatory requirement", ar: "المتطلب التنظيمي" },
+  { en: "Document evidence", ar: "دليل المستند" },
+  { en: "Specialist review", ar: "مراجعة المختص" },
+  { en: "Evidenced result", ar: "نتيجة موثقة" },
+] as const;
 export function DawabitGraphic({ locale, id, dark = false }: { locale: Locale; id: GraphicId; dark?: boolean }) {
-  if (!approvedVisualsInstalled) return null;
+  if (!approvedVisualsInstalled) {
+    // Clearly identified editorial graphics only, NOT replacements for the client's
+    // unreleased official panels or product screens. No sample compliance findings.
+    if (id === "verdictDefinitions" || id === "methodStrip") return null;
+    if (id === "badgeStrip") return (
+      <div className="dawabit-method-badges" aria-label={locale === "ar" ? "مراحل التقييم" : "Assessment stages"}>
+        {conceptStages.map((stage, i) => <span key={i}><b>{String(i + 1).padStart(2, "0")}</b>{stage[locale]}</span>)}
+      </div>
+    );
+    if (id === "sectorGrid") return (
+      <div className="dawabit-concept-sectors" aria-label={locale === "ar" ? "القطاعات" : "Regulated sectors"}>
+        {(locale === "ar" ? ["التمويل والتأمين", "التقنية والاتصالات", "الرعاية الصحية", "النقل والطاقة"] : ["Financial services", "Technology", "Healthcare", "Transport & energy"]).map((sector, i) =>
+          <div key={i}><span>{String(i + 1).padStart(2, "0")}</span><strong>{sector}</strong></div>
+        )}
+      </div>
+    );
+    return (
+      <figure className="dawabit-concept-graphic" aria-label={locale === "ar" ? "رسم توضيحي لسلسلة التقييم" : "Conceptual regulatory assessment workflow"}>
+        <div className="dawabit-concept-top"><ShieldCheck size={17} aria-hidden="true"/><span>{locale === "ar" ? "المتطلبات والأدلة والنتائج" : "REQUIREMENT / EVIDENCE / RESULT"}</span></div>
+        <ol>
+          {conceptStages.slice(0, id === "resultsSummary" ? 4 : 3).map((stage, i) =>
+            <li key={i}>
+              <span className="dawabit-concept-index">{String(i + 1).padStart(2, "0")}</span>
+              <span>{stage[locale]}</span>
+              <span aria-hidden="true" className="dawabit-concept-rule" />
+            </li>
+          )}
+        </ol>
+        <figcaption>{locale === "ar" ? "رسم توضيحي للمنهج — ليس شاشة من المنتج" : "METHOD ILLUSTRATION — NOT A PRODUCT SCREEN"}</figcaption>
+      </figure>
+    );
+  }
   const path = officialGraphicManifest[id][locale];
   return (
     <figure className={`dawabit-graphic ${dark ? "dawabit-graphic-dark" : ""}`}>
