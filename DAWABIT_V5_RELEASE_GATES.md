@@ -8,7 +8,7 @@ This branch is a **review-only implementation** of the client's Website Change L
 - Imported **all 11 original client-supplied SVG logo masters unchanged**, including the exact English Dawabit and Treehouse Consulting marks, and activated them in the responsive page header and product visuals.
 - Kept unverified security, claims, data retention, unfinished legal and client portal items unpublished.
 - Kept noindex/nofollow while the client has not authorised launch.
-- English and Arabic automated responsive Playwright QA: 14 routes × 2 locales × 4 widths = **112 page cases**. See GitHub Actions run 43994858622 (post-logo successful), including 390px screenshots.
+- English and Arabic automated responsive Playwright QA: 19 routes × 2 locales × 4 widths = **152 page cases**. See GitHub Actions run 43994858622 (post-logo successful), including 390px screenshots.
 - Static Next.js build and safety checks pass.
 
 ## Remaining publication gates
