@@ -192,3 +192,13 @@ test("required bilingual legal footer links resolve to generated holding pages",
   }
   assert.match(read("src/lib/routes.ts"), /Object\.keys\(pages\)/);
 });
+
+test("official social card and Apple icon are published only after original images are installed", () => {
+  const routes = read("src/lib/routes.ts");
+  assert.match(routes, /approvedVisualsInstalled/);
+  assert.match(routes, /\/brand\/social-card-v5\.png/);
+  assert.match(routes, /\/brand\/treehouse-favicon-180-v4\.png/);
+  assert.match(routes, /width: 1200, height: 630/);
+  assert.match(routes, /Dawabit by Treehouse/);
+  assert.match(routes, /ضوابط من تري هاوس/);
+});
