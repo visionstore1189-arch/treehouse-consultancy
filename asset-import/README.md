@@ -1,17 +1,9 @@
-# Official Dawabit v5 public-asset upload drop
+# Dawabit v5 public asset import — completed
 
-This folder is for **one client-approved PUBLIC-ASSETS ZIP only**. It is not a place to store confidential client files, unrestricted product screens, sample reports, or access credentials.
+**Status (17 November 2026): COMPLETE ON GITHUB STAGING.** Do not upload the ZIP again.
 
-### One-file upload procedure
-1. From the GitHub repository branch selector, select **`dawabit-v5-release-hardening-20261117`**, not `main`.
-2. Open this `asset-import/` folder and select **Add file → Upload files**.
-3. Upload the prepared **`Dawabit_v5_APPROVED_PUBLIC_ASSETS_staging.zip`** file with this exact filename. The archive is available in the source ChatGPT conversation and contains an approved 53-file manifest.
-4. Commit directly to this **staging branch**.
-5. The `Import verified Dawabit v5 public assets` GitHub Action will run checksums, reject prohibited files, run typecheck/tests/build, commit approved binaries, enable only public visual flags, and remove the one-time ZIP.
+All 53 original public v5 graphics have already been committed to `dawabit-v5-release-hardening-20261117`: 16 SVG logos and 37 PNG/JPG files. Each of the 37 newly uploaded image blobs was verified against its original byte-for-byte Git hash, with zero mismatches. Both official visual rendering flags are enabled.
 
-**No upload from the ChatGPT connector was possible:** it can edit repository source text but cannot stream the attached JPEG/PNG binaries without a connected graphical browser or direct byte-transfer action. This folder provides a controlled handoff so a Cloud Browser/Work session can do one upload rather than 53.
+The automatic ZIP import workflow remains for future controlled replacement packs only. **It is unnecessary for this delivery.** Do not upload extra files in this folder. Do not place the confidential client guide, protected screens 2–4, animated tour, sample PDF, demo source or secrets in this repository.
 
-### Deployment safety
-- Even after a successful import, this is **not a go-live authorisation**.
-- Do not merge this PR to the production branch until the firm approves the Part E decisions, demo and Client 1 confidential hosting are server-side protected, enquiry delivery and legal texts are approved, and the deployed bilingual pages are rechecked.
-- Do not upload the confidential `Dawabit_Client1_SITE_ONLY_validated.zip` here.
+This is **not production launch approval**. Keep the PR in draft until the firm confirms all Part E decisions, legal notices and the required protected-hostname tests, and the bilingual deployed site has been accepted.
