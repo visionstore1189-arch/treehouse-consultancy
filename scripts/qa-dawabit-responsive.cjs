@@ -18,9 +18,9 @@ const routes = [
   "services/governance-risk-compliance", "services/regulatory-change",
   "services/independent-assurance", "sectors", "markets",
   "uk", "uae", "saudi-arabia", "about", "contact",
-  "privacy", "terms", "cookies", "client/login", "client/portal", "client/recover-password", "client/reset-password"
+  "privacy", "terms", "cookies"
 ];
-const widths = [360, 390, 768, 1024];
+const widths = [360, 390, 768, 1024, 1440];
 const screenshotsDir = path.resolve("qa-screenshots");
 fs.mkdirSync(screenshotsDir, { recursive: true });
 const failures = [];
@@ -60,6 +60,8 @@ async function main() {
               const visible = document.body.innerText || "";
               const images = [...document.images];
               return {
+                portalLinks: [...document.querySelectorAll('a[href*="portal.treehouseconsulting.co.uk"]')].map(a=>({href:a.getAttribute('href'),target:a.getAttribute('target')})),
+                retiredLogin: /Dawabit Login|Sign in to Dawabit|password|Protected access pending|pages\.dev|workers\.dev|dawabit\.co\b/i.test(document.documentElement.outerHTML),
                 headingCount: document.querySelectorAll("h1").length,
                 lang: document.documentElement.lang,
                 direction: document.documentElement.dir,
@@ -75,6 +77,9 @@ async function main() {
               };
             });
             const reasons = [];
+            const expectedPortal = "https://portal.treehouseconsulting.co.uk/" + (locale === "ar" ? "?lang=ar" : "");
+            if (result.portalLinks.length < 2 || result.portalLinks.some(a=>a.href!==expectedPortal || (a.target && a.target!=="_self"))) reasons.push("Wrong portal links or tab target");
+            if (result.retiredLogin) reasons.push("Retired login wording or alternate host exposed");
             if (response?.status() !== 200) reasons.push("HTTP " + response?.status());
             if (result.headingCount !== 1) reasons.push("Expected exactly one H1");
             if (result.lang !== locale) reasons.push("Wrong HTML lang");
@@ -89,7 +94,7 @@ async function main() {
             if (result.brokenImages.length) reasons.push("Broken images");
             if (pageErrors.length) reasons.push("JavaScript page error");
 
-            if (width === 390 && ["", "dawabit", "contact", "client/login", "client/portal"].includes(route)) {
+            if (width === 390 && ["", "dawabit", "contact", "dawabit/demo"].includes(route)) {
               const filename = (locale === "ar" ? "arabic" : "english") + "-" +
                 (route || "home").replaceAll("/", "-") + "-390.png";
               await page.screenshot({
@@ -98,6 +103,11 @@ async function main() {
                 animations: "disabled",
                 timeout: 30000,
               });
+            }
+            if (!route && [390,1440].includes(width)) {
+              const lang = locale === "ar" ? "arabic" : "english";
+              await page.locator(".site-header").screenshot({path:path.join(screenshotsDir,`${lang}-header-${width}.png`)});
+              await page.locator(".client-access-band").screenshot({path:path.join(screenshotsDir,`${lang}-home-portal-${width}.png`)});
             }
             if (width === 390 && !route) {
               const menuButton = page.locator(".menu-trigger");
@@ -108,6 +118,9 @@ async function main() {
                 if (!(await page.locator("dialog.mobile-menu").evaluate(el => el.open))) {
                   reasons.push("Mobile menu did not open");
                 }
+                await page.locator("dialog.mobile-menu").screenshot({path:path.join(screenshotsDir,`${locale === "ar" ? "arabic" : "english"}-menu-390.png`)});
+                const portal = page.locator("dialog.mobile-menu .mobile-portal-link");
+                if (!(await portal.isVisible()) || (await portal.getAttribute("href")) !== expectedPortal) reasons.push("Mobile portal entry absent or incorrect");
                 const closeButton = page.locator("dialog.mobile-menu .icon-button");
                 await closeButton.click();
                 if (await page.locator("dialog.mobile-menu").evaluate(el => el.open)) {

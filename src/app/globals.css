@@ -3920,3 +3920,10 @@ html[dir="rtl"] .brand.treehouse-official-brand > img { object-position: right c
 .demo-materials-links .button-secondary { color: #f2faf5; border-color: #9dbdb0; justify-content: space-between; text-align: start; }
 .demo-materials-links .button-secondary:hover { background: #173553; }
 @media(max-width:600px) { .demo-materials-links { grid-template-columns: 1fr; } }
+
+/* V6: secondary portal entry, beside the language control on desktop. */
+.site-header .header-portal-link { display: inline-flex; align-items: center; justify-content: center; color: #fff; background: transparent; border: 1px solid #9aafc3; border-radius: 4px; padding: 12px 15px; font-size: 12px; font-weight: 650; white-space: nowrap; }
+.site-header .header-portal-link:hover { border-color: var(--mint); color: var(--mint); }
+.mobile-menu > .mobile-portal-link { display: flex; background: transparent; border: 1px solid var(--navy); color: var(--navy); margin-block: 20px 12px; }
+@media (min-width: 1025px) and (max-width: 1450px) { .header-inner { width: calc(100% - 40px); gap: 18px; } .header-actions { gap: 14px; } .desktop-nav { gap: 17px; font-size: 11px; } .site-header .header-portal-link { padding: 11px; font-size: 11px; } }
+@media (max-width: 1024px) { .site-header .header-portal-link { display: none; } }

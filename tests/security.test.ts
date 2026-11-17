@@ -293,3 +293,9 @@ test("access contract denies expired, cross-tenant, unpaid and missing-MFA sessi
   );
   assert.equal(canAccess(session, entitlement, "documents"), false);
 });
+
+test("v5 G4 demonstration needs no extra role or regulator field", () => {
+  const {role, ...demo} = valid;
+  assert.equal(enquirySchema.safeParse({...demo,kind:"demo",sector:"Manufacturing"}).success,true);
+  assert.equal(enquirySchema.safeParse({...demo,kind:"contact"}).success,false);
+});

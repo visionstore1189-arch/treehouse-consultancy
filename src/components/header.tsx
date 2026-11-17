@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Menu, X, ChevronDown, Globe2 } from "lucide-react";
 import { ui, services, markets } from "@/content/site";
 import { publishedArticles } from "@/content/articles";
-import { href, type Locale } from "@/lib/config";
+import { href, portalHref, type Locale } from "@/lib/config";
 import { Brand, Arrow } from "./ui";
 export function Header({ locale, path }: { locale: Locale; path: string }) {
   const dialog = useRef<HTMLDialogElement>(null);
@@ -122,6 +122,7 @@ export function Header({ locale, path }: { locale: Locale; path: string }) {
               <Globe2 size={15} />
               <span>{locale === "en" ? "العربية" : "English"}</span>
             </Link>
+            <a className="header-portal-link" href={portalHref(locale)}>{ui.login[locale]}</a>
             <Link className="header-cta" href={href(locale, "dawabit/demo")}>
               {ui.demo[locale]}
               <Arrow diagonal />
@@ -178,6 +179,7 @@ export function Header({ locale, path }: { locale: Locale; path: string }) {
             ),
           )}
         </nav>
+        <a className="button button-secondary mobile-portal-link" href={portalHref(locale)} onClick={close}>{ui.login[locale]}<Arrow /></a>
         <Link
           className="button button-primary"
           href={href(locale, "dawabit/demo")}

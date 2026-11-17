@@ -6,6 +6,18 @@ const aliases = new Set([
 ]);
 export function publicRedirect(request: Request): Response | undefined {
   const url = new URL(request.url);
+  // Retire the former website account API; never forward credentials to the portal.
+  if (/^\/api\/auth(?:\/|$)/.test(url.pathname)) return Response.json(
+    {error: "endpoint_retired"}, {status: 410, headers: {"Cache-Control":"no-store", "X-Robots-Tag":"noindex, nofollow"}}
+  );
+  const oldAccount = /^\/(?:ar\/)?(?:client|portal)(?:\/|$)/.test(url.pathname);
+  if (oldAccount && ["GET", "HEAD"].includes(request.method)) {
+    const target = "https://portal.treehouseconsulting.co.uk/" + (url.pathname.startsWith("/ar/") ? "?lang=ar" : "");
+    // Discard old queries/fragments rather than forwarding previous credentials.
+    const headers = new Headers({Location: target, "Cache-Control":"no-store", "X-Robots-Tag":"noindex, nofollow"});
+    for (const name of ["__Host-th_access", "__Host-th_refresh"]) headers.append("Set-Cookie", `${name}=; Path=/; Secure; HttpOnly; SameSite=Lax; Max-Age=0`);
+    return new Response(null, {status: 301, headers});
+  }
   // Never move credential-bearing API submissions between origins.
   if (!["GET", "HEAD"].includes(request.method) || url.pathname.startsWith("/api/")) return;
   let status = 301;

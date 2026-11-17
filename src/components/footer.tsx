@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ui, markets } from "@/content/site";
 import { publishedArticles } from "@/content/articles";
-import { href, type Locale } from "@/lib/config";
+import { href, portalHref, type Locale } from "@/lib/config";
 import { Brand, Arrow } from "./ui";
 export function Footer({ locale }: { locale: Locale }) {
   return (
@@ -24,7 +24,7 @@ export function Footer({ locale }: { locale: Locale }) {
           </div>
           <div className="footer-column">
             <p>{locale === "ar" ? "المعلومات" : "Product information"}</p>
-            <Link href={href(locale, "client/login")}>{ui.login[locale]}</Link>
+            <a href={portalHref(locale)}>{ui.login[locale]}</a>
             <Link href={href(locale, "dawabit/faq")}>{locale === "ar" ? "الأسئلة الشائعة" : "Frequently asked questions"}</Link>
             <Link href={href(locale, "dawabit/how-it-works")}>{ui.how[locale]}</Link>
             <Link href={href(locale, "dawabit/coverage")}>{ui.coverage[locale]}</Link>

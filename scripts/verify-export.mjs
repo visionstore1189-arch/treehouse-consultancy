@@ -44,7 +44,7 @@ for (const locale of ["en", "ar"])
       throw new Error(`Wrong canonical domain: ${file}`);
     if (/TIBQA|Tibqa|Mutabiq|MUTABIQ|مطابق|طبقًا|طبًقا|treehouseconsultancy\.co\.uk/.test(html))
       throw new Error(`Retired product or old canonical leaked into public HTML: ${file}`);
-    if (/dawabit-demo\.vision-store1189\.workers\.dev/i.test(html))
+    if (/pages\.dev|workers\.dev|dawabit\.co\b|Dawabit Login|Sign in to Dawabit|password|Protected access pending/i.test(html))
       throw new Error(`Unprotected demo URL leaked into public HTML: ${file}`);
     count++;
   }
@@ -53,3 +53,11 @@ for (const name of ["sitemap.xml", "robots.txt", "_headers", "_routes.json", "_r
 console.log(
   `Static export verified: ${count} bilingual pages, metadata, language direction and Cloudflare support files.`,
 );
+// V6 account pages must be absent, not just hidden in navigation.
+for (const locale of ["", "ar/"]) {
+  for (const account of ["login", "portal", "recover-password", "reset-password"]) {
+    try { await readFile(`out/${locale}client/${account}/index.html`); }
+    catch (e) { if (e.code === "ENOENT") continue; throw e; }
+    throw new Error("Retired account page exported: " + locale + account);
+  }
+}

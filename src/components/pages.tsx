@@ -1,5 +1,3 @@
-import { AuthCallbackRedirect } from "./auth-callback-redirect";
-import { CustomerLoginForm, CustomerPortal, RecoverPasswordForm, SetPasswordForm } from "./customer-auth";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -35,7 +33,7 @@ import {
 } from "@/content/site";
 import { publishedArticles, readingMinutes } from "@/content/articles";
 import { formCopy } from "@/content/forms";
-import { config, href, type Locale } from "@/lib/config";
+import { config, href, portalHref, type Locale } from "@/lib/config";
 import { Header } from "./header";
 import { Footer } from "./footer";
 import { Button, Eyebrow, Wordmark, Closing, Arrow } from "./ui";
@@ -269,7 +267,16 @@ function Home({ locale }: { locale: Locale }) {
           <MarketCards locale={locale} />
         </div>
       </section>
-      {config.authLoginEnabled && <section className="client-access-band" aria-labelledby="client-access-heading"><div className="container client-access-inner"><div className="client-access-copy"><Eyebrow>{locale === "ar" ? "دخول العملاء" : "CLIENT ACCESS"}</Eyebrow><h2 id="client-access-heading">{locale === "ar" ? "مساحة عمل ضوابط الخاصة بكم" : "Your Dawabit workspace"}</h2><p>{ui.subscriberText[locale]}</p></div><div className="client-access-actions"><Button locale={locale} to="client/login">{ui.login[locale]}</Button></div></div></section>}
+      <section className="client-access-band" aria-labelledby="client-access-heading">
+        <div className="container client-access-inner">
+          <div className="client-access-copy">
+            <Eyebrow>{locale === "ar" ? "بوابة العملاء" : "CLIENT PORTAL"}</Eyebrow>
+            <h2 id="client-access-heading">{locale === "ar" ? "مكان آمن واحد للعملاء والمدعوين" : "One secure place for clients and invited guests"}</h2>
+            <p>{locale === "ar" ? "سجّلوا الدخول ببريدكم الإلكتروني المعتمد لفتح مساحة عملكم في ضوابط أو مستنداتكم أو العرض التوضيحي المعدّ لكم." : "Sign in with your approved email address to open your Dawabit workspace, your documents or a demonstration prepared for you."}</p>
+          </div>
+          <div className="client-access-actions"><a className="button button-primary" href={portalHref(locale)}>{locale === "ar" ? "فتح بوابة العملاء" : "Open the Client portal"}<Arrow /></a></div>
+        </div>
+      </section>
       <section className="section dawabit-deliverables-section" aria-labelledby="home-dawabit-deliverables">
         <div className="container">
           <div className="section-heading">
@@ -464,12 +471,6 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
       </>
     );
   switch (path) {
-    case "client/login":
-      return <section className="section portal-login-section"><div className="container auth-single-card"><Wordmark locale={locale} /><h1>{locale === "ar" ? "تسجيل دخول العملاء" : "Client sign in"}</h1><p>{locale === "ar" ? "سجّلوا الدخول بالبريد الإلكتروني وكلمة المرور المخصّصين لكم." : "Sign in with your approved email address and password."}</p><CustomerLoginForm locale={locale} /></div></section>;
-    case "client/portal": return <CustomerPortal locale={locale} />;
-    case "client/recover-password": return <RecoverPasswordForm locale={locale} />;
-    case "client/reset-password": return <SetPasswordForm locale={locale} />;
-
     case "dawabit":
       return (
         <>
@@ -676,10 +677,10 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
               <div className="container dawabit-demo-access-inner">
                 <div>
                   <Eyebrow>{ui.product[locale]} {ui.endorsement[locale]}</Eyebrow>
-                  <h2>{locale==="ar"?"فتح العرض التوضيحي":"Open the demonstration"}</h2>
-                  <p>{locale==="ar"?"هل لديكم صلاحية وصول معتمدة؟ سجّلوا الدخول لفتح العرض التوضيحي.":"Already have approved access? Sign in to open your demonstration."}</p>
+                  <h2>{locale==="ar"?"لديكم صلاحية دخول؟":"Already have access?"}</h2>
+                  <p>{locale==="ar"?"يُفتح العرض التوضيحي من بوابة العملاء. سجّلوا الدخول بالبريد الإلكتروني الذي زودتمونا به عند طلب العرض.":"The demonstration opens from the Client portal. Sign in with the email address you gave us when you requested it."}</p>
                 </div>
-                <a className="button button-primary" href={href(locale, "client/portal")} target="_blank" rel="noopener noreferrer">{locale === "ar" ? "فتح العرض التوضيحي" : "Open the demonstration"}<ArrowUpRight size={18} aria-hidden="true" /></a>
+                <a className="button button-primary" href={portalHref(locale)}>{locale === "ar" ? "فتح بوابة العملاء" : "Open the Client portal"}<ArrowUpRight size={18} aria-hidden="true" /></a>
               </div>
             </section>
           )}
@@ -872,7 +873,6 @@ export function SitePage({ locale, path }: { locale: Locale; path: string }) {
           : null;
   return (
     <>
-      <AuthCallbackRedirect locale={locale} />
       <Header locale={locale} path={path} />
       <main id="main" tabIndex={-1}>
         {schema && (
@@ -914,8 +914,6 @@ export function SitePage({ locale, path }: { locale: Locale; path: string }) {
               </Link>
             </article>
           </>
-        ) : path.startsWith("client/") ? (
-          <InnerContent locale={locale} path={path} />
         ) : (
           <>
             <PageHero locale={locale} path={path} />

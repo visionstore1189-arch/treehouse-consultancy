@@ -141,3 +141,11 @@ On 17 November 2026, staging CI passed **33 regression tests** and **152/152 res
 The connected Cloudflare account showed the existing corporate Pages project and the separate `dawabit-demo` Worker; its dashboard still offered **Set up Zero Trust**. This was a **read-only inspection**, not a successful security configuration. The public corporate site still displayed superseded branding.
 
 **Do not claim that the v5 site is launched, the 37 raster images are published, enquiries are operational, or confidential guides are Access-protected until each has been independently verified.**
+
+## Current architecture — v6 supersedes earlier account instructions
+
+The 18 November v6 change list retires website account routes and their APIs. The existing client-owned portal is the only client entry. Do not edit, redeploy, rename or delete its Cloudflare project, Access app/policies, DNS, team branding, legacy redirect Worker or older private redirect project. All EN/AR website links use the localized portal URL from src/lib/config.ts and open directly in the same tab. Former account paths redirect301; the old account API responds410 and never forwards credentials. No confidential application/file is included in the website repository or export.
+
+V6 B1 remains dependent on the approved Privacy Notice and D1/Turnstile/mail delivery configuration described above: the controlling v5 A4 says forms must not go live before that notice. The demo form is prepared with G4's name, organisation, email, sector, country and message fields; no extra role/regulator is required. Test real delivery to the enquiries mailbox before reporting completion. Keep the clickable email fallback meanwhile.
+
+V6 B2 security layout is prepared in src/drafts/security-page.tsx, deliberately excluded from public routes/sitemap until confirmed facts arrive. Legal holding pages, regulator coverage and noindex remain unchanged per v6. Responsive browser QA is distinct from physical iPhone/Android acceptance.

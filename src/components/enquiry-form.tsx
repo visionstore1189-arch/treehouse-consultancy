@@ -156,7 +156,7 @@ export function EnquiryForm({
     <div className="form-card form-closed-card" role="status">
       <span className="form-closed-icon" aria-hidden="true"><ShieldCheck size={30} strokeWidth={1.2}/></span>
       <h2>{locale === "ar" ? "تواصلوا مع فريق تري هاوس" : kind === "demo" ? "Request your tailored Dawabit demonstration" : "Speak to our team"}</h2>
-      <p>{locale === "ar" ? "الاستفسارات متاحة حاليًا عبر البريد الإلكتروني مباشرة." : "Online enquiry forms are being prepared. Contact our team directly by email in the meantime."}</p>
+      <p>{locale === "ar" ? "الاستفسارات متاحة حاليًا عبر البريد الإلكتروني مباشرة." : "Contact our team directly by email."}</p>
       <a className="form-closed-email" href={`mailto:enquiries@treehouseconsulting.co.uk?subject=${encodeURIComponent(kind === "demo" ? "Dawabit demonstration request" : kind === "coverage" ? "Regulator and sector request" : "Treehouse Consulting enquiry")}`}>
         enquiries@treehouseconsulting.co.uk <ArrowRight size={17} aria-hidden="true" />
       </a>
@@ -199,9 +199,9 @@ export function EnquiryForm({
             <div className="form-grid">
               {field("name")}
               {field("organisation")}
-              {field("role")}
+              {kind !== "demo" && field("role")}
               {field("email")}
-              {kind === "demo" && field("phone", false)}
+
               <label className="form-field">
                 {c.country[locale]}<span className="required-mark" aria-hidden="true"> *</span>
                 <select required name="country" defaultValue="">
@@ -232,7 +232,7 @@ export function EnquiryForm({
                 </label>
               ) : (
                 <>
-                  {field("regulator")}
+                  {kind === "coverage" && field("regulator")}
                   <label className="form-field">
                     {c.sector[locale]}<span className="required-mark" aria-hidden="true"> *</span>
                     <select name="sector" required defaultValue="">

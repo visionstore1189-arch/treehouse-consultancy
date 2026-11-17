@@ -25,21 +25,7 @@ export const ui = {
   talk: t("Speak to our team", "تحدث إلى فريقنا"),
   explore: t("Explore Dawabit", "اكتشف ضوابط"),
   coverage: t("See regulatory coverage", "اطّلع على التغطية الرقابية"),
-  login: t("Dawabit Login", "دخول عملاء ضوابط"),
-  portalEyebrow: t("Dawabit · PRIVATE CLIENT ACCESS", "ضوابط · بوابة العملاء الخاصة"),
-  subscriberTitle: t("Already subscribed to Dawabit?", "هل لديك اشتراك في ضوابط؟"),
-  subscriberText: t(
-    "Sign in to your Dawabit workspace.",
-    "سجّل الدخول إلى مساحة العمل الخاصة بكم في ضوابط."
-  ),
-  subscriberAction: t("Access your Dawabit account", "الدخول إلى حساب ضوابط"),
-  subscriberAvailability: t("Secure sign-in is being prepared.", "يجري إعداد تسجيل الدخول الآمن."),
-  loginEmail: t("Work email", "البريد الإلكتروني للعمل"),
-  loginPassword: t("Password", "كلمة المرور"),
-  loginSecure: t("Access is restricted to authorised subscribers.", "الدخول مخصص للمشتركين المصرّح لهم."),
-  loginIssue: t("Credentials are issued individually by Treehouse after subscription activation.", "تصدر تري هاوس بيانات الدخول لكل مستخدم بعد تفعيل الاشتراك."),
-  loginActionReady: t("Continue to secure sign-in", "المتابعة إلى تسجيل الدخول الآمن"),
-  loginActionPending: t("Sign-in not yet available", "تسجيل الدخول غير متاح بعد"),
+  login: t("Client portal", "بوابة العملاء"),
   home: t("Home", "الرئيسية"),
   menu: t("Open menu", "افتح القائمة"),
   close: t("Close menu", "أغلق القائمة"),
@@ -174,31 +160,6 @@ export const ui = {
     "اختر نتيجة لاستكشاف المنهج.",
   ),
   aboutApproach: t("How we work", "كيف نعمل"),
-  loginTitle: t(
-    "Your next chapter in regulatory clarity.",
-    "خطوتك التالية نحو الوضوح الرقابي.",
-  ),
-  reserved: t(
-    "SECURE CLIENT PORTAL",
-    "بوابة العملاء الآمنة",
-  ),
-  loginNotice: t(
-    "Dawabit account sign-in is available only to invited subscribers. Your organisation’s subscription and permissions are checked separately; the existing Dawabit software will be connected later.",
-    "تسجيل الدخول إلى حساب ضوابط مخصص للمشتركين الذين تلقوا دعوة. يتم التحقق من اشتراك مؤسستك وصلاحياتك بشكل منفصل، وسيُربط تطبيق ضوابط الحالي لاحقاً.",
-  ),
-  signIn: t("Secure sign-in unavailable", "تسجيل الدخول الآمن غير متاح"),
-  portalPreview: t("View reserved portal", "عرض مساحة البوابة المحجوزة"),
-  portalNotice: t(
-    "Design preview only. No account, assessment or client document is available here.",
-    "معاينة تصميم فقط. لا تتوفر هنا حسابات أو تقييمات أو مستندات عملاء.",
-  ),
-  portalAreas: [
-    t("Assessments", "التقييمات"),
-    t("Regulatory library", "المكتبة التنظيمية"),
-    t("Documents", "المستندات"),
-    t("Subscription", "الاشتراك"),
-  ],
-  connectionPending: t("Connection pending", "بانتظار الربط"),
   legalPending: t(
     "Legal notice being finalised",
     "يجري استكمال الإشعار القانوني",
@@ -786,11 +747,6 @@ export type PageContent = {
   eyebrow?: Bilingual;
 };
 export const pages: Record<string, PageContent> = {
-  "client/login": { title: t("Client sign in | Dawabit by Treehouse", "دخول العملاء | ضوابط من تري هاوس"), intro: t("Sign in to your Dawabit workspace.", "سجّلوا الدخول إلى مساحة عمل ضوابط.") },
-  "client/portal": { title: t("Client workspace | Dawabit by Treehouse", "مساحة العملاء | ضوابط من تري هاوس"), intro: t("Your account and authorised resources.", "حسابكم والموارد المصرّح لكم بها.") },
-  "client/recover-password": { title: t("Recover password | Dawabit by Treehouse", "استعادة كلمة المرور | ضوابط من تري هاوس"), intro: t("Recover access to your account.", "استعيدوا الوصول إلى حسابكم.") },
-  "client/reset-password": { title: t("Set password | Dawabit by Treehouse", "تعيين كلمة المرور | ضوابط من تري هاوس"), intro: t("Choose your own password.", "اختاروا كلمة مروركم.") },
-
   "": {
     title: t(
       "Treehouse Consulting | Regulatory Advisory and Regulatory Technology",
@@ -831,8 +787,8 @@ export const pages: Record<string, PageContent> = {
   "dawabit/demo": {
     title: t("Request a demonstration of Dawabit", "اطلب عرضاً توضيحياً لضوابط"),
     intro: t(
-      "Request a demonstration of Dawabit, tailored to your sector and regulator. We will reply within two working days with access details.",
-      "اطلب عرضًا توضيحيًا لضوابط مصممًا لقطاعكم وجهتكم التنظيمية. سنرد خلال يومي عمل بتفاصيل الوصول.",
+      "Request a demonstration of Dawabit, tailored to your sector and regulator. We will reply within two working days and approve your email address for the Client portal.",
+      "اطلب عرضًا توضيحيًا لضوابط مصممًا لقطاعكم وجهتكم التنظيمية. سنرد خلال يومي عمل ونعتمد بريدكم الإلكتروني للدخول إلى بوابة العملاء.",
     ),
   },
   "dawabit/faq": {

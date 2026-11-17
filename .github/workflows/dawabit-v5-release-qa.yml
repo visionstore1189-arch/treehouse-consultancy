@@ -1,10 +1,11 @@
-name: Dawabit v5 staging release and responsive QA
+name: Dawabit website release and responsive QA
 
 on:
   push:
     branches:
       - dawabit-v5-release-hardening-20261117
       - dawabit-client-login-20261117
+      - dawabit-v6-portal-20261118
   pull_request:
     branches:
       - dawabit-v5-client-rebrand-staging-2026
@@ -53,7 +54,7 @@ jobs:
           done
           cat /tmp/dawabit-preview.log
           exit 1
-      - name: Audit all 22 public routes in English and Arabic at four viewport widths
+      - name: Audit all public routes in English and Arabic at four viewport widths
         env:
           DAWABIT_QA_BASE_URL: http://127.0.0.1:8877
           PLAYWRIGHT_PACKAGE: /tmp/dawabit-browser/node_modules/playwright

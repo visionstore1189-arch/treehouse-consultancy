@@ -15,3 +15,11 @@
 # Unpublished sections.
 /insights/ / 302
 /ar/insights/ /ar/ 302
+
+# V6: portal-only entry. Server middleware also covers bare paths and both hosts.
+/portal https://portal.treehouseconsulting.co.uk/ 301
+/portal/* https://portal.treehouseconsulting.co.uk/ 301
+/client/* https://portal.treehouseconsulting.co.uk/ 301
+/ar/portal https://portal.treehouseconsulting.co.uk/?lang=ar 301
+/ar/portal/* https://portal.treehouseconsulting.co.uk/?lang=ar 301
+/ar/client/* https://portal.treehouseconsulting.co.uk/?lang=ar 301

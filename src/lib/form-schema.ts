@@ -6,7 +6,7 @@ export const enquirySchema = z
     locale: z.enum(["en", "ar"]),
     name: short,
     organisation: short,
-    role: short,
+    role: z.string().trim().max(150).default(""),
     email: z.email().max(254),
     phone: z.string().trim().max(40).optional().default(""),
     country: short,
@@ -21,8 +21,8 @@ export const enquirySchema = z
   })
   .superRefine((data, ctx) => {
     for (const field of data.kind === "contact"
-      ? (["subject", "message"] as const)
-      : (["regulator", "sector"] as const)) {
+      ? (["role", "subject", "message"] as const)
+      : data.kind === "demo" ? (["sector"] as const) : (["role", "regulator", "sector"] as const)) {
       if (data[field].length < 2)
         ctx.addIssue({ code: "custom", path: [field], message: "Required" });
     }

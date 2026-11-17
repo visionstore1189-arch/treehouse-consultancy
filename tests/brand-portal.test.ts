@@ -56,22 +56,16 @@ test("staged site includes additional buyer and explanatory sections in both lan
   assert.match(page, /artificialIntelligenceText\[locale\]/);
 });
 
-test("requested client login is available while confidential demo remains gated", () => {
-  assert.match(site, /"client\/login":/);
-  assert.match(page, /case "client\/login":/);
-  assert.doesNotMatch(header, /client\/login/);
-  assert.match(footer, /client\/login/);
-  assert.doesNotMatch(page, /dawabit-demo\.vision-store1189\.workers\.dev/);
-  assert.doesNotMatch(site, /dawabit-demo\.vision-store1189\.workers\.dev/);
+test("v6 uses only the existing bilingual portal with no website account forms", () => {
+  assert.doesNotMatch(site, /"client\/login":|Password|Sign in to Dawabit|Dawabit Login/);
+  assert.doesNotMatch(page, /CustomerLoginForm|CustomerPortal|<iframe|PROTECTED ACCESS PENDING/);
+  for (const component of [header, footer, page]) assert.match(component, /portalHref\(locale\)/);
+  assert.match(header, /header-portal-link/);
+  assert.match(header, /mobile-portal-link/);
+  assert.match(page, /One secure place for clients and invited guests/);
+  assert.match(page, /Already have access\?/);
   assert.match(config, /formsEnabled: false/);
   assert.match(config, /sampleReportEnabled: false/);
-  assert.match(config, /authLoginEnabled: true/);
-  const publicPanelsReady = /approvedVisualsInstalled = true/.test(read("src/content/dawabit-v5.ts"));
-  const publicOverviewReady = /visualsEnabled: true/.test(read("src/content/dawabit-assets.ts"));
-  assert.equal(publicPanelsReady, publicOverviewReady, "Public images must activate together after original-byte checks");
-  assert.doesNotMatch(page, /PROTECTED ACCESS PENDING/);
-  assert.match(page, /href=\{href\(locale, "client\/portal"\)\} target="_blank"/);
-  assert.doesNotMatch(page, /<iframe/);
 });
 
 test("official supplied Arabic vector art and favicon installed", () => {
@@ -123,7 +117,6 @@ test("draft blocks remain active until official authorisations and legal text", 
   assert.match(headers, /X-Robots-Tag:\s*noindex, nofollow/);
   assert.match(read("src/lib/routes.ts"), /index: false, follow: false/);
   assert.match(config, /formsEnabled: false/);
-  assert.match(config, /authLoginEnabled: true/);
   assert.match(config, /sampleReportEnabled: false/);
 });
 
