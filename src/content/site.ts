@@ -4,7 +4,7 @@ export const t = (en: string, ar: string): Bilingual => ({ en, ar });
 export const ui = {
   brand: t("Treehouse Consulting", "تري هاوس للاستشارات"),
   nav: [
-    t("TIBQA", "طبقًا"),
+    t("Dawabit", "ضوابط"),
     t("Services", "الخدمات"),
     t("Markets", "الأسواق"),
     t("Sectors", "القطاعات"),
@@ -13,7 +13,7 @@ export const ui = {
     t("Contact", "تواصل معنا"),
   ],
   navPaths: [
-    "tibqa",
+    "dawabit",
     "services",
     "markets",
     "sectors",
@@ -23,16 +23,16 @@ export const ui = {
   ],
   demo: t("Request a demonstration", "اطلب عرضاً توضيحياً"),
   talk: t("Speak to our team", "تحدث إلى فريقنا"),
-  explore: t("Explore TIBQA", "اكتشف طبقًا"),
+  explore: t("Explore Dawabit", "اكتشف ضوابط"),
   coverage: t("See regulatory coverage", "اطّلع على التغطية الرقابية"),
-  login: t("TIBQA Login", "دخول عملاء طبقًا"),
-  portalEyebrow: t("TIBQA · PRIVATE CLIENT ACCESS", "طبقًا · بوابة العملاء الخاصة"),
-  subscriberTitle: t("Already subscribed to TIBQA?", "هل لديك اشتراك في طبقًا؟"),
+  login: t("Dawabit Login", "دخول عملاء ضوابط"),
+  portalEyebrow: t("Dawabit · PRIVATE CLIENT ACCESS", "ضوابط · بوابة العملاء الخاصة"),
+  subscriberTitle: t("Already subscribed to Dawabit?", "هل لديك اشتراك في ضوابط؟"),
   subscriberText: t(
-    "Your organisation’s private workspace is where assessments, documents and regulatory evidence will be available after the secure application is connected.",
-    "ستتيح مساحة مؤسستك الخاصة الاطلاع على التقييمات والمستندات والأدلة الرقابية بعد ربط التطبيق الآمن."
+    "Sign in to your Dawabit workspace.",
+    "سجّل الدخول إلى مساحة العمل الخاصة بكم في ضوابط."
   ),
-  subscriberAction: t("Access your TIBQA account", "الدخول إلى حساب طبقًا"),
+  subscriberAction: t("Access your Dawabit account", "الدخول إلى حساب ضوابط"),
   subscriberAvailability: t("Secure sign-in is being prepared.", "يجري إعداد تسجيل الدخول الآمن."),
   loginEmail: t("Work email", "البريد الإلكتروني للعمل"),
   loginPassword: t("Password", "كلمة المرور"),
@@ -51,12 +51,12 @@ export const ui = {
   heroA: t("See your compliance position", "انظر إلى وضع التزامك"),
   heroB: t("the way your regulator will.", "كما ستراه الجهة الرقابية."),
   homeIntro: t(
-    "Treehouse is a UK regulatory advisory and technology firm, led by former regulators. We help financial institutions in the United Kingdom, the United Arab Emirates and Saudi Arabia to understand every requirement that applies to them, and to evidence how they meet it.",
-    "تري هاوس شركة بريطانية متخصصة في الاستشارات التنظيمية والتقنية الرقابية، يقودها مسؤولون رقابيون سابقون. نساعد المؤسسات المالية في المملكة المتحدة والإمارات العربية المتحدة والمملكة العربية السعودية على معرفة كل متطلب ينطبق عليها، وعلى إثبات استيفائه.",
+    "We help regulated organisations in the United Kingdom, the United Arab Emirates and Saudi Arabia, in financial services and beyond, to understand every requirement that applies to them, and to evidence how they meet it.",
+    "نساعد الجهات الخاضعة للتنظيم في المملكة المتحدة والإمارات العربية المتحدة والمملكة العربية السعودية، في الخدمات المالية وغيرها من القطاعات، على فهم كل متطلب ينطبق عليها وإثبات كيفية استيفائه.",
   ),
   heroShort: t(
-    "Regulatory advisory and technology, led by former regulators. Clarity for financial institutions across the UK, UAE and Saudi Arabia.",
-    "استشارات تنظيمية وتقنية رقابية يقودها مسؤولون رقابيون سابقون. رؤية واضحة للمؤسسات المالية في المملكة المتحدة والإمارات والسعودية.",
+    "Clarity for regulated organisations across the UK, UAE and Saudi Arabia.",
+    "وضوح للجهات الخاضعة للتنظيم في المملكة المتحدة والإمارات والسعودية.",
   ),
   scroll: t("A clearer perspective", "رؤية أكثر وضوحاً"),
   structure: t("THE STRUCTURE OF COMPLIANCE", "هيكل الالتزام"),
@@ -71,28 +71,28 @@ export const ui = {
   ],
   pause: t("Pause motion", "إيقاف الحركة"),
   play: t("Resume motion", "تشغيل الحركة"),
-  product: t("TIBQA", "طبقًا"),
+  product: t("Dawabit", "ضوابط"),
   endorsement: t("by Treehouse", "من تري هاوس"),
   tagline: t("Every requirement, evidenced.", "كل متطلب، بالدليل."),
   productDescriptor: t(
-    "TIBQA is the regulatory compliance assessment tool by Treehouse.",
-    "طبقًا هي أداة تقييم الالتزام التنظيمي من تري هاوس.",
+    "Dawabit is the regulatory compliance assessment tool by Treehouse.",
+    "ضوابط هي أداة تقييم الالتزام التنظيمي من تري هاوس.",
   ),
-  whatTIBQADoes: t("What TIBQA does", "ماذا يقدّم طبقًا"),
+  whatDawabitDoes: t("What Dawabit does", "ماذا يقدّم ضوابط"),
   findingsHeading: t("From regulation to finding", "من النص الرقابي إلى النتيجة"),
   productHeading: t(
     "Every requirement. Every policy. One clear answer.",
     "كل متطلب. كل سياسة. إجابة واحدة واضحة.",
   ),
   productIntro: t(
-    "TIBQA is our regulatory compliance assessment tool. It holds regulatory requirements taken directly from the source instruments, and assesses your policies and procedures against each one. The result is a requirement by requirement view of where you stand, with the evidence behind every finding.",
-    "طبقًا هي أداتنا لتقييم الالتزام التنظيمي. تحتوي الأداة على المتطلبات التنظيمية مأخوذة مباشرة من نصوص الأنظمة واللوائح، وتقيّم سياساتكم وإجراءاتكم مقابل كل متطلب. والنتيجة صورة واضحة لوضعكم، متطلباً بمتطلب، مع الدليل الداعم لكل نتيجة.",
+    "Dawabit is our regulatory compliance assessment tool. It holds regulatory requirements taken directly from the source instruments, and assesses your policies and procedures against each one. The result is a requirement by requirement view of where you stand, with the evidence behind every finding.",
+    "ضوابط هي أداتنا لتقييم الالتزام التنظيمي. تحتوي الأداة على المتطلبات التنظيمية مأخوذة مباشرة من نصوص الأنظمة واللوائح، وتقيّم سياساتكم وإجراءاتكم مقابل كل متطلب. والنتيجة صورة واضحة لوضعكم، متطلباً بمتطلب، مع الدليل الداعم لكل نتيجة.",
   ),
   why: t("A different perspective.", "منظور مختلف."),
   whyEyebrow: t("THE TREEHOUSE APPROACH", "منهج تري هاوس"),
   serviceHeading: t(
-    "Advisory services, powered by TIBQA.",
-    "خدمات استشارية تدعمها تقنية طبقًا.",
+    "Advisory services, powered by Dawabit.",
+    "خدمات استشارية تدعمها تقنية ضوابط.",
   ),
   allServices: t("View all services", "جميع الخدمات"),
   marketHeading: t("One firm. Three markets.", "شركة واحدة. ثلاثة أسواق."),
@@ -112,8 +112,8 @@ export const ui = {
   ),
   closingTitle: t("Know where you stand.", "اعرف أين تقف."),
   closingText: t(
-    "Ask us for a demonstration of TIBQA, or talk to our team about your regulatory priorities.",
-    "اطلب عرضاً توضيحياً لطبقًا، أو تحدث إلى فريقنا حول أولوياتك التنظيمية.",
+    "Ask us for a demonstration of Dawabit, or talk to our team about your regulatory priorities.",
+    "اطلب عرضاً توضيحياً لضوابط، أو تحدث إلى فريقنا حول أولوياتك التنظيمية.",
   ),
   disclaimer: t(
     "Treehouse Consulting provides regulatory advisory and technology services. It is not a law firm and does not provide legal advice. Nothing on this website implies approval or endorsement by any regulator.",
@@ -150,14 +150,14 @@ export const ui = {
     "Tell us which regulator and sector you need. We add new regulators in response to demand from firms.",
     "أخبرنا بالجهة الرقابية والقطاع الذي تحتاجه. نضيف جهات رقابية جديدة استجابة لاحتياجات المؤسسات.",
   ),
-  how: t("How TIBQA works", "كيف يعمل طبقًا"),
+  how: t("How Dawabit works", "كيف يعمل ضوابط"),
   outputs: t("What you receive", "ما تحصل عليه"),
   principles: t("Our principles", "مبادئنا"),
   users: t("Who uses it", "لمن صُمّم"),
   verdicts: t("Four verdicts. No ambiguity.", "أربع نتائج واضحة."),
   judgement: t(
-    "TIBQA supports professional judgement and does not replace it. Every assessment is reviewed by an experienced regulatory specialist.",
-    "يدعم طبقًا الحكم المهني ولا يحلّ محله. يراجع كل تقييم متخصص ذو خبرة في الشؤون التنظيمية.",
+    "Dawabit supports professional judgement and does not replace it. Every assessment is reviewed by an experienced regulatory specialist.",
+    "يدعم ضوابط الحكم المهني ولا يحلّ محله. يراجع كل تقييم متخصص ذو خبرة في الشؤون التنظيمية.",
   ),
   illustration: t(
     "ILLUSTRATIVE METHOD · NOT LIVE CLIENT DATA",
@@ -181,8 +181,8 @@ export const ui = {
     "بوابة العملاء الآمنة",
   ),
   loginNotice: t(
-    "TIBQA account sign-in is available only to invited subscribers. Your organisation’s subscription and permissions are checked separately; the existing TIBQA software will be connected later.",
-    "تسجيل الدخول إلى حساب طبقًا مخصص للمشتركين الذين تلقوا دعوة. يتم التحقق من اشتراك مؤسستك وصلاحياتك بشكل منفصل، وسيُربط تطبيق طبقًا الحالي لاحقاً.",
+    "Dawabit account sign-in is available only to invited subscribers. Your organisation’s subscription and permissions are checked separately; the existing Dawabit software will be connected later.",
+    "تسجيل الدخول إلى حساب ضوابط مخصص للمشتركين الذين تلقوا دعوة. يتم التحقق من اشتراك مؤسستك وصلاحياتك بشكل منفصل، وسيُربط تطبيق ضوابط الحالي لاحقاً.",
   ),
   signIn: t("Secure sign-in unavailable", "تسجيل الدخول الآمن غير متاح"),
   portalPreview: t("View reserved portal", "عرض مساحة البوابة المحجوزة"),
@@ -246,7 +246,7 @@ export const serviceLabels = {
   when: t("When firms call us", "متى تحتاج المؤسسات إلينا"),
   what: t("What we do", "ما نقدمه"),
   receive: ui.outputs,
-  tibqa: t("Supported by TIBQA by Treehouse", "بدعم من طبقًا من تري هاوس"),
+  dawabit: t("Supported by Dawabit by Treehouse", "بدعم من ضوابط من تري هاوس"),
 };
 export const services = [
   {
@@ -273,8 +273,8 @@ export const services = [
       "سجل للمتطلبات، ونتيجة لكل متطلب، وتقرير للفجوات حسب الأولوية، وخطة معالجة.",
     ),
     support: t(
-      "TIBQA links each requirement to document evidence and a clear verdict, creating a traceable assessment.",
-      "يربط طبقًا كل متطلب بالأدلة الوثائقية ونتيجة واضحة، لإنشاء تقييم قابل للتتبع.",
+      "Dawabit links each requirement to document evidence and a clear verdict, creating a traceable assessment.",
+      "يربط ضوابط كل متطلب بالأدلة الوثائقية ونتيجة واضحة، لإنشاء تقييم قابل للتتبع.",
     ),
   },
   {
@@ -286,7 +286,7 @@ export const services = [
     ),
     who: t(
       "New entrants and established financial institutions seeking new or extended regulatory permissions.",
-      "الجهات الجديدة والمؤسسات المالية القائمة التي تسعى إلى تراخيص جديدة أو توسعة نطاق تصاريحها.",
+      "الجهات الجديدة والجهات الخاضعة للتنظيم القائمة التي تسعى إلى تراخيص جديدة أو توسعة نطاق تصاريحها.",
     ),
     when: t(
       "At market entry, when launching a new regulated activity or when extending existing permissions.",
@@ -329,8 +329,8 @@ export const services = [
       "إطار متناسب، ومسؤوليات واضحة، وترتيبات عملية لإعداد التقارير والمراقبة.",
     ),
     support: t(
-      "TIBQA maps framework documents to applicable requirements and highlights areas that need stronger evidence.",
-      "يربط طبقًا وثائق الإطار بالمتطلبات المنطبقة ويحدد المجالات التي تحتاج إلى أدلة أقوى.",
+      "Dawabit maps framework documents to applicable requirements and highlights areas that need stronger evidence.",
+      "يربط ضوابط وثائق الإطار بالمتطلبات المنطبقة ويحدد المجالات التي تحتاج إلى أدلة أقوى.",
     ),
   },
   {
@@ -357,8 +357,8 @@ export const services = [
       "خطة تغيير مرتبة حسب الأولوية، بمسؤوليات ومراحل واضحة وأدلة إغلاق.",
     ),
     support: t(
-      "TIBQA connects changed requirements to findings and actions, preserving the evidence behind remediation.",
-      "يربط طبقًا المتطلبات المعدلة بالنتائج والإجراءات، ويحفظ الأدلة الداعمة للمعالجة.",
+      "Dawabit connects changed requirements to findings and actions, preserving the evidence behind remediation.",
+      "يربط ضوابط المتطلبات المعدلة بالنتائج والإجراءات، ويحفظ الأدلة الداعمة للمعالجة.",
     ),
   },
   {
@@ -385,8 +385,8 @@ export const services = [
       "نتائج مستقلة، ومسار واضح للأدلة، وتوصيات متناسبة للإجراء.",
     ),
     support: t(
-      "TIBQA provides the requirement register and document evidence that underpin the specialist’s independent review.",
-      "يوفر طبقًا سجل المتطلبات والأدلة الوثائقية التي تستند إليها المراجعة المستقلة للمتخصص.",
+      "Dawabit provides the requirement register and document evidence that underpin the specialist’s independent review.",
+      "يوفر ضوابط سجل المتطلبات والأدلة الوثائقية التي تستند إليها المراجعة المستقلة للمتخصص.",
     ),
   },
 ];
@@ -461,11 +461,11 @@ export const markets = [
 export const marketLabels = {
   regulators: t("Regulators covered", "الجهات الرقابية المشمولة"),
   help: t("How we help", "كيف نساعدكم"),
-  status: t("TIBQA in this market", "طبقًا في هذا السوق"),
-  saudiTitle: t("TIBQA for the Insurance Authority.", "طبقًا لهيئة التأمين."),
+  status: t("Dawabit in this market", "ضوابط في هذا السوق"),
+  saudiTitle: t("Dawabit for the Insurance Authority.", "ضوابط لهيئة التأمين."),
   saudiText: t(
-    "The complete Insurance Authority library is available in TIBQA today. Insurers, reinsurers and insurance service providers can assess their full policy suite against every requirement issued by the Authority.",
-    "مكتبة هيئة التأمين متاحة اليوم كاملة في طبقًا. يمكن لشركات التأمين وإعادة التأمين ومقدمي خدمات التأمين تقييم سياساتهم مقابل كل متطلب صادر عن الهيئة.",
+    "The complete Insurance Authority library is available in Dawabit today. Insurers, reinsurers and insurance service providers can assess their full policy suite against every requirement issued by the Authority.",
+    "مكتبة هيئة التأمين متاحة اليوم كاملة في ضوابط. يمكن لشركات التأمين وإعادة التأمين ومقدمي خدمات التأمين تقييم سياساتهم مقابل كل متطلب صادر عن الهيئة.",
   ),
 };
 export const coverage = [
@@ -594,8 +594,8 @@ export const steps = [
   {
     title: t("Map", "الربط"),
     text: t(
-      "TIBQA assembles every requirement in scope from the library.",
-      "يجمع طبقًا كل متطلب ضمن النطاق من المكتبة.",
+      "Dawabit assembles every requirement in scope from the library.",
+      "يجمع ضوابط كل متطلب ضمن النطاق من المكتبة.",
     ),
     output: t("A complete requirements register", "سجل كامل للمتطلبات"),
   },
@@ -810,22 +810,22 @@ export const pages: Record<string, PageContent> = {
     ),
     intro: ui.homeIntro,
     meta: t(
-      "UK regulatory advisory and technology firm serving financial institutions in the UK, UAE and Saudi Arabia. Home of TIBQA, the regulatory compliance assessment tool.",
-      "شركة بريطانية للاستشارات التنظيمية والتقنية الرقابية تخدم المؤسسات المالية في المملكة المتحدة والإمارات والسعودية. مطوّر أداة طبقًا لتقييم الالتزام.",
+      "UK regulatory advisory and technology firm serving regulated organisations in the UK, UAE and Saudi Arabia. Home of Dawabit, the regulatory compliance assessment tool.",
+      "شركة بريطانية للاستشارات التنظيمية والتقنية الرقابية تخدم المؤسسات المالية في المملكة المتحدة والإمارات والسعودية. مطوّر أداة ضوابط لتقييم الالتزام.",
     ),
   },
-  tibqa: {
+  dawabit: {
     title: t(
       "Every requirement, evidenced.",
       "كل متطلب، بالدليل.",
     ),
     intro: t(
-      "Regulated firms are expected to know every requirement that applies to them and to show how each is met. In practice this knowledge sits in spreadsheets, in people’s heads and in documents that fall out of date. TIBQA replaces that with a single, structured and evidenced view.",
-      "يُتوقع من المؤسسات الخاضعة للتنظيم معرفة كل متطلب ينطبق عليها وإثبات استيفائه. عملياً، تتوزع هذه المعرفة بين جداول البيانات وخبرات الأفراد والوثائق التي تصبح قديمة. يجمع طبقًا ذلك في رؤية واحدة منظمة وموثقة.",
+      "Regulated firms are expected to know every requirement that applies to them and to show how each is met. In practice this knowledge sits in spreadsheets, in people’s heads and in documents that fall out of date. Dawabit replaces that with a single, structured and evidenced view.",
+      "يُتوقع من المؤسسات الخاضعة للتنظيم معرفة كل متطلب ينطبق عليها وإثبات استيفائه. عملياً، تتوزع هذه المعرفة بين جداول البيانات وخبرات الأفراد والوثائق التي تصبح قديمة. يجمع ضوابط ذلك في رؤية واحدة منظمة وموثقة.",
     ),
-    eyebrow: t("TIBQA by Treehouse", "طبقًا من تري هاوس"),
+    eyebrow: t("Dawabit by Treehouse", "ضوابط من تري هاوس"),
   },
-  "tibqa/how-it-works": {
+  "dawabit/how-it-works": {
     title: t(
       "From regulation to evidenced findings in five steps",
       "من الأنظمة إلى النتائج الموثقة في خمس خطوات",
@@ -833,18 +833,18 @@ export const pages: Record<string, PageContent> = {
     intro: ui.judgement,
     eyebrow: ui.how,
   },
-  "tibqa/coverage": {
+  "dawabit/coverage": {
     title: t("Regulatory coverage", "التغطية الرقابية"),
     intro: t(
-      "TIBQA is built to work with any regulator. One method and one engine serve every market, with a dedicated library for each regulator. The table below shows current coverage.",
-      "صُمّم طبقًا للعمل مع أي جهة رقابية. يخدم منهج واحد ومحرك واحد جميع الأسواق، مع مكتبة مخصصة لكل جهة رقابية. يوضح الجدول أدناه التغطية الحالية.",
+      "Dawabit is built to work with any regulator. One method and one engine serve every market, with a dedicated library for each regulator. The table below shows current coverage.",
+      "صُمّم ضوابط للعمل مع أي جهة رقابية. يخدم منهج واحد ومحرك واحد جميع الأسواق، مع مكتبة مخصصة لكل جهة رقابية. يوضح الجدول أدناه التغطية الحالية.",
     ),
   },
-  "tibqa/demo": {
-    title: t("Request a demonstration of TIBQA", "اطلب عرضاً توضيحياً لطبقًا"),
+  "dawabit/demo": {
+    title: t("Request a demonstration of Dawabit", "اطلب عرضاً توضيحياً لضوابط"),
     intro: t(
-      "See TIBQA working on a live regulatory library. Demonstrations take around 30 minutes and are led by a regulatory specialist. We will reply within two working days.",
-      "شاهد طبقًا يعمل على مكتبة تنظيمية فعلية. تستغرق العروض نحو ٣٠ دقيقة ويقدمها متخصص في الشؤون التنظيمية. سنرد خلال يومي عمل.",
+      "See Dawabit working on a live regulatory library. Demonstrations take around 30 minutes and are led by a regulatory specialist. We will reply within two working days.",
+      "شاهد ضوابط يعمل على مكتبة تنظيمية فعلية. تستغرق العروض نحو ٣٠ دقيقة ويقدمها متخصص في الشؤون التنظيمية. سنرد خلال يومي عمل.",
     ),
   },
   services: {
@@ -853,8 +853,8 @@ export const pages: Record<string, PageContent> = {
       "استشارات تنظيمية تستند إلى الأدلة",
     ),
     intro: t(
-      "Our services cover the full regulatory life cycle, from first licence to ongoing assurance. Each is led by senior specialists and supported by TIBQA, so our advice is faster to deliver and easier to evidence.",
-      "تغطي خدماتنا دورة العمل التنظيمي كاملة، من الترخيص الأول حتى التأكيد المستمر. يقودها متخصصون ذوو خبرة ويدعمها طبقًا، لتقديم المشورة بكفاءة وبأدلة واضحة.",
+      "Our services cover the full regulatory life cycle, from first licence to ongoing assurance. Each is led by senior specialists and supported by Dawabit, so our advice is faster to deliver and easier to evidence.",
+      "تغطي خدماتنا دورة العمل التنظيمي كاملة، من الترخيص الأول حتى التأكيد المستمر. يقودها متخصصون ذوو خبرة ويدعمها ضوابط، لتقديم المشورة بكفاءة وبأدلة واضحة.",
     ),
   },
   markets: { title: ui.marketHeading, intro: ui.marketIntro },
@@ -871,8 +871,8 @@ export const pages: Record<string, PageContent> = {
       "بخبرة من عملوا في الجانب الرقابي",
     ),
     intro: t(
-      "Treehouse was founded on a simple observation. Most regulatory problems begin with a firm that does not have a complete and current view of what is required of it. Our leadership has spent many years in senior supervisory roles, and in advising regulators and regulated firms in the United Kingdom and the Gulf. We built TIBQA to give firms the same clarity a supervisor expects to find.",
-      "تأسست تري هاوس انطلاقاً من ملاحظة بسيطة: تبدأ معظم المشكلات التنظيمية عندما تفتقر المؤسسة إلى رؤية كاملة ومحدثة لما هو مطلوب منها. أمضت قيادتنا سنوات طويلة في مناصب رقابية عليا وفي تقديم المشورة للجهات الرقابية والمؤسسات في المملكة المتحدة والخليج. بنينا طبقًا لمنح المؤسسات الوضوح الذي يتوقعه المشرف.",
+      "Treehouse was founded on a simple observation. Most regulatory problems begin with a firm that does not have a complete and current view of what is required of it. Our leadership has spent many years in senior supervisory roles, and in advising regulators and regulated firms in the United Kingdom and the Gulf. We built Dawabit to give firms the same clarity a supervisor expects to find.",
+      "تأسست تري هاوس انطلاقاً من ملاحظة بسيطة: تبدأ معظم المشكلات التنظيمية عندما تفتقر المؤسسة إلى رؤية كاملة ومحدثة لما هو مطلوب منها. أمضت قيادتنا سنوات طويلة في مناصب رقابية عليا وفي تقديم المشورة للجهات الرقابية والمؤسسات في المملكة المتحدة والخليج. بنينا ضوابط لمنح المؤسسات الوضوح الذي يتوقعه المشرف.",
     ),
   },
   contact: {
@@ -883,15 +883,15 @@ export const pages: Record<string, PageContent> = {
     ),
   },
   // Account access is restored only as a private customer workspace.
-  // It does NOT unlock assessments from the separate TIBQA application.
+  // It does NOT unlock assessments from the separate Dawabit application.
   "client/login": { title: ui.loginTitle, intro: ui.loginNotice },
-  "client/portal": { title: t("Your TIBQA account", "حسابك في طبقًا"), intro: ui.portalNotice },
+  "client/portal": { title: t("Your Dawabit account", "حسابك في ضوابط"), intro: ui.portalNotice },
   "client/recover-password": {
-    title: t("Reset your TIBQA password", "استعادة كلمة مرور طبقًا"),
+    title: t("Reset your Dawabit password", "استعادة كلمة مرور ضوابط"),
     intro: t("Secure account recovery", "استعادة الحساب الآمنة"),
   },
   "client/reset-password": {
-    title: t("Set your TIBQA password", "تعيين كلمة مرور طبقًا"),
+    title: t("Set your Dawabit password", "تعيين كلمة مرور ضوابط"),
     intro: t("Accept your invitation or reset your password", "قبول الدعوة أو إعادة تعيين كلمة المرور"),
   },
 };
@@ -904,8 +904,8 @@ for (const s of services)
 for (const m of markets)
   pages[m.slug] = { title: m.title, intro: m.intro, eyebrow: m.name };
 export const productNameMeaning = t(
-  'TIBQA comes from the Arabic for "in accordance with". It answers one question for every requirement: is your framework in accordance with it?',
-  '«طبقًا» كلمة تستخدمها الأنظمة بمعنى «وفقًا لـ». تجيب عن سؤال واحد لكل متطلب: هل إطاركم متوافق معه؟',
+  "Dawabit (ضوابط) is the Arabic word for the controls and rules that a regulator sets. The tool answers one question for every one of them: does your framework meet it?",
+  "«ضوابط» هي القواعد والاشتراطات التي تضعها الجهة التنظيمية. تجيب الأداة عن سؤال واحد لكل ضابط منها: هل يستوفيه إطاركم؟",
 );
 // Draft legal notices are deliberately not published until client-approved text is supplied.
 // Privacy, cookie and terms URLs are withheld in the v3 draft launch.
