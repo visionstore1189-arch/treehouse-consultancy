@@ -222,10 +222,10 @@ export const coverageStatusLabels = {
 };
 export const why = [
   {
-    title: t("The supervisor’s view.", "نظرة المشرف."),
+    title: t("The regulatory perspective.", "المنظور التنظيمي."),
     text: t(
-      "Our work is led by people who have supervised regulated firms. We know what a regulator looks for and how findings are formed.",
-      "يقود أعمالنا أشخاص سبق لهم الإشراف على مؤسسات مرخصة، ونعرف ما تبحث عنه الجهة الرقابية وكيف تتشكل النتائج.",
+      "We assess the requirements that apply to your organisation, showing where the supporting policy evidence is clear and where further work is needed.",
+      "نقيّم المتطلبات المنطبقة على مؤسستكم، مع توضيح المواضع التي تتوافر فيها الأدلة الداعمة من السياسات والمواضع التي تحتاج إلى معالجة.",
     ),
   },
   {
