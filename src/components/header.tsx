@@ -6,6 +6,7 @@ import { ui, services, markets } from "@/content/site";
 import { publishedArticles } from "@/content/articles";
 import { href, type Locale } from "@/lib/config";
 import { Brand, Arrow } from "./ui";
+import { SiteProgress } from "./site-progress";
 export function Header({ locale, path }: { locale: Locale; path: string }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
@@ -38,9 +39,11 @@ export function Header({ locale, path }: { locale: Locale; path: string }) {
   const subnav = (i: number) =>
     i === 0
       ? [
-          { path: "tibqa", label: ui.explore },
-          { path: "tibqa/how-it-works", label: ui.how },
-          { path: "tibqa/coverage", label: ui.coverage },
+          { path: "dawabit", label: ui.explore },
+          { path: "dawabit/how-it-works", label: ui.how },
+          { path: "dawabit/coverage", label: ui.coverage },
+          { path: "dawabit/faq", label: { en: "Frequently asked questions", ar: "الأسئلة الشائعة" } },
+          { path: "dawabit/demo", label: ui.demo },
         ]
       : i === 1
         ? [
@@ -77,7 +80,7 @@ export function Header({ locale, path }: { locale: Locale; path: string }) {
                   }}
                 >
                   <summary>
-                    {i === 0 && <img src="/brand/tibqa-mark.svg" alt="" aria-hidden="true" className="nav-tibqa-symbol" width={16} height={16} />}
+                    {i === 0 && <img src="/brand/treehouse-favicon-v4.svg" alt="" aria-hidden="true" className="nav-dawabit-symbol" width={16} height={16} />}
                     {item[locale]}
                     <ChevronDown size={12} />
                   </summary>
@@ -120,7 +123,7 @@ export function Header({ locale, path }: { locale: Locale; path: string }) {
               <Globe2 size={15} />
               <span>{locale === "en" ? "العربية" : "English"}</span>
             </Link>
-            <Link className="header-cta" href={href(locale, "tibqa/demo")}>
+            <Link className="header-cta" href={href(locale, "dawabit/demo")}>
               {ui.demo[locale]}
               <Arrow diagonal />
             </Link>
@@ -137,6 +140,7 @@ export function Header({ locale, path }: { locale: Locale; path: string }) {
             </button>
           </div>
         </div>
+        <SiteProgress locale={locale} />
       </header>
       <dialog
         className="mobile-menu"
@@ -158,11 +162,11 @@ export function Header({ locale, path }: { locale: Locale; path: string }) {
         </div>
         <nav aria-label={ui.menu[locale]}>
           {ui.nav.map((item, i) =>
-            i === 4 && !showInsights ? null : i === 2 ? (
+            i === 4 && !showInsights ? null : i < 3 ? (
               <details className="mobile-markets" key={i}>
                 <summary>{item[locale]}<ChevronDown size={17} /></summary>
                 <div className="mobile-subnav">
-                  {subnav(2).map((s) => (
+                  {subnav(i).map((s) => (
                     <Link key={s.path} href={href(locale, s.path)} onClick={close}>
                       {s.label[locale]}<Arrow />
                     </Link>
@@ -178,7 +182,7 @@ export function Header({ locale, path }: { locale: Locale; path: string }) {
         </nav>
         <Link
           className="button button-primary"
-          href={href(locale, "tibqa/demo")}
+          href={href(locale, "dawabit/demo")}
           onClick={close}
         >
           {ui.demo[locale]}

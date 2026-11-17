@@ -36,37 +36,35 @@ export function Eyebrow({ children }: { children: ReactNode }) {
     </p>
   );
 }
+// Exact client-supplied vector masters, imported unchanged from v4 brand pack.
+const englishLogoPackInstalled = true;
 export function Wordmark({ locale }: { locale: Locale }) {
   return (
-    <div className="wordmark tibqa-brand-mark" role="img" aria-label={`${ui.product[locale]} ${ui.endorsement[locale]}`}>
-      {locale === "en" ? (
-        <span className="tibqa-logo-art" aria-hidden="true">
-          <img className="tibqa-wordmark-dark" src="/brand/tibqa-wordmark.svg" alt="" width={370} height={65} />
-          <img className="tibqa-wordmark-light" src="/brand/tibqa-wordmark-light.svg" alt="" width={370} height={65} />
+    <div className="wordmark dawabit-brand-mark" role="img" aria-label={`${ui.product[locale]} ${ui.endorsement[locale]}`}>
+      {locale === "ar" ? (
+        <span className="dawabit-logo-arabic" aria-hidden="true">
+          <img className="dawabit-lockup-primary" src="/brand/dawabit-by-treehouse-lockup-ar-v1.svg" width={420} height={112} alt="" />
+          <img className="dawabit-lockup-reversed" src="/brand/dawabit-by-treehouse-lockup-ar-light-v1.svg" width={420} height={112} alt="" />
+        </span>
+      ) : englishLogoPackInstalled ? (
+        <span className="dawabit-logo-art" aria-hidden="true">
+          <img className="dawabit-wordmark-dark" src="/brand/dawabit-logo-primary-v4.svg" alt="" width={500} height={112} />
+          <img className="dawabit-wordmark-light" src="/brand/dawabit-logo-reversed-v4.svg" alt="" width={500} height={112} />
         </span>
       ) : (
-        <span className="tibqa-logo-arabic" aria-hidden="true">
-          <img src="/brand/tibqa-mark.svg" width={38} height={38} alt="" />
-          <span>{ui.product[locale]}</span>
+        <span className="dawabit-logo-pending" aria-hidden="true">
+          <span>Dawabit</span>
+          <small>by Treehouse</small>
         </span>
       )}
-      <small>{ui.endorsement[locale]}</small>
     </div>
   );
 }
 export function Brand({ locale = "en" }: { locale?: Locale }) {
   return (
-    <Link
-      href={href(locale)}
-      aria-label={`${ui.brand[locale]} — ${ui.home[locale]}`}
-      className="brand"
-    >
-      <img
-        src="/brand/treehouse-official.png"
-        alt={ui.brand[locale]}
-        width="1280"
-        height="1280"
-      />
+    <Link href={href(locale)} aria-label={`${ui.brand[locale]} — ${ui.home[locale]}`} className="brand treehouse-official-brand">
+      <img className="treehouse-logo-primary" src="/brand/treehouse-logo-primary-v4.svg" width={350} height={75} alt="" />
+      <img className="treehouse-logo-reversed" src="/brand/treehouse-logo-reversed-v4.svg" width={350} height={75} alt="" />
     </Link>
   );
 }
@@ -80,7 +78,7 @@ export function Closing({ locale }: { locale: Locale }) {
           <p>{ui.closingText[locale]}</p>
         </div>
         <div className="button-row">
-          <Button to="tibqa/demo" locale={locale}>
+          <Button to="dawabit/demo" locale={locale}>
             {ui.demo[locale]}
           </Button>
           <Button to="contact" locale={locale} secondary>

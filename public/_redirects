@@ -1,8 +1,25 @@
-# Permanent legacy MUTABIQ product path migration to TIBQA.
-# These apply to the Cloudflare Pages static site in both languages.
-/mutabiq /tibqa/ 301
-/mutabiq/ /tibqa/ 301
-/mutabiq/* /tibqa/:splat 301
-/ar/mutabiq /ar/tibqa/ 301
-/ar/mutabiq/ /ar/tibqa/ 301
-/ar/mutabiq/* /ar/tibqa/:splat 301
+# v5: permanent retired product addresses to Dawabit.
+# Preserve suffixes for legacy deep links in both languages.
+/tibqa /dawabit/ 301
+/tibqa/ /dawabit/ 301
+/tibqa/* /dawabit/:splat 301
+/mutabiq /dawabit/ 301
+/mutabiq/ /dawabit/ 301
+/mutabiq/* /dawabit/:splat 301
+/ar/tibqa /ar/dawabit/ 301
+/ar/tibqa/ /ar/dawabit/ 301
+/ar/tibqa/* /ar/dawabit/:splat 301
+/ar/mutabiq /ar/dawabit/ 301
+/ar/mutabiq/ /ar/dawabit/ 301
+/ar/mutabiq/* /ar/dawabit/:splat 301
+# Unpublished sections.
+/insights/ / 302
+/ar/insights/ /ar/ 302
+/client/login/ / 302
+/ar/client/login/ /ar/ 302
+/client/recover-password/ / 302
+/ar/client/recover-password/ /ar/ 302
+/client/portal/ / 302
+/ar/client/portal/ /ar/ 302
+/client/reset-password/ / 302
+/ar/client/reset-password/ /ar/ 302

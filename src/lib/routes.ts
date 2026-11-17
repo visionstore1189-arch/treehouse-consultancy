@@ -3,6 +3,7 @@ import { pages } from "@/content/site";
 import { seo } from "@/content/seo";
 import { publishedArticles } from "@/content/articles";
 import { config, href, type Locale } from "./config";
+import { approvedVisualsInstalled } from "@/content/dawabit-v5";
 export const routePaths = [
   ...Object.keys(pages),
   ...publishedArticles.map((a) => `insights/${a.slug}`),
@@ -56,14 +57,22 @@ export function metadataFor(locale: Locale, path: string): Metadata {
       siteName: "Treehouse Consulting",
       locale: locale === "en" ? "en_GB" : "ar_SA",
       type: a ? "article" : "website",
-      images: [{ url: "/brand/social-card.png", width: 1200, height: 630 }],
+      ...(approvedVisualsInstalled ? {
+        images: [{ url: "/brand/social-card-v5.png", width: 1200, height: 630,
+          alt: locale === "ar" ? "ضوابط من تري هاوس" : "Dawabit by Treehouse" }],
+      } : {}),
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: ["/brand/social-card.png"],
+      ...(approvedVisualsInstalled ? { images: ["/brand/social-card-v5.png"] } : {}),
     },
-    icons: { icon: "/favicon.svg?v=treehouse-sixbar-2026" },
+    icons: {
+      icon: "/favicon.svg?v=treehouse-v4-2026",
+      ...(approvedVisualsInstalled ? {
+        apple: [{ url: "/brand/treehouse-favicon-180-v4.png", sizes: "180x180", type: "image/png" }],
+      } : {}),
+    },
   };
 }

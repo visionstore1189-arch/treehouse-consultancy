@@ -10,6 +10,7 @@ import type { AuthEnv } from "../functions/api/auth/_shared";
 const env: AuthEnv = {
   SUPABASE_URL: "https://treehouse-test.supabase.co",
   SUPABASE_PUBLISHABLE_KEY: "sb_publishable_test_for_unit_tests",
+  DAWABIT_CLIENT_LOGIN_APPROVED: "true",
 };
 function request(path: string, payload?: unknown, origin = "https://treehouse.test") {
   return new Request("https://treehouse.test" + path, {
@@ -19,7 +20,8 @@ function request(path: string, payload?: unknown, origin = "https://treehouse.te
   });
 }
 test("login endpoint is disabled unless a valid backend is configured", async () => {
-  assert.equal(authEnabled({}), true); // production public config is now available
+  assert.equal(authEnabled({}), false); // Client E9 approval is a mandatory server-side gate
+  assert.equal(authEnabled({ DAWABIT_CLIENT_LOGIN_APPROVED: "false" }), false);
   assert.equal(authEnabled({ SUPABASE_URL: "", SUPABASE_PUBLISHABLE_KEY: "" }), false);
   assert.equal(authEnabled({ SUPABASE_URL: "http://localhost", SUPABASE_PUBLISHABLE_KEY: "key" }), false);
   assert.equal(authEnabled(env), true);
@@ -80,7 +82,7 @@ test("Cloudflare login readiness checks actual Supabase Auth health endpoint", a
     assert.equal(new Headers(init?.headers).get("apikey")?.startsWith("sb_publishable_"), true);
     return Response.json({ status: "ok" });
   });
-  const res = await healthCheck({ env: {} } as never);
+  const res = await healthCheck({ env } as never);
   assert.equal(res.status, 200);
   assert.deepEqual(await res.json(), { ready: true });
 });
@@ -105,7 +107,19 @@ test("Supabase HTTP requests use Cloudflare-compatible manual redirects and neve
     assert.equal(new Headers(init?.headers).get("apikey")?.startsWith("sb_publishable_"), true);
     return new Response(null, { status: 302, headers: { Location: "https://attacker.example/" } });
   });
-  const res = await supa({}, "/auth/v1/health", { method: "GET" });
+  const res = await supa(env, "/auth/v1/health", { method: "GET" });
   assert.equal(res.status, 302);
   assert.equal(res.ok, false);
+});
+
+test("client-auth endpoints fail closed without explicit E9 approval, even if public project config exists", async (t) => {
+  t.mock.method(globalThis, "fetch", async () => { throw new Error("Unapproved auth request reached upstream"); });
+  const disabled: AuthEnv = {
+    SUPABASE_URL: env.SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY: env.SUPABASE_PUBLISHABLE_KEY,
+  };
+  assert.equal(authEnabled(disabled), false);
+  assert.equal((await signIn({ env: disabled, request: request("/api/auth/login", {email:"test@example.com", password:"test"}) } as never)).status, 503);
+  assert.equal((await getMe({ env: disabled, request: request("/api/auth/me") } as never)).status, 503);
+  assert.equal((await healthCheck({ env: disabled } as never)).status, 503);
 });

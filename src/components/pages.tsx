@@ -7,7 +7,6 @@ import {
   ArrowDown,
   ArrowUpRight,
   ShieldCheck,
-  LockKeyhole,
   FileText,
   Landmark,
   Orbit,
@@ -24,6 +23,7 @@ import {
   steps,
   productFeatures,
   productUsers,
+  verdicts,
   principles,
   approach,
   marketLabels,
@@ -33,19 +33,17 @@ import {
 } from "@/content/site";
 import { publishedArticles, readingMinutes } from "@/content/articles";
 import { formCopy } from "@/content/forms";
-import { config, href, type Locale } from "@/lib/config";
+import { config, protectedDemoHref, href, type Locale } from "@/lib/config";
 import { Header } from "./header";
 import { Footer } from "./footer";
 import { Button, Eyebrow, Wordmark, Closing, Arrow } from "./ui";
 import { HeroArt } from "./hero-art";
 import { Reveal } from "./reveal";
 import { AssessmentExplorer, CoverageTable, InsightsList } from "./explorers";
+import { DawabitVisual, DawabitGraphic, DawabitProof } from "./dawabit-visual";
+import { DawabitProcessExplorer } from "./dawabit-process-explorer";
+import { targetRoles, engagementOptions, frequentlyAsked, artificialIntelligenceText, sectorClassificationNote, otherSectorsCoverage, libraryMaintenanceText, approvedVisualsInstalled } from "@/content/dawabit-v5";
 import { EnquiryForm } from "./enquiry-form";
-import { TIBQAVisual, TIBQAProof } from "./tibqa-visual";
-import { TibqaTour } from "./tibqa-tour";
-import { CustomerLoginForm, CustomerPortal, RecoverPasswordForm, SetPasswordForm } from "./customer-auth";
-import { SampleReportSection } from "./sample-report";
-import { tibqaAssets } from "@/content/tibqa-assets";
 const serviceIcons = [ScanLine, Landmark, Layers3, Orbit, Fingerprint];
 const marketDisplayOrder = ["saudi-arabia", "uk", "uae"];
 const orderedMarkets = [...markets].sort(
@@ -104,36 +102,6 @@ export function ServicesList({ locale }: { locale: Locale }) {
     </div>
   );
 }
-function TibqaClientAccessBand({ locale }: { locale: Locale }) {
-  return (
-    <section className="client-access-band" aria-labelledby="tibqa-client-access-heading">
-      <div className="container client-access-inner">
-        <div className="client-access-copy">
-          <p className="client-access-kicker">
-            <LockKeyhole size={15} aria-hidden="true" />
-            {ui.portalEyebrow[locale]}
-          </p>
-          <div className="client-access-wordmark">
-            <Wordmark locale={locale} />
-          </div>
-          <h2 id="tibqa-client-access-heading">{ui.subscriberTitle[locale]}</h2>
-          <p>{ui.subscriberText[locale]}</p>
-        </div>
-        <div className="client-access-actions">
-          <Link className="client-access-button" href={href(locale, "client/login")}>
-            <LockKeyhole size={19} aria-hidden="true" />
-            <span>{ui.subscriberAction[locale]}</span>
-            <Arrow diagonal />
-          </Link>
-          <p className="client-access-secure">
-            <ShieldCheck size={16} aria-hidden="true" />
-            <span>{ui.loginSecure[locale]}</span>
-          </p>
-        </div>
-      </div>
-    </section>
-  );
-}
 function Home({ locale }: { locale: Locale }) {
   return (
     <>
@@ -147,13 +115,14 @@ function Home({ locale }: { locale: Locale }) {
             </h1>
             <p>{ui.heroShort[locale]}</p>
             <div className="button-row">
-              <Button to="tibqa/demo" locale={locale}>
+              <Button to="dawabit/demo" locale={locale}>
                 {ui.demo[locale]}
               </Button>
               <Button to="contact" locale={locale} secondary>
                 {ui.talk[locale]}
               </Button>
             </div>
+            <p className="hero-language-note">{locale === "ar" ? "نخدم القطاعات المالية وغير المالية. باللغتين العربية والإنجليزية." : "Used across financial and non-financial sectors. English and Arabic."}</p>
           </div>
           <HeroArt locale={locale} />
           <div className="hero-bottom">
@@ -188,14 +157,61 @@ function Home({ locale }: { locale: Locale }) {
             <Wordmark locale={locale} />
             <h2>{ui.productHeading[locale]}</h2>
             <p>{ui.productIntro[locale]}</p>
-            <Link className="text-link" href={href(locale, "tibqa")}>
+            <Link className="text-link" href={href(locale, "dawabit")}>
               {ui.explore[locale]}
               <Arrow diagonal />
             </Link>
           </Reveal>
-          <Reveal delay={0.08}>
-            <TIBQAVisual locale={locale} id="overview" />
+          <Reveal delay={0.08} className="home-dawabit-diagram">
+            <div className="home-dawabit-diagram-head">
+              <ShieldCheck size={28} strokeWidth={1.25} aria-hidden="true" />
+              <span>{locale === "ar" ? "من المتطلب إلى التقرير" : "FROM OBLIGATION TO EVIDENCE"}</span>
+            </div>
+            <div className="home-dawabit-proof-flow">
+              {steps.map((step, i) => (
+                <div key={i} className="home-dawabit-proof-step">
+                  <span>{String(i + 1).padStart(2, "0")}</span>
+                  <strong>{step.title[locale]}</strong>
+                </div>
+              ))}
+            </div>
+            <p>{ui.tagline[locale]}</p>
           </Reveal>
+        </div>
+      </section>
+      <section className="section dawabit-method-section">
+        <div className="container">
+          <div className="section-heading">
+            <div>
+              <Eyebrow>{ui.how[locale]}</Eyebrow>
+              <h2>{locale === "ar" ? "من النص التنظيمي إلى نتيجة يمكن تتبعها." : "Five steps. A clear line from regulation to result."}</h2>
+            </div>
+            <Link className="text-link" href={href(locale, "dawabit/how-it-works")}>{ui.how[locale]} <Arrow diagonal /></Link>
+          </div>
+          <div className="dawabit-method-grid">
+            {steps.map((step, i) => (
+              <div className="dawabit-method-card" key={i}>
+                <span>{String(i + 1).padStart(2, "0")}</span>
+                <h3>{step.title[locale]}</h3>
+                <p>{step.output[locale]}</p>
+              </div>
+            ))}
+          </div>
+          <DawabitGraphic locale={locale} id="methodStrip" />
+        </div>
+      </section>
+      <section className="section dawabit-sector-teaser">
+        <div className="container">
+          <div className="section-heading">
+            <div>
+              <Eyebrow>{ui.nav[3][locale]}</Eyebrow>
+              <h2>{locale === "ar" ? "الوضوح التنظيمي عبر القطاعات." : "Regulatory clarity across sectors."}</h2>
+            </div>
+            <Link className="text-link" href={href(locale, "sectors")}>{locale === "ar" ? "جميع القطاعات" : "Explore all sectors"} <Arrow diagonal /></Link>
+          </div>
+          <div className="home-sector-tags">
+            {sectors.filter(s=>s.featured).slice(0,6).map(s=><span key={s.code}><b>{s.code}</b>{s.title[locale]}</span>)}
+          </div>
         </div>
       </section>
       <section className="section why-section">
@@ -252,7 +268,46 @@ function Home({ locale }: { locale: Locale }) {
           <MarketCards locale={locale} />
         </div>
       </section>
-      <TibqaClientAccessBand locale={locale} />
+      <section className="section dawabit-deliverables-section" aria-labelledby="home-dawabit-deliverables">
+        <div className="container">
+          <div className="section-heading">
+            <div><Eyebrow>{locale === "ar" ? "مخرجات قابلة للاستخدام" : "PRACTICAL DELIVERABLES"}</Eyebrow><h2 id="home-dawabit-deliverables">{locale === "ar" ? "ليس مجرد تقييم. بل أساس واضح للقرار." : "Not just a score. A clear basis for action."}</h2></div>
+            <p>{locale === "ar" ? "تربط المخرجات المتطلبات بالأدلة والإجراءات، من سجل المتطلبات إلى ملخص الإدارة." : "Each deliverable connects regulatory obligations with evidence and practical next steps."}</p>
+          </div>
+          <div className="dawabit-deliverables-grid">
+            {[
+              { icon: Layers3, title: locale === "ar" ? "سجل المتطلبات" : "Requirements register", text: locale === "ar" ? "كل متطلب ضمن النطاق، مع مرجعه التنظيمي والمستند المقابل." : "Every requirement in scope, its source and the document assessed against it." },
+              { icon: ShieldCheck, title: locale === "ar" ? "نتائج موثقة" : "Evidenced findings", text: locale === "ar" ? "نتيجة مفسّرة لكل متطلب، مع أدلة المستند ومراجعة المختص." : "A reasoned verdict for each requirement, supporting evidence and specialist review." },
+              { icon: FileText, title: locale === "ar" ? "خطة معالجة مرتبة" : "Prioritised action plan", text: locale === "ar" ? "توصيات ذات أولوية لتحديد المسؤوليات ومتابعة إغلاق الملاحظات." : "Recommendations in priority order for assigning owners and tracking closure." },
+            ].map((item, i) => {
+              const Icon = item.icon;
+              return <Reveal key={item.title} delay={i * 0.04} className="dawabit-deliverable-card">
+                <div className="dawabit-deliverable-top"><span>{String(i + 1).padStart(2, "0")}</span><Icon size={28} strokeWidth={1.3} aria-hidden="true" /></div>
+                <h3>{item.title}</h3><p>{item.text}</p>
+              </Reveal>;
+            })}
+          </div>
+          <Link href={href(locale, "dawabit")} className="text-link">{ui.explore[locale]} <Arrow diagonal /></Link>
+        </div>
+      </section>
+      <section className="section dawabit-assurance-section" aria-labelledby="home-dawabit-assurance">
+        <div className="container dawabit-assurance-grid">
+          <div>
+            <Eyebrow>{locale === "ar" ? "الحكم المهني أولًا" : "HUMAN JUDGEMENT FIRST"}</Eyebrow>
+            <h2 id="home-dawabit-assurance">{locale === "ar" ? "تساند التقنية المختص. ولا تحل محله." : "Technology supports the specialist. It does not replace them."}</h2>
+            <p>{locale === "ar" ? "تستخدم «ضوابط» الذكاء الاصطناعي لاقتراح نتيجة مدعومة بمصدر المتطلب ونص المستند، مع مراجعة المختص قبل إصدار التقرير." : "Dawabit uses AI to propose a reasoned assessment with its source and supporting passage visible. A specialist reviews each assessment before reporting."}</p>
+            <p className="dawabit-assurance-legal">{locale === "ar" ? "تدعم الأداة الحكم المهني وليست استشارة قانونية." : "Dawabit supports professional judgement and does not provide legal advice."}</p>
+            <Link href={href(locale, "dawabit/how-it-works")} className="text-link">{ui.how[locale]} <Arrow diagonal /></Link>
+          </div>
+          <div className="dawabit-assurance-steps">
+            {[
+              { en: "Source requirement", ar: "المتطلب من المصدر", enDetail: "Trace the obligation to its published source.", arDetail: "ربط الالتزام بمصدره المنشور." },
+              { en: "Document passage", ar: "النص من المستند", enDetail: "See the passage behind the proposed finding.", arDetail: "عرض الفقرة الداعمة للحكم المقترح." },
+              { en: "Specialist review", ar: "مراجعة المختص", enDetail: "Validate the judgement before reporting.", arDetail: "مراجعة الحكم قبل إصدار التقرير." },
+            ].map((step, i) => <div key={step.en} className="dawabit-assurance-step"><span>{String(i+1).padStart(2, "0")}</span><div><strong>{step[locale]}</strong><p>{locale === "ar" ? step.arDetail : step.enDetail}</p></div><Check size={18} aria-hidden="true" /></div>)}
+          </div>
+        </div>
+      </section>
       {publishedArticles.length >= 3 && <section className="section insights-section">
         <div className="container">
           <div className="section-heading">
@@ -276,9 +331,9 @@ function PageHero({ locale, path }: { locale: Locale; path: string }) {
   const p = pages[path];
   return (
     <section
-      className={`page-hero ${path.startsWith("tibqa") ? "product-page-hero" : ""}`}
+      className={`page-hero ${path.startsWith("dawabit") ? "product-page-hero" : ""}`}
     >
-      <div className={`container ${path === "tibqa" && tibqaAssets.visualsEnabled ? "tibqa-hero-grid" : ""}`}>
+      <div className={`container ${path === "dawabit" ? "dawabit-hero-grid" : ""}`}>
         <div className="page-hero-copy">
         <nav className="breadcrumb" aria-label={ui.home[locale]}>
           <Link href={href(locale)}>{ui.home[locale]}</Link>
@@ -286,30 +341,30 @@ function PageHero({ locale, path }: { locale: Locale; path: string }) {
           <span>{p.eyebrow?.[locale] || p.title[locale]}</span>
         </nav>
         <Eyebrow>{p.eyebrow?.[locale] || ui.brand[locale]}</Eyebrow>
-        {path === "tibqa" && <Wordmark locale={locale} />}
+        {path === "dawabit" && <Wordmark locale={locale} />}
         <h1>{p.title[locale]}</h1>
-        {path === "tibqa" && (
+        {path === "dawabit" && (
           <p className="product-descriptor">{ui.productDescriptor[locale]}</p>
         )}
         <p className="page-intro">{p.intro[locale]}</p>
-        {path === "tibqa" && (
+        {path === "dawabit" && (
           <div className="button-row">
-            <Button to="tibqa/demo" locale={locale}>
+            <Button to="dawabit/demo" locale={locale}>
               {ui.demo[locale]}
             </Button>
-            <Button secondary to="tibqa/coverage" locale={locale}>
+            <Button secondary to="dawabit/coverage" locale={locale}>
               {ui.coverage[locale]}
             </Button>
           </div>
         )}
-        {!(path === "tibqa" && tibqaAssets.visualsEnabled) && (
+        {path !== "dawabit" && (
           <span className="page-hero-art" aria-hidden="true">
             <span /><span /><span />
           </span>
         )}
         </div>
-        {path === "tibqa" && tibqaAssets.visualsEnabled && (
-          <div className="tibqa-hero-image"><TibqaTour locale={locale} /></div>
+        {path === "dawabit" && (
+          <div className="dawabit-hero-image"><DawabitVisual locale={locale} id="overview" priority /></div>
         )}
       </div>
     </section>
@@ -342,16 +397,18 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                   <Reveal className="detail-section" key={k}>
                     <span className="overline">0{i + 1}</span>
                     <h2>
-                      {serviceLabels[k === "support" ? "tibqa" : k][locale]}
+                      {serviceLabels[k === "support" ? "dawabit" : k][locale]}
                     </h2>
                     <p>{service[k][locale]}</p>
                   </Reveal>
                 ),
               )}
-              <Link href={href(locale, "tibqa")} className="text-link">
+              <Link href={href(locale, "dawabit")} className="text-link">
                 {ui.explore[locale]}
                 <Arrow diagonal />
               </Link>
+              {service.slug === "compliance-assessment" && <DawabitGraphic locale={locale} id="resultsSummary" />}
+              {service.slug === "independent-assurance" && <DawabitGraphic locale={locale} id="evidenceChain" />}
             </div>
           </div>
         </section>
@@ -368,6 +425,12 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
               <p className="lead">{market.help[locale]}</p>
             </div>
             <h2 className="table-title">{marketLabels.regulators[locale]}</h2>
+            <div className="dawabit-market-regulator-strip" aria-label={marketLabels.regulators[locale]}>
+              <span className="dawabit-market-region">{market.code}</span>
+              {market.regulators.map((name) => (
+                <span className="dawabit-regulator-chip" key={name}>{name.replace("-UAE", "").replace("-SA", "")}</span>
+              ))}
+            </div>
             <CoverageTable locale={locale} market={market.slug} />
           </div>
         </section>
@@ -385,138 +448,189 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                   ? marketLabels.saudiText[locale]
                   : ui.productIntro[locale]}
               </p>
-              <Button locale={locale} to="tibqa/demo">
+              <Button locale={locale} to="dawabit/demo">
                 {ui.demo[locale]}
               </Button>
             </div>
-            <TIBQAVisual locale={locale} id={market.slug === "saudi-arabia" ? "finding" : "overview"} />
+            {market.slug === "saudi-arabia" ? (
+              <DawabitGraphic locale={locale} id="workedExamples" />
+            ) : <DawabitGraphic locale={locale} id="badgeStrip" />}
+
           </div>
         </section>
         <Closing locale={locale} />
       </>
     );
   switch (path) {
-    case "tibqa":
+    case "dawabit":
       return (
         <>
-          <section className="section">
+          <section className="section dawabit-introduction">
             <div className="container">
               <div className="split-heading">
-                <h2>{ui.whatTIBQADoes[locale]}</h2>
+                <div>
+                  <Eyebrow>{ui.product[locale]} {ui.endorsement[locale]}</Eyebrow>
+                  <h2>{ui.whatDawabitDoes[locale]}</h2>
+                </div>
                 <p className="lead">{productNameMeaning[locale]}</p>
               </div>
               <div className="feature-list">
-                {productFeatures.map((f, i) => (
+                {productFeatures.map((feature,i)=>(
                   <Reveal key={i} className="feature-item">
-                    <span>0{i + 1}</span>
-                    <h3>{f.title[locale]}</h3>
-                    <p>{f.text[locale]}</p>
+                    <span>{String(i+1).padStart(2,"0")}</span>
+                    <h3>{feature.title[locale]}</h3>
+                    <p>{feature.text[locale]}</p>
                   </Reveal>
                 ))}
               </div>
-              <TIBQAProof locale={locale} />
-              <Link
-                className="text-link"
-                href={href(locale, "tibqa/how-it-works")}
-              >
-                {ui.how[locale]}
-                <Arrow diagonal />
-              </Link>
+              <DawabitProof locale={locale} />
+              <Link href={href(locale,"dawabit/how-it-works")} className="text-link">{ui.how[locale]} <Arrow diagonal /></Link>
             </div>
           </section>
-          <section className="section product-section">
+          <DawabitProcessExplorer locale={locale} />
+          <section className="section dawabit-verdict-section" aria-labelledby="dawabit-verdict-heading">
+            <div className="container">
+              <div className="section-heading">
+                <div><Eyebrow>{ui.tagline[locale]}</Eyebrow><h2 id="dawabit-verdict-heading">{ui.verdicts[locale]}</h2></div>
+                <p>{locale==="ar" ? "تُربط كل نتيجة بمتطلب تنظيمي ودليله وتفسيرها." : "Every result links the requirement, the supporting evidence and a reasoned explanation."}</p>
+              </div>
+              <DawabitGraphic locale={locale} id="verdictDefinitions" dark />
+              {!approvedVisualsInstalled && (
+                <div className="dawabit-verdict-grid">
+                  {verdicts.map((v,i)=><article key={v.id} className={"dawabit-verdict-card verdict-"+v.id}>
+                    <span>{String(i+1).padStart(2,"0")}</span>
+                    <h3>{v.title[locale]}</h3>
+                    <p>{v.text[locale]}</p>
+                  </article>)}
+                </div>
+              )}
+            </div>
+          </section>
+          <section className="section dawabit-example-section">
             <div className="container product-grid">
               <div>
-                <Eyebrow>
-                  {ui.product[locale]} {ui.endorsement[locale]}
-                </Eyebrow>
-                <h2>{ui.verdicts[locale]}</h2>
-                <p>{ui.judgement[locale]}</p>
-                <h3 className="users-heading">{ui.users[locale]}</h3>
-                <ul className="check-list">
-                  {productUsers.map((s, i) => (
-                    <li key={i}>
-                      <Check size={16} />
-                      {s[locale]}
-                    </li>
-                  ))}
-                </ul>
+                <Eyebrow>{locale==="ar" ? "تقييم مدعوم بالأدلة" : "EVIDENCE-LED ASSESSMENT"}</Eyebrow>
+                <h2>{locale==="ar" ? "من المتطلب إلى الإغلاق الموثق." : "From obligation to an evidenced finding."}</h2>
+                <p>{locale==="ar" ? "يُعرض المتطلب مع نصه التنظيمي ودليل السياسة ونتيجة التقييم، ليتمكن المختص من المراجعة واتخاذ الإجراء." : "Each finding puts the regulatory text alongside your policy evidence, the assessed verdict and the action required."}</p>
+                <Link href={href(locale,"dawabit/how-it-works")} className="text-link">{ui.how[locale]} <Arrow diagonal /></Link>
               </div>
-              <AssessmentExplorer locale={locale} />
+              <DawabitGraphic locale={locale} id="workedExamples" />
             </div>
           </section>
-          {tibqaAssets.visualsEnabled && (
-            <section className="section">
-              <div className="container">
-                <h2>{ui.findingsHeading[locale]}</h2>
-                <TIBQAVisual locale={locale} id="finding" />
-              </div>
-            </section>
-          )}
-          <section className="section">
+          <section className="section dawabit-roles-section">
             <div className="container">
+              <div className="section-heading">
+                <div><Eyebrow>{ui.product[locale]} {ui.endorsement[locale]}</Eyebrow><h2>{locale==="ar"?"لمن صُمّمت ضوابط":"Who Dawabit is for"}</h2></div>
+                <p>{locale==="ar" ? "أدوات للمختصين وصنّاع القرار على حد سواء." : "One evidence-led view for specialists, management and decision-makers."}</p>
+              </div>
+              <div className="dawabit-role-grid">{targetRoles.map((r,i)=><article key={i} className="dawabit-role-card">
+                <span>{String(i+1).padStart(2,"0")}</span><h3>{r.title[locale]}</h3><p>{r.text[locale]}</p>
+              </article>)}</div>
+            </div>
+          </section>
+          <section className="section dawabit-sector-section">
+            <div className="container product-grid">
+              <div>
+                <Eyebrow>{ui.nav[3][locale]}</Eyebrow>
+                <h2>{locale==="ar"?"منهج واحد. قطاعات متعددة.":"One approach. Every regulated sector."}</h2>
+                <p>{locale==="ar" ? "تشمل القطاعات المالية والتقنية والصحة والطاقة والنقل والصناعة وغيرها. تُعدّ المكتبات لكل تكليف." : "Dawabit is designed to assess obligations across financial services, technology, healthcare, energy, logistics, manufacturing and other regulated fields."}</p>
+                <Link href={href(locale,"sectors")} className="text-link">{locale==="ar"?"استكشف القطاعات":"Explore all sectors"} <Arrow diagonal /></Link>
+              </div>
+              <DawabitGraphic locale={locale} id="sectorGrid" />
+            </div>
+          </section>
+          <section className="section dawabit-engagement-section">
+            <div className="container">
+              <div className="section-heading">
+                <div><Eyebrow>{ui.brand[locale]}</Eyebrow><h2>{locale==="ar"?"طرق العمل معنا":"How to engage"}</h2></div>
+                <p>{locale==="ar"?"اختر الطريقة المناسبة لقطاعك وجهتك التنظيمية.":"Choose the right engagement for your team and regulatory environment."}</p>
+              </div>
+              <div className="dawabit-engagement-grid">
+                {engagementOptions.map(o=><article key={o.tag}>
+                  <span>{o.tag}</span><h3>{o.title[locale]}</h3><p>{o.text[locale]}</p>
+                </article>)}
+              </div>
+              <p className="dawabit-engagement-foot">{locale==="ar"?"أخبرونا بقطاعكم وجهتكم التنظيمية لنقترح الخيار الأنسب.":"Tell us your sector and regulator and we will propose the right option."}</p>
+              <Button locale={locale} to="dawabit/demo">{ui.demo[locale]}</Button>
+            </div>
+          </section>
+          <section className="section dawabit-principles-section">
+            <div className="container">
+              <Eyebrow>{ui.whyEyebrow[locale]}</Eyebrow>
               <h2>{ui.principles[locale]}</h2>
               <div className="principle-grid">
-                {principles.map((s, i) => (
-                  <div key={i}>
-                    <span className="overline">0{i + 1}</span>
-                    <h3>{s.title[locale]}</h3>
-                    <p>{s.text[locale]}</p>
-                  </div>
-                ))}
+                {principles.map((p,i)=><div key={i}><span className="overline">{String(i+1).padStart(2,"0")}</span><h3>{p.title[locale]}</h3><p>{p.text[locale]}</p></div>)}
               </div>
             </div>
           </section>
-          <SampleReportSection locale={locale} />
-              <Closing locale={locale} />
+          <section className="section dawabit-faq-preview">
+            <div className="container">
+              <div className="section-heading">
+                <div><Eyebrow>{ui.product[locale]}</Eyebrow><h2>{locale==="ar"?"أسئلة شائعة عن ضوابط":"Questions about Dawabit"}</h2></div>
+                <Link href={href(locale,"dawabit/faq")} className="text-link">{locale==="ar"?"جميع الأسئلة":"All frequently asked questions"} <Arrow diagonal /></Link>
+              </div>
+              <div className="dawabit-faq-list">{frequentlyAsked.slice(0,4).map((f,i)=><details key={i}><summary>{f.question[locale]}</summary><p>{f.answer[locale]}</p></details>)}</div>
+            </div>
+          </section>
+          <Closing locale={locale} />
         </>
       );
-    case "tibqa/how-it-works":
+    case "dawabit/how-it-works":
       return (
         <>
-          <section className="section">
+          <section className="section dawabit-step-section">
             <div className="container steps-list">
-              {steps.map((s, i) => (
+              {steps.map((step,i)=>(
                 <Reveal className="step-row" key={i}>
-                  <span className="step-number">0{i + 1}</span>
-                  <div>
-                    <h2>{s.title[locale]}</h2>
-                    <p>{s.text[locale]}</p>
+                  <span className="step-number">{String(i+1).padStart(2,"0")}</span>
+                  <div><h2>{step.title[locale]}</h2><p>{step.text[locale]}</p>
+                    {i===3 && <p className="dawabit-review-note">{ui.judgement[locale]}</p>}
                   </div>
                   <div className="step-output-wrap">
-                    <div className="step-output">
-                      <FileText size={22} />
-                      <span>{ui.outputs[locale]}</span>
-                      <strong>{s.output[locale]}</strong>
-                    </div>
-                    {tibqaAssets.visualsEnabled && i !== 3 && (
-                      <TIBQAVisual locale={locale} id={i === 0 ? "scope" : i === 1 ? "requirements" : i === 2 ? "finding" : "overview"} />
-                    )}
+                    <div className="step-output"><FileText size={22}/><span>{ui.outputs[locale]}</span><strong>{step.output[locale]}</strong></div>
+                    {i===3 && <DawabitGraphic locale={locale} id="evidenceChain" />}
                   </div>
                 </Reveal>
               ))}
             </div>
           </section>
-          <section className="section product-section">
-            <div className="container product-grid">
-              <div>
-                <Eyebrow>{ui.product[locale]} {ui.endorsement[locale]}</Eyebrow>
-                <h2>{ui.whatTIBQADoes[locale]}</h2>
-                <p>{ui.judgement[locale]}</p>
+          <section className="section dawabit-graphic-section">
+            <div className="container">
+              <div className="section-heading">
+                <div><Eyebrow>{ui.how[locale]}</Eyebrow><h2>{locale==="ar"?"سلسلة واحدة من الدليل إلى القرار":"A traceable assessment workflow"}</h2></div>
               </div>
-              <TIBQAVisual locale={locale} id="overview" />
+              <DawabitGraphic locale={locale} id="methodStrip" />
+              {!approvedVisualsInstalled && <div className="dawabit-method-grid">{steps.map((step,i)=><article key={i} className="dawabit-method-card"><span>{String(i+1).padStart(2,"0")}</span><h3>{step.title[locale]}</h3><p>{step.output[locale]}</p></article>)}</div>}
             </div>
           </section>
-          <SampleReportSection locale={locale} />
+          <section className="section dawabit-ai-section">
+            <div className="container dawabit-ai-grid">
+              <div><Eyebrow>{ui.product[locale]} {ui.endorsement[locale]}</Eyebrow><h2>{ui.ai[locale]}</h2></div>
+              <div><p className="lead">{artificialIntelligenceText[locale]}</p>
+                <Link className="text-link" href={href(locale,"dawabit/faq")}>{locale==="ar"?"الأسئلة الشائعة":"Frequently asked questions"} <Arrow diagonal /></Link>
+              </div>
+            </div>
+          </section>
           <Closing locale={locale} />
         </>
       );
-    case "tibqa/coverage":
+    case "dawabit/coverage":
       return (
         <>
           <section className="section">
             <div className="container">
               <CoverageTable locale={locale} />
+              <div className="dawabit-coverage-other">
+                <Eyebrow>{ui.nav[3][locale]}</Eyebrow>
+                <h2>{locale==="ar"?"قطاعات أخرى":"Other sectors"}</h2>
+                <p>{otherSectorsCoverage[locale]}</p>
+                <DawabitGraphic locale={locale} id="badgeStrip" />
+              </div>
+              <section className="dawabit-coverage-maintenance" aria-labelledby="dawabit-library-current">
+                <Eyebrow>{locale === "ar" ? "مكتبة المتطلبات التنظيمية" : "REGULATORY LIBRARY"}</Eyebrow>
+                <h2 id="dawabit-library-current">{locale === "ar" ? "تحديث المكتبة التنظيمية" : "Keeping the library current"}</h2>
+                <p>{libraryMaintenanceText[locale]}</p>
+              </section>
             </div>
           </section>
           <section className="section form-section">
@@ -532,35 +646,47 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
         </>
       );
     case "contact":
-    case "tibqa/demo":
+    case "dawabit/demo":
       return (
-        <section className="section form-section">
-          <div className="container form-layout">
-            <aside className="form-aside">
-              <Wordmark locale={locale} />
-              <h2>{formCopy.detailsTitle[locale]}</h2>
-              <ul className="check-list">
-                {(path === "tibqa/demo"
-                  ? formCopy.details
-                  : [ui.closingText, ui.judgement]
-                ).map((s, i) => (
-                  <li key={i}>
-                    <Check size={16} />
-                    {s[locale]}
-                  </li>
-                ))}
-              </ul>
-              <div className="aside-note">
-                <ShieldCheck size={25} strokeWidth={1} />
-                <p>{formCopy.confidential[locale]}</p>
+        <>
+          <section className="section form-section dawabit-contact-section">
+            <div className="container form-layout">
+              <aside className="form-aside">
+                <Wordmark locale={locale} />
+                <h2>{formCopy.detailsTitle[locale]}</h2>
+                <ul className="check-list">
+                  {(path==="dawabit/demo"?formCopy.details:[ui.closingText,ui.judgement]).map((txt,i)=>(
+                    <li key={i}><Check size={16}/>{txt[locale]}</li>
+                  ))}
+                </ul>
+                <div className="aside-note"><ShieldCheck size={25} strokeWidth={1}/><p>{formCopy.confidential[locale]}</p></div>
+              </aside>
+              <EnquiryForm locale={locale} kind={path==="contact"?"contact":"demo"} />
+            </div>
+          </section>
+          {path==="dawabit/demo" && (
+            <section className="section dawabit-demo-access">
+              <div className="container dawabit-demo-access-inner">
+                <div>
+                  <Eyebrow>{ui.product[locale]} {ui.endorsement[locale]}</Eyebrow>
+                  <h2>{locale==="ar"?"فتح العرض التوضيحي":"Open the demonstration"}</h2>
+                  <p>{protectedDemoHref
+                    ? (locale==="ar"?"يفتح العرض التوضيحي في نافذة جديدة، ويستلزم تسجيل الدخول عبر حماية الوصول المعتمدة.":"The demonstration opens in a new tab and requires the firm's approved access sign-in.")
+                    : (locale==="ar"?"يتاح العرض التوضيحي للمستخدمين المعتمدين فقط بعد تفعيل حماية الوصول من جهة الخادم.":"Demonstration access is reserved for approved visitors. Access details will be supplied once server-side protection is enabled.")}</p>
+                </div>
+                {protectedDemoHref ? (
+                  <a className="dawabit-demo-launch" href={protectedDemoHref} target="_blank" rel="noopener noreferrer">
+                    <ShieldCheck size={20} aria-hidden="true" />
+                    <span>{locale==="ar"?"فتح العرض التوضيحي":"Open the demonstration"}</span>
+                    <Arrow diagonal />
+                  </a>
+                ) : (
+                  <div className="dawabit-demo-lock"><ShieldCheck size={36} strokeWidth={1.2} aria-hidden="true"/><span>{locale==="ar"?"الوصول بانتظار التفعيل":"PROTECTED ACCESS PENDING"}</span></div>
+                )}
               </div>
-            </aside>
-            <EnquiryForm
-              locale={locale}
-              kind={path === "contact" ? "contact" : "demo"}
-            />
-          </div>
-        </section>
+            </section>
+          )}
+        </>
       );
     case "services":
       return (
@@ -576,11 +702,11 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                 <Wordmark locale={locale} />
                 <h2>{ui.productHeading[locale]}</h2>
                 <p>{ui.productIntro[locale]}</p>
-                <Button to="tibqa" locale={locale}>
+                <Button to="dawabit" locale={locale}>
                   {ui.explore[locale]}
                 </Button>
               </div>
-              <TIBQAVisual locale={locale} id="overview" />
+              <DawabitGraphic locale={locale} id="badgeStrip" />
             </div>
           </section>
           <Closing locale={locale} />
@@ -600,24 +726,50 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
     case "sectors":
       return (
         <>
-          <section className="section">
-            <div className="container sector-list">
-              {sectors.map((s, i) => (
-                <div className="sector-row" key={i}>
-                  <span className="step-number">0{i + 1}</span>
-                  <div>
-                    <h2>{s.title[locale]}</h2>
-                    <p>{s.text[locale]}</p>
-                  </div>
-                  <Link
-                    className="round-arrow"
-                    aria-label={`${ui.talk[locale]} — ${s.title[locale]}`}
-                    href={href(locale, "contact")}
-                  >
-                    <Arrow diagonal />
-                  </Link>
-                </div>
-              ))}
+          <section className="section dawabit-sectors-section">
+            <div className="container">
+              <div className="section-heading">
+                <div><Eyebrow>{ui.nav[3][locale]}</Eyebrow><h2>{locale==="ar"?"عشرة قطاعات رئيسية":"Regulated industries, covered by design."}</h2></div>
+                <p>{locale==="ar"?"تُهيأ مكتبات المتطلبات التنظيمية بما يناسب كل جهة وقطاع.":"Dawabit’s assessment method adapts to the regulator, permissions and sector relevant to your organisation."}</p>
+              </div>
+              <DawabitGraphic locale={locale} id="sectorGrid" />
+              <div className="dawabit-sector-card-grid">
+                {sectors.filter(x=>x.featured).map(x=>(
+                  <article className="dawabit-sector-card" key={x.code}>
+                    <span className="dawabit-sector-code">{x.code}</span>
+                    <h3>{x.title[locale]}</h3><p>{x.text[locale]}</p>
+                    <Link href={href(locale,"contact")} className="text-link">{ui.talk[locale]}<Arrow diagonal /></Link>
+                  </article>
+                ))}
+              </div>
+              <div className="dawabit-other-sectors">
+                <h2>{ui.otherSectors[locale]}</h2>
+                <ul>{sectors.filter(x=>!x.featured).map(x=><li key={x.code}><span>{x.code}</span>{x.title[locale]}</li>)}</ul>
+                <p>{sectorClassificationNote[locale]}</p>
+              </div>
+            </div>
+          </section>
+          <Closing locale={locale} />
+        </>
+      );
+    case "dawabit/faq":
+      return (
+        <>
+          <section className="section dawabit-faq-section">
+            <div className="container">
+              <div className="dawabit-faq-list">
+                {frequentlyAsked.map((qa,i)=>(
+                  <details key={i}>
+                    <summary><span>{String(i+1).padStart(2,"0")}</span>{qa.question[locale]}</summary>
+                    <p>{qa.answer[locale]}</p>
+                  </details>
+                ))}
+              </div>
+              <div className="dawabit-faq-contact">
+                <h2>{locale==="ar"?"هل لديكم سؤال آخر؟":"Have a more specific question?"}</h2>
+                <p>{locale==="ar"?"أخبرونا بقطاعكم وجهتكم التنظيمية وسنساعدكم في اختيار الخطوة التالية.":"Tell us your sector and regulator so we can discuss the right approach."}</p>
+                <Button locale={locale} to="contact">{ui.talk[locale]}</Button>
+              </div>
             </div>
           </section>
           <Closing locale={locale} />
@@ -647,11 +799,11 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                 <Wordmark locale={locale} />
                 <h2>{ui.productHeading[locale]}</h2>
                 <p>{ui.productIntro[locale]}</p>
-                <Button to="tibqa" locale={locale}>
+                <Button to="dawabit" locale={locale}>
                   {ui.explore[locale]}
                 </Button>
               </div>
-              <TIBQAVisual locale={locale} id="overview" />
+              <DawabitGraphic locale={locale} id="evidenceChain" />
             </div>
           </section>
           <Closing locale={locale} />
@@ -684,51 +836,6 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
           </div>
         </section>
       );
-    case "client/login":
-      return (
-        <section className="section portal-login-section" aria-labelledby="tibqa-signin-heading">
-          <div className="container portal-login-layout">
-            <div className="portal-login-intro">
-              <p className="client-access-kicker">
-                <LockKeyhole size={16} aria-hidden="true" />
-                {ui.portalEyebrow[locale]}
-              </p>
-              <Wordmark locale={locale} />
-              <h1>{ui.subscriberTitle[locale]}</h1>
-              <p className="portal-intro-lead">{ui.subscriberText[locale]}</p>
-              <div className="portal-trust-info">
-                <span><ShieldCheck size={17} aria-hidden="true" />{ui.loginSecure[locale]}</span>
-                <span><LockKeyhole size={17} aria-hidden="true" />{ui.loginIssue[locale]}</span>
-              </div>
-              <Link href={href(locale)} className="portal-home-back">
-                <Arrow /> {ui.home[locale]}
-              </Link>
-            </div>
-            <div className="portal-signin-card">
-              <div className="portal-signin-topline">
-                <img src="/brand/tibqa-mark.svg" alt="" aria-hidden="true" width={34} height={34} />
-                <span>{ui.reserved[locale]}</span>
-                <LockKeyhole size={18} aria-hidden="true" />
-              </div>
-              <h2 id="tibqa-signin-heading">{ui.login[locale]}</h2>
-              <p>{ui.loginNotice[locale]}</p>
-              <CustomerLoginForm locale={locale} />
-              <div className="portal-access-note">
-                <ShieldCheck size={19} aria-hidden="true" />
-                <span>{locale === "ar"
-                  ? "تسجيل الدخول يتيح عرض حالة الحساب والاشتراك. وسيُربط تطبيق التقييمات الآمن لاحقًا."
-                  : "Sign-in gives access to your account and subscription status. The separate assessment application will be connected later."}</span>
-              </div>
-            </div>
-          </div>
-        </section>
-      );
-    case "client/portal":
-      return <CustomerPortal locale={locale} />;
-    case "client/recover-password":
-      return <RecoverPasswordForm locale={locale} />;
-    case "client/reset-password":
-      return <SetPasswordForm locale={locale} />;
     default:
       return null;
   }
@@ -743,16 +850,16 @@ export function SitePage({ locale, path }: { locale: Locale; path: string }) {
           "@type": "Organization",
           name: "Treehouse Consulting",
           url: config.siteUrl,
-          logo: `${config.siteUrl}/brand/treehouse-official.png`,
+          logo: `${config.siteUrl}/brand/treehouse-logo-primary-v4.svg`,
         }
-      : path === "tibqa"
+      : path === "dawabit"
         ? {
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
-            name: "TIBQA by Treehouse",
+            name: "Dawabit by Treehouse",
             applicationCategory: "BusinessApplication",
             operatingSystem: "Web",
-            description: pages.tibqa.intro[locale],
+            description: pages.dawabit.intro[locale],
             url: config.siteUrl + href(locale, path),
           }
         : article

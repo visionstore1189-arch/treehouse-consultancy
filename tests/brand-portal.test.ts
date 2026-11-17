@@ -1,77 +1,204 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 
-const read = (path: string) => readFileSync(path, "utf8");
+const read = (file: string) => readFileSync(file, "utf8");
 const page = read("src/components/pages.tsx");
-const content = read("src/content/site.ts");
-const ui = read("src/components/ui.tsx");
+const site = read("src/content/site.ts");
 const header = read("src/components/header.tsx");
 const footer = read("src/components/footer.tsx");
 const config = read("src/lib/config.ts");
-const favicon = read("public/favicon.svg");
-const tour = read("src/components/tibqa-tour.tsx");
+const redirects = read("public/_redirects");
 
-test("market cards place Saudi Arabia, United Kingdom, then UAE", () => {
-  assert.match(page, /marketDisplayOrder = \["saudi-arabia", "uk", "uae"\]/);
-  assert.match(page, /orderedMarkets\.map\(\(m, i\)/);
-});
-test("English TIBQA and Arabic طبقًا branding replace the retired product name", () => {
-  assert.match(content, /product: t\("TIBQA", "طبقًا"\)/);
-  assert.match(ui, /tibqa-wordmark\.svg/);
-  assert.match(header, /tibqa-mark\.svg/);
-  for (const file of ["src/content/site.ts", "src/content/seo.ts", "src/components/pages.tsx", "src/components/header.tsx", "src/components/footer.tsx", "src/components/ui.tsx"]) {
-    assert.doesNotMatch(read(file), /\bMUTABIQ\b|\bMutabiq\b|مطابق/);
+test("approved Dawabit by Treehouse and Arabic ضوابط are used in content and metadata", () => {
+  assert.match(site, /product: t\("Dawabit", "ضوابط"\)/);
+  assert.match(site, /endorsement: t\("by Treehouse", "من تري هاوس"\)/);
+  assert.match(site, /Dawabit \(ضوابط\) is the Arabic word/);
+  assert.match(read("src/content/seo.ts"), /"dawabit\/faq":/);
+  assert.match(config, /treehouseconsulting\.co\.uk/);
+  assert.doesNotMatch(config, /treehouseconsultancy\.co\.uk/);
+  for (const file of [
+    "src/content/site.ts", "src/content/seo.ts", "src/components/pages.tsx",
+    "src/components/header.tsx", "src/components/footer.tsx",
+    "src/components/ui.tsx", "src/lib/routes.ts"
+  ]) {
+    assert.doesNotMatch(read(file), /TIBQA|Tibqa|Mutabiq|R CAT|طبقًا|مطابق/);
   }
 });
-test("old product routes redirect permanently to TIBQA in both languages", () => {
-  const redirects = read("public/_redirects");
-  assert.match(redirects, /\/mutabiq\/\* \/tibqa\/:splat 301/);
-  assert.match(redirects, /\/ar\/mutabiq\/\* \/ar\/tibqa\/:splat 301/);
-  assert.match(content, /"tibqa\/how-it-works"/);
-  assert.match(page, /case "tibqa\/coverage"/);
+
+test("legacy product routes redirect permanently to the matching Dawabit routes", () => {
+  for (const path of ["/tibqa/*", "/mutabiq/*", "/ar/tibqa/*", "/ar/mutabiq/*"]) {
+    assert.ok(redirects.includes(path), path);
+  }
+  assert.match(redirects, /\/tibqa\/\* \/dawabit\/:splat 301/);
+  assert.match(redirects, /\/ar\/mutabiq\/\* \/ar\/dawabit\/:splat 301/);
 });
-test("TIBQA client login is restored directly below homepage Three Markets, not in the navigation", () => {
-  const marketEnd = page.indexOf("<MarketCards locale={locale} />");
-  const loginBand = page.indexOf("<TibqaClientAccessBand locale={locale} />");
-  const insights = page.indexOf("publishedArticles.length >= 3 && <section");
-  assert.ok(marketEnd >= 0 && loginBand > marketEnd && insights > loginBand);
-  assert.match(page, /href=\{href\(locale, "client\/login"\)\}/);
-  assert.match(page, /<CustomerLoginForm locale=\{locale\}/);
+
+test("19 ISIC4 sector sections: ten featured cards, nine compact entries", () => {
+  const featured = (site.match(/featured: true/g) || []).length;
+  const additional = (site.match(/featured: false/g) || []).length;
+  assert.equal(featured, 10);
+  assert.equal(additional, 9);
+  assert.match(site, /code: "K"/);
+  assert.match(site, /code: "S"/);
+  assert.doesNotMatch(site, /code: "T"|code: "U"/);
+  assert.match(page, /sectorClassificationNote/);
+});
+
+test("staged site includes additional buyer and explanatory sections in both languages", () => {
+  for (const name of ["dawabit-verdict-section", "dawabit-engagement-section",
+    "dawabit-role-grid", "dawabit-ai-section", "dawabit-faq-section",
+    "dawabit-sector-card-grid", "dawabit-method-grid",
+    "dawabit-deliverables-section", "dawabit-assurance-section"]) {
+    assert.ok(page.includes(name), name);
+  }
+  assert.match(site, /"dawabit\/faq":/);
+  assert.match(page, /artificialIntelligenceText\[locale\]/);
+});
+
+test("unapproved login, unpublished legal notices and demo remain inaccessible", () => {
+  assert.doesNotMatch(site, /"client\/login":/);
+  assert.doesNotMatch(page, /case "client\/login":/);
   assert.doesNotMatch(header, /client\/login/);
   assert.doesNotMatch(footer, /client\/login/);
-  for (const route of ['"client/login":', '"client/portal":', '"client/recover-password":', '"client/reset-password":']) {
-    assert.ok(content.includes(route), route);
-  }
-  const authUi = read("src/components/customer-auth.tsx");
-  assert.match(authUi, /fetch\("\/api\/auth\/login"/);
-  assert.match(authUi, /fetch\("\/api\/auth\/me"/);
-  assert.match(config, /NEXT_PUBLIC_AUTH_LOGIN_ENABLED/);
-  assert.doesNotMatch(content, /  insights: \{|  privacy: \{\n    title:/);
+  assert.doesNotMatch(page, /dawabit-demo\.vision-store1189\.workers\.dev/);
+  assert.doesNotMatch(site, /dawabit-demo\.vision-store1189\.workers\.dev/);
   assert.match(config, /formsEnabled: false/);
   assert.match(config, /sampleReportEnabled: false/);
+  assert.match(config, /authLoginEnabled: false/);
+  const publicPanelsReady = /approvedVisualsInstalled = true/.test(read("src/content/dawabit-v5.ts"));
+  const publicOverviewReady = /visualsEnabled: true/.test(read("src/content/dawabit-assets.ts"));
+  assert.equal(publicPanelsReady, publicOverviewReady, "Public images must activate together after original-byte checks");
+  assert.match(page, /PROTECTED ACCESS PENDING/);
 });
-test("TIBQA hero features keyboard accessible, reduced-motion-aware official four-step tour", () => {
-  assert.match(page, /<TibqaTour locale=\{locale\}/);
-  assert.match(tour, /prefers-reduced-motion/);
-  assert.match(tour, /6000/);
-  assert.match(tour, /onMouseEnter/);
-  assert.match(tour, /onKeyDown/);
-  assert.match(tour, /role="tablist"/);
-  assert.match(tour, /"Scope"/);
-  assert.match(tour, /"Map"/);
-  assert.match(tour, /"Assess"/);
-  assert.match(tour, /"Report"/);
-});
-test("favicon stays supplied Treehouse icon", () => {
-  assert.equal((favicon.match(/ M\d|d="M\d/g) || []).length > 0, true);
-  assert.match(favicon, /#02784f/);
-});
-test("public brand stays Treehouse Consulting and .co.uk is canonical", () => {
-  const paths = ["src/content/site.ts", "src/content/seo.ts", "src/lib/routes.ts", "src/components/pages.tsx", "public/brand/social-card.svg"];
-  for (const path of paths) {
-    assert.doesNotMatch(read(path), /Treehouse Consultancy|TREEHOUSE CONSULTANCY/);
+
+test("official supplied Arabic vector art and favicon installed", () => {
+  for (const path of ["public/brand/dawabit-by-treehouse-lockup-ar-v1.svg",
+    "public/brand/dawabit-by-treehouse-lockup-ar-light-v1.svg",
+    "public/brand/dawabit-wordmark-ar-v1.svg",
+    "public/brand/dawabit-wordmark-ar-light-v1.svg",
+    "public/brand/treehouse-favicon-v4.svg", "public/favicon.svg"]) {
+    assert.equal(existsSync(path), true, path);
+    assert.match(read(path), /<svg/);
   }
-  assert.match(config, /https:\/\/treehouseconsultancy\.co\.uk/);
-  assert.doesNotMatch(config, /treehouseconsultancy\.com/);
+  assert.doesNotMatch(read("src/components/ui.tsx"), /tibqa-wordmark/);
+});
+
+test("email fallback is clickable with client's address and remains non-submitting", () => {
+  const form = read("src/components/enquiry-form.tsx");
+  assert.match(form, /mailto:enquiries@treehouseconsulting\.co\.uk/);
+  assert.match(form, /if \(!enabled\) return/);
+  assert.match(form, /form-closed-email/);
+});
+
+test("brand palette matches client-provided navy, green and mint", () => {
+  const css = read("src/app/globals.css");
+  assert.match(css, /--navy: #0B1F3A/);
+  assert.match(css, /--forest: #0B8457/);
+  assert.match(css, /--mint: #2FCB8B/);
+});
+
+test("public product has only overview and no v3 screenshots/tour", () => {
+  assert.doesNotMatch(page, /DawabitTour|TIBQAVisual|AssessmentExplorer locale=\{locale\}/);
+  assert.doesNotMatch(page, /id="finding"|id="scope"|id="requirements"/);
+  assert.match(page, /DawabitVisual locale=\{locale\} id="overview" priority/);
+  assert.equal((page.match(/<DawabitVisual\b/g) || []).length, 1, "Overview must appear on product hero only");
+  assert.match(page, /market.slug === "saudi-arabia" \? \(\s*<DawabitGraphic locale=\{locale\} id="workedExamples"/);
+
+});
+
+test("unverified former-regulator claims do not appear in buyer-facing metadata", () => {
+  const seo = read("src/content/seo.ts");
+  assert.doesNotMatch(seo, /former regulators|former regulatory officials|مسؤولون رقابيون سابقون/i);
+  assert.match(seo, /الجهات الخاضعة للتنظيم/);
+});
+
+test("draft blocks remain active until official authorisations and legal text", () => {
+  const robots = read("src/app/robots.ts");
+  const headers = read("public/_headers");
+  assert.match(robots, /disallow:\s*"\/"/);
+  assert.match(headers, /X-Robots-Tag:\s*noindex, nofollow/);
+  assert.match(read("src/lib/routes.ts"), /index: false, follow: false/);
+  assert.match(config, /formsEnabled: false/);
+  assert.match(config, /authLoginEnabled: false/);
+  assert.match(config, /sampleReportEnabled: false/);
+});
+
+test("all mobile primary menus expose the same Dawabit, services and market subpages as desktop", () => {
+  assert.match(header, /i < 3 \? \(/);
+  assert.match(header, /subnav\(i\)\.map/);
+  for (const path of ["dawabit/how-it-works", "dawabit/coverage", "dawabit/faq", "dawabit/demo"]) {
+    assert.ok(header.includes(path), path);
+  }
+});
+
+test("original public asset installation keeps private materials out of the site", () => {
+  const installer = read("scripts/install-dawabit-v5-public-assets.mjs");
+  assert.match(installer, /createHash\("sha256"\)/);
+  assert.match(installer, /public\/brand\//);
+  assert.match(installer, /Dawabit_Screen_1_Overview_v5/);
+  assert.match(installer, /Dawabit_Screen_1_Overview_v5_AR/);
+  assert.match(installer, /Dawabit_Screen_\[234\]/);
+  assert.match(installer, /approvedVisualsInstalled = true/);
+  assert.doesNotMatch(page, /client1\.treehouseconsultancy\.co\.uk/);
+});
+
+test("unapproved former-supervisor claims are not published while v5 E6 awaits sign-off", () => {
+  const site = read("src/content/site.ts");
+  const seo = read("src/content/seo.ts");
+  for (const source of [site, seo]) {
+    assert.doesNotMatch(source, /our work is led by people who have supervised|former regulators|former regulatory officials|سبق لهم الإشراف على مؤسسات مرخصة/i);
+  }
+  assert.match(site, /The regulatory perspective\./);
+});
+
+test("deployment instructions follow the controlling v5 specification and preserve launch gates", () => {
+  const instructions = read("docs/DEPLOYMENT.md");
+  assert.match(instructions, /Treehouse_Website_Change_List_v5/);
+  assert.match(instructions, /dawabit-v5-release-hardening-20261117/);
+  assert.match(instructions, /E1:/);
+  assert.match(instructions, /E10:/);
+  assert.match(instructions, /main.*production/);
+  assert.match(instructions, /pages\.dev/);
+  assert.doesNotMatch(instructions, /approved TIBQA|MUTABIQ_APP_URL|\/ar\/mutabiq\//i);
+});
+
+test("legal placeholders contain no internal client approval instructions", () => {
+  const site = read("src/content/site.ts");
+  assert.doesNotMatch(site, /Publication pending client approval|This page is reserved for the final notice approved by Treehouse/i);
+  assert.match(site, /Legal notice being finalised/);
+  assert.match(site, /يجري استكمال الإشعار القانوني/);
+  assert.match(config, /formsEnabled: false/);
+});
+
+test("official reversed header logo and mobile navigation remain visible on navy", () => {
+  const css = read("src/app/globals.css");
+  assert.match(css, /V5 visual QA: dark global header and footer contrast repair/);
+  assert.match(css, /\.site-header \.brand\.treehouse-official-brand > \.treehouse-logo-reversed \{ opacity: 1; \}/);
+  assert.match(css, /\.site-header \.menu-trigger svg \{ width: 23px; height: 23px; stroke: currentColor;/);
+  assert.match(css, /\.mobile-menu \.brand\.treehouse-official-brand > \.treehouse-logo-primary \{ opacity: 1; \}/);
+  assert.match(css, /\.site-footer \.footer-column a \{ color: #D7E8EE; \}/);
+});
+
+test("required bilingual legal footer links resolve to generated holding pages", () => {
+  const site = read("src/content/site.ts");
+  const footerSource = read("src/components/footer.tsx");
+  const browserAudit = read("scripts/qa-dawabit-responsive.cjs");
+  const pageDefs = site.split("export const pages:")[1].split("for (const s of services)")[0];
+  for (const name of ["privacy", "terms", "cookies"]) {
+    assert.ok(pageDefs.includes(name + ": {"), "Legal page must be generated: " + name);
+    assert.ok(footerSource.includes('href(locale, "' + name + '")'), "Footer link required: " + name);
+    assert.ok(browserAudit.includes('"' + name + '"'), "Visual QA must cover legal route: " + name);
+  }
+  assert.match(read("src/lib/routes.ts"), /Object\.keys\(pages\)/);
+});
+
+test("official social card and Apple icon are published only after original images are installed", () => {
+  const routes = read("src/lib/routes.ts");
+  assert.match(routes, /approvedVisualsInstalled/);
+  assert.match(routes, /\/brand\/social-card-v5\.png/);
+  assert.match(routes, /\/brand\/treehouse-favicon-180-v4\.png/);
+  assert.match(routes, /width: 1200, height: 630/);
+  assert.match(routes, /Dawabit by Treehouse/);
+  assert.match(routes, /ضوابط من تري هاوس/);
 });

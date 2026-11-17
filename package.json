@@ -4,13 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/verify-tibqa-assets.mjs && next build && node scripts/clean-export.mjs && node scripts/verify-export.mjs",
+    "build": "node scripts/verify-dawabit-assets.mjs && next build && node scripts/clean-export.mjs && node scripts/verify-export.mjs",
     "preview": "wrangler pages dev out --port 8788",
     "typecheck": "next typegen && tsc --noEmit",
     "test": "tsx --test tests/*.test.ts",
     "cf:build": "wrangler pages functions build --outdir=.cloudflare-build",
     "db:local": "wrangler d1 migrations apply treehouse-enquiries --local",
-    "check:links": "node scripts/check-links.mjs"
+    "check:links": "node scripts/check-links.mjs",
+    "check:assets": "node scripts/verify-dawabit-assets.mjs",
+    "assets:install": "node scripts/install-dawabit-v5-public-assets.mjs"
   },
   "engines": {
     "node": ">=24.0.0"
