@@ -1,18 +1,18 @@
 @import "tailwindcss";
 @theme {
-  --color-navy: #0a2028;
-  --color-forest: #0c5c46;
-  --color-mint: #a4e6c8;
+  --color-navy: #0B1F3A;
+  --color-forest: #0B8457;
+  --color-mint: #2FCB8B;
   --color-paper: #f7f8f4;
   --font-sans: "Manrope Variable", sans-serif;
 }
 :root {
-  --navy: #0a2028;
-  --deep: #091b22;
-  --forest: #0c5c46;
-  --mint: #a4e6c8;
+  --navy: #0B1F3A;
+  --deep: #08172B;
+  --forest: #0B8457;
+  --mint: #2FCB8B;
   --paper: #f7f8f4;
-  --ink: #183039;
+  --ink: #0B1F3A;
   --muted: #54646a;
   --line: #dce3dd;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
@@ -3234,7 +3234,7 @@ html[lang="ar"] .market-card { direction: rtl; text-align: right; }
 .product-page-hero .dawabit-brand-mark small { color: #a9dfc7; }
 
 .nav-dawabit-symbol { height: 17px; width: 17px; object-fit: contain; flex: none; }
-.header-portal-link { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid #0c5c4680; padding: 11px 12px; color: var(--forest); background: #e9f2eb; border-radius: 4px; font-weight: 800; font-size: 10px; letter-spacing: .02em; white-space: nowrap; min-height: 44px; transition: background 180ms ease, transform 180ms ease; }
+.header-portal-link { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid #0B845780; padding: 11px 12px; color: var(--forest); background: #e9f2eb; border-radius: 4px; font-weight: 800; font-size: 10px; letter-spacing: .02em; white-space: nowrap; min-height: 44px; transition: background 180ms ease, transform 180ms ease; }
 .header-portal-link:hover { background: #d9ebdf; transform: translateY(-1px); }
 .header-portal-link img { width: 19px; height: 19px; object-fit: contain; }
 .footer-portal-link { display: inline-flex; align-items: center; gap: 9px; font-weight: 700; }
@@ -3320,7 +3320,7 @@ html[lang="ar"] .market-card { direction: rtl; text-align: right; }
 /* Secure Dawabit account UX; live API disabled until Supabase is configured. */
 .customer-login-form { margin-top: 26px; }
 .customer-login-form input:not(:disabled), .auth-single-card input:not(:disabled) {
-  background: #ffffff; border: 1px solid #9bb9aa; color: #183039;
+  background: #ffffff; border: 1px solid #9bb9aa; color: #0B1F3A;
 }
 .customer-login-form input:focus-visible, .auth-single-card input:focus-visible {
   outline: 3px solid #62b889; outline-offset: 2px;
@@ -3537,4 +3537,184 @@ html[lang="ar"] .market-card { direction: rtl; text-align: right; }
   .client-access-wordmark { width: 205px; }
   .client-access-button { min-height: 66px; padding: 16px 17px; }
   .portal-login-layout { gap: 32px; }
+}
+
+/* ========================================================================
+   Treehouse v5 / Dawabit — approved navy, green and mint art direction.
+   Modern enterprise editorial layout; no speculative logos or client data.
+   ======================================================================== */
+:root {
+  --navy: #0B1F3A; --deep: #07162A; --forest: #0B8457; --mint: #2FCB8B;
+  --ink: #0B1F3A; --muted: #506079; --line: #DFE7E7;
+}
+.site-header, .site-footer { background-color: var(--navy); }
+.hero, .page-hero, .closing, .client-access-band {
+  background-color: var(--navy);
+  background-image: radial-gradient(ellipse at 78% -20%, rgba(47,203,139,.16), transparent 58%),
+                    radial-gradient(ellipse at 5% 120%, rgba(43,89,133,.22), transparent 52%);
+}
+.product-page-hero { overflow: hidden; }
+.product-page-hero .dawabit-hero-grid {
+  display: grid; grid-template-columns: minmax(0,.88fr) minmax(0,1.12fr);
+  align-items: center; column-gap: clamp(32px,4vw,72px);
+  width: min(1420px,calc(100% - 96px)); padding-block: 72px 100px;
+}
+.product-page-hero .dawabit-hero-grid .page-hero-copy h1 {
+  font-size: clamp(44px,4.7vw,79px); line-height: 1.06; letter-spacing: -.055em;
+}
+.dawabit-hero-image { min-width: 0; }
+.dawabit-brand-fallback { display: inline-flex !important; gap: 10px; align-items: center; min-width: 0; }
+.dawabit-brand-fallback img { flex: 0 0 37px; width: 37px; height: 37px; object-fit: contain; }
+.dawabit-brand-fallback span { font-size: 13px; letter-spacing: -.015em; font-weight: 850; line-height: 1.3; }
+.dawabit-logo-arabic { position: relative; display: inline-block !important; width: clamp(170px,25vw,325px); aspect-ratio: 3.35/1; }
+.dawabit-logo-arabic img { width: 100% !important; height: 100% !important; object-fit: contain; }
+.dawabit-logo-arabic .dawabit-lockup-reversed { position: absolute; inset: 0; opacity: 0; }
+.product-page-hero .dawabit-logo-arabic .dawabit-lockup-primary,
+.closing .dawabit-logo-arabic .dawabit-lockup-primary { opacity: 0; }
+.product-page-hero .dawabit-logo-arabic .dawabit-lockup-reversed,
+.closing .dawabit-logo-arabic .dawabit-lockup-reversed { opacity: 1; }
+.dawabit-logo-pending { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 1px; }
+.dawabit-logo-pending > span { color: var(--forest); font-size: clamp(33px,4vw,55px); font-weight: 850; letter-spacing: -.07em; line-height: 1; }
+.product-page-hero .dawabit-logo-pending > span { color: white; }
+.dawabit-logo-pending > small { margin: 0 !important; font-size: 11px; text-transform: uppercase; color: var(--forest); font-weight: 750; letter-spacing: .15em; }
+.product-page-hero .dawabit-logo-pending > small { color: var(--mint); }
+.dawabit-brand-mark > small { display: none; }
+.dawabit-visual { min-width: 0; max-width: 100%; }
+.dawabit-process-art { background: #F2F7F7; border: 1px solid #D7E6E4; border-radius: 18px; padding: clamp(18px,2.2vw,30px); box-shadow: 0 28px 60px rgba(8,25,54,.1); }
+.product-page-hero .dawabit-process-art { background: #F6FBF9; border: 1px solid rgba(47,203,139,.23); box-shadow: 0 32px 85px rgba(1,11,32,.4); }
+.dawabit-process-label { display: flex; align-items: center; gap: 9px; color: #0B8457; font-weight: 800; letter-spacing: .105em; font-size: 10px; margin-bottom: 26px; }
+.dawabit-process-steps { display: grid; grid-template-columns: minmax(0,1fr) 18px minmax(0,1fr) 18px minmax(0,1fr); align-items: center; gap: clamp(6px,1vw,14px); }
+.dawabit-process-steps > div { display: flex; flex-direction: column; gap: 8px; min-width: 0; padding: clamp(9px,1.1vw,16px); border: 1px solid #DDEBE6; border-radius: 10px; background: white; min-height: 160px; }
+.dawabit-process-steps > div > svg { color: #0B8457; }
+.dawabit-process-steps > div > span { color: #7A929B; font-size: 10px; font-weight: 750; }
+.dawabit-process-steps > div > strong { font-size: clamp(11px,1.15vw,15px); color: #0B1F3A; }
+.dawabit-process-steps > div > p { font-size: 11px; color: #617584; line-height: 1.4; }
+.dawabit-process-steps > svg { color: #0B8457; }
+.dawabit-process-art figcaption { margin-top: 17px; color: #596C7A; text-align: end; letter-spacing: .1em; font-size: 9px; font-weight: 700; }
+.dawabit-browser-frame { padding: 10px; border: 1px solid #BFD9CD; border-radius: 13px; background: #FBFDFC; box-shadow: 0 30px 65px rgba(1,20,42,.17); }
+.dawabit-visual figcaption,.dawabit-graphic figcaption { font-size: 10px; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; color: #617581; margin-top: 12px; }
+.hero-language-note { max-width: 60ch; font-size: 12px !important; margin-block: 17px 0; color: #B5D7CE !important; letter-spacing: .015em; }
+.dawabit-method-section { background: #EEF4F2; }
+.dawabit-method-grid { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 10px; }
+.dawabit-method-card { min-width: 0; padding: 23px 18px; border: 1px solid #CFE0DC; background: white; border-radius: 10px; transition: transform .26s ease,box-shadow .26s ease; }
+.dawabit-method-card > span { font-size: 11px; letter-spacing: .13em; color: #0B8457; font-weight: 850; }
+.dawabit-method-card > h3 { font-size: clamp(16px,1.5vw,20px); margin-top: 17px; }
+.dawabit-method-card > p { font-size: 12px; margin-top: 9px; line-height: 1.6; }
+.dawabit-method-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(5,34,47,.07); }
+.dawabit-sector-teaser { background: #FFF; }
+.home-sector-tags { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; }
+.home-sector-tags > span { display: flex; align-items: center; gap: 12px; min-width: 0; padding: 21px 16px; background: #F5F8F7; border-radius: 10px; border: 1px solid var(--line); font-size: 13px; font-weight: 700; }
+.home-sector-tags b,.dawabit-sector-code { color: #0B8457; font-size: 11px; font-weight: 850; letter-spacing: .1em; }
+.home-dawabit-diagram { border-radius: 16px; padding: 26px; background: #0B1F3A; box-shadow: 0 25px 60px rgba(4,24,48,.2); }
+.home-dawabit-diagram-head { color: #BDF5DB; display: flex; align-items: center; gap: 13px; font-size: 10px; letter-spacing: .13em; font-weight: 800; }
+.home-dawabit-proof-flow { display: grid; gap: 8px; margin-block: 23px; }
+.home-dawabit-proof-step { display: flex; gap: 16px; align-items: center; padding: 13px 14px; background: rgba(255,255,255,.065); border: 1px solid rgba(255,255,255,.09); border-radius: 7px; }
+.home-dawabit-proof-step span { color: #2FCB8B; font-weight: 850; font-size: 11px; letter-spacing: .12em; }
+.home-dawabit-proof-step strong { font-size: 13px; font-weight: 650; color: white; }
+.home-dawabit-diagram > p { color: #B5C7D1; font-size: 12px; }
+.dawabit-verdict-section { background: #0B1F3A; }
+.dawabit-verdict-section h2,.dawabit-verdict-section h3 { color: #fff; }
+.dawabit-verdict-section .section-heading > p { max-width: 44ch; color: #B7C5D3; }
+.dawabit-verdict-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 14px; }
+.dawabit-verdict-card { min-width: 0; padding: 25px 21px; border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.045); border-radius: 11px; }
+.dawabit-verdict-card > span { display: inline-block; width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(47,203,139,.45); color: #2FCB8B; text-align: center; line-height: 33px; font: 700 11px/34px monospace; }
+.dawabit-verdict-card h3 { font-size: 20px; margin-block: 25px 12px; }
+.dawabit-verdict-card p { color: #B9C9D6; font-size: 13px; }
+.dawabit-example-section { background: #F2F7F5; }
+.dawabit-roles-section { background: #fff; }
+.dawabit-role-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; }
+.dawabit-role-card { padding: 29px 25px; border: 1px solid #D8E5E2; border-radius: 11px; background: linear-gradient(145deg,#fff,#F7FAF9); }
+.dawabit-role-card > span { color: #0B8457; font-weight: 850; font-size: 11px; }
+.dawabit-role-card h3 { font-size: 21px; margin-block: 26px 10px; }
+.dawabit-role-card p { font-size: 13px; max-width: 38ch; }
+.dawabit-sector-section { background: #F2F7F7; }
+.dawabit-engagement-section { background: #0B1F3A; }
+.dawabit-engagement-section h2,.dawabit-engagement-section h3 { color: #fff; }
+.dawabit-engagement-section .section-heading > p { color: #B6CCD0; max-width: 45ch; }
+.dawabit-engagement-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; margin-block: 38px 22px; }
+.dawabit-engagement-grid article { padding: 33px 25px; border-radius: 11px; border: 1px solid rgba(47,203,139,.24); background: rgba(255,255,255,.055); }
+.dawabit-engagement-grid article > span { color: #2FCB8B; font-size: 12px; font-weight: 850; }
+.dawabit-engagement-grid h3 { margin-block: 27px 12px; }
+.dawabit-engagement-grid p,.dawabit-engagement-foot { color: #BDCDD9; font-size: 13px; }
+.dawabit-engagement-foot { margin-bottom: 20px; }
+.dawabit-principles-section { background: #fff; }
+.dawabit-faq-section,.dawabit-faq-preview { background: #F3F7F6; }
+.dawabit-faq-list { max-width: 1030px; display: grid; gap: 9px; }
+.dawabit-faq-list details { background: #fff; border: 1px solid #D4E4DE; border-radius: 9px; padding: 0 22px; }
+.dawabit-faq-list summary { display: flex; align-items: center; gap: 18px; font-size: 15px; line-height: 1.5; font-weight: 750; color: #0B1F3A; padding: 21px 0; cursor: pointer; }
+.dawabit-faq-list summary > span { color: #0B8457; font-size: 11px; font-weight: 850; }
+.dawabit-faq-list details > p { border-top: 1px solid #E5EAE8; padding: 15px 0 24px 37px; line-height: 1.75; font-size: 14px; max-width: 79ch; }
+html[dir="rtl"] .dawabit-faq-list details > p { padding: 15px 37px 24px 0; }
+.dawabit-faq-contact { margin-top: 65px; background: #fff; padding: clamp(25px,4vw,50px); border-radius: 13px; border: 1px solid #D9E8E0; display: grid; gap: 15px; }
+.dawabit-faq-contact h2 { font-size: clamp(28px,2.6vw,38px); }
+.dawabit-faq-contact .button { justify-self: start; }
+.dawabit-coverage-other { margin-top: 70px; padding: 38px; background: #F1F7F4; border-radius: 12px; border: 1px solid #DDEBE3; }
+.dawabit-coverage-other h2 { font-size: 32px; margin-bottom: 14px; }
+.dawabit-coverage-other > p { max-width: 74ch; }
+.dawabit-ai-section { background: #0B1F3A; }
+.dawabit-ai-section h2 { color: white; }
+.dawabit-ai-section .lead { color: #D6E0E8; }
+.dawabit-ai-section .text-link { margin-top: 22px; color: #2FCB8B; }
+.dawabit-ai-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(30px,7vw,110px); }
+.dawabit-review-note { padding: 16px 20px; border-inline-start: 3px solid #0B8457; margin-top: 20px; background: #EEF7F1; font-size: 13px; }
+.dawabit-sector-card-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; }
+.dawabit-sector-card { display: flex; flex-direction: column; align-items: flex-start; min-height: 230px; padding: 28px 24px; background: #fff; border: 1px solid #DDE8E4; border-radius: 12px; transition: transform .25s ease,box-shadow .25s ease; }
+.dawabit-sector-card:hover { transform: translateY(-4px); box-shadow: 0 22px 45px rgba(7,32,49,.08); }
+.dawabit-sector-card > h3 { margin-block: 23px 9px; font-size: 20px; }
+.dawabit-sector-card > p { font-size: 13px; }
+.dawabit-sector-card .text-link { margin-top: auto; padding-top: 22px; }
+.dawabit-other-sectors { padding-block: 66px 0; }
+.dawabit-other-sectors > h2 { font-size: 30px; margin-bottom: 27px; }
+.dawabit-other-sectors ul { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 7px 24px; padding: 0; margin: 0 0 22px; list-style: none; }
+.dawabit-other-sectors li { display: flex; gap: 11px; padding: 11px 0; border-bottom: 1px solid #D7E3DE; font-size: 13px; align-items: baseline; }
+.dawabit-other-sectors li > span { color: #0B8457; font-weight: 850; }
+.dawabit-other-sectors > p { font-size: 12px; color: #596B74; }
+.dawabit-demo-access { background: #0B1F3A; }
+.dawabit-demo-access-inner { display: grid; grid-template-columns: 1.2fr .8fr; gap: 30px; align-items: center; }
+.dawabit-demo-access h2 { color: #fff; margin-bottom: 17px; }
+.dawabit-demo-access p { color: #CEDBE2; max-width: 64ch; }
+.dawabit-demo-lock { justify-self: end; display: flex; flex-direction: column; align-items: center; gap: 15px; border: 1px solid rgba(47,203,139,.33); background: rgba(47,203,139,.07); border-radius: 12px; padding: 36px; color: #2FCB8B; font-size: 11px; font-weight: 850; letter-spacing: .08em; }
+.form-closed-card { justify-items: start; text-align: start; gap: 13px; padding: clamp(26px,3vw,38px); border: 1px solid #D7E6DC; border-radius: 13px; background: #fff; }
+.form-closed-icon { display: grid; place-items: center; width: 55px; height: 55px; background: #E6F5ED; color: #0B8457; border-radius: 50%; }
+.form-closed-card h2 { font-size: clamp(24px,2.5vw,32px); max-width: 25ch; }
+.form-closed-card > p { font-size: 13px; font-weight: 400; }
+.form-closed-email { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 12px; font-size: clamp(12px,1.2vw,15px); font-weight: 800; color: #0B8457; min-height: 50px; overflow-wrap: anywhere; }
+.form-closed-email:hover { text-decoration: underline; }
+.form-closed-privacy { border-top: 1px solid #E5ECE8; padding-top: 14px; }
+.dawabit-trademark { font-size: 11px; color: #B8D6CD; margin-top: 12px; }
+.dawabit-graphic { margin-block: 26px; max-width: 100%; }
+.dawabit-graphic img { width: 100%; height: auto; object-fit: contain; border: 1px solid #D3E5DB; border-radius: 12px; box-shadow: 0 20px 60px rgba(2,26,42,.1); }
+.dawabit-graphic-dark img { border-color: rgba(255,255,255,.15); }
+@media (max-width: 1100px) {
+  .product-page-hero .dawabit-hero-grid { grid-template-columns: 1fr; width: min(920px,calc(100% - 60px)); gap: 34px; }
+  .dawabit-method-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .dawabit-role-grid,.dawabit-sector-card-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .dawabit-verdict-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .dawabit-ai-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 690px) {
+  .product-page-hero .dawabit-hero-grid { width: calc(100% - 32px); gap: 20px; padding-block: 42px 54px; }
+  .product-page-hero .dawabit-hero-grid .page-hero-copy h1 { font-size: clamp(37px,9vw,52px); }
+  .dawabit-method-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .dawabit-method-card { padding: 19px 14px; }
+  .home-sector-tags { grid-template-columns: 1fr; }
+  .dawabit-role-grid,.dawabit-sector-card-grid { grid-template-columns: 1fr; }
+  .dawabit-engagement-grid { grid-template-columns: 1fr; }
+  .dawabit-verdict-grid { grid-template-columns: 1fr; }
+  .dawabit-verdict-card h3 { margin-top: 13px; }
+  .dawabit-other-sectors ul { grid-template-columns: 1fr; }
+  .dawabit-demo-access-inner { grid-template-columns: 1fr; }
+  .dawabit-demo-lock { justify-self: stretch; text-align: center; }
+  .dawabit-process-art { padding: 13px; }
+  .dawabit-process-steps { grid-template-columns: 1fr; }
+  .dawabit-process-steps > svg { justify-self: center; transform: rotate(90deg); }
+  html[dir="rtl"] .dawabit-process-steps > svg { transform: rotate(90deg); }
+  .dawabit-process-steps > div { min-height: 110px; }
+  .dawabit-faq-list details { padding-inline: 15px; }
+  .dawabit-faq-list summary { font-size: 14px; }
+  .dawabit-faq-list details > p { padding-inline: 0; }
+  .dawabit-coverage-other { padding: 23px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dawabit-method-card,.dawabit-sector-card { transition: none; transform: none !important; }
 }
