@@ -41,6 +41,7 @@ import { HeroArt } from "./hero-art";
 import { Reveal } from "./reveal";
 import { AssessmentExplorer, CoverageTable, InsightsList } from "./explorers";
 import { DawabitVisual, DawabitGraphic, DawabitProof } from "./dawabit-visual";
+import { DawabitProcessExplorer } from "./dawabit-process-explorer";
 import { targetRoles, engagementOptions, frequentlyAsked, artificialIntelligenceText, sectorClassificationNote, otherSectorsCoverage, libraryMaintenanceText, approvedVisualsInstalled } from "@/content/dawabit-v5";
 import { EnquiryForm } from "./enquiry-form";
 const serviceIcons = [ScanLine, Landmark, Layers3, Orbit, Fingerprint];
@@ -486,6 +487,7 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
               <Link href={href(locale,"dawabit/how-it-works")} className="text-link">{ui.how[locale]} <Arrow diagonal /></Link>
             </div>
           </section>
+          <DawabitProcessExplorer locale={locale} />
           <section className="section dawabit-verdict-section" aria-labelledby="dawabit-verdict-heading">
             <div className="container">
               <div className="section-heading">

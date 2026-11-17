@@ -158,8 +158,8 @@ export const ui = {
   users: t("Who uses it", "لمن صُمّم"),
   verdicts: t("Four verdicts. No ambiguity.", "أربع نتائج واضحة."),
   judgement: t(
-    "Dawabit supports professional judgement and does not replace it. Every assessment is reviewed by an experienced regulatory specialist.",
-    "يدعم ضوابط الحكم المهني ولا يحلّ محله. يراجع كل تقييم متخصص ذو خبرة في الشؤون التنظيمية.",
+    "Dawabit supports professional judgement and does not replace it. A regulatory specialist reviews findings before reporting.",
+    "تدعم «ضوابط» الحكم المهني ولا تحلّ محله. ويراجع مختص في الشؤون التنظيمية النتائج قبل إصدار التقرير.",
   ),
   illustration: t(
     "ILLUSTRATIVE METHOD · NOT LIVE CLIENT DATA",
