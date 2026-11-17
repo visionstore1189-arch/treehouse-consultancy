@@ -873,6 +873,18 @@ export const pages: Record<string, PageContent> = {
       "أخبرنا بأولوياتك التنظيمية. تُعامل جميع الاستفسارات بسرية ونرد خلال يومي عمل.",
     ),
   },
+  privacy: {
+    title: t("Privacy notice", "إشعار الخصوصية"),
+    intro: t("Information about the collection and handling of personal information.", "معلومات عن جمع البيانات الشخصية ومعالجتها."),
+  },
+  terms: {
+    title: t("Website terms", "شروط استخدام الموقع"),
+    intro: t("Information about the terms of using the Treehouse Consulting website.", "معلومات عن شروط استخدام موقع تري هاوس للاستشارات."),
+  },
+  cookies: {
+    title: t("Cookie policy", "سياسة ملفات تعريف الارتباط"),
+    intro: t("Information about cookies and similar browser technologies on this website.", "معلومات عن ملفات تعريف الارتباط والتقنيات المشابهة على هذا الموقع."),
+  },
 
 };
 for (const s of services)
@@ -888,7 +900,8 @@ export const productNameMeaning = t(
   "«ضوابط» هي القواعد والاشتراطات التي تضعها الجهة التنظيمية. تجيب الأداة عن سؤال واحد لكل ضابط منها: هل يستوفيه إطاركم؟",
 );
 // Draft legal notices are deliberately not published until client-approved text is supplied.
-// Privacy, cookie and terms URLs are withheld in the v3 draft launch.
+// Draft legal paths are published as neutral holding pages with no approved policy claims.
+// Keep forms disabled and all pages noindex until the firm approves E3 and E10.
 export const legalContent: Record<string, Bilingual[]> = {
   privacy: [],
   cookies: [],
