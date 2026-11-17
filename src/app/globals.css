@@ -3886,3 +3886,8 @@ html[dir="rtl"] .brand.treehouse-official-brand > img { object-position: right c
 .closing .eyebrow { color: #79D9B6; }
 .closing .button-secondary { color: #FFFFFF; border-color: #9BB7CB; }
 .closing .button-secondary:hover { color: #FFFFFF; background: #193750; }
+
+/* Authentication cards are light surfaces inside the dark portal section. */
+.portal-login-section .auth-single-card .dawabit-logo-art .dawabit-wordmark-dark { opacity: 1; }
+.portal-login-section .auth-single-card .dawabit-logo-art .dawabit-wordmark-light { opacity: 0; }
+.portal-login-section .auth-single-card .dawabit-brand-mark small { color: #15362b; }
