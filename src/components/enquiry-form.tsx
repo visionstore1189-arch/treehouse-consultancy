@@ -4,7 +4,6 @@ import Link from "next/link";
 import {
   ShieldCheck,
   ArrowRight,
-  CircleAlert,
   CheckCircle2,
 } from "lucide-react";
 import { config, href, type Locale } from "@/lib/config";
@@ -165,15 +164,6 @@ export function EnquiryForm({
   );
   return (
     <div className="form-card">
-      {!enabled && (
-        <div className="notice" role="status">
-          <CircleAlert size={20} />
-          <div>
-            <strong>{c.offline[locale]}</strong>
-            <p>{c.offlineBody[locale]}</p>
-          </div>
-        </div>
-      )}
       {status === "success" || status === "saved" ? (
         <div className="form-success" role="status">
           <CheckCircle2 size={36} />
