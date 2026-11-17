@@ -8,8 +8,8 @@ interface Env extends EnquiryEnv {
   REPORT_LINK_SECRET?: string;
   REPORT_FILE_KEY?: string;
 }
-const fileKey = (env: Env) => env.REPORT_FILE_KEY || "private/TIBQA_Sample_Assessment_Report_v3.pdf";
-const pdfName = "TIBQA_Sample_Assessment_Report_v3.pdf";
+const fileKey = (env: Env) => env.REPORT_FILE_KEY || "private/Dawabit_Sample_Assessment_Report_v3.pdf";
+const pdfName = "Dawabit_Sample_Assessment_Report_v3.pdf";
 const err = (error: string, status = 400) => Response.json({ error }, {
   status,
   headers: {
@@ -157,8 +157,8 @@ export const onRequest: PagesFunction<Env> = async ({ request, env, waitUntil })
         body: JSON.stringify({
           from: env.MAIL_FROM, to: data.email,
           bcc: env.MAIL_TO!.split(",").map((s) => s.trim()),
-          subject: "Your TIBQA sample assessment report",
-          text: `Hello ${data.name},\n\nThank you for your interest in TIBQA by Treehouse.\n\nDownload your illustrative sample assessment report using this link (valid for 15 minutes):\n${link}\n\nIf you did not request this report, you can ignore this email.\n\nTreehouse Consulting`,
+          subject: "Your Dawabit sample assessment report",
+          text: `Hello ${data.name},\n\nThank you for your interest in Dawabit by Treehouse.\n\nDownload your illustrative sample assessment report using this link (valid for 15 minutes):\n${link}\n\nIf you did not request this report, you can ignore this email.\n\nTreehouse Consulting`,
         }),
         signal: AbortSignal.timeout(8000),
       });
