@@ -139,3 +139,12 @@ test("original public asset installation keeps private materials out of the site
   assert.match(installer, /approvedVisualsInstalled = true/);
   assert.doesNotMatch(page, /client1\.treehouseconsultancy\.co\.uk/);
 });
+
+test("unapproved former-supervisor claims are not published while v5 E6 awaits sign-off", () => {
+  const site = read("src/content/site.ts");
+  const seo = read("src/content/seo.ts");
+  for (const source of [site, seo]) {
+    assert.doesNotMatch(source, /our work is led by people who have supervised|former regulators|former regulatory officials|سبق لهم الإشراف على مؤسسات مرخصة/i);
+  }
+  assert.match(site, /The regulatory perspective\./);
+});
