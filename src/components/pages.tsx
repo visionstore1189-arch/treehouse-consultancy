@@ -1,3 +1,4 @@
+import { AuthCallbackRedirect } from "./auth-callback-redirect";
 import { CustomerLoginForm, CustomerPortal, RecoverPasswordForm, SetPasswordForm } from "./customer-auth";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -870,6 +871,7 @@ export function SitePage({ locale, path }: { locale: Locale; path: string }) {
           : null;
   return (
     <>
+      <AuthCallbackRedirect locale={locale} />
       <Header locale={locale} path={path} />
       <main id="main" tabIndex={-1}>
         {schema && (
