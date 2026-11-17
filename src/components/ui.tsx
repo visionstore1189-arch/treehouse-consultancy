@@ -36,37 +36,36 @@ export function Eyebrow({ children }: { children: ReactNode }) {
     </p>
   );
 }
+// The client-supplied English master logos have not been uploaded yet.
+// Never fabricate or retype the English logo as a replacement master asset.
+const englishLogoPackInstalled = false;
 export function Wordmark({ locale }: { locale: Locale }) {
   return (
     <div className="wordmark dawabit-brand-mark" role="img" aria-label={`${ui.product[locale]} ${ui.endorsement[locale]}`}>
-      {locale === "en" ? (
+      {locale === "ar" ? (
+        <span className="dawabit-logo-arabic" aria-hidden="true">
+          <img className="dawabit-lockup-primary" src="/brand/dawabit-by-treehouse-lockup-ar-v1.svg" width={420} height={112} alt="" />
+          <img className="dawabit-lockup-reversed" src="/brand/dawabit-by-treehouse-lockup-ar-light-v1.svg" width={420} height={112} alt="" />
+        </span>
+      ) : englishLogoPackInstalled ? (
         <span className="dawabit-logo-art" aria-hidden="true">
-          <img className="dawabit-wordmark-dark" src="/brand/dawabit-wordmark.svg" alt="" width={370} height={65} />
-          <img className="dawabit-wordmark-light" src="/brand/dawabit-wordmark-light.svg" alt="" width={370} height={65} />
+          <img className="dawabit-wordmark-dark" src="/brand/dawabit-logo-primary-v4.svg" alt="" width={500} height={112} />
+          <img className="dawabit-wordmark-light" src="/brand/dawabit-logo-reversed-v4.svg" alt="" width={500} height={112} />
         </span>
       ) : (
-        <span className="dawabit-logo-arabic" aria-hidden="true">
-          <img src="/brand/dawabit-mark.svg" width={38} height={38} alt="" />
-          <span>{ui.product[locale]}</span>
+        <span className="dawabit-logo-pending" aria-hidden="true">
+          <span>Dawabit</span>
+          <small>by Treehouse</small>
         </span>
       )}
-      <small>{ui.endorsement[locale]}</small>
     </div>
   );
 }
 export function Brand({ locale = "en" }: { locale?: Locale }) {
   return (
-    <Link
-      href={href(locale)}
-      aria-label={`${ui.brand[locale]} — ${ui.home[locale]}`}
-      className="brand"
-    >
-      <img
-        src="/brand/treehouse-official.png"
-        alt={ui.brand[locale]}
-        width="1280"
-        height="1280"
-      />
+    <Link href={href(locale)} aria-label={`${ui.brand[locale]} — ${ui.home[locale]}`} className="brand dawabit-brand-fallback">
+      <img src="/brand/treehouse-favicon-v4.svg" alt="" width={42} height={42} />
+      <span>{ui.brand[locale]}</span>
     </Link>
   );
 }
