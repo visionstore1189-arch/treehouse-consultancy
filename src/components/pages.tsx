@@ -366,6 +366,8 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                 {ui.explore[locale]}
                 <Arrow diagonal />
               </Link>
+              {service.slug === "compliance-assessment" && <DawabitGraphic locale={locale} id="resultsSummary" />}
+              {service.slug === "independent-assurance" && <DawabitGraphic locale={locale} id="evidenceChain" />}
             </div>
           </div>
         </section>
@@ -403,7 +405,10 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                 {ui.demo[locale]}
               </Button>
             </div>
-            <DawabitVisual locale={locale} id={market.slug === "saudi-arabia" ? "finding" : "overview"} />
+            {market.slug === "saudi-arabia" ? (
+              approvedVisualsInstalled ? <DawabitGraphic locale={locale} id="workedExamples" /> : <DawabitVisual locale={locale} />
+            ) : <DawabitGraphic locale={locale} id="badgeStrip" />}
+
           </div>
         </section>
         <Closing locale={locale} />
@@ -735,7 +740,7 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                   {ui.explore[locale]}
                 </Button>
               </div>
-              <DawabitVisual locale={locale} id="overview" />
+              <DawabitGraphic locale={locale} id="evidenceChain" />
             </div>
           </section>
           <Closing locale={locale} />
