@@ -47,9 +47,21 @@ export const onRequestGet: PagesFunction<AuthEnv> = async ({ request, env }) => 
       user: { email: identity.user.email || "" },
       organizations: account,
       subscriptionActive: allowed,
+      resources: privateResources(env, identity.user.email, memberships.length > 0),
       // This endpoint grants no access to the MUTABIQ application or documents.
     });
     if (identity.tokens) setTokens(result, identity.tokens);
     return result;
   } catch { return response({ error: "access_records_unavailable" }, 503); }
 };
+// Resource links are returned only after server-side membership and named identity checks.
+// The destination must independently enforce Cloudflare Access; this is never a proxy.
+export function privateResources(env: AuthEnv, email: string | undefined, member: boolean) {
+  if (!member || env.CLIENT1_ACCESS_READY !== "true" || !email || !env.CLIENT1_ALLOWED_EMAIL ||
+      email.toLowerCase() !== env.CLIENT1_ALLOWED_EMAIL.toLowerCase()) return [];
+  try {
+    const url = new URL(env.CLIENT1_GUIDE_URL || "");
+    if (url.protocol !== "https:" || url.username || url.password || url.search || url.hash || url.pathname !== "/") return [];
+    return [{ id: "client1-guide", url: url.href }];
+  } catch { return []; }
+}

@@ -1,5 +1,8 @@
 /* Cloudflare Pages auth helper. No service-role key or passwords are ever stored. */
 export interface AuthEnv {
+  CLIENT1_GUIDE_URL?: string;
+  CLIENT1_ALLOWED_EMAIL?: string;
+  CLIENT1_ACCESS_READY?: string;
   SUPABASE_URL?: string;
   SUPABASE_PUBLISHABLE_KEY?: string;
 }

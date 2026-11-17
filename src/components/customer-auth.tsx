@@ -90,6 +90,7 @@ type Me = {
   user: { email: string };
   organizations: { organizationName: string; organizationId: string; role: string; subscription: string; plan: string }[];
   subscriptionActive: boolean;
+  resources?: { id: string; url: string }[];
 };
 export function CustomerPortal({ locale }: { locale: Locale }) {
   const t = copy[locale];
@@ -143,7 +144,8 @@ export function CustomerPortal({ locale }: { locale: Locale }) {
                   <div className="account-property"><span>{t.plan}</span><strong>{o.plan}</strong></div>
                 </div>
               ))}
-              <p className="account-pending">{t.appPending}</p>
+              {account.resources?.map(resource => <a className="button button-primary" key={resource.id} href={resource.url} target="_blank" rel="noopener noreferrer">{locale === "ar" ? "افتح دليل العميل الخاص" : "Open your private client guide"}<ArrowRight size={17} /></a>)}
+              {!account.resources?.length && <p className="account-pending">{t.appPending}</p>}
               <button type="button" onClick={logout} className="button button-secondary account-signout">
                 <LogOut size={17} />{t.signOut}
               </button>
