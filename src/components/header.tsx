@@ -160,11 +160,11 @@ export function Header({ locale, path }: { locale: Locale; path: string }) {
         </div>
         <nav aria-label={ui.menu[locale]}>
           {ui.nav.map((item, i) =>
-            i === 4 && !showInsights ? null : i === 2 ? (
+            i === 4 && !showInsights ? null : i < 3 ? (
               <details className="mobile-markets" key={i}>
                 <summary>{item[locale]}<ChevronDown size={17} /></summary>
                 <div className="mobile-subnav">
-                  {subnav(2).map((s) => (
+                  {subnav(i).map((s) => (
                     <Link key={s.path} href={href(locale, s.path)} onClick={close}>
                       {s.label[locale]}<Arrow />
                     </Link>
