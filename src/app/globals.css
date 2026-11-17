@@ -3727,3 +3727,25 @@ html[dir="rtl"] .dawabit-faq-list details > p { padding: 15px 37px 24px 0; }
   .dawabit-market-regulator-strip { gap: 7px; }
   .dawabit-market-region, .dawabit-regulator-chip { min-height: 33px; padding: 5px 9px; font-size: 10px; }
 }
+
+/* Accessible, data-free editorial concepts shown only when official v5 image assets are unavailable. */
+.dawabit-concept-graphic { position: relative; max-width: 100%; margin-block: 25px; padding: clamp(20px,2.6vw,34px); background: #F9FCFA; border: 1px solid #D0E1DA; border-radius: 14px; box-shadow: 0 22px 60px rgba(7,35,56,.08); overflow: hidden; }
+.dawabit-concept-graphic::after { content: ""; position: absolute; width: 180px; height: 180px; inset-inline-end: -80px; bottom: -100px; pointer-events: none; background: radial-gradient(circle,rgba(47,203,139,.12),transparent 70%); }
+.dawabit-concept-top { display: flex; align-items: center; gap: 10px; color: #0B8457; font-size: 10px; font-weight: 850; letter-spacing: .115em; margin-bottom: 20px; }
+.dawabit-concept-graphic ol { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.dawabit-concept-graphic li { display: grid; grid-template-columns: 40px minmax(0,1fr) 24px; align-items: center; min-height: 56px; gap: 12px; border: 1px solid #E0E9E7; border-radius: 8px; background: #fff; padding: 10px 15px; color: #0B1F3A; font-size: clamp(12px,1.25vw,15px); font-weight: 750; }
+.dawabit-concept-index { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; color: #0B8457; }
+.dawabit-concept-rule { width: 24px; height: 3px; border-radius: 4px; background: linear-gradient(90deg,#0B8457,#2FCB8B); }
+.dawabit-concept-graphic figcaption { padding-top: 19px; color: #607981; text-align: end; font-size: 9px; font-weight: 750; letter-spacing: .105em; }
+.dawabit-method-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-block: 25px; }
+.dawabit-method-badges > span { display: inline-flex; align-items: center; gap: 9px; min-height: 39px; background: #F8FCF9; border: 1px solid #D0E5D9; border-radius: 7px; padding: 8px 14px; font-size: 11px; color: #264B43; font-weight: 700; }
+.dawabit-method-badges b { font-size: 9px; color: #0B8457; font-weight: 900; }
+.dawabit-concept-sectors { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; margin-block: 25px; }
+.dawabit-concept-sectors > div { padding: 22px 19px; border: 1px solid #D3E7DD; border-radius: 10px; background: linear-gradient(135deg,#FFF,#F2F8F6); display: flex; flex-direction: column; gap: 13px; min-height: 110px; }
+.dawabit-concept-sectors span { font-size: 10px; color: #0B8457; font-weight: 850; }
+.dawabit-concept-sectors strong { font-size: 14px; color: #0B1F3A; }
+@media (max-width: 450px) {
+  .dawabit-concept-sectors { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .dawabit-concept-sectors > div { padding: 14px 12px; }
+  .dawabit-method-badges > span { width: calc(50% - 4px); padding: 8px 10px; font-size: 10px; }
+}
