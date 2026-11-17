@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - dawabit-v5-release-hardening-20261117
+      - dawabit-client-login-20261117
   pull_request:
     branches:
       - dawabit-v5-client-rebrand-staging-2026

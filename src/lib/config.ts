@@ -7,7 +7,7 @@ export const config = {
   sampleReportEnabled: false, // Not publicly downloadable; send only on request.
   // Account UI remains unpublished while the firm decides E9; backend and
   // existing Supabase users are preserved, never exposed as demo access.
-  authLoginEnabled: false,
+  authLoginEnabled: true, // Explicitly requested by the user on 17 November 2026.
   dawabitAppUrl: "",
   dawabitLoginUrl: "",
   portalConnected: false,

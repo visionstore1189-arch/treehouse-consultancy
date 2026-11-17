@@ -19,11 +19,3 @@ https://www.treehouseconsulting.co.uk/* https://treehouseconsulting.co.uk/:splat
 # Unpublished sections.
 /insights/ / 302
 /ar/insights/ /ar/ 302
-/client/login/ / 302
-/ar/client/login/ /ar/ 302
-/client/recover-password/ / 302
-/ar/client/recover-password/ /ar/ 302
-/client/portal/ / 302
-/ar/client/portal/ /ar/ 302
-/client/reset-password/ / 302
-/ar/client/reset-password/ /ar/ 302

@@ -1,3 +1,4 @@
+import { CustomerLoginForm, CustomerPortal, RecoverPasswordForm, SetPasswordForm } from "./customer-auth";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -461,6 +462,12 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
       </>
     );
   switch (path) {
+    case "client/login":
+      return <section className="section portal-login-section"><div className="container auth-single-card"><Wordmark locale={locale} /><h1>{locale === "ar" ? "تسجيل دخول العملاء" : "Client sign in"}</h1><p>{locale === "ar" ? "سجّلوا الدخول بالبريد الإلكتروني وكلمة المرور المخصّصين لكم." : "Sign in with your approved email address and password."}</p><CustomerLoginForm locale={locale} /></div></section>;
+    case "client/portal": return <CustomerPortal locale={locale} />;
+    case "client/recover-password": return <RecoverPasswordForm locale={locale} />;
+    case "client/reset-password": return <SetPasswordForm locale={locale} />;
+
     case "dawabit":
       return (
         <>

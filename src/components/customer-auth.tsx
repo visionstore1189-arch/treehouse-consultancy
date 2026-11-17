@@ -16,7 +16,7 @@ const copy = {
     account: "Your secure workspace", loading: "Verifying your account…", signOut: "Sign out",
     notSignedIn: "Sign in to view your account.", awaiting: "Your account is active, but your organisation or subscription access has not yet been approved.",
     subscription: "Subscription", plan: "Plan", role: "Your access level", active: "Active", pending: "Pending",
-    appPending: "Your secure Dawabit application connection is being prepared. No confidential assessments are hosted on this marketing website.",
+    appPending: "Your authorised resources appear here when Treehouse grants access.",
     access: "Verified organisation access", changePassword: "Set your password",
   },
   ar: {
@@ -30,7 +30,7 @@ const copy = {
     account: "مساحة عملك الآمنة", loading: "جارٍ التحقق من حسابك…", signOut: "تسجيل الخروج",
     notSignedIn: "سجّل الدخول لعرض حسابك.", awaiting: "حسابك نشط، ولكن لم تتم الموافقة بعد على صلاحيات المؤسسة أو الاشتراك.",
     subscription: "الاشتراك", plan: "الخطة", role: "صلاحيتك", active: "نشط", pending: "قيد الانتظار",
-    appPending: "يجري تجهيز الاتصال الآمن بتطبيق ضوابط. لا تُستضاف تقييمات العملاء السرية على هذا الموقع التعريفي.",
+    appPending: "تظهر مواردكم المصرّح بها هنا بعد أن تمنحكم تري هاوس صلاحية الوصول.",
     access: "صلاحيات المؤسسة المعتمدة", changePassword: "تعيين كلمة المرور",
   },
 } as const;

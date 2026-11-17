@@ -56,16 +56,16 @@ test("staged site includes additional buyer and explanatory sections in both lan
   assert.match(page, /artificialIntelligenceText\[locale\]/);
 });
 
-test("unapproved login, unpublished legal notices and demo remain inaccessible", () => {
-  assert.doesNotMatch(site, /"client\/login":/);
-  assert.doesNotMatch(page, /case "client\/login":/);
+test("requested client login is available while confidential demo remains gated", () => {
+  assert.match(site, /"client\/login":/);
+  assert.match(page, /case "client\/login":/);
   assert.doesNotMatch(header, /client\/login/);
-  assert.doesNotMatch(footer, /client\/login/);
+  assert.match(footer, /client\/login/);
   assert.doesNotMatch(page, /dawabit-demo\.vision-store1189\.workers\.dev/);
   assert.doesNotMatch(site, /dawabit-demo\.vision-store1189\.workers\.dev/);
   assert.match(config, /formsEnabled: false/);
   assert.match(config, /sampleReportEnabled: false/);
-  assert.match(config, /authLoginEnabled: false/);
+  assert.match(config, /authLoginEnabled: true/);
   const publicPanelsReady = /approvedVisualsInstalled = true/.test(read("src/content/dawabit-v5.ts"));
   const publicOverviewReady = /visualsEnabled: true/.test(read("src/content/dawabit-assets.ts"));
   assert.equal(publicPanelsReady, publicOverviewReady, "Public images must activate together after original-byte checks");
@@ -121,7 +121,7 @@ test("draft blocks remain active until official authorisations and legal text", 
   assert.match(headers, /X-Robots-Tag:\s*noindex, nofollow/);
   assert.match(read("src/lib/routes.ts"), /index: false, follow: false/);
   assert.match(config, /formsEnabled: false/);
-  assert.match(config, /authLoginEnabled: false/);
+  assert.match(config, /authLoginEnabled: true/);
   assert.match(config, /sampleReportEnabled: false/);
 });
 

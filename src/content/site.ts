@@ -786,6 +786,11 @@ export type PageContent = {
   eyebrow?: Bilingual;
 };
 export const pages: Record<string, PageContent> = {
+  "client/login": { title: t("Client sign in | Dawabit by Treehouse", "دخول العملاء | ضوابط من تري هاوس"), intro: t("Sign in to your Dawabit workspace.", "سجّلوا الدخول إلى مساحة عمل ضوابط.") },
+  "client/portal": { title: t("Client workspace | Dawabit by Treehouse", "مساحة العملاء | ضوابط من تري هاوس"), intro: t("Your account and authorised resources.", "حسابكم والموارد المصرّح لكم بها.") },
+  "client/recover-password": { title: t("Recover password | Dawabit by Treehouse", "استعادة كلمة المرور | ضوابط من تري هاوس"), intro: t("Recover access to your account.", "استعيدوا الوصول إلى حسابكم.") },
+  "client/reset-password": { title: t("Set password | Dawabit by Treehouse", "تعيين كلمة المرور | ضوابط من تري هاوس"), intro: t("Choose your own password.", "اختاروا كلمة مروركم.") },
+
   "": {
     title: t(
       "Treehouse Consulting | Regulatory Advisory and Regulatory Technology",

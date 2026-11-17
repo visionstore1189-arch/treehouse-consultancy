@@ -18,7 +18,7 @@ const routes = [
   "services/governance-risk-compliance", "services/regulatory-change",
   "services/independent-assurance", "sectors", "markets",
   "uk", "uae", "saudi-arabia", "about", "contact",
-  "privacy", "terms", "cookies"
+  "privacy", "terms", "cookies", "client/login", "client/portal", "client/recover-password", "client/reset-password"
 ];
 const widths = [360, 390, 768, 1024];
 const screenshotsDir = path.resolve("qa-screenshots");
