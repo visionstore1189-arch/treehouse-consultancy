@@ -41,6 +41,37 @@ const conceptStages = [
   { en: "Specialist review", ar: "مراجعة المختص" },
   { en: "Evidenced result", ar: "نتيجة موثقة" },
 ] as const;
+const graphicAlt: Record<GraphicId, { en: string; ar: string }> = {
+  verdictDefinitions: {
+    en: "Diagram explaining the four regulatory requirement verdicts: Addressed, Partially Addressed, Gap and Out of Document Scope. Illustrative example.",
+    ar: "مخطط يشرح نتائج تقييم المتطلبات التنظيمية الأربع: مستوفى، ومستوفى جزئيًا، وفجوة، وخارج نطاق المستند. مثال توضيحي.",
+  },
+  workedExamples: {
+    en: "Worked examples comparing regulatory requirements with policy evidence, assessments and explanations. Illustrative example.",
+    ar: "أمثلة تطبيقية تقارن المتطلبات التنظيمية بأدلة السياسات ونتائج التقييم والتفسير. مثال توضيحي.",
+  },
+  evidenceChain: {
+    en: "Evidence chain diagram connecting a source regulation to a policy excerpt and specialist-reviewed assessment. Illustrative example.",
+    ar: "مخطط لسلسلة الأدلة يربط النص التنظيمي المصدر بفقرة من السياسة ونتيجة تقييم يراجعها مختص. مثال توضيحي.",
+  },
+  resultsSummary: {
+    en: "Assessment results summary showing regulatory findings, evidence and proposed priority actions. Illustrative example.",
+    ar: "ملخص نتائج التقييم يوضح الملاحظات التنظيمية والأدلة والإجراءات المقترحة حسب الأولوية. مثال توضيحي.",
+  },
+  badgeStrip: {
+    en: "Illustrated assessment workflow badges identifying regulatory evidence and review stages. Illustrative example.",
+    ar: "شريط توضيحي يعرّف مراحل الأدلة التنظيمية والتقييم والمراجعة. مثال توضيحي.",
+  },
+  methodStrip: {
+    en: "Five-step method from scoping and regulatory mapping to document assessment, specialist review and report. Illustrative example.",
+    ar: "مخطط لمنهج التقييم من خمس خطوات: تحديد النطاق، وربط المتطلبات التنظيمية، وتقييم المستندات، ومراجعة المختص، وإعداد التقرير. مثال توضيحي.",
+  },
+  sectorGrid: {
+    en: "Sector grid illustrating the range of regulated industries served by Dawabit's assessment method. Illustrative example.",
+    ar: "شبكة قطاعات توضح تنوع الأنشطة الخاضعة للتنظيم التي يخدمها منهج تقييم «ضوابط». مثال توضيحي.",
+  },
+};
+
 export function DawabitGraphic({ locale, id, dark = false }: { locale: Locale; id: GraphicId; dark?: boolean }) {
   if (!approvedVisualsInstalled) {
     // Clearly identified editorial graphics only, NOT replacements for the client's
@@ -78,7 +109,7 @@ export function DawabitGraphic({ locale, id, dark = false }: { locale: Locale; i
   return (
     <figure className={`dawabit-graphic ${dark ? "dawabit-graphic-dark" : ""}`}>
       <img src={path} width={1600} height={900}
-        alt={`${id.replace(/([A-Z])/g, " $1").toLowerCase()} — ${locale === "ar" ? "مثال توضيحي" : "Illustrative example."}`}
+        alt={graphicAlt[id][locale]}
         loading="lazy" decoding="async" />
       <figcaption>{locale === "ar" ? "مثال توضيحي" : "ILLUSTRATIVE EXAMPLE"}</figcaption>
     </figure>
