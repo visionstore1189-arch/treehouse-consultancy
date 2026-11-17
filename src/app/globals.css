@@ -4092,3 +4092,32 @@ html[dir="rtl"] .site-progress-track > span { transform-origin:right center; }
   .site-header .language-switch { font-size: 13px; }
   .premium-process-footer > span { font-size: 12px; line-height: 1.55; }
 }
+
+
+/* Conditional access-verified demonstration launch; never shown without
+   client E8 and server-side Cloudflare Access evidence. */
+.dawabit-demo-launch {
+  justify-self: end;
+  display:inline-flex;
+  gap:16px;
+  justify-content:center;
+  align-items:center;
+  padding:clamp(19px,2.2vw,26px) clamp(21px,3vw,36px);
+  min-height:56px;
+  background:#2FCB8B;
+  color:#0B1F3A;
+  border:1px solid #2FCB8B;
+  border-radius:12px;
+  font-size:clamp(13px,1.3vw,16px);
+  font-weight:800;
+  box-shadow:0 15px 38px rgba(0,0,0,.12);
+  transition:background .18s ease, transform .18s ease, border-color .18s ease;
+}
+.dawabit-demo-launch:hover {
+  background:#93f5c7;
+  border-color:#93f5c7;
+  transform:translateY(-2px);
+}
+.dawabit-demo-launch:focus-visible { outline:3px solid #fff; outline-offset:4px; }
+@media(max-width:700px) { .dawabit-demo-launch { justify-self:stretch; } }
+@media(prefers-reduced-motion:reduce) { .dawabit-demo-launch { transition:none; } .dawabit-demo-launch:hover {transform:none;} }
