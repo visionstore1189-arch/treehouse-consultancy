@@ -91,6 +91,7 @@ type Me = {
   organizations: { organizationName: string; organizationId: string; role: string; subscription: string; plan: string }[];
   subscriptionActive: boolean;
   demoAvailable?: boolean;
+  demoAccess?: {kind: "preview" | "trial" | "paid"; active: boolean; expiresAt: string | null; startedAt: string | null; serverTime: string; state: string} | null;
   resources?: { id: string; url: string }[];
 };
 export function CustomerPortal({ locale }: { locale: Locale }) {
@@ -100,7 +101,7 @@ export function CustomerPortal({ locale }: { locale: Locale }) {
   useEffect(() => {
     if (!config.authLoginEnabled) { setStatus("unavailable"); return; }
     let active = true;
-    fetch("/api/auth/me", { credentials: "same-origin", cache: "no-store" })
+    const check = () => fetch("/api/auth/me", { credentials: "same-origin", cache: "no-store" })
       .then(async r => {
         if (!active) return;
         if (r.status === 401) { setStatus("guest"); return; }
@@ -110,8 +111,18 @@ export function CustomerPortal({ locale }: { locale: Locale }) {
         setAccount(data); setStatus("ready");
       })
       .catch(() => { if (active) setStatus("unavailable"); });
-    return () => { active = false; };
+    check();
+    const poll = window.setInterval(check, 60000);
+    return () => { active = false; window.clearInterval(poll); };
   }, []);
+  useEffect(() => {
+    const access = account?.demoAccess;
+    if (!access?.active || !access.expiresAt) return;
+    const remaining = Math.max(0, Date.parse(access.expiresAt) - Date.parse(access.serverTime));
+    if (remaining > 2147483647) return;
+    const timer = window.setTimeout(() => setAccount(previous => previous ? {...previous, demoAvailable: false, demoAccess: previous.demoAccess ? {...previous.demoAccess, active: false, state: "expired"} : null} : previous), remaining);
+    return () => window.clearTimeout(timer);
+  }, [account?.demoAccess]);
   async function logout() {
     try { await fetch("/api/auth/logout", { method: "POST", credentials: "same-origin",
       headers: { "Content-Type": "application/json" }, body: "{}" }); }
@@ -136,18 +147,19 @@ export function CustomerPortal({ locale }: { locale: Locale }) {
               <div className="account-identity">
                 <span>{t.email}</span><strong dir="ltr">{account.user.email}</strong>
               </div>
-              {!account.subscriptionActive && !account.resources?.length && !account.demoAvailable && <p className="account-pending">{t.awaiting}</p>}
+              {!account.subscriptionActive && !account.resources?.length && !account.demoAccess && <p className="account-pending">{t.awaiting}</p>}
               {account.organizations.map((o) => (
                 <div key={o.organizationId} className="account-organization">
                   <h2>{o.organizationName}</h2>
                   <div className="account-property"><span>{t.role}</span><strong>{o.role}</strong></div>
-                  {!account.resources?.length && !account.demoAvailable && <div className="account-property"><span>{t.subscription}</span><strong>{o.subscription}</strong></div>}
-                  {!account.resources?.length && !account.demoAvailable && <div className="account-property"><span>{t.plan}</span><strong>{o.plan}</strong></div>}
+                  {!account.resources?.length && !account.demoAccess && <div className="account-property"><span>{t.subscription}</span><strong>{o.subscription}</strong></div>}
+                  {!account.resources?.length && !account.demoAccess && <div className="account-property"><span>{t.plan}</span><strong>{o.plan}</strong></div>}
                 </div>
               ))}
+              {account.demoAccess && <div className="account-access-status" role="status"><strong>{account.demoAccess.kind === "trial" ? (locale === "ar" ? "تجربة لمدة ٢٤ ساعة" : "24-hour trial") : account.demoAccess.kind === "paid" ? (locale === "ar" ? "وصول مدفوع" : "Paid access") : (locale === "ar" ? "وصول المعاينة" : "Preview access")}</strong><p>{account.demoAccess.active ? account.demoAccess.expiresAt ? (locale === "ar" ? "ينتهي الوصول: " : "Access ends: ") + new Date(account.demoAccess.expiresAt).toLocaleString(locale === "ar" ? "ar" : "en-GB") : (locale === "ar" ? "الوصول نشط." : "Your access is active.") : (locale === "ar" ? "انتهى الوصول. تواصل مع تري هاوس للمتابعة." : "Your access has ended. Contact Treehouse to continue.")}</p></div>}
               {account.demoAvailable && <div className="account-demo"><h2>{locale === "ar" ? "عرض ضوابط التفاعلي" : "Dawabit by Treehouse — interactive demonstration"}</h2><p>{locale === "ar" ? "جرّب المراحل الخمس باستخدام البيانات التوضيحية المقدمة." : "Try all five steps using the supplied illustrative data."}</p><iframe title={locale === "ar" ? "عرض ضوابط التفاعلي" : "Dawabit interactive demonstration"} src="/api/auth/demo" sandbox="allow-scripts allow-modals allow-downloads" referrerPolicy="no-referrer" /></div>}
               {account.resources?.map(resource => <a className="button button-primary" key={resource.id} href={resource.url} target="_blank" rel="noopener noreferrer">{locale === "ar" ? "افتح دليل العميل الخاص" : "Open your private client guide"}<ArrowRight size={17} /></a>)}
-              {!account.resources?.length && !account.demoAvailable && <p className="account-pending">{t.appPending}</p>}
+              {!account.resources?.length && !account.demoAccess && <p className="account-pending">{t.appPending}</p>}
               <button type="button" onClick={logout} className="button button-secondary account-signout">
                 <LogOut size={17} />{t.signOut}
               </button>

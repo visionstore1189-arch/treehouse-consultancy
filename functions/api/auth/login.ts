@@ -1,3 +1,4 @@
+import { activateDemoTrial } from "./_demo-access";
 import { authEnabled, emailValid, readBody, response, sameOrigin, setTokens, supa, verifiedUser, type AuthEnv, type Tokens } from "./_shared";
 export const onRequestPost: PagesFunction<AuthEnv> = async ({ request, env }) => {
   if (!authEnabled(env)) return response({ error: "auth_not_configured" }, 503);
@@ -30,6 +31,7 @@ export const onRequestPost: PagesFunction<AuthEnv> = async ({ request, env }) =>
     const rows: unknown = await membership.json();
     if (!Array.isArray(rows) || rows.length === 0)
       return response({ error: "account_not_authorized" }, 403);
+    if (!await activateDemoTrial(env, tokens.access_token)) return response({ error: "access_records_unavailable" }, 503);
     const result = response({ ok: true });
     setTokens(result, tokens);
     return result;

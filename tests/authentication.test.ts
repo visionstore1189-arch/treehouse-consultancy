@@ -40,6 +40,7 @@ test("password sign-in verifies Supabase user before setting HttpOnly cookies", 
     }
     if (String(url).endsWith("/auth/v1/user")) return Response.json({ id:"11111111-1111-4111-8111-111111111111", email:"test@example.com" });
     if (String(url).includes("/rest/v1/organization_memberships")) return Response.json([{ organization_id:"22222222-2222-4222-8222-222222222222" }]);
+    if (String(url).endsWith("/rpc/activate_dawabit_trial")) return new Response(null, {status:204});
     throw new Error("Unexpected URL: " + url);
   });
   const res = await signIn({ env, request: request("/api/auth/login", {email:"test@example.com",password:"long-password"}) } as never);

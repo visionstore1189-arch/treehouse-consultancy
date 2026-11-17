@@ -1,3 +1,4 @@
+import { activateDemoTrial, describeDemoAccess, type DemoGrant } from "./_demo-access";
 import { authEnabled, clearTokens, response, session, setTokens, supa, type AuthEnv } from "./_shared";
 type Membership = {
   organization_id: string;
@@ -42,16 +43,20 @@ export const onRequestGet: PagesFunction<AuthEnv> = async ({ request, env }) => 
       };
     });
     const allowed = account.some(a => a.subscription === "active" || a.subscription === "trialing");
-    const demoRes = await supa(env, "/rest/v1/dawabit_demo_grants?select=expires_at&limit=1", { method: "GET" }, identity.accessToken);
-    const demoGrants = demoRes.ok ? await demoRes.json() as {expires_at: string}[] : [];
+    if (memberships.length && !await activateDemoTrial(env, identity.accessToken)) return response({ error: "access_records_unavailable" }, 503);
+    const demoRes = await supa(env, "/rest/v1/dawabit_demo_grants?select=access_kind,activated_at,expires_at,revoked_at&limit=1", { method: "GET" }, identity.accessToken);
+    if (!demoRes.ok) return response({ error: "access_records_unavailable" }, 503);
+    const demoGrants = await demoRes.json() as DemoGrant[];
+    const demoAccess = describeDemoAccess(demoGrants[0], memberships.length > 0);
     const result = response({
       authenticated: true,
-      demoAvailable: memberships.length > 0 && demoGrants.some(g => Date.parse(g.expires_at) > Date.now()),
+      demoAvailable: !!demoAccess?.active,
+      demoAccess,
       user: { email: identity.user.email || "" },
       organizations: account,
       subscriptionActive: allowed,
       resources: privateResources(env, identity.user.email, memberships.length > 0),
-      // This endpoint grants no access to the MUTABIQ application or documents.
+      // Live assessment engines and confidential guide access remain independently controlled.
     });
     if (identity.tokens) setTokens(result, identity.tokens);
     return result;
