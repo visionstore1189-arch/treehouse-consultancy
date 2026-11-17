@@ -27,6 +27,13 @@ export const seo = {
       "اطّلع على الجهات الرقابية والأسواق التي يغطيها ضوابط في المملكة المتحدة والإمارات والسعودية.",
     ),
   },
+  "dawabit/faq": {
+    title: t("Dawabit FAQ | Regulatory Compliance Assessment | Treehouse", "الأسئلة الشائعة عن ضوابط | تري هاوس"),
+    description: t(
+      "Answers about Dawabit by Treehouse: what the tool assesses, regulatory coverage, sectors, reports, specialist review and how to request a demonstration.",
+      "إجابات عن ضوابط من تري هاوس والتقييم التنظيمي والقطاعات والتقارير ومراجعة المختصين وطلب العرض التوضيحي.",
+    ),
+  },
   services: {
     title: t(
       "Regulatory Advisory Services | Treehouse",
@@ -43,7 +50,7 @@ export const seo = {
       "الاستشارات التنظيمية البريطانية | FCA وPRA | تري هاوس",
     ),
     description: t(
-      "UK regulatory advisory firm supporting FCA and PRA regulated firms, and international firms entering the UK market.",
+      "UK regulatory advisory for regulated organisations, including FCA and PRA supervised firms and organisations entering the UK market.",
       "شركة استشارات تنظيمية بريطانية تدعم المؤسسات الخاضعة لهيئتي FCA وPRA والمؤسسات الدولية الداخلة إلى السوق البريطاني.",
     ),
   },
