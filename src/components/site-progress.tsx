@@ -47,7 +47,7 @@ export function SiteProgress({ locale }: { locale: Locale }) {
           className="site-back-to-top"
           aria-label={locale === "ar" ? "العودة إلى أعلى الصفحة" : "Back to top"}
           title={locale === "ar" ? "العودة للأعلى" : "Back to top"}
-          onClick={() => window.scrollTo({ top: 0, behavior: reduceMotion ? "instant" : "smooth" })}
+          onClick={() => window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" })}
         >
           <ArrowUp size={20} aria-hidden="true" />
         </button>
