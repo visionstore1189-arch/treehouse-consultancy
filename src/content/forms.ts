@@ -11,8 +11,8 @@ export const formCopy = {
   subject: t("Subject", "الموضوع"),
   message: t("Message", "الرسالة"),
   demoMessage: t(
-    "What would you like to see? (optional)",
-    "ما الذي تود مشاهدته؟ (اختياري)",
+    "What would you like to see?",
+    "ما الذي تود مشاهدته؟",
   ),
   choose: t("Please select", "يرجى الاختيار"),
   other: t("Other", "أخرى"),
