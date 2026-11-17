@@ -3749,3 +3749,12 @@ html[dir="rtl"] .dawabit-faq-list details > p { padding: 15px 37px 24px 0; }
   .dawabit-concept-sectors > div { padding: 14px 12px; }
   .dawabit-method-badges > span { width: calc(50% - 4px); padding: 8px 10px; font-size: 10px; }
 }
+
+/* Official supplied Treehouse Consulting v4 SVG master logos, no crop or approximated lettering. */
+.brand.treehouse-official-brand { width: clamp(148px, 15.2vw, 213px); height: 55px; flex: 0 0 auto; overflow: visible; display: block; position: relative; }
+.brand.treehouse-official-brand > img { position: absolute !important; inset: 0 !important; left: auto !important; top: 0 !important; width: 100% !important; max-width: 100% !important; height: 100% !important; object-fit: contain; object-position: left center; display: block; }
+.brand.treehouse-official-brand > .treehouse-logo-reversed { opacity: 0; }
+.site-footer .brand.treehouse-official-brand > .treehouse-logo-primary, .mobile-menu .brand.treehouse-official-brand > .treehouse-logo-primary { opacity: 0; }
+.site-footer .brand.treehouse-official-brand > .treehouse-logo-reversed, .mobile-menu .brand.treehouse-official-brand > .treehouse-logo-reversed { opacity: 1; }
+html[dir="rtl"] .brand.treehouse-official-brand > img { object-position: right center; }
+@media(max-width: 600px) { .brand.treehouse-official-brand { width: 159px; height: 49px; } }
