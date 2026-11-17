@@ -48,7 +48,8 @@ test("19 ISIC4 sector sections: ten featured cards, nine compact entries", () =>
 test("staged site includes additional buyer and explanatory sections in both languages", () => {
   for (const name of ["dawabit-verdict-section", "dawabit-engagement-section",
     "dawabit-role-grid", "dawabit-ai-section", "dawabit-faq-section",
-    "dawabit-sector-card-grid", "dawabit-method-grid"]) {
+    "dawabit-sector-card-grid", "dawabit-method-grid",
+    "dawabit-deliverables-section", "dawabit-assurance-section"]) {
     assert.ok(page.includes(name), name);
   }
   assert.match(site, /"dawabit\/faq":/);
@@ -65,8 +66,9 @@ test("unapproved login, unpublished legal notices and demo remain inaccessible",
   assert.match(config, /formsEnabled: false/);
   assert.match(config, /sampleReportEnabled: false/);
   assert.match(config, /authLoginEnabled: false/);
-  assert.match(read("src/content/dawabit-v5.ts"), /approvedVisualsInstalled = false/);
-  assert.match(read("src/content/dawabit-assets.ts"), /visualsEnabled: false/);
+  const publicPanelsReady = /approvedVisualsInstalled = true/.test(read("src/content/dawabit-v5.ts"));
+  const publicOverviewReady = /visualsEnabled: true/.test(read("src/content/dawabit-assets.ts"));
+  assert.equal(publicPanelsReady, publicOverviewReady, "Public images must activate together after original-byte checks");
   assert.match(page, /PROTECTED ACCESS PENDING/);
 });
 
@@ -117,4 +119,23 @@ test("draft blocks remain active until official authorisations and legal text", 
   assert.match(config, /formsEnabled: false/);
   assert.match(config, /authLoginEnabled: false/);
   assert.match(config, /sampleReportEnabled: false/);
+});
+
+test("all mobile primary menus expose the same Dawabit, services and market subpages as desktop", () => {
+  assert.match(header, /i < 3 \? \(/);
+  assert.match(header, /subnav\(i\)\.map/);
+  for (const path of ["dawabit/how-it-works", "dawabit/coverage", "dawabit/faq", "dawabit/demo"]) {
+    assert.ok(header.includes(path), path);
+  }
+});
+
+test("original public asset installation keeps private materials out of the site", () => {
+  const installer = read("scripts/install-dawabit-v5-public-assets.mjs");
+  assert.match(installer, /createHash\("sha256"\)/);
+  assert.match(installer, /public\/brand\//);
+  assert.match(installer, /Dawabit_Screen_1_Overview_v5/);
+  assert.match(installer, /Dawabit_Screen_1_Overview_v5_AR/);
+  assert.match(installer, /Dawabit_Screen_\[234\]/);
+  assert.match(installer, /approvedVisualsInstalled = true/);
+  assert.doesNotMatch(page, /client1\.treehouseconsultancy\.co\.uk/);
 });
