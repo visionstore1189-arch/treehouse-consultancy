@@ -3879,3 +3879,10 @@ html[dir="rtl"] .brand.treehouse-official-brand > img { object-position: right c
   .footer-legal-links { gap: 4px 20px; margin-top: 30px; }
   .footer-legal-links a { font-size: 12px; }
 }
+
+/* Keep the closing invitation readable against its navy background in both languages. */
+.closing h2 { color: #FFFFFF; }
+.closing p:not(.eyebrow) { color: #C8D9E5; }
+.closing .eyebrow { color: #79D9B6; }
+.closing .button-secondary { color: #FFFFFF; border-color: #9BB7CB; }
+.closing .button-secondary:hover { color: #FFFFFF; background: #193750; }
