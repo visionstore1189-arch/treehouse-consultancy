@@ -102,7 +102,7 @@ test("public product has only overview and no v3 screenshots/tour", () => {
   assert.doesNotMatch(page, /DawabitTour|TIBQAVisual|AssessmentExplorer locale=\{locale\}/);
   assert.doesNotMatch(page, /id="finding"|id="scope"|id="requirements"/);
   assert.match(page, /DawabitVisual locale=\{locale\} id="overview" priority/);
-  assert.equal((page.match(/<DawabitVisual\\b/g) || []).length, 1, "Overview must appear on product hero only");
+  assert.equal((page.match(/<DawabitVisual\b/g) || []).length, 1, "Overview must appear on product hero only");
   assert.match(page, /market.slug === "saudi-arabia" \? \(\s*<DawabitGraphic locale=\{locale\} id="workedExamples"/);
 
 });
