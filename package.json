@@ -10,7 +10,9 @@
     "test": "tsx --test tests/*.test.ts",
     "cf:build": "wrangler pages functions build --outdir=.cloudflare-build",
     "db:local": "wrangler d1 migrations apply treehouse-enquiries --local",
-    "check:links": "node scripts/check-links.mjs"
+    "check:links": "node scripts/check-links.mjs",
+    "check:assets": "node scripts/verify-dawabit-assets.mjs",
+    "assets:install": "node scripts/install-dawabit-v5-public-assets.mjs"
   },
   "engines": {
     "node": ">=24.0.0"
