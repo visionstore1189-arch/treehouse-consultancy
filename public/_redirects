@@ -1,3 +1,7 @@
+# One website: the approved primary apex, preserving page paths and query strings.
+https://treehouseconsultancy.co.uk/* https://treehouseconsulting.co.uk/:splat 301
+https://www.treehouseconsultancy.co.uk/* https://treehouseconsulting.co.uk/:splat 301
+https://www.treehouseconsulting.co.uk/* https://treehouseconsulting.co.uk/:splat 301
 # v5: permanent retired product addresses to Dawabit.
 # Preserve suffixes for legacy deep links in both languages.
 /tibqa /dawabit/ 301

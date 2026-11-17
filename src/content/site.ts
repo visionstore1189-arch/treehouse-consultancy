@@ -813,7 +813,7 @@ export const pages: Record<string, PageContent> = {
       "From regulation to evidenced findings in five steps",
       "من الأنظمة إلى النتائج الموثقة في خمس خطوات",
     ),
-    intro: ui.judgement,
+    intro: t("Follow each requirement from scoping to a reviewed report and remediation plan.", "تتبّعوا كل متطلب من تحديد النطاق إلى التقرير المراجع وخطة المعالجة."),
     eyebrow: ui.how,
   },
   "dawabit/coverage": {

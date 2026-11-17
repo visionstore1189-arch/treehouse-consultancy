@@ -11,7 +11,7 @@ export function DawabitVisual({ locale, id = "overview", priority = false }: { l
         <div className="dawabit-browser-dots" aria-hidden="true"><i /><i /><i /></div>
         <img
           src={dawabitAssets.imageBase + (locale === "ar" ? asset.arFile : asset.file)}
-          alt={asset.alt[locale]} width={2048} height={1280} loading={priority ? "eager" : "lazy"} decoding="async"
+          alt={asset.alt[locale]} width={1600} height={1000} loading={priority ? "eager" : "lazy"} decoding="async"
         />
       </div>
       <figcaption>{locale === "ar" ? "مثال توضيحي" : "ILLUSTRATIVE EXAMPLE"}</figcaption>
