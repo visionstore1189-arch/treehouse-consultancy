@@ -21,3 +21,11 @@ Trial and paid accounts use the same supplied demonstration, as requested. A tri
 Paid grants are manual after payment confirmation; this change does not collect payments or fabricate subscriptions. A paid grant may have an approved end date or remain valid until revoked. Existing preview deadlines are preserved. The workspace shows access type and expiry, removes the frame at its deadline and refreshes entitlement every minute. Server checks protect every new file request; previously delivered client-side HTML cannot be recalled from an offline copy.
 
 Provisioning: invite the exact approved email through Supabase; assign a separate organization with reader membership. Then create a named grant with `access_kind=trial`, `activated_at=null`, `expires_at=null` (first-use trial), or `access_kind=paid` and the approved end date/null after confirmed payment. Revocation sets `revoked_at`. Do not convert trials to paid or extend deadlines without the account owner's instruction. Password setup remains with each user. Confidential guide access is independent and unchanged.
+
+## Protected supporting materials (v5 G3)
+
+Six original assets are prepared for private Supabase Storage: the animated tour, sample PDF, requirements/finding screens and English/Arabic scope screens. They are excluded from public files and source control. `dawabit-demo-private` is a private bucket, restricted to5MB objects of HTML/PDF/PNG. Its SELECT policy uses the existing demo entitlement RLS; no client write policy is granted.
+
+`/api/auth/resource/[id]` accepts only manifest IDs, verifies the live Supabase session, then rechecks membership and the current grant before fetching Storage. This additional check prevents reliance on Storage CDN caches for access revocation. Every asset must match its trusted original byte count and SHA-256. HTML tours are sandboxed; files are no-store/no-transform, noindex and cannot be framed. No signed public download URLs or privileged key are returned.
+
+`MATERIALS_READY` in `_materials.ts` remains false until all six private uploads and live authorized/denied checks pass. The workspace does not show links before that release gate. The manifest is generated against the client's original developer ZIP. The Client1 encrypted guide is not part of this bucket and must stay in its separately protected hosting project.

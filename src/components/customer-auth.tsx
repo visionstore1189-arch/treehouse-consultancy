@@ -91,6 +91,7 @@ type Me = {
   organizations: { organizationName: string; organizationId: string; role: string; subscription: string; plan: string }[];
   subscriptionActive: boolean;
   demoAvailable?: boolean;
+  demoMaterialsAvailable?: boolean;
   demoAccess?: {kind: "preview" | "trial" | "paid"; active: boolean; expiresAt: string | null; startedAt: string | null; serverTime: string; state: string} | null;
   resources?: { id: string; url: string }[];
 };
@@ -158,6 +159,14 @@ export function CustomerPortal({ locale }: { locale: Locale }) {
               ))}
               {account.demoAccess && <div className="account-access-status" role="status"><strong>{account.demoAccess.kind === "trial" ? (locale === "ar" ? "تجربة لمدة ٢٤ ساعة" : "24-hour trial") : account.demoAccess.kind === "paid" ? (locale === "ar" ? "وصول مدفوع" : "Paid access") : (locale === "ar" ? "وصول المعاينة" : "Preview access")}</strong><p>{account.demoAccess.active ? account.demoAccess.expiresAt ? (locale === "ar" ? "ينتهي الوصول: " : "Access ends: ") + new Date(account.demoAccess.expiresAt).toLocaleString(locale === "ar" ? "ar" : "en-GB") : (locale === "ar" ? "الوصول نشط." : "Your access is active.") : (locale === "ar" ? "انتهى الوصول. تواصل مع تري هاوس للمتابعة." : "Your access has ended. Contact Treehouse to continue.")}</p></div>}
               {account.demoAvailable && <div className="account-demo"><h2>{locale === "ar" ? "ضوابط من تري هاوس — العرض التفاعلي" : "Dawabit by Treehouse — interactive demonstration"}</h2><p>{locale === "ar" ? "جرّب المراحل الخمس باستخدام البيانات التوضيحية المقدمة." : "Try all five steps using the supplied illustrative data."}</p><iframe title={locale === "ar" ? "عرض ضوابط التفاعلي" : "Dawabit interactive demonstration"} src="/api/auth/demo" sandbox="allow-scripts allow-modals allow-downloads" referrerPolicy="no-referrer" /></div>}
+              {account.demoAvailable && account.demoMaterialsAvailable && <div className="account-demo-materials"><h2>{locale === "ar" ? "مواد العرض المحمية" : "Protected demonstration materials"}</h2><div className="demo-materials-links">{[
+                ["tour", "Product tour", "جولة المنتج"],
+                ["sample-report", "Sample assessment report", "نموذج تقرير التقييم"],
+                ["requirements-screen", "Requirements screen", "شاشة المتطلبات"],
+                ["finding-screen", "Finding screen", "شاشة النتيجة"],
+                ["scope-screen", "Scope screen — English", "شاشة النطاق — الإنجليزية"],
+                ["scope-screen-ar", "Scope screen — Arabic", "شاشة النطاق — العربية"],
+              ].map(([id,en,ar]) => <a key={id} className="button button-secondary" href={`/api/auth/resource/${id}`} target="_blank" rel="noopener noreferrer">{locale === "ar" ? ar : en}<ArrowRight size={17} /></a>)}</div></div>}
               {account.resources?.map(resource => <a className="button button-primary" key={resource.id} href={resource.url} target="_blank" rel="noopener noreferrer">{locale === "ar" ? "افتح دليل العميل الخاص" : "Open your private client guide"}<ArrowRight size={17} /></a>)}
               {!account.resources?.length && !account.demoAccess && <p className="account-pending">{t.appPending}</p>}
               <button type="button" onClick={logout} className="button button-secondary account-signout">

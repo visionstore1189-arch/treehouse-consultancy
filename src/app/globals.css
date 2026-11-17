@@ -3914,3 +3914,9 @@ html[dir="rtl"] .brand.treehouse-official-brand > img { object-position: right c
 .account-property strong { color: var(--forest); }
 .account-access-status { background: #102b4b; border-color: #8ea8b9; }
 .portal-login-section .account-signout:hover { background: #173553; }
+
+.account-demo-materials h2 { color: #f2faf5; font-size: clamp(22px,3vw,30px); margin-block: 24px 18px; }
+.demo-materials-links { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+.demo-materials-links .button-secondary { color: #f2faf5; border-color: #9dbdb0; justify-content: space-between; text-align: start; }
+.demo-materials-links .button-secondary:hover { background: #173553; }
+@media(max-width:600px) { .demo-materials-links { grid-template-columns: 1fr; } }

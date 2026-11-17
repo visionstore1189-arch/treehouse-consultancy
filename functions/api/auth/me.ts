@@ -1,3 +1,4 @@
+import { MATERIALS_READY } from "./_materials";
 import { activateDemoTrial, describeDemoAccess, type DemoGrant } from "./_demo-access";
 import { authEnabled, clearTokens, response, session, setTokens, supa, type AuthEnv } from "./_shared";
 type Membership = {
@@ -51,6 +52,7 @@ export const onRequestGet: PagesFunction<AuthEnv> = async ({ request, env }) => 
     const result = response({
       authenticated: true,
       demoAvailable: !!demoAccess?.active,
+      demoMaterialsAvailable: !!demoAccess?.active && MATERIALS_READY,
       demoAccess,
       user: { email: identity.user.email || "" },
       organizations: account,
