@@ -11,7 +11,27 @@ export const config = {
   dawabitAppUrl: "",
   dawabitLoginUrl: "",
   portalConnected: false,
+  // Publish the protected demonstration button only after the firm explicitly
+  // approves E2+E8 AND server-side Worker-level Access has been tested.
+  // This is a build-time flag, not an authentication control.
+  demoAccessApproved: process.env.NEXT_PUBLIC_DAWABIT_DEMO_ACCESS_APPROVED === "true",
+  protectedDemoUrl: process.env.NEXT_PUBLIC_DAWABIT_PROTECTED_DEMO_URL || "",
 } as const;
+
+export const protectedDemoHref = (() => {
+  if (!config.demoAccessApproved) return "";
+  try {
+    const u = new URL(config.protectedDemoUrl);
+    if (
+      u.protocol !== "https:" ||
+      !["demo.treehouseconsulting.co.uk", "demo.treehouseconsultancy.co.uk"].includes(u.hostname) ||
+      u.username || u.password || u.search || u.hash || u.pathname !== "/"
+    ) return "";
+    return u.href;
+  } catch {
+    return "";
+  }
+})();
 export type Locale = "en" | "ar";
 export const href = (locale: Locale, path = "") =>
   `${locale === "ar" ? "/ar" : ""}/${path ? path.replace(/^\/+|\/+$/g, "") + "/" : ""}`;
