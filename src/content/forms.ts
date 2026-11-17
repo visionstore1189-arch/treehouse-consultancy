@@ -22,14 +22,6 @@ export const formCopy = {
   ),
   send: t("Send enquiry", "إرسال الاستفسار"),
   sending: t("Sending…", "جارٍ الإرسال…"),
-  offline: t(
-    "Online enquiries open shortly.",
-    "ستُفتح الاستفسارات الإلكترونية قريبًا.",
-  ),
-  offlineBody: t(
-    "",
-    "",
-  ),
   success: t(
     "Thank you. Your enquiry has been received. A member of our team will contact you within two working days.",
     "شكراً لك. تم استلام استفسارك. سيتواصل معك أحد أعضاء فريقنا خلال يومي عمل.",
