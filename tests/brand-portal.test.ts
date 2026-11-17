@@ -101,3 +101,20 @@ test("public product has only overview and no v3 screenshots/tour", () => {
   assert.doesNotMatch(page, /id="finding"|id="scope"|id="requirements"/);
   assert.match(page, /DawabitVisual locale=\{locale\} id="overview" priority/);
 });
+
+test("unverified former-regulator claims do not appear in buyer-facing metadata", () => {
+  const seo = read("src/content/seo.ts");
+  assert.doesNotMatch(seo, /former regulators|former regulatory officials|مسؤولون رقابيون سابقون/i);
+  assert.match(seo, /الجهات الخاضعة للتنظيم/);
+});
+
+test("draft blocks remain active until official authorisations and legal text", () => {
+  const robots = read("src/app/robots.ts");
+  const headers = read("public/_headers");
+  assert.match(robots, /disallow:\s*"\/"/);
+  assert.match(headers, /X-Robots-Tag:\s*noindex, nofollow/);
+  assert.match(read("src/lib/routes.ts"), /index: false, follow: false/);
+  assert.match(config, /formsEnabled: false/);
+  assert.match(config, /authLoginEnabled: false/);
+  assert.match(config, /sampleReportEnabled: false/);
+});
