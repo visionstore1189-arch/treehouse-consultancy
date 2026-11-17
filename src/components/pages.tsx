@@ -7,7 +7,6 @@ import {
   ArrowDown,
   ArrowUpRight,
   ShieldCheck,
-  LockKeyhole,
   FileText,
   Landmark,
   Orbit,
@@ -40,12 +39,9 @@ import { Button, Eyebrow, Wordmark, Closing, Arrow } from "./ui";
 import { HeroArt } from "./hero-art";
 import { Reveal } from "./reveal";
 import { AssessmentExplorer, CoverageTable, InsightsList } from "./explorers";
+import { DawabitVisual, DawabitGraphic, DawabitProof } from "./dawabit-visual";
+import { targetRoles, engagementOptions, frequentlyAsked, artificialIntelligenceText, sectorClassificationNote, otherSectorsCoverage } from "@/content/dawabit-v5";
 import { EnquiryForm } from "./enquiry-form";
-import { DawabitVisual, DawabitProof } from "./dawabit-visual";
-import { DawabitTour } from "./dawabit-tour";
-import { CustomerLoginForm, CustomerPortal, RecoverPasswordForm, SetPasswordForm } from "./customer-auth";
-import { SampleReportSection } from "./sample-report";
-import { dawabitAssets } from "@/content/dawabit-assets";
 const serviceIcons = [ScanLine, Landmark, Layers3, Orbit, Fingerprint];
 const marketDisplayOrder = ["saudi-arabia", "uk", "uae"];
 const orderedMarkets = [...markets].sort(
@@ -102,36 +98,6 @@ export function ServicesList({ locale }: { locale: Locale }) {
         );
       })}
     </div>
-  );
-}
-function DawabitClientAccessBand({ locale }: { locale: Locale }) {
-  return (
-    <section className="client-access-band" aria-labelledby="dawabit-client-access-heading">
-      <div className="container client-access-inner">
-        <div className="client-access-copy">
-          <p className="client-access-kicker">
-            <LockKeyhole size={15} aria-hidden="true" />
-            {ui.portalEyebrow[locale]}
-          </p>
-          <div className="client-access-wordmark">
-            <Wordmark locale={locale} />
-          </div>
-          <h2 id="dawabit-client-access-heading">{ui.subscriberTitle[locale]}</h2>
-          <p>{ui.subscriberText[locale]}</p>
-        </div>
-        <div className="client-access-actions">
-          <Link className="client-access-button" href={href(locale, "client/login")}>
-            <LockKeyhole size={19} aria-hidden="true" />
-            <span>{ui.subscriberAction[locale]}</span>
-            <Arrow diagonal />
-          </Link>
-          <p className="client-access-secure">
-            <ShieldCheck size={16} aria-hidden="true" />
-            <span>{ui.loginSecure[locale]}</span>
-          </p>
-        </div>
-      </div>
-    </section>
   );
 }
 function Home({ locale }: { locale: Locale }) {
@@ -252,7 +218,6 @@ function Home({ locale }: { locale: Locale }) {
           <MarketCards locale={locale} />
         </div>
       </section>
-      <DawabitClientAccessBand locale={locale} />
       {publishedArticles.length >= 3 && <section className="section insights-section">
         <div className="container">
           <div className="section-heading">
@@ -278,7 +243,7 @@ function PageHero({ locale, path }: { locale: Locale; path: string }) {
     <section
       className={`page-hero ${path.startsWith("dawabit") ? "product-page-hero" : ""}`}
     >
-      <div className={`container ${path === "dawabit" && dawabitAssets.visualsEnabled ? "dawabit-hero-grid" : ""}`}>
+      <div className={`container ${path === "dawabit" ? "dawabit-hero-grid" : ""}`}>
         <div className="page-hero-copy">
         <nav className="breadcrumb" aria-label={ui.home[locale]}>
           <Link href={href(locale)}>{ui.home[locale]}</Link>
@@ -302,14 +267,14 @@ function PageHero({ locale, path }: { locale: Locale; path: string }) {
             </Button>
           </div>
         )}
-        {!(path === "dawabit" && dawabitAssets.visualsEnabled) && (
+        {path !== "dawabit" && (
           <span className="page-hero-art" aria-hidden="true">
             <span /><span /><span />
           </span>
         )}
         </div>
-        {path === "dawabit" && dawabitAssets.visualsEnabled && (
-          <div className="dawabit-hero-image"><DawabitTour locale={locale} /></div>
+        {path === "dawabit" && (
+          <div className="dawabit-hero-image"><DawabitVisual locale={locale} id="overview" priority /></div>
         )}
       </div>
     </section>
@@ -684,51 +649,6 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
           </div>
         </section>
       );
-    case "client/login":
-      return (
-        <section className="section portal-login-section" aria-labelledby="dawabit-signin-heading">
-          <div className="container portal-login-layout">
-            <div className="portal-login-intro">
-              <p className="client-access-kicker">
-                <LockKeyhole size={16} aria-hidden="true" />
-                {ui.portalEyebrow[locale]}
-              </p>
-              <Wordmark locale={locale} />
-              <h1>{ui.subscriberTitle[locale]}</h1>
-              <p className="portal-intro-lead">{ui.subscriberText[locale]}</p>
-              <div className="portal-trust-info">
-                <span><ShieldCheck size={17} aria-hidden="true" />{ui.loginSecure[locale]}</span>
-                <span><LockKeyhole size={17} aria-hidden="true" />{ui.loginIssue[locale]}</span>
-              </div>
-              <Link href={href(locale)} className="portal-home-back">
-                <Arrow /> {ui.home[locale]}
-              </Link>
-            </div>
-            <div className="portal-signin-card">
-              <div className="portal-signin-topline">
-                <img src="/brand/dawabit-mark.svg" alt="" aria-hidden="true" width={34} height={34} />
-                <span>{ui.reserved[locale]}</span>
-                <LockKeyhole size={18} aria-hidden="true" />
-              </div>
-              <h2 id="dawabit-signin-heading">{ui.login[locale]}</h2>
-              <p>{ui.loginNotice[locale]}</p>
-              <CustomerLoginForm locale={locale} />
-              <div className="portal-access-note">
-                <ShieldCheck size={19} aria-hidden="true" />
-                <span>{locale === "ar"
-                  ? "تسجيل الدخول يتيح عرض حالة الحساب والاشتراك. وسيُربط تطبيق التقييمات الآمن لاحقًا."
-                  : "Sign-in gives access to your account and subscription status. The separate assessment application will be connected later."}</span>
-              </div>
-            </div>
-          </div>
-        </section>
-      );
-    case "client/portal":
-      return <CustomerPortal locale={locale} />;
-    case "client/recover-password":
-      return <RecoverPasswordForm locale={locale} />;
-    case "client/reset-password":
-      return <SetPasswordForm locale={locale} />;
     default:
       return null;
   }
@@ -743,7 +663,7 @@ export function SitePage({ locale, path }: { locale: Locale; path: string }) {
           "@type": "Organization",
           name: "Treehouse Consulting",
           url: config.siteUrl,
-          logo: `${config.siteUrl}/brand/treehouse-official.png`,
+          logo: `${config.siteUrl}/brand/treehouse-favicon-v4.svg`,
         }
       : path === "dawabit"
         ? {
