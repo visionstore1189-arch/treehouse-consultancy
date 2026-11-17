@@ -4092,3 +4092,133 @@ html[dir="rtl"] .site-progress-track > span { transform-origin:right center; }
   .site-header .language-switch { font-size: 13px; }
   .premium-process-footer > span { font-size: 12px; line-height: 1.55; }
 }
+
+
+
+/* TREEHOUSE / DEPTH & INTERACTION POLISH
+   A restrained optical layer around the existing WebGL composition.
+   No additional downloads, tracking or animation framework. */
+.hero-art {
+  --art-rx: 0deg;
+  --art-ry: 0deg;
+  --orbit-x: 0px;
+  --orbit-y: 0px;
+  --spotlight-x: 50%;
+  --spotlight-y: 50%;
+}
+.hero-art::before {
+  content: "";
+  position: absolute;
+  inset: 8% 2% 10%;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at var(--spotlight-x) var(--spotlight-y),
+    rgba(47, 203, 139, 0.16) 0%,
+    rgba(47, 203, 139, 0.055) 34%,
+    transparent 72%
+  );
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .hero-art .scene-wrap {
+    transform: perspective(1100px) rotateX(var(--art-rx)) rotateY(var(--art-ry));
+    transform-origin: center center;
+    transition: transform 240ms ease-out;
+    backface-visibility: hidden;
+  }
+  .hero-art .art-orbit {
+    transform: translate3d(var(--orbit-x), var(--orbit-y), 0) rotate(-15deg);
+    transition: transform 300ms ease-out;
+  }
+  .market-grid { perspective: 1250px; }
+  .market-grid .market-card {
+    transform: translate3d(0, 0, 0);
+    transform-style: preserve-3d;
+    transition: transform 360ms cubic-bezier(.23,1,.32,1),
+                background-color 260ms ease,
+                border-color 260ms ease,
+                box-shadow 360ms ease;
+    border-radius: 10px;
+    backface-visibility: hidden;
+  }
+  .market-grid .market-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background: radial-gradient(circle at 80% 18%, rgba(47,203,139,.13), transparent 60%);
+    transition: opacity 300ms ease;
+  }
+  .market-grid .market-card > * { position: relative; z-index: 1; }
+  .market-grid .market-card:hover,
+  .market-grid .market-card:focus-visible {
+    transform: translate3d(0, -7px, 16px) rotateX(2deg);
+    border-color: rgba(114, 226, 182, .53);
+    box-shadow: 0 22px 38px rgba(0, 12, 28, .22);
+  }
+  .market-grid .market-card:hover::after,
+  .market-grid .market-card:focus-visible::after { opacity: 1; }
+  .market-grid .market-symbol {
+    transition: transform 400ms cubic-bezier(.23,1,.32,1);
+    backface-visibility: hidden;
+  }
+  .market-grid .market-card:hover .market-symbol,
+  .market-grid .market-card:focus-visible .market-symbol {
+    transform: translate3d(0, -5px, 15px);
+  }
+  .service-row .round-arrow {
+    transition: transform 240ms ease, background-color 240ms ease,
+                color 240ms ease, border-color 240ms ease;
+  }
+  .service-row:hover .round-arrow,
+  .service-row:focus-visible .round-arrow {
+    transform: translate3d(3px, -3px, 0);
+    background: var(--forest);
+    border-color: var(--forest);
+    color: #fff;
+  }
+  html[dir="rtl"] .service-row:hover .round-arrow,
+  html[dir="rtl"] .service-row:focus-visible .round-arrow {
+    transform: translate3d(-3px, -3px, 0);
+  }
+  .button-primary {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+  .button-primary::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    transform: translateX(-102%);
+    background: linear-gradient(110deg, transparent 10%, rgba(255,255,255,.2) 48%, transparent 87%);
+    transition: transform 700ms cubic-bezier(.23,1,.32,1);
+  }
+  .button-primary:hover::after,
+  .button-primary:focus-visible::after { transform: translateX(102%); }
+  html[dir="rtl"] .button-primary::after { transform: translateX(102%); }
+  html[dir="rtl"] .button-primary:hover::after,
+  html[dir="rtl"] .button-primary:focus-visible::after { transform: translateX(-102%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-art .scene-wrap,
+  .hero-art .art-orbit,
+  .market-grid .market-card,
+  .market-grid .market-symbol,
+  .service-row .round-arrow,
+  .button-primary::after {
+    transition: none !important;
+    animation: none !important;
+  }
+  .market-grid .market-card,
+  .market-grid .market-card:hover,
+  .market-grid .market-card:focus-visible {
+    transform: none !important;
+  }
+}
