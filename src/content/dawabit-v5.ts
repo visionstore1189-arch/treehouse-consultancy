@@ -36,15 +36,16 @@ export const otherSectorsCoverage = t(
   "صُممت «ضوابط» للعمل مع أي جهة تنظيمية. وتُعدّ مكتبات القطاعات خارج الخدمات المالية لكل تكليف. أخبرونا بقطاعكم وجهتكم التنظيمية.",
 );
 export const officialGraphicManifest = {
-  // These official v5 exports are intentionally not invented or recreated. Install the
-  // supplied binaries at these paths and enable individual sections after QA.
+  // The exact official v5 exports exist in the user's uploaded pack. The GitHub
+  // connector cannot transfer binary uploads; install the supplied binaries at
+  // these exact filenames before enabling the graphics and screenshots.
   overview: { en: "/brand/dawabit-screens/Dawabit_Screen_1_Overview_v5.jpg", ar: "/brand/dawabit-screens/Dawabit_Screen_1_Overview_v5_AR.jpg" },
-  verdictDefinitions: { en: "/brand/dawabit/graphics/Verdict_Panel_1_Definitions_Dark.png", ar: "/brand/dawabit/graphics/Verdict_Panel_1_Definitions_AR_Light.png" },
-  workedExamples: { en: "/brand/dawabit/graphics/Verdict_Panel_2_Worked_Examples_Light.png", ar: "/brand/dawabit/graphics/Verdict_Panel_2_Worked_Examples_AR_Light.png" },
-  evidenceChain: { en: "/brand/dawabit/graphics/Verdict_Panel_3_Evidence_Chain_Light.png", ar: "/brand/dawabit/graphics/Verdict_Panel_3_Evidence_Chain_AR_Light.png" },
-  resultsSummary: { en: "/brand/dawabit/graphics/Verdict_Panel_4_Results_Summary_Light.png", ar: "/brand/dawabit/graphics/Verdict_Panel_4_Results_Summary_AR_Light.png" },
-  badgeStrip: { en: "/brand/dawabit/graphics/Verdict_Panel_5_Badge_Strip_Light.png", ar: "/brand/dawabit/graphics/Verdict_Panel_5_Badge_Strip_AR_Light.png" },
-  methodStrip: { en: "/brand/dawabit/graphics/How_It_Works_Strip_Light.png", ar: "/brand/dawabit/graphics/How_It_Works_Strip_AR_Light.png" },
-  sectorGrid: { en: "/brand/dawabit/graphics/Sector_Grid_Light.png", ar: "/brand/dawabit/graphics/Sector_Grid_AR_Light.png" },
+  verdictDefinitions: { en: "/brand/dawabit/graphics/Verdict_Panel_1_Definitions_EN_Dark_v2.png", ar: "/brand/dawabit/graphics/Verdict_Panel_1_Definitions_AR_Light_v2.png" },
+  workedExamples: { en: "/brand/dawabit/graphics/Verdict_Panel_2_Worked_Examples_EN_Light_v2.png", ar: "/brand/dawabit/graphics/Verdict_Panel_2_Worked_Examples_AR_Light_v2.png" },
+  evidenceChain: { en: "/brand/dawabit/graphics/Verdict_Panel_3_Evidence_Chain_EN_Light_v2.png", ar: "/brand/dawabit/graphics/Verdict_Panel_3_Evidence_Chain_AR_Light_v2.png" },
+  resultsSummary: { en: "/brand/dawabit/graphics/Verdict_Panel_4_Results_Summary_EN_Light_v2.png", ar: "/brand/dawabit/graphics/Verdict_Panel_4_Results_Summary_AR_Light_v2.png" },
+  badgeStrip: { en: "/brand/dawabit/graphics/Verdict_Panel_5_Badge_Strip_EN_Light_v2.png", ar: "/brand/dawabit/graphics/Verdict_Panel_5_Badge_Strip_AR_Light_v2.png" },
+  methodStrip: { en: "/brand/dawabit/graphics/How_It_Works_Strip_EN_Light_v2.png", ar: "/brand/dawabit/graphics/How_It_Works_Strip_AR_Light_v2.png" },
+  sectorGrid: { en: "/brand/dawabit/graphics/Sector_Grid_EN_Light_v2.png", ar: "/brand/dawabit/graphics/Sector_Grid_AR_Light_v2.png" },
 } as const;
 export const approvedVisualsInstalled = false; // Set true ONLY after official v5 images are supplied, copied and verified.
