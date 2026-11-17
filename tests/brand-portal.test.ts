@@ -179,3 +179,16 @@ test("official reversed header logo and mobile navigation remain visible on navy
   assert.match(css, /\.mobile-menu \.brand\.treehouse-official-brand > \.treehouse-logo-primary \{ opacity: 1; \}/);
   assert.match(css, /\.site-footer \.footer-column a \{ color: #D7E8EE; \}/);
 });
+
+test("required bilingual legal footer links resolve to generated holding pages", () => {
+  const site = read("src/content/site.ts");
+  const footerSource = read("src/components/footer.tsx");
+  const browserAudit = read("scripts/qa-dawabit-responsive.cjs");
+  const pageDefs = site.split("export const pages:")[1].split("for (const s of services)")[0];
+  for (const name of ["privacy", "terms", "cookies"]) {
+    assert.ok(pageDefs.includes(name + ": {"), "Legal page must be generated: " + name);
+    assert.ok(footerSource.includes('href(locale, "' + name + '")'), "Footer link required: " + name);
+    assert.ok(browserAudit.includes('"' + name + '"'), "Visual QA must cover legal route: " + name);
+  }
+  assert.match(read("src/lib/routes.ts"), /Object\.keys\(pages\)/);
+});
