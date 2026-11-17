@@ -304,6 +304,9 @@ export function EnquiryForm({
           </div>
         </form>
       )}
+      <p className="form-direct-contact">
+        <a className="form-closed-email" href="mailto:enquiries@treehouseconsulting.co.uk">enquiries@treehouseconsulting.co.uk <ArrowRight size={17} aria-hidden="true" /></a>
+      </p>
     </div>
   );
 }
