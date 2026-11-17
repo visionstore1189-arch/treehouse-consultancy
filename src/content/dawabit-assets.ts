@@ -1,0 +1,30 @@
+import { t } from "./site";
+/**
+ * Official v5 files only. The client has not yet provided the public Overview
+ * screen JPEG/PNG and English master logo in this conversation.
+ * Never fall back to an earlier product's screenshots.
+ */
+export const dawabitAssets = {
+  visualsEnabled: false as boolean,
+  sampleReportEnabled: false as boolean,
+  sampleReportFilename: "Dawabit_Sample_Assessment_Report_v5.pdf",
+  imageBase: "/brand/dawabit-screens/",
+  images: {
+    overview: {
+      file: "Dawabit_Screen_1_Overview_v5.jpg",
+      arFile: "Dawabit_Screen_1_Overview_v5_AR.jpg",
+      alt: t(
+        "Dawabit by Treehouse illustrative assessment overview, showing regulatory requirements and results. Illustrative example.",
+        "صورة توضيحية من نظرة عامة على تقييم «ضوابط من تري هاوس» تعرض المتطلبات والنتائج. مثال توضيحي.",
+      ),
+    },
+  },
+  proof: {
+    enabled: false as boolean,
+    figures: [
+      { value: null as number | null, label: t("Instruments in the library", "النصوص في المكتبة") },
+      { value: null as number | null, label: t("Requirements in the library", "المتطلبات في المكتبة") },
+      { value: null as number | null, label: t("Regulators covered", "الجهات الرقابية المشمولة") },
+    ],
+  },
+};
