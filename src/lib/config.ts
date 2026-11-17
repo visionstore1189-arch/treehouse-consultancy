@@ -14,6 +14,6 @@ export const config = {
 } as const;
 export type Locale = "en" | "ar";
 export const href = (locale: Locale, path = "") =>
-  `${locale === "ar" ? "/ar" : ""}/${path ? path.replace(/^\\/+|\\/+$/g, "") + "/" : ""}`;
+  `${locale === "ar" ? "/ar" : ""}/${path ? path.replace(/^\/+|\/+$/g, "") + "/" : ""}`;
 export const pick = <T>(locale: Locale, value: { en: T; ar: T }): T =>
   value[locale];
