@@ -287,7 +287,7 @@ export const services = [
       "دعم مقدمي الطلبات الجدد والمؤسسات التي توسّع نطاق تراخيصها، من دراسة الأعمال حتى القرار النهائي للجهة الرقابية.",
     ),
     who: t(
-      "New entrants and established financial institutions seeking new or extended regulatory permissions.",
+      "New entrants and established regulated organisations seeking new or extended regulatory permissions.",
       "الجهات الجديدة والجهات الخاضعة للتنظيم القائمة التي تسعى إلى تراخيص جديدة أو توسعة نطاق تصاريحها.",
     ),
     when: t(
