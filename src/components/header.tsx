@@ -41,6 +41,8 @@ export function Header({ locale, path }: { locale: Locale; path: string }) {
           { path: "dawabit", label: ui.explore },
           { path: "dawabit/how-it-works", label: ui.how },
           { path: "dawabit/coverage", label: ui.coverage },
+          { path: "dawabit/faq", label: { en: "Frequently asked questions", ar: "الأسئلة الشائعة" } },
+          { path: "dawabit/demo", label: ui.demo },
         ]
       : i === 1
         ? [
@@ -77,7 +79,7 @@ export function Header({ locale, path }: { locale: Locale; path: string }) {
                   }}
                 >
                   <summary>
-                    {i === 0 && <img src="/brand/dawabit-mark.svg" alt="" aria-hidden="true" className="nav-dawabit-symbol" width={16} height={16} />}
+                    {i === 0 && <img src="/brand/treehouse-favicon-v4.svg" alt="" aria-hidden="true" className="nav-dawabit-symbol" width={16} height={16} />}
                     {item[locale]}
                     <ChevronDown size={12} />
                   </summary>
