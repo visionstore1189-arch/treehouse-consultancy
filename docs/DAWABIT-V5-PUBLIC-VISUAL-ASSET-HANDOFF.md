@@ -1,5 +1,5 @@
 # Dawabit v5 — verified public visual asset handoff
-**Prepared:** 17 November 2026. **Release state:** Staging only; no production publish or protected-demo deployment.
+**Verified and installed in GitHub staging:** 17 November 2026. **Release state:** Public image assets in staging; no production publish or protected-demo deployment.
 
 ## What was actually inspected and packaged
 The uploaded conversation supplied 88 items (including duplicates and confidential documents). Only approved public originals were selected for a separate, 53-file staging asset archive named `Dawabit_v5_APPROVED_PUBLIC_ASSETS_staging.zip`. Each file has a recorded byte count, intrinsic dimensions (for raster images), and SHA-256 in `APPROVED_PUBLIC_ASSETS_MANIFEST.json` inside that ZIP.
@@ -11,27 +11,23 @@ The uploaded conversation supplied 88 items (including duplicates and confidenti
 
 (The archive intentionally includes alternate public colour variations, even when a specific page displays one of the approved selections.)
 
-## Required installation on the staging checkout
-Extract the public asset ZIP **at the Git repository root** so each entry lands under `public/brand/`. The archive contains no `node_modules`, build output or project source overrides.
+## Original files installed and verified on staging
+The approved original public files have **already been installed directly into GitHub** on branch `dawabit-v5-release-hardening-20261117`, commit `416e42813b27c0fd4403c0f99eadf3f1350c1d2d`. This includes **37 original PNG/JPG assets** plus the **16 original SVG masters** that were already in the branch.
 
-Install using the repository's validator:
-```bash
-# The folder here must contain the extracted public/ and manifest JSON
-npm run assets:install -- /path/to/extracted-zip
+Each newly uploaded image was compared with its source bytes using the Git blob SHA-1 formula and the source SHA-256 manifest; **37/37 matched exactly**. The corresponding Git tree paths were independently re-enumerated and verified, with **zero missing files or mismatches**. Official public image flags in `src/content/dawabit-assets.ts` and `src/content/dawabit-v5.ts` are now enabled.
+
+To validate a fresh local checkout, run:
+```sh
+npm ci
 npm run check:assets
-npm test
 npm run typecheck
+npm test
 npm run build
+npm run cf:build
 npm run check:links
 ```
-The installer:
-- checks source byte sizes and SHA-256 against the pack manifest;
-- rejects obvious restricted file names and attempts to leave `public/brand`;
-- copies exact original files without re-encoding;
-- ensures the approved EN/AR images required by the site exist; and
-- only **after** successful verification enables the official image render flags.
 
-The installer does NOT turn on enquiry submissions, sample-report downloads, customer login, production deploy, indexing, Access policies or domain changes.
+**Do not upload the asset ZIP a second time**; `asset-import/` is a historical alternative only. These verified assets do not authorise production publishing, enquiry submissions, sample reports, client login, search indexing, DNS changes, or Access policy changes.
 
 ## On-page quality acceptance
 - Recheck the Home, Product and Contact pages at **360px and 390px** mobile widths in both languages, plus tablet widths 768 and 1024. Inspect navigation, focus, font sizes, image clarity, letter/Arabic shaping, line breaks, contrast, loading, and responsive spacing.
@@ -46,5 +42,5 @@ Confidential Client1 Guide has **its own** `Dawabit_Client1_SITE_ONLY_validated.
 
 Similarly, the interactive Dawabit Demo (Workers deployment) must be protected server-side before its link appears publicly.
 
-## Current limitation
-The GitHub connector can safely change source text, but does not currently expose an original-byte upload from these conversation PNG/JPG attachments. **The archive is prepared but not yet committed to GitHub.** Visual render flags remain disabled in the connected staging branch until the copied originals are actually checked in. Do not claim that the images are live based only on the passing code build.
+## Current release limitation
+The original public assets are fully installed and enabled in the GitHub **staging branch**. The website is **not yet launched to production**: the firm must approve Part E items, Cloudflare Access must protect confidential workspaces and the demonstration, deployment must be verified at the intended hostname, and the new official-image rendering needs review via the current 390px bilingual browser screenshots.
