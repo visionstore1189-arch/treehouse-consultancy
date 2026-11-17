@@ -1,5 +1,5 @@
 // Original protected v5 assets; file bytes remain outside Git and public output.
-export const MATERIALS_READY = false; // Enable only after private uploads and live acceptance.
+export const MATERIALS_READY = true; // Original private uploads and six authenticated responses verified.
 export const protectedMaterials = {
   "tour": {
     "key": "tour.html",
