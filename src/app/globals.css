@@ -3718,3 +3718,12 @@ html[dir="rtl"] .dawabit-faq-list details > p { padding: 15px 37px 24px 0; }
 @media (prefers-reduced-motion: reduce) {
   .dawabit-method-card,.dawabit-sector-card { transition: none; transform: none !important; }
 }
+
+/* Region-specific badge strip: use only regulators listed in the reviewed coverage data. */
+.dawabit-market-regulator-strip { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; margin-block: 15px 24px; }
+.dawabit-market-region { display: inline-flex; align-items: center; min-height: 37px; border: 1px solid #0B8457; color: #0B8457; padding: 5px 13px; border-radius: 6px; font-size: 11px; font-weight: 900; letter-spacing: .08em; }
+.dawabit-regulator-chip { display: inline-flex; align-items: center; min-height: 37px; padding: 5px 14px; border-radius: 6px; background: #EEF5F2; border: 1px solid #D5E7DE; color: #174936; font-size: 12px; font-weight: 750; letter-spacing: .015em; }
+@media (max-width: 600px) {
+  .dawabit-market-regulator-strip { gap: 7px; }
+  .dawabit-market-region, .dawabit-regulator-chip { min-height: 33px; padding: 5px 9px; font-size: 10px; }
+}
