@@ -1,0 +1,102 @@
+name: Dawabit v5 bilingual responsive browser audit
+on:
+  push:
+    branches: [qa-dawabit-v5-official-logos-2026]
+permissions:
+  contents: read
+jobs:
+  responsive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - name: Install browser
+        run: |
+          npm install --prefix /tmp/dawabit-browser --no-save --no-audit --no-fund playwright@latest
+          /tmp/dawabit-browser/node_modules/.bin/playwright install chromium
+      - name: Check 360/390/768/1024 English and Arabic pages and capture screenshots
+        shell: bash
+        run: |
+          mkdir -p /tmp/dawabit-screenshots
+          node <<'NODE'
+          const { chromium } = require('/tmp/dawabit-browser/node_modules/playwright');
+          const fs = require('fs');
+          const base = 'https://dawabit-v5-client-rebrand-st.treehouse-consultancy.pages.dev';
+          const paths = ['', 'dawabit', 'dawabit/how-it-works', 'dawabit/coverage', 'dawabit/demo', 'dawabit/faq', 'services', 'sectors', 'markets', 'uk', 'uae', 'saudi-arabia', 'about', 'contact'];
+          const widths = [360,390,768,1024];
+          (async () => {
+            const browser = await chromium.launch({headless:true,args:['--no-sandbox']});
+            let failures=[],count=0;
+            for(const width of widths) {
+              for(const locale of ['en','ar']) {
+                for(const route of paths) {
+                  const page=await browser.newPage({viewport:{width,height:850},deviceScaleFactor:1,reducedMotion:'reduce',colorScheme:'light'});
+                  const exceptions=[];
+                  page.on('pageerror',error=>exceptions.push(error.message));
+                  const prefix=locale==='ar'?'/ar/':'/';
+                  const url=base+prefix+(route?route+'/':'');
+                  try {
+                    const response=await page.goto(url,{waitUntil:'domcontentloaded',timeout:25000});
+                    await page.waitForTimeout(160);
+                    const result=await page.evaluate(()=>{
+                      const body=document.body.innerText;
+                      return {
+                        h1:document.querySelectorAll('h1').length,
+                        direction:document.documentElement.dir,
+                        lang:document.documentElement.lang,
+                        width:document.documentElement.scrollWidth,
+                        viewport:innerWidth,
+                        canonical:document.querySelector('link[rel="canonical"]')?.href,
+                        indexed:document.querySelector('meta[name="robots"]')?.content,
+                        leaked:/TIBQA|Tibqa|Mutabiq|MUTABIQ|مطابق|طبقًا|طبًقا/.test(body),
+                        protectedDemo:body.includes('dawabit-demo.vision-store1189.workers.dev'),
+                      };
+                    });
+                    const status=response?.status();
+                    const success=status===200 && result.h1===1
+                      && result.lang===locale
+                      && result.direction===(locale==='ar'?'rtl':'ltr')
+                      && result.width <= result.viewport+3
+                      && result.canonical?.startsWith('https://treehouseconsulting.co.uk')
+                      && !result.leaked && !result.protectedDemo
+                      && exceptions.length===0;
+                    console.log(JSON.stringify({route:prefix+route,width,status,...result,exceptions,pass:success}));
+                    if(!success)failures.push({route:prefix+route,width,status,result,exceptions});
+                    count++;
+                    const capture=(width===390 && ['','dawabit','contact'].includes(route));
+                    if(capture) {
+                      await page.evaluate(async()=>{await document.fonts.ready;});
+                      await page.screenshot({path:'/tmp/dawabit-screenshots/'+(locale==='ar'?'arabic':'english')+'-'+(route||'home').replaceAll('/','-')+'-390.png',fullPage:true,animations:'disabled',timeout:20000});
+                    }
+                  } catch(err) { console.error('FAIL',url,err.message);failures.push({route:url,width,error:err.message}); }
+                  await page.close();
+                }
+              }
+            }
+            // Unpublished private routes intentionally do not publish static pages.
+            for(const path of ['/client/login/','/ar/client/login/','/insights/','/ar/insights/','/privacy/']) {
+              const resp=await fetch(base+path,{redirect:'manual'});
+              const ok=[302,404].includes(resp.status);
+              console.log('UNPUBLISHED',path,resp.status,'pass',ok);
+              if(!ok)failures.push({path,status:resp.status,private:true});
+            }
+            for(const path of ['/tibqa/','/mutabiq/','/ar/tibqa/','/ar/mutabiq/']) {
+              const resp=await fetch(base+path,{redirect:'manual'});
+              const ok=resp.status===301;
+              console.log('RETIRED',path,resp.status,'pass',ok);
+              if(!ok)failures.push({path,status:resp.status,redirect:true});
+            }
+            await browser.close();
+            console.log('DAWABIT_RESPONSIVE_QA',JSON.stringify({checked:count,widths,locales:2,failures:failures.length}));
+            if(failures.length) {
+              console.log('FAILURES',JSON.stringify(failures).slice(0,20000));
+              process.exitCode=1;
+            }
+          })().catch(err=>{console.error(err);process.exit(1)});
+          NODE
+      - name: Upload 390px homepage, product, contact screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dawabit-v5-390px-english-arabic
+          path: /tmp/dawabit-screenshots/*.png
+          if-no-files-found: warn
