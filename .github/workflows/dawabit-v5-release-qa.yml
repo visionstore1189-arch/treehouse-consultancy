@@ -52,7 +52,7 @@ jobs:
           done
           cat /tmp/dawabit-preview.log
           exit 1
-      - name: Audit 14 routes in English and Arabic at four viewport widths
+      - name: Audit all 19 published routes in English and Arabic at four viewport widths
         env:
           DAWABIT_QA_BASE_URL: http://127.0.0.1:8877
           PLAYWRIGHT_PACKAGE: /tmp/dawabit-browser/node_modules/playwright
