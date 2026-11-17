@@ -7,6 +7,7 @@ import {
   useRef,
   useState,
   type ReactNode,
+  type PointerEvent as ReactPointerEvent,
 } from "react";
 import { Pause, Play } from "lucide-react";
 import { ui } from "@/content/site";
@@ -88,6 +89,42 @@ export function HeroArt({ locale }: { locale: Locale }) {
     [pageVisible, setPageVisible] = useState(true),
     [layer, setLayer] = useState(1);
   const root = useRef<HTMLDivElement>(null);
+  const pointerFrame = useRef(0);
+  const pointerTarget = useRef({ x: 0.5, y: 0.5 });
+
+  // Optional spatial depth; no tracking, no persisted pointer data.
+  // Static artwork remains available for touch and reduced motion.
+  const resetDepth = () => {
+    if (pointerFrame.current) cancelAnimationFrame(pointerFrame.current);
+    pointerFrame.current = 0;
+    const element = root.current;
+    if (!element) return;
+    for (const name of ["--art-rx", "--art-ry", "--orbit-x", "--orbit-y", "--spotlight-x", "--spotlight-y"]) {
+      element.style.removeProperty(name);
+    }
+  };
+  const moveDepth = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (reduced || paused || event.pointerType !== "mouse") return;
+    const bounds = event.currentTarget.getBoundingClientRect();
+    if (!bounds.width || !bounds.height) return;
+    pointerTarget.current = {
+      x: Math.max(0, Math.min(1, (event.clientX - bounds.left) / bounds.width)),
+      y: Math.max(0, Math.min(1, (event.clientY - bounds.top) / bounds.height)),
+    };
+    if (pointerFrame.current) return;
+    pointerFrame.current = requestAnimationFrame(() => {
+      pointerFrame.current = 0;
+      const element = root.current;
+      if (!element) return;
+      const { x, y } = pointerTarget.current;
+      element.style.setProperty("--art-rx", ((0.5 - y) * 4).toFixed(2) + "deg");
+      element.style.setProperty("--art-ry", ((x - 0.5) * 5).toFixed(2) + "deg");
+      element.style.setProperty("--orbit-x", ((x - 0.5) * 12).toFixed(1) + "px");
+      element.style.setProperty("--orbit-y", ((y - 0.5) * 10).toFixed(1) + "px");
+      element.style.setProperty("--spotlight-x", (x * 100).toFixed(1) + "%");
+      element.style.setProperty("--spotlight-y", (y * 100).toFixed(1) + "%");
+    });
+  };
   useEffect(() => {
     const media = matchMedia("(prefers-reduced-motion: reduce)");
     const sync = () => setReduced(media.matches);
@@ -102,13 +139,14 @@ export function HeroArt({ locale }: { locale: Locale }) {
     document.addEventListener("visibilitychange", visibility);
     return () => {
       media.removeEventListener("change", sync);
+      if (pointerFrame.current) cancelAnimationFrame(pointerFrame.current);
       clearTimeout(timer);
       ob.disconnect();
       document.removeEventListener("visibilitychange", visibility);
     };
   }, []);
   return (
-    <div className="hero-art" ref={root}>
+    <div className="hero-art" ref={root} onPointerMove={moveDepth} onPointerLeave={resetDepth}>
       <div className="art-orbit orbit-one" />
       <div className="art-orbit orbit-two" />
       <div className="art-topline">
