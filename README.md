@@ -46,7 +46,7 @@ npm run check:links
 
 The `build` script validates the official assets currently installed, verifies bilingual exported routes and checks deprecated product names are absent from the built public pages.
 
-Automated browser QA lives in `.github/workflows/dawabit-v5-release-qa.yml` and `scripts/qa-dawabit-responsive.cjs`. It checks **14 core routes × 2 locales × 4 viewport widths (360, 390, 768, 1024) = 112 cases**, verifies mobile navigation and image loading, and uploads six 390px full-page English/Arabic screenshots. This audit runs against a **local static export** and does not prove production DNS, Cloudflare Access or email delivery.
+Automated browser QA lives in `.github/workflows/dawabit-v5-release-qa.yml` and `scripts/qa-dawabit-responsive.cjs`. It checks **19 published routes × 2 locales × 4 viewport widths (360, 390, 768, 1024) = 152 cases**, verifies mobile navigation and image loading, and uploads six 390px full-page English/Arabic screenshots. This audit runs against a **local static export** and does not prove production DNS, Cloudflare Access or email delivery.
 
 ## Release checklist and approvals
 
