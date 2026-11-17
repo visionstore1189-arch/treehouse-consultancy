@@ -1,7 +1,8 @@
-import test from "node:test";
+import test, { before } from "node:test";
 import assert from "node:assert/strict";
 
-const worker = await import(new URL("../deploy/dawabit-co-redirect/worker.mjs", import.meta.url).href);
+let worker: any;
+before(async () => { worker = await import(new URL("../deploy/dawabit-co-redirect/worker.mjs", import.meta.url).href); });
 
 test("Dawabit brand domain resolves only to the approved Treehouse public product", () => {
   assert.equal(worker.redirectDestination("https://dawabit.co/"), "https://treehouseconsulting.co.uk/dawabit/");
