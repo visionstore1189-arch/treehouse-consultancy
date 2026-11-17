@@ -45,7 +45,7 @@ This document records what can be verified from the working GitHub branch, the c
 
 The version 2 hosting specification requires:
 
-- A distinct `dawabit-client1` Cloudflare Pages project at `client1.treehouseconsultancy.co.uk` (unless the firm issues an updated authorised address).
+- A distinct `<private-pages-project>` Cloudflare Pages project at `<firm-approved-private-client-hostname>` (unless the firm issues an updated authorised address).
 - One self-contained encrypted guide `site/index.html` uploaded **unchanged**, alongside `site/_headers` and `site/robots.txt`; verify the distributed SHA-256 value in `checksum.txt`.
 - Cloudflare Access with allow-listed named email addresses and an email one-time PIN **before any visitor can receive the guide bytes**.
 - Keep the guide's independent document-password screen; never ask for, store or bypass that password.
