@@ -222,7 +222,7 @@ export const coverageStatusLabels = {
 };
 export const why = [
   {
-    title: t("A requirement-led view.", "رؤية تنطلق من المتطلبات."),
+    title: t("The regulatory perspective.", "رؤية تنطلق من المتطلبات."),
     text: t(
       "We start with the requirements that apply to your organisation and review the evidence behind each finding.",
       "نبدأ بالمتطلبات المنطبقة على جهتكم ونراجع الأدلة التي تستند إليها كل نتيجة.",

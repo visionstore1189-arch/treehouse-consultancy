@@ -196,7 +196,7 @@ test("required bilingual legal footer links resolve to generated holding pages",
 
 test("official social card and Apple icon are published only after original images are installed", () => {
   const routes = read("src/lib/routes.ts");
-  assert.match(routes, /approvedVisualsInstalled/);
+  assert.match(read("src/content/dawabit-v5.ts"), /approvedVisualsInstalled = true/);
   assert.match(routes, /\/brand\/social-card-v5\.png/);
   assert.match(routes, /\/brand\/treehouse-favicon-180-v4\.png/);
   assert.match(routes, /width: 1200, height: 630/);

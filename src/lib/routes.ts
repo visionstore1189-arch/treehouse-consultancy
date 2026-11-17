@@ -57,7 +57,7 @@ export function metadataFor(locale: Locale, path: string): Metadata {
       siteName: "Treehouse Consulting",
       locale: locale === "en" ? "en_GB" : "ar_SA",
       type: a ? "article" : "website",
-      images: [{ url: "/brand/social-card-v5.png", width: 1200, height: 630, alt: "Dawabit by Treehouse" }],
+      images: [{ url: "/brand/social-card-v5.png", width: 1200, height: 630, alt: locale === "ar" ? "ضوابط من تري هاوس" : "Dawabit by Treehouse" }],
     },
     twitter: {
       card: "summary_large_image",
