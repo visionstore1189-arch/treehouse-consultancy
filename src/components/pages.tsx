@@ -525,40 +525,39 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
     case "dawabit/how-it-works":
       return (
         <>
-          <section className="section">
+          <section className="section dawabit-step-section">
             <div className="container steps-list">
-              {steps.map((s, i) => (
+              {steps.map((step,i)=>(
                 <Reveal className="step-row" key={i}>
-                  <span className="step-number">0{i + 1}</span>
-                  <div>
-                    <h2>{s.title[locale]}</h2>
-                    <p>{s.text[locale]}</p>
+                  <span className="step-number">{String(i+1).padStart(2,"0")}</span>
+                  <div><h2>{step.title[locale]}</h2><p>{step.text[locale]}</p>
+                    {i===3 && <p className="dawabit-review-note">{ui.judgement[locale]}</p>}
                   </div>
                   <div className="step-output-wrap">
-                    <div className="step-output">
-                      <FileText size={22} />
-                      <span>{ui.outputs[locale]}</span>
-                      <strong>{s.output[locale]}</strong>
-                    </div>
-                    {dawabitAssets.visualsEnabled && i !== 3 && (
-                      <DawabitVisual locale={locale} id={i === 0 ? "scope" : i === 1 ? "requirements" : i === 2 ? "finding" : "overview"} />
-                    )}
+                    <div className="step-output"><FileText size={22}/><span>{ui.outputs[locale]}</span><strong>{step.output[locale]}</strong></div>
+                    {i===3 && <DawabitGraphic locale={locale} id="evidenceChain" />}
                   </div>
                 </Reveal>
               ))}
             </div>
           </section>
-          <section className="section product-section">
-            <div className="container product-grid">
-              <div>
-                <Eyebrow>{ui.product[locale]} {ui.endorsement[locale]}</Eyebrow>
-                <h2>{ui.whatDawabitDoes[locale]}</h2>
-                <p>{ui.judgement[locale]}</p>
+          <section className="section dawabit-graphic-section">
+            <div className="container">
+              <div className="section-heading">
+                <div><Eyebrow>{ui.how[locale]}</Eyebrow><h2>{locale==="ar"?"سلسلة واحدة من الدليل إلى القرار":"A traceable assessment workflow"}</h2></div>
               </div>
-              <DawabitVisual locale={locale} id="overview" />
+              <DawabitGraphic locale={locale} id="methodStrip" />
+              {!approvedVisualsInstalled && <div className="dawabit-method-grid">{steps.map((step,i)=><article key={i} className="dawabit-method-card"><span>{String(i+1).padStart(2,"0")}</span><h3>{step.title[locale]}</h3><p>{step.output[locale]}</p></article>)}</div>}
             </div>
           </section>
-          <SampleReportSection locale={locale} />
+          <section className="section dawabit-ai-section">
+            <div className="container dawabit-ai-grid">
+              <div><Eyebrow>{ui.product[locale]} {ui.endorsement[locale]}</Eyebrow><h2>{ui.ai[locale]}</h2></div>
+              <div><p className="lead">{artificialIntelligenceText[locale]}</p>
+                <Link className="text-link" href={href(locale,"dawabit/faq")}>{locale==="ar"?"الأسئلة الشائعة":"Frequently asked questions"} <Arrow diagonal /></Link>
+              </div>
+            </div>
+          </section>
           <Closing locale={locale} />
         </>
       );
@@ -568,6 +567,12 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
           <section className="section">
             <div className="container">
               <CoverageTable locale={locale} />
+              <div className="dawabit-coverage-other">
+                <Eyebrow>{ui.nav[3][locale]}</Eyebrow>
+                <h2>{locale==="ar"?"قطاعات أخرى":"Other sectors"}</h2>
+                <p>{otherSectorsCoverage[locale]}</p>
+                <DawabitGraphic locale={locale} id="badgeStrip" />
+              </div>
             </div>
           </section>
           <section className="section form-section">
@@ -585,33 +590,35 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
     case "contact":
     case "dawabit/demo":
       return (
-        <section className="section form-section">
-          <div className="container form-layout">
-            <aside className="form-aside">
-              <Wordmark locale={locale} />
-              <h2>{formCopy.detailsTitle[locale]}</h2>
-              <ul className="check-list">
-                {(path === "dawabit/demo"
-                  ? formCopy.details
-                  : [ui.closingText, ui.judgement]
-                ).map((s, i) => (
-                  <li key={i}>
-                    <Check size={16} />
-                    {s[locale]}
-                  </li>
-                ))}
-              </ul>
-              <div className="aside-note">
-                <ShieldCheck size={25} strokeWidth={1} />
-                <p>{formCopy.confidential[locale]}</p>
+        <>
+          <section className="section form-section dawabit-contact-section">
+            <div className="container form-layout">
+              <aside className="form-aside">
+                <Wordmark locale={locale} />
+                <h2>{formCopy.detailsTitle[locale]}</h2>
+                <ul className="check-list">
+                  {(path==="dawabit/demo"?formCopy.details:[ui.closingText,ui.judgement]).map((txt,i)=>(
+                    <li key={i}><Check size={16}/>{txt[locale]}</li>
+                  ))}
+                </ul>
+                <div className="aside-note"><ShieldCheck size={25} strokeWidth={1}/><p>{formCopy.confidential[locale]}</p></div>
+              </aside>
+              <EnquiryForm locale={locale} kind={path==="contact"?"contact":"demo"} />
+            </div>
+          </section>
+          {path==="dawabit/demo" && (
+            <section className="section dawabit-demo-access">
+              <div className="container dawabit-demo-access-inner">
+                <div>
+                  <Eyebrow>{ui.product[locale]} {ui.endorsement[locale]}</Eyebrow>
+                  <h2>{locale==="ar"?"فتح العرض التوضيحي":"Open the demonstration"}</h2>
+                  <p>{locale==="ar"?"يتاح العرض التوضيحي للمستخدمين المعتمدين فقط بعد تفعيل حماية الوصول من جهة الخادم.":"Demonstration access is reserved for approved visitors. Access details will be supplied once server-side protection is enabled."}</p>
+                </div>
+                <div className="dawabit-demo-lock"><ShieldCheck size={36} strokeWidth={1.2} aria-hidden="true"/><span>{locale==="ar"?"الوصول بانتظار التفعيل":"PROTECTED ACCESS PENDING"}</span></div>
               </div>
-            </aside>
-            <EnquiryForm
-              locale={locale}
-              kind={path === "contact" ? "contact" : "demo"}
-            />
-          </div>
-        </section>
+            </section>
+          )}
+        </>
       );
     case "services":
       return (
@@ -651,24 +658,50 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
     case "sectors":
       return (
         <>
-          <section className="section">
-            <div className="container sector-list">
-              {sectors.map((s, i) => (
-                <div className="sector-row" key={i}>
-                  <span className="step-number">0{i + 1}</span>
-                  <div>
-                    <h2>{s.title[locale]}</h2>
-                    <p>{s.text[locale]}</p>
-                  </div>
-                  <Link
-                    className="round-arrow"
-                    aria-label={`${ui.talk[locale]} — ${s.title[locale]}`}
-                    href={href(locale, "contact")}
-                  >
-                    <Arrow diagonal />
-                  </Link>
-                </div>
-              ))}
+          <section className="section dawabit-sectors-section">
+            <div className="container">
+              <div className="section-heading">
+                <div><Eyebrow>{ui.nav[3][locale]}</Eyebrow><h2>{locale==="ar"?"عشرة قطاعات رئيسية":"Regulated industries, covered by design."}</h2></div>
+                <p>{locale==="ar"?"تُهيأ مكتبات المتطلبات التنظيمية بما يناسب كل جهة وقطاع.":"Dawabit’s assessment method adapts to the regulator, permissions and sector relevant to your organisation."}</p>
+              </div>
+              <DawabitGraphic locale={locale} id="sectorGrid" />
+              <div className="dawabit-sector-card-grid">
+                {sectors.filter(x=>x.featured).map(x=>(
+                  <article className="dawabit-sector-card" key={x.code}>
+                    <span className="dawabit-sector-code">{x.code}</span>
+                    <h3>{x.title[locale]}</h3><p>{x.text[locale]}</p>
+                    <Link href={href(locale,"contact")} className="text-link">{ui.talk[locale]}<Arrow diagonal /></Link>
+                  </article>
+                ))}
+              </div>
+              <div className="dawabit-other-sectors">
+                <h2>{ui.otherSectors[locale]}</h2>
+                <ul>{sectors.filter(x=>!x.featured).map(x=><li key={x.code}><span>{x.code}</span>{x.title[locale]}</li>)}</ul>
+                <p>{sectorClassificationNote[locale]}</p>
+              </div>
+            </div>
+          </section>
+          <Closing locale={locale} />
+        </>
+      );
+    case "dawabit/faq":
+      return (
+        <>
+          <section className="section dawabit-faq-section">
+            <div className="container">
+              <div className="dawabit-faq-list">
+                {frequentlyAsked.map((qa,i)=>(
+                  <details key={i}>
+                    <summary><span>{String(i+1).padStart(2,"0")}</span>{qa.question[locale]}</summary>
+                    <p>{qa.answer[locale]}</p>
+                  </details>
+                ))}
+              </div>
+              <div className="dawabit-faq-contact">
+                <h2>{locale==="ar"?"هل لديكم سؤال آخر؟":"Have a more specific question?"}</h2>
+                <p>{locale==="ar"?"أخبرونا بقطاعكم وجهتكم التنظيمية وسنساعدكم في اختيار الخطوة التالية.":"Tell us your sector and regulator so we can discuss the right approach."}</p>
+                <Button locale={locale} to="contact">{ui.talk[locale]}</Button>
+              </div>
             </div>
           </section>
           <Closing locale={locale} />
