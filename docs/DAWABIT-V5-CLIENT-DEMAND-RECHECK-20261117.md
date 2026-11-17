@@ -60,7 +60,7 @@ This supersedes the stale *status* entries in `docs/DAWABIT-V5-COMPLETION-AUDIT.
 - E9: whether to enable customer login and full app integration. Demo HTML/Supabase Auth foundation do **not** constitute a full production assessment backend.
 - E10: approved production release date and explicit removal of indexing restrictions.
 
-**Additional private Client 1 dependencies:** the firm must provide its separate allowed-user email list, and someone with Cloudflare write permissions must create the `dawabit-client1` Pages project + immutable host `client1.treehouseconsultancy.co.uk` and secure all alternate `pages.dev` and preview URLs with named-email OTP Access BEFORE uploading the guide. The source v2 explicitly forbids modification, minification, iframe or cross-client access, and requires original SHA-256 matching. **Do not move Client 1 to the new corporate domain without a separate client change request**: the guide's browser-saved owner tags are origin-dependent.
+**Additional private Client 1 dependencies:** the firm must provide its separate allowed-user email list, and someone with Cloudflare write permissions must create the `dawabit-client1` Pages project + firm-approved private Client 1 subdomain (exact hostname retained only in the confidential client hosting instructions) and secure all alternate `pages.dev` and preview URLs with named-email OTP Access BEFORE uploading the guide. The source v2 explicitly forbids modification, minification, iframe or cross-client access, and requires original SHA-256 matching. **Do not move Client 1 to the new corporate domain without a separate client change request**: the guide's browser-saved owner tags are origin-dependent.
 
 ## Current deployment conditions
 
