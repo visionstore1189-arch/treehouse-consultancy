@@ -1,128 +1,149 @@
-> **15 November 2026 — superseded domain/product instructions.** This document contains historical MUTABIQ and .com deployment examples. For the approved TIBQA/طبقًا product name, canonical `treehouseconsultancy.co.uk`, unpublished login and legal pages, and actual launch blockers, follow [TIBQA v3 review handover](TIBQA-V3-REVIEW-HANDOVER.md) instead. Do not point `.co.uk` to `.com` or enable forms from the older steps. No DNS changes should be made until Treehouse confirms its domain plan.\n\n# Cloudflare Pages deployment
+# Treehouse Consulting — Dawabit by Treehouse v5 deployment runbook
 
-This project is compatible with Cloudflare Pages Free using Next.js `output: 'export'`. The export is static HTML, CSS and JavaScript in `out/`. The `functions/` directory is compiled separately by Cloudflare Pages. Do not deploy with a Next.js server adapter or use the OpenNext/Workers SSR preset for this project.
+**Status: staging only. Last reconciled: 17 November 2026.**
+**Controlling specification:** `Treehouse_Website_Change_List_v5.docx` and the developer asset pack v5, dated 17 November 2026. All earlier instructions are superseded.
 
-## Initial free deployment
+> Do not treat a successful GitHub Action or a publicly responding URL as permission to launch. The firm must confirm the decisions in Part E, and confidential resources must be access-controlled **before** their HTML is served.
 
-1. Follow `GITHUB.md` to place this directory at the root of a private repository. Commit the lockfile. Keep the GitHub repository private; Pages serves the compiled public website separately.
-2. In Cloudflare, choose Workers & Pages → create a **Pages** project → connect the Git repository. Choose the private repository and `main` production branch.
-3. Set framework preset to **Next.js (Static HTML Export)**, or use no preset with the following settings:
+## 1. Architecture and current source of truth
+
+- Repository: `visionstore1189-arch/treehouse-consultancy`.
+- Production branch: `main`, connected to Cloudflare Pages project `treehouse-consultancy`. **Do not force push, overwrite or merge to production until the firm authorises release.**
+- Review changes on `dawabit-v5-release-hardening-20261117` in draft PR **#12**, targeting `dawabit-v5-client-rebrand-staging-2026`.
+- Next.js is a **static export** (`npm run build` generates `out/`). Cloudflare Pages Functions in `functions/` are built separately. Use Node.js 24 and the committed lockfile.
+- The approved product is **Dawabit by Treehouse** / **ضوابط من تري هاوس**. Use only the verified official logos and colours navy `#0B1F3A`, green `#0B8457`, mint `#2FCB8B`.
+- The firm’s proposed primary website is `treehouseconsulting.co.uk`; the currently deployed website uses `treehouseconsultancy.co.uk`. Registration, DNS migration, primary-domain and redirect choices require **E2 approval**. Preserve business email records throughout.
+
+## 2. Public official assets — install before visual sign-off
+
+The developer pack's public graphics are not interchangeable with example reconstructions. The **53-file, checksum-manifested, public-only** archive is `Dawabit_v5_APPROVED_PUBLIC_ASSETS_staging.zip`. Original SVG masters have already been compared against the repository byte-for-byte.
+
+The approved ZIP contains all public logo variants, favicons, social image, **only screen 1 (Overview)** in English/Arabic, 15 verdict panels, and six explainer graphics. It excludes confidential guides, screenshots 2–4, animated product tour, demo HTML and sample report.
+
+**Single-upload workflow** (not yet executed):
+1. In GitHub select `dawabit-v5-release-hardening-20261117`.
+2. Upload the original approved ZIP into `asset-import/` with the exact expected filename.
+3. The workflow `.github/workflows/import-dawabit-v5-public-assets.yml` rejects disallowed files, checks all SHA-256 digests, installs them at their exact paths, enables public rendering flags only after successful verification, runs validation, commits approved originals and removes the one-time archive.
+4. Review the new commit and the public image paths. The rendering flags must remain off until that import **actually succeeds**. Re-run browser QA after import.
+
+Offline equivalent on a trusted checkout:
+```sh
+npm ci
+npm run assets:install -- /absolute/path/to/extracted-public-archive
+npm run check:assets
+npm run typecheck
+npm test
+npm run build
+npm run cf:build
+npm run check:links
+```
+
+Do not rename, recompress, visually alter or regenerate the original image masters.
+
+## 3. Cloudflare Pages staging and production
+
+The existing Pages project should retain its Git integration and its `main` production branch. Do not accidentally create a second public corporate site or deploy the confidential Client 1 material to this project.
+
+Build settings:
 
 | Setting | Value |
 | --- | --- |
+| Framework | Next.js static export |
 | Root directory | Repository root |
-| Build command | `npm run build` |
-| Build output directory | `out` |
-| Node version | `24` via `NODE_VERSION` |
+| Build command | `npm ci && npm run build` |
+| Output directory | `out` |
+| Node version | `24` |
 | Production branch | `main` |
-| Build-time site URL | `NEXT_PUBLIC_SITE_URL=https://<assigned-project>.pages.dev` initially |
-| Forms | `NEXT_PUBLIC_FORMS_ENABLED=false` |
-| Mutabiq application URL | `NEXT_PUBLIC_MUTABIQ_APP_URL=https://app.treehouseconsultancy.com` |
+| Public forms | Disabled until E1/E3 and full server configuration |
+| Indexing | Noindex/robots blocked until approved launch date E10 |
 
-4. Build the site. Pages will compile the repository-root `functions/` directory. The browser-upload dashboard path is not suitable for this combined static + Functions deployment; use Git integration or Wrangler.
-5. Check the assigned HTTPS URL and every key route, including `/ar/`, `/ar/mutabiq/coverage/` and a service detail page. Confirm that `/api/enquiry` rejects unconfigured submissions with 503.
-6. Set Preview variables independently. Leave forms off on unapproved preview domains, use a separate test database/inbox when needed, and protect preview deployments before putting sensitive drafts there.
+Cloudflare Pages Functions must remain available for `/api/*` routes. A simple static direct-upload of `out/` alone is **not** a complete replacement for Git-integrated Pages + Functions.
 
-For a CLI deployment after selecting the real project name:
+**Safe staging review:** use a Cloudflare Pages preview deployment only with non-confidential content, robots/noindex, no working customer login, no open sample report and no unprotected demo URL. Do not represent staging as production.
 
-```sh
-npx wrangler login
-npm ci
-npm run build
-npx wrangler pages deploy out --project-name YOUR_PAGES_PROJECT
-```
+## 4. Domain migration — hold until firm authorisation (E2)
 
-Run this from the project root so Wrangler can locate `functions/`. Set `name` in `wrangler.toml` to the real Pages project name. Keep `out/` as `pages_build_output_dir`.
+1. Confirm ownership and DNS state for both corporate domains. Record all current MX, SPF, DKIM, DMARC, DNSSEC, subdomain, verification and service records; back up the zone.
+2. Verify that the intended primary domain has been registered, is in the correct Cloudflare account and can issue TLS certificates.
+3. Upon written approval, attach the primary root domain and HTTPS to the existing corporate Pages project. Use correct canonical URLs, `hreflang`, sitemap and OpenGraph asset hostnames.
+4. Only after the new hostname is fully verified, configure permanent same-path redirects from the previous root domain and redirects for both `www` versions. Preserve query strings, language paths and working mail.
+5. Keep versioned legacy product-route redirects to the new `/dawabit/` routes; ensure no redirect loops.
+6. Test old and new URLs with `curl -I`, canonical pages, multilingual routes and both mobile widths. No fabricated DNS propagation or TLS-ready claims.
 
-## Activate the enquiry backend
+Never alter production DNS based on this runbook alone.
 
-Do this only after Treehouse approves the notices and data handling arrangements. There is no hard-coded recipient or test address receiving enquiries.
+## 5. Contact/demo/coverage enquiries — fail closed until E1/E3
 
-1. Create a Cloudflare D1 database:
+The owner has specified `enquiries@treehouseconsulting.co.uk` as the destination. That **does not establish that the mailbox is created or monitored**. Until its operational status is confirmed, present it as a clickable `mailto:` fallback; do not pretend form delivery succeeded.
 
-```sh
-npx wrangler d1 create treehouse-enquiries
-```
+After the firm supplies an approved privacy policy, mailbox verification and retention facts, the Pages Function `functions/api/enquiry.ts` supports an approved D1 + Turnstile + Resend flow.
 
-2. Add the returned identifier to `wrangler.toml`. Identifiers are not secrets, but use the actual account output:
+Before activation confirm all of:
+- Cloudflare D1 `ENQUIRIES` bound to the correct environment, with migrations applied.
+- `FORMS_ENABLED=true` and `PRIVACY_APPROVED=true` **only after authorisation**.
+- Approved `PRIVACY_VERSION` matching the actual bilingual notice.
+- Restrictive `ALLOWED_ORIGINS`, `TURNSTILE_SECRET_KEY`, `TURNSTILE_HOSTNAMES`, strong `RATE_LIMIT_SALT`, `RESEND_API_KEY`, verified `MAIL_FROM`, monitored `MAIL_TO` and approved `RETENTION_DAYS`.
+- Build-time public Turnstile key on the correct production domain.
+- All three page forms tested end-to-end for EN and AR, with a real delivered email, stored consent version, inaccessible administrative data and controlled cleanup.
 
-```toml
-[[d1_databases]]
-binding = "ENQUIRIES"
-database_name = "treehouse-enquiries"
-database_id = "REPLACE_WITH_RETURNED_DATABASE_ID"
-migrations_dir = "migrations"
-```
+Keep provider secrets in Cloudflare runtime secrets. Never put them in code, commits or browser-visible build variables.
 
-Apply the schema and confirm the same D1 binding on the Pages project. Configure a separate database for preview if preview forms are needed.
+## 6. Confidential interactive demonstration — protection first (E8)
 
-```sh
-npx wrangler d1 migrations apply treehouse-enquiries --remote
-```
+The firm's independently deployed `dawabit-demo` Worker currently requires **server-enforced** access protection and a firm-approved invite list or method. Search engine blocking alone is **not an access control**.
 
-3. Create a free Turnstile widget. Allow only the actual site hostnames. Store the public site key as `NEXT_PUBLIC_TURNSTILE_SITE_KEY` in build variables. Store the secret as `TURNSTILE_SECRET_KEY` in Pages runtime secrets. The Function verifies success, hostname and action (`contact`, `demo`, `coverage`); missing or stale tokens are rejected.
-4. Create a Resend Free account. Verify an owned sending domain with its supplied DNS records. Configure a monitored destination inbox. Disable open/click tracking. Keep the provider on its free plan. Set `RESEND_API_KEY` as a runtime secret. The API key is never part of the static build.
-5. Obtain approved bilingual privacy, cookie and terms text, company details, retention period, processors and transfer arrangements. Replace the pending legal copy. Change `privacyVersion` in `src/content/forms.ts` to an approved version such as `2026-11-v1` and match `PRIVACY_VERSION` server-side.
-6. Set the runtime values below in **Production** and separately in **Preview**. Do not place secrets in `NEXT_PUBLIC_*` variables.
+- Configure Zero Trust and the authorised email-code or other approved identity method.
+- Assign a firm-approved custom domain only after E2/E8.
+- Protect the full origin and every bypass hostname/preview variant.
+- Prove unauthenticated rejection **before HTML or files are delivered**, authorised access, unauthorised denial, and revocation.
+- Do not expose the demo address in the public product menu or sitemap until this passes.
 
-| Runtime value | Requirement |
-| --- | --- |
-| `FORMS_ENABLED` | `true` only when the full backend is ready |
-| `PRIVACY_APPROVED` | `true` after client approval |
-| `PRIVACY_VERSION` | Same reviewed identifier as `src/content/forms.ts`; must not start with `pending` |
-| `ALLOWED_ORIGINS` | Comma-separated exact origins, e.g. `https://treehouseconsultancy.com`; no trailing slash |
-| `TURNSTILE_SECRET_KEY` | Secret widget key |
-| `TURNSTILE_HOSTNAMES` | Comma-separated exact hostnames; no scheme |
-| `RATE_LIMIT_SALT` | Random secret of at least 32 characters; generate locally and store securely |
-| `RESEND_API_KEY` | Secret email provider key |
-| `MAIL_FROM` | Verified sender, e.g. `Treehouse <enquiries@OWNED_DOMAIN>` |
-| `MAIL_TO` | Monitored inbox or comma-separated approved inboxes |
-| `RETENTION_DAYS` | Client-approved integer from 1 to 365 |
-| `ENQUIRIES` | D1 binding, not a text variable |
+Do not move the private demonstration, product tour, screenshots 2–4 or sample assessment report into the corporate `public/` directory.
 
-7. Rebuild with `NEXT_PUBLIC_FORMS_ENABLED=true` and the correct public Turnstile site key. Changing build-time values requires a rebuild; runtime values require the Pages deployment to pick up its configuration.
-8. Submit an authorised test enquiry from the final domain. Verify all three forms, bilingual confirmation, D1 consent text/timestamp/version, and receipt in the monitored inbox. Confirm expiry, rate limits and bad tokens. Never use provider test credentials for a production launch.
+## 7. Client 1 encrypted HTML guide — separate access-controlled Pages project
 
-## Submission and recovery behaviour
+This is **not** a page of the corporate site. The validated, immutable HTML is a separate three-file site containing `index.html`, `_headers`, `robots.txt`; the original HTML has its own password screen. Do not edit or minify it.
 
-The Function rejects other methods, cross-origin requests, oversized JSON, missing fields, false consent, honeypots, stale notice versions, failed Turnstile verification and excessive requests. It permits five attempts per IP hash per ten-minute bucket. The IP itself is not stored in D1; Turnstile receives it for security verification. A salted hash is stored temporarily for rate limiting.
+- Configure a dedicated Cloudflare Pages project using a harmless placeholder first, where necessary to establish protection.
+- Create a custom-domain Access application using **only named firm-approved email addresses**, with email one-time-code sign-in and a 24-hour session.
+- Independently protect the main `pages.dev` hostname and all deployment/preview aliases. Preview Access alone does not cover all origins.
+- Only after verified fail-closed Access gates, deploy the exact original three files. Keep the private document password with the client; test access only as far as its password screen.
+- Preserve no-store, noindex, nosniff, frame-deny and referrer headers from the original `_headers`. Check byte integrity against the private checksum, off-repository.
+- Verify unlisted emails cannot fetch the document, including direct origin and asset URLs. Do not publish the confidential hostname in a public GitHub repository.
 
-A valid request is saved before email delivery is attempted. HTTP 201 means the record was stored and the provider accepted the notification; it is not proof that the final mailbox received it. HTTP 202 means stored with delayed/failed notification. The interface explicitly tells the visitor not to resubmit. Provider idempotency is keyed to the saved reference. Ambiguous client-side network failures may still require operator reconciliation.
+See `docs/CLIENT1-CLOUDFLARE-ACCESS-RELEASE-GATE.md`. **Do not perform the confidential upload in an unprotected project**, even momentarily.
 
-Monitor `email_status IN ('pending','failed')` in D1. No automatic retry job or administrative dashboard has been provisioned. Until one is approved and connected, reconcile those records manually in the restricted Cloudflare dashboard and contact the enquirer from the monitored inbox. Do not expose D1 or add a public “all enquiries” endpoint.
+## 8. Editorial and client approval gates (v5 Part E)
 
-The handler prunes expired rate counters and submissions older than `RETENTION_DAYS` after successful enquiries. This is opportunistic cleanup, not a guaranteed daily schedule. Configure an approved daily maintenance job before live collection if strict deletion deadlines require it. Apply matching retention to provider logs, inboxes and backups. Confirm D1 residency/processor terms and international transfers with the client's adviser before storing personal data.
+Required confirmations before production sign-off:
+- E1: Enquiry mailbox exists, receives mail and is monitored.
+- E2: Domain registration, primary URL, Cloudflare zone and corporate redirects.
+- E3: Approved privacy, terms and cookie notices.
+- E4: Confirmed hosting location/provider, data retention and model-training disclosure.
+- E5: Additional regulator availability claims beyond financial-services coverage.
+- E6: Team experience, past regulator positions, figures or performance claims.
+- E7: Native Arabic editorial and official sector classification review.
+- E8: Named demo users, authentication method and policy.
+- E9: Whether public client-login/recovery pages should remain.
+- E10: Authorised production launch date and indexing change.
 
-## Custom domains
+Do not guess any missing approval, bypass the client's hold instruction or expose client private material.
 
-The free `pages.dev` URL works without buying a domain. Connect an existing domain as follows:
+## 9. Final release tests and evidence
 
-1. Confirm client ownership of `treehouseconsultancy.com`. Add the zone to the same Cloudflare account and use the Free plan.
-2. Before changing nameservers, copy and verify all existing DNS records, especially MX, SPF, DKIM and DMARC. Preserve existing mail and the `app` host.
-3. For the apex domain, use the Cloudflare-provided nameservers at the registrar. In Pages → Custom domains, add `treehouseconsultancy.com` and complete the guided binding. Cloudflare provisions the required record and TLS certificate. Wait until certificate status is active.
-4. Add `www.treehouseconsultancy.com`. Configure a permanent redirect from `www` to the apex, preserving the request path and query string. Do not redirect the `app` subdomain.
-5. Rebuild with `NEXT_PUBLIC_SITE_URL=https://treehouseconsultancy.com`. Update allowed form origins, Turnstile hostname settings and verified email sender DNS as needed.
-6. If the client owns `treehouseconsultancy.co.uk`, place it on Cloudflare and add a host-specific permanent **301** redirect to `https://treehouseconsultancy.com/uk/`. Inventory any historical URLs and map them individually if necessary. The requested market root is `/uk/`; there are no `/uk/services/…` routes to redirect blindly to.
-7. Leave `app.treehouseconsultancy.com` bound to the client-owned application and its own security controls. Do not point it at this public export.
-8. Test HTTPS, apex/www redirects, `.co.uk` 301, Arabic deep links, canonical/hreflang tags and the separate application host.
+- Run `npm run typecheck && npm test && npm run build && npm run cf:build && npm run check:links && npm run check:assets`.
+- Run `node scripts/qa-dawabit-responsive.cjs` against the **actual staging build**: all 19 published routes in EN and AR at 360, 390, 768 and 1024 pixels (152 combinations). Verify text overflow, navigation, focus, accessibility, image asset loading, copy, canonical links and noindex.
+- Capture dated **390px phone screenshots of Home, Dawabit product and Contact in both languages** after the approved assets are installed.
+- Confirm public product screenshot **Overview screen 1 only on the product page**. All other demo screenshots are private.
+- Inspect the live site (not just local CI) for legacy product words, redirect correctness and actual HTTPS/canonical behaviour.
+- Check unauthenticated requests and intentionally denied users against the demo and Client 1 project; preserve evidence of Access policies and bypass-host tests.
+- Perform a real inbox delivery test before enabling production forms. Verify final legal texts, retained email DNS and absence of leaked credentials.
+- Keep `main` and production untouched until the client's release approval. When approved and after checks, merge reviewed changes, monitor deployment, perform full remote smoke testing and retain a tested rollback path.
 
-Register a domain in Pages before creating a standalone CNAME. A subdomain can use an external DNS provider via CNAME; apex Pages hosting requires the Cloudflare zone/nameserver arrangement. See the official domain guide below.
+## 10. Current evidence and truthful status
 
-## Budget boundaries and operations
+On 17 November 2026, staging CI passed **33 regression tests** and **152/152 responsive cases**. All 16 official SVG masters matched the uploaded originals byte-for-byte. The **remaining 37 PNG/JPG public files are not yet present in the staging repository**, so the public image activation flags are still false.
 
-As checked on 15 November 2026, Pages Free includes 500 builds/month and a 20,000-file site limit. Static asset requests are free. Pages Functions share the Workers Free allowance of 100,000 requests/day across the account. D1 Free includes 5 million rows read/day, 100,000 rows written/day and 5 GB total storage, with additional per-database limits. Resend Free lists 3,000 emails/month and 100/day. Turnstile has a free plan. Check account-specific limits before activation; this project never selects a paid upgrade automatically.
+The connected Cloudflare account showed the existing corporate Pages project and the separate `dawabit-demo` Worker; its dashboard still offered **Set up Zero Trust**. This was a **read-only inspection**, not a successful security configuration. The public corporate site still displayed superseded branding.
 
-Use Git history and Pages deployment rollback for the public website. Establish daily database backup/export and a restore drill before enquiries go live. D1 Time Travel is useful but is not a configured, client-owned daily export policy. Uptime alerts, backup retention, named operators and an incident process remain operational dependencies. Do not claim an uptime SLA or daily backup job has been purchased or enabled.
-
-## Official references
-
-- [Next.js static exports](https://nextjs.org/docs/app/guides/static-exports)
-- [Cloudflare static Next.js deployment](https://developers.cloudflare.com/pages/framework-guides/nextjs/deploy-a-static-nextjs-site/)
-- [Pages bindings](https://developers.cloudflare.com/pages/functions/bindings/)
-- [Turnstile server verification](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/)
-- [Pages limits](https://developers.cloudflare.com/pages/platform/limits/)
-- [Pages Functions pricing](https://developers.cloudflare.com/pages/functions/pricing/)
-- [D1 pricing](https://developers.cloudflare.com/d1/platform/pricing/)
-- [Turnstile plans](https://developers.cloudflare.com/turnstile/plans/)
-- [Resend free plan](https://resend.com/pricing)
-- [Custom domains](https://developers.cloudflare.com/pages/configuration/custom-domains/)
+**Do not claim that the v5 site is launched, the 37 raster images are published, enquiries are operational, or confidential guides are Access-protected until each has been independently verified.**
