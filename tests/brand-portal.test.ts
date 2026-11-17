@@ -162,3 +162,11 @@ test("deployment instructions follow the controlling v5 specification and preser
   assert.match(instructions, /pages\.dev/);
   assert.doesNotMatch(instructions, /approved TIBQA|MUTABIQ_APP_URL|\/ar\/mutabiq\//i);
 });
+
+test("legal placeholders contain no internal client approval instructions", () => {
+  const site = read("src/content/site.ts");
+  assert.doesNotMatch(site, /Publication pending client approval|This page is reserved for the final notice approved by Treehouse/i);
+  assert.match(site, /Legal notice being finalised/);
+  assert.match(site, /يجري استكمال الإشعار القانوني/);
+  assert.match(config, /formsEnabled: false/);
+});
