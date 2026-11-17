@@ -41,7 +41,7 @@ import { HeroArt } from "./hero-art";
 import { Reveal } from "./reveal";
 import { AssessmentExplorer, CoverageTable, InsightsList } from "./explorers";
 import { DawabitVisual, DawabitGraphic, DawabitProof } from "./dawabit-visual";
-import { targetRoles, engagementOptions, frequentlyAsked, artificialIntelligenceText, sectorClassificationNote, otherSectorsCoverage, approvedVisualsInstalled } from "@/content/dawabit-v5";
+import { targetRoles, engagementOptions, frequentlyAsked, artificialIntelligenceText, sectorClassificationNote, otherSectorsCoverage, libraryMaintenanceText, approvedVisualsInstalled } from "@/content/dawabit-v5";
 import { EnquiryForm } from "./enquiry-form";
 const serviceIcons = [ScanLine, Landmark, Layers3, Orbit, Fingerprint];
 const marketDisplayOrder = ["saudi-arabia", "uk", "uae"];
@@ -584,6 +584,11 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                 <p>{otherSectorsCoverage[locale]}</p>
                 <DawabitGraphic locale={locale} id="badgeStrip" />
               </div>
+              <section className="dawabit-coverage-maintenance" aria-labelledby="dawabit-library-current">
+                <Eyebrow>{locale === "ar" ? "مكتبة المتطلبات التنظيمية" : "REGULATORY LIBRARY"}</Eyebrow>
+                <h2 id="dawabit-library-current">{locale === "ar" ? "تحديث المكتبة التنظيمية" : "Keeping the library current"}</h2>
+                <p>{libraryMaintenanceText[locale]}</p>
+              </section>
             </div>
           </section>
           <section className="section form-section">
@@ -793,7 +798,7 @@ export function SitePage({ locale, path }: { locale: Locale; path: string }) {
           "@type": "Organization",
           name: "Treehouse Consulting",
           url: config.siteUrl,
-          logo: `${config.siteUrl}/brand/treehouse-favicon-v4.svg`,
+          logo: `${config.siteUrl}/brand/treehouse-logo-primary-v4.svg`,
         }
       : path === "dawabit"
         ? {
