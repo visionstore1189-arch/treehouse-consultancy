@@ -49,6 +49,8 @@ test("N1 page does not invent hosting or retention particulars or leak bracketed
 test("G4 forms: exact six public request fields, with no extra required role or regulator", () => {
   const formSource = read("src/components/enquiry-form.tsx");
   assert.match(formSource, /kind !== "demo" && field\("role"\)/);
+  assert.doesNotMatch(formSource, /c\.offline\[/);
+  assert.doesNotMatch(read("src/content/forms.ts"), /Online enquiries open shortly/i);
   assert.match(formSource, /kind === "coverage" && field\("regulator"\)/);
   assert.doesNotMatch(formSource, /kind === "demo" && field\("phone"/);
   assert.match(formSource, /name="sector"/);
