@@ -42,8 +42,11 @@ export const onRequestGet: PagesFunction<AuthEnv> = async ({ request, env }) => 
       };
     });
     const allowed = account.some(a => a.subscription === "active" || a.subscription === "trialing");
+    const demoRes = await supa(env, "/rest/v1/dawabit_demo_grants?select=expires_at&limit=1", { method: "GET" }, identity.accessToken);
+    const demoGrants = demoRes.ok ? await demoRes.json() as {expires_at: string}[] : [];
     const result = response({
       authenticated: true,
+      demoAvailable: memberships.length > 0 && demoGrants.some(g => Date.parse(g.expires_at) > Date.now()),
       user: { email: identity.user.email || "" },
       organizations: account,
       subscriptionActive: allowed,

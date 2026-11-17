@@ -90,6 +90,7 @@ type Me = {
   user: { email: string };
   organizations: { organizationName: string; organizationId: string; role: string; subscription: string; plan: string }[];
   subscriptionActive: boolean;
+  demoAvailable?: boolean;
   resources?: { id: string; url: string }[];
 };
 export function CustomerPortal({ locale }: { locale: Locale }) {
@@ -135,17 +136,18 @@ export function CustomerPortal({ locale }: { locale: Locale }) {
               <div className="account-identity">
                 <span>{t.email}</span><strong dir="ltr">{account.user.email}</strong>
               </div>
-              {!account.subscriptionActive && !account.resources?.length && <p className="account-pending">{t.awaiting}</p>}
+              {!account.subscriptionActive && !account.resources?.length && !account.demoAvailable && <p className="account-pending">{t.awaiting}</p>}
               {account.organizations.map((o) => (
                 <div key={o.organizationId} className="account-organization">
                   <h2>{o.organizationName}</h2>
                   <div className="account-property"><span>{t.role}</span><strong>{o.role}</strong></div>
-                  {!account.resources?.length && <div className="account-property"><span>{t.subscription}</span><strong>{o.subscription}</strong></div>}
-                  {!account.resources?.length && <div className="account-property"><span>{t.plan}</span><strong>{o.plan}</strong></div>}
+                  {!account.resources?.length && !account.demoAvailable && <div className="account-property"><span>{t.subscription}</span><strong>{o.subscription}</strong></div>}
+                  {!account.resources?.length && !account.demoAvailable && <div className="account-property"><span>{t.plan}</span><strong>{o.plan}</strong></div>}
                 </div>
               ))}
+              {account.demoAvailable && <div className="account-demo"><h2>{locale === "ar" ? "عرض ضوابط التفاعلي" : "Dawabit by Treehouse — interactive demonstration"}</h2><p>{locale === "ar" ? "جرّب المراحل الخمس باستخدام البيانات التوضيحية المقدمة." : "Try all five steps using the supplied illustrative data."}</p><iframe title={locale === "ar" ? "عرض ضوابط التفاعلي" : "Dawabit interactive demonstration"} src="/api/auth/demo" sandbox="allow-scripts allow-modals allow-downloads" referrerPolicy="no-referrer" /></div>}
               {account.resources?.map(resource => <a className="button button-primary" key={resource.id} href={resource.url} target="_blank" rel="noopener noreferrer">{locale === "ar" ? "افتح دليل العميل الخاص" : "Open your private client guide"}<ArrowRight size={17} /></a>)}
-              {!account.resources?.length && <p className="account-pending">{t.appPending}</p>}
+              {!account.resources?.length && !account.demoAvailable && <p className="account-pending">{t.appPending}</p>}
               <button type="button" onClick={logout} className="button button-secondary account-signout">
                 <LogOut size={17} />{t.signOut}
               </button>
