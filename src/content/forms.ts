@@ -67,7 +67,7 @@ export const formCopy = {
     t("Shaped around your requirements", "بما يناسب متطلباتك"),
   ],
   subjects: [
-    t("TIBQA demonstration", "عرض توضيحي لطبقًا"),
+    t("Dawabit demonstration", "عرض توضيحي لضوابط"),
     t("Advisory services", "خدمات استشارية"),
     t("Other", "أخرى"),
   ],
