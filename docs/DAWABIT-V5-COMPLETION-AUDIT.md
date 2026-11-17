@@ -1,4 +1,6 @@
 # Dawabit by Treehouse — v5 implementation, release and dependency audit
+> **HISTORICAL SNAPSHOT — SUPERSEDED STATUS:** This report was written before the 53 original public v5 assets were fully installed and before PRs #12–#14 completed. It is retained as a record of the earlier audit; statements below saying assets are missing or staging flags are false are no longer current. The authoritative up-to-date client-by-client matrix is [DAWABIT-V5-CLIENT-DEMAND-RECHECK-20261117.md](DAWABIT-V5-CLIENT-DEMAND-RECHECK-20261117.md). Neither document authorises production launch.
+
 **Status:** 17 November 2026 · Staging-only · Not client launch approval
 
 This document records what can be verified from the working GitHub branch, the client's Website Change List v5 (17 November 2026), the v5 asset pack manifest, and the separate Client 1 Requirements Guide Hosting Instructions v2. It is **not** a claim that the live Cloudflare website has been upgraded.
