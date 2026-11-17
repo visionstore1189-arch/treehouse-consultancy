@@ -384,6 +384,12 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
               <p className="lead">{market.help[locale]}</p>
             </div>
             <h2 className="table-title">{marketLabels.regulators[locale]}</h2>
+            <div className="dawabit-market-regulator-strip" aria-label={marketLabels.regulators[locale]}>
+              <span className="dawabit-market-region">{market.code}</span>
+              {market.regulators.map((name) => (
+                <span className="dawabit-regulator-chip" key={name}>{name.replace("-UAE", "").replace("-SA", "")}</span>
+              ))}
+            </div>
             <CoverageTable locale={locale} market={market.slug} />
           </div>
         </section>
