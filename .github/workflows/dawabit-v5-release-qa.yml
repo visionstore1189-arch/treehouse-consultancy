@@ -1,0 +1,67 @@
+name: Dawabit v5 staging release and responsive QA
+
+on:
+  push:
+    branches:
+      - dawabit-v5-release-hardening-20261117
+  pull_request:
+    branches:
+      - dawabit-v5-client-rebrand-staging-2026
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dawabit-v5-release-qa-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-visual-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: TypeScript validation
+        run: npm run typecheck
+      - name: Security, privacy and brand regression tests
+        run: npm test
+      - name: Generate and verify the static export
+        run: npm run build
+      - name: Check Cloudflare Pages Functions
+        run: npm run cf:build
+      - name: Verify internal links and image URLs
+        run: npm run check:links
+      - name: Install Playwright Chromium for responsive audit
+        run: |
+          npm install --prefix /tmp/dawabit-browser --no-save --no-audit --no-fund playwright
+          /tmp/dawabit-browser/node_modules/.bin/playwright install --with-deps chromium
+      - name: Serve local static export
+        shell: bash
+        run: |
+          python3 -m http.server 8877 --bind 127.0.0.1 --directory out > /tmp/dawabit-preview.log 2>&1 &
+          echo $! > /tmp/dawabit-preview.pid
+          for i in $(seq 1 30); do
+            if curl --fail --silent --show-error http://127.0.0.1:8877/ > /dev/null 2>&1; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/dawabit-preview.log
+          exit 1
+      - name: Audit all 22 public routes in English and Arabic at four viewport widths
+        env:
+          DAWABIT_QA_BASE_URL: http://127.0.0.1:8877
+          PLAYWRIGHT_PACKAGE: /tmp/dawabit-browser/node_modules/playwright
+        run: node scripts/qa-dawabit-responsive.cjs
+      - name: Preserve screenshots and detailed failure report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dawabit-v5-bilingual-390px-and-qa-report
+          path: qa-screenshots/
+          if-no-files-found: warn
+          retention-days: 14

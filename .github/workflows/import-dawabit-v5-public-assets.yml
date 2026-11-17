@@ -1,0 +1,99 @@
+name: Import verified Dawabit v5 public assets
+
+on:
+  push:
+    branches:
+      - dawabit-v5-release-hardening-20261117
+    paths:
+      - asset-import/Dawabit_v5_APPROVED_PUBLIC_ASSETS_staging.zip
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dawabit-v5-public-asset-import
+  cancel-in-progress: false
+
+jobs:
+  verify-and-commit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout the exact staging commit
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 1
+
+      - name: Validate one-time ZIP contents before extraction
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json, re, stat, zipfile
+          name="asset-import/Dawabit_v5_APPROVED_PUBLIC_ASSETS_staging.zip"
+          forbidden=re.compile(r"(?i)(Dawabit_Screen_[234]_|client.?1|requirements.?guide|sample.?report|demo_v|product.?tour|password|secret|tibqa|mutabiq)")
+          with zipfile.ZipFile(name) as z:
+            files=z.infolist()
+            names=set()
+            for f in files:
+              n=f.filename
+              if n.startswith("/") or "\\" in n or ".." in n.split("/") or forbidden.search(n):
+                raise ValueError("Rejected dangerous or confidential archive path: "+n)
+              if n in names:
+                raise ValueError("Duplicate ZIP entry: "+n)
+              names.add(n)
+              if not (n.startswith("public/brand/") or n in ("APPROVED_PUBLIC_ASSETS_MANIFEST.json","IMPORTANT_READ_FIRST.txt")):
+                raise ValueError("Unexpected ZIP entry: "+n)
+              if stat.S_ISLNK(f.external_attr >> 16):
+                raise ValueError("Symbolic links are prohibited: "+n)
+            total=sum(f.file_size for f in files)
+            if total > 16000000 or len(files) > 80:
+              raise ValueError("Unexpected archive size/count")
+            manifest=json.loads(z.read("APPROVED_PUBLIC_ASSETS_MANIFEST.json"))
+            expected={a["path"] for a in manifest["assets"]}
+            received={x for x in names if x.startswith("public/brand/") and not x.endswith("/")}
+            if manifest.get("asset_count")!=53 or len(expected)!=53 or received!=expected:
+              raise ValueError("The upload is not the approved 53-file asset pack")
+          print("Archive filename/path/count/content preflight passed.")
+          PY
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Extract the original public files into a temporary directory
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/dawabit-import"
+          unzip -q asset-import/Dawabit_v5_APPROVED_PUBLIC_ASSETS_staging.zip -d "$RUNNER_TEMP/dawabit-import"
+
+      - name: Verify SHA-256 and copy exact originals
+        run: npm run assets:install -- "$RUNNER_TEMP/dawabit-import"
+
+      - name: Validate updated repository and generated site
+        shell: bash
+        run: |
+          npm run check:assets
+          npm run typecheck
+          npm test
+          npm run build
+          npm run cf:build
+          npm run check:links
+
+      - name: Commit only approved visual files and activation flags
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm -- asset-import/Dawabit_v5_APPROVED_PUBLIC_ASSETS_staging.zip
+          git add -A -- public/brand/ src/content/dawabit-assets.ts src/content/dawabit-v5.ts
+          git diff --cached --check
+          if git diff --cached --quiet; then
+            echo "Nothing to import."
+            exit 0
+          fi
+          git commit -m "Install SHA-verified official Dawabit v5 public imagery on staging"
+          git push origin "HEAD:refs/heads/dawabit-v5-release-hardening-20261117"

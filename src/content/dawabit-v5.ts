@@ -15,7 +15,7 @@ export const engagementOptions = [
 ];
 export const frequentlyAsked = [
   { question: t("What does Dawabit assess?", "ما الذي تقيّمه «ضوابط»؟"), answer: t("Your written policies and procedures, against each regulatory requirement that applies to you.", "سياساتكم وإجراءاتكم المكتوبة مقابل كل متطلب تنظيمي ينطبق عليكم.") },
-  { question: t("Which sectors and regulators are covered?", "ما القطاعات والجهات المشمولة؟"), answer: t("Dawabit works with any regulator. See the coverage page, or tell us your sector.", "تعمل «ضوابط» مع أي جهة تنظيمية. راجعوا صفحة التغطية أو أخبرونا بقطاعكم.") },
+  { question: t("Which sectors and regulators are covered?", "ما القطاعات والجهات المشمولة؟"), answer: t("Dawabit is designed to work with requirements from any regulator. Availability of specific libraries varies by engagement; see our coverage page or tell us your sector.", "صُممت «ضوابط» للتعامل مع متطلبات الجهات التنظيمية المختلفة، وتُحدَّد إتاحة كل مكتبة وفق نطاق التكليف. راجعوا صفحة التغطية أو أخبرونا بقطاعكم.") },
   { question: t("Does Dawabit replace our compliance team or advisers?", "هل تغني «ضوابط» عن فريق الالتزام أو المستشارين؟"), answer: t("No. It gives them a complete, evidenced starting point. Every assessment is reviewed by a specialist.", "لا، بل تمنحهم نقطة انطلاق كاملة وموثقة، ويراجع كل تقييم مختص.") },
   { question: t("Is it legal advice?", "هل هي استشارة قانونية؟"), answer: t("No. Treehouse Consulting is not a law firm.", "لا. تري هاوس للاستشارات ليست مكتب محاماة.") },
   { question: t("What do we receive?", "ما الذي نحصل عليه؟"), answer: t("A verdict for every requirement, the evidence behind it, a prioritised action list and a board-ready report.", "حكم لكل متطلب، والدليل الذي يستند إليه، وقائمة إجراءات مرتبة بالأولوية وتقرير جاهز للعرض على مجلس الإدارة.") },
@@ -35,10 +35,16 @@ export const otherSectorsCoverage = t(
   "Dawabit is built to work with any regulator. Libraries for sectors outside financial services are prepared for each engagement. Tell us your sector and regulator.",
   "صُممت «ضوابط» للعمل مع أي جهة تنظيمية. وتُعدّ مكتبات القطاعات خارج الخدمات المالية لكل تكليف. أخبرونا بقطاعكم وجهتكم التنظيمية.",
 );
+export const libraryMaintenanceText = t(
+  "Regulatory libraries are maintained by our specialists. New and amended instruments are added as they are published.",
+  "يتولى مختصونا تحديث المكتبات التنظيمية. وتُضاف الأنظمة واللوائح الجديدة والمعدلة عند صدورها.",
+);
+// The client's current review dates are awaiting confirmation (E4/E5);
+// do not invent dates or render bracketed placeholders in public HTML.
+
 export const officialGraphicManifest = {
-  // The exact official v5 exports exist in the user's uploaded pack. The GitHub
-  // connector cannot transfer binary uploads; install the supplied binaries at
-  // these exact filenames before enabling the graphics and screenshots.
+  // Original approved v5 image exports were installed byte-for-byte from the
+  // client's source pack into GitHub staging. Protected screens 2–4 stay excluded.
   overview: { en: "/brand/dawabit-screens/Dawabit_Screen_1_Overview_v5.jpg", ar: "/brand/dawabit-screens/Dawabit_Screen_1_Overview_v5_AR.jpg" },
   verdictDefinitions: { en: "/brand/dawabit/graphics/Verdict_Panel_1_Definitions_EN_Dark_v2.png", ar: "/brand/dawabit/graphics/Verdict_Panel_1_Definitions_AR_Light_v2.png" },
   workedExamples: { en: "/brand/dawabit/graphics/Verdict_Panel_2_Worked_Examples_EN_Light_v2.png", ar: "/brand/dawabit/graphics/Verdict_Panel_2_Worked_Examples_AR_Light_v2.png" },
@@ -48,4 +54,4 @@ export const officialGraphicManifest = {
   methodStrip: { en: "/brand/dawabit/graphics/How_It_Works_Strip_EN_Light_v2.png", ar: "/brand/dawabit/graphics/How_It_Works_Strip_AR_Light_v2.png" },
   sectorGrid: { en: "/brand/dawabit/graphics/Sector_Grid_EN_Light_v2.png", ar: "/brand/dawabit/graphics/Sector_Grid_AR_Light_v2.png" },
 } as const;
-export const approvedVisualsInstalled = false; // Set true ONLY after official v5 images are supplied, copied and verified.
+export const approvedVisualsInstalled = true; // Official v5 visuals installed; all 37 raster originals SHA-verified.

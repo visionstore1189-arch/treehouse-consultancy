@@ -41,7 +41,7 @@ import { HeroArt } from "./hero-art";
 import { Reveal } from "./reveal";
 import { AssessmentExplorer, CoverageTable, InsightsList } from "./explorers";
 import { DawabitVisual, DawabitGraphic, DawabitProof } from "./dawabit-visual";
-import { targetRoles, engagementOptions, frequentlyAsked, artificialIntelligenceText, sectorClassificationNote, otherSectorsCoverage, approvedVisualsInstalled } from "@/content/dawabit-v5";
+import { targetRoles, engagementOptions, frequentlyAsked, artificialIntelligenceText, sectorClassificationNote, otherSectorsCoverage, libraryMaintenanceText, approvedVisualsInstalled } from "@/content/dawabit-v5";
 import { EnquiryForm } from "./enquiry-form";
 const serviceIcons = [ScanLine, Landmark, Layers3, Orbit, Fingerprint];
 const marketDisplayOrder = ["saudi-arabia", "uk", "uae"];
@@ -267,6 +267,46 @@ function Home({ locale }: { locale: Locale }) {
           <MarketCards locale={locale} />
         </div>
       </section>
+      <section className="section dawabit-deliverables-section" aria-labelledby="home-dawabit-deliverables">
+        <div className="container">
+          <div className="section-heading">
+            <div><Eyebrow>{locale === "ar" ? "مخرجات قابلة للاستخدام" : "PRACTICAL DELIVERABLES"}</Eyebrow><h2 id="home-dawabit-deliverables">{locale === "ar" ? "ليس مجرد تقييم. بل أساس واضح للقرار." : "Not just a score. A clear basis for action."}</h2></div>
+            <p>{locale === "ar" ? "تربط المخرجات المتطلبات بالأدلة والإجراءات، من سجل المتطلبات إلى ملخص الإدارة." : "Each deliverable connects regulatory obligations with evidence and practical next steps."}</p>
+          </div>
+          <div className="dawabit-deliverables-grid">
+            {[
+              { icon: Layers3, title: locale === "ar" ? "سجل المتطلبات" : "Requirements register", text: locale === "ar" ? "كل متطلب ضمن النطاق، مع مرجعه التنظيمي والمستند المقابل." : "Every requirement in scope, its source and the document assessed against it." },
+              { icon: ShieldCheck, title: locale === "ar" ? "نتائج موثقة" : "Evidenced findings", text: locale === "ar" ? "نتيجة مفسّرة لكل متطلب، مع أدلة المستند ومراجعة المختص." : "A reasoned verdict for each requirement, supporting evidence and specialist review." },
+              { icon: FileText, title: locale === "ar" ? "خطة معالجة مرتبة" : "Prioritised action plan", text: locale === "ar" ? "توصيات ذات أولوية لتحديد المسؤوليات ومتابعة إغلاق الملاحظات." : "Recommendations in priority order for assigning owners and tracking closure." },
+            ].map((item, i) => {
+              const Icon = item.icon;
+              return <Reveal key={item.title} delay={i * 0.04} className="dawabit-deliverable-card">
+                <div className="dawabit-deliverable-top"><span>{String(i + 1).padStart(2, "0")}</span><Icon size={28} strokeWidth={1.3} aria-hidden="true" /></div>
+                <h3>{item.title}</h3><p>{item.text}</p>
+              </Reveal>;
+            })}
+          </div>
+          <Link href={href(locale, "dawabit")} className="text-link">{ui.explore[locale]} <Arrow diagonal /></Link>
+        </div>
+      </section>
+      <section className="section dawabit-assurance-section" aria-labelledby="home-dawabit-assurance">
+        <div className="container dawabit-assurance-grid">
+          <div>
+            <Eyebrow>{locale === "ar" ? "الحكم المهني أولًا" : "HUMAN JUDGEMENT FIRST"}</Eyebrow>
+            <h2 id="home-dawabit-assurance">{locale === "ar" ? "تساند التقنية المختص. ولا تحل محله." : "Technology supports the specialist. It does not replace them."}</h2>
+            <p>{locale === "ar" ? "تستخدم «ضوابط» الذكاء الاصطناعي لاقتراح نتيجة مدعومة بمصدر المتطلب ونص المستند، مع مراجعة المختص قبل إصدار التقرير." : "Dawabit uses AI to propose a reasoned assessment with its source and supporting passage visible. A specialist reviews each assessment before reporting."}</p>
+            <p className="dawabit-assurance-legal">{locale === "ar" ? "تدعم الأداة الحكم المهني وليست استشارة قانونية." : "Dawabit supports professional judgement and does not provide legal advice."}</p>
+            <Link href={href(locale, "dawabit/how-it-works")} className="text-link">{ui.how[locale]} <Arrow diagonal /></Link>
+          </div>
+          <div className="dawabit-assurance-steps">
+            {[
+              { en: "Source requirement", ar: "المتطلب من المصدر", enDetail: "Trace the obligation to its published source.", arDetail: "ربط الالتزام بمصدره المنشور." },
+              { en: "Document passage", ar: "النص من المستند", enDetail: "See the passage behind the proposed finding.", arDetail: "عرض الفقرة الداعمة للحكم المقترح." },
+              { en: "Specialist review", ar: "مراجعة المختص", enDetail: "Validate the judgement before reporting.", arDetail: "مراجعة الحكم قبل إصدار التقرير." },
+            ].map((step, i) => <div key={step.en} className="dawabit-assurance-step"><span>{String(i+1).padStart(2, "0")}</span><div><strong>{step[locale]}</strong><p>{locale === "ar" ? step.arDetail : step.enDetail}</p></div><Check size={18} aria-hidden="true" /></div>)}
+          </div>
+        </div>
+      </section>
       {publishedArticles.length >= 3 && <section className="section insights-section">
         <div className="container">
           <div className="section-heading">
@@ -412,7 +452,7 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
               </Button>
             </div>
             {market.slug === "saudi-arabia" ? (
-              approvedVisualsInstalled ? <DawabitGraphic locale={locale} id="workedExamples" /> : <DawabitVisual locale={locale} />
+              <DawabitGraphic locale={locale} id="workedExamples" />
             ) : <DawabitGraphic locale={locale} id="badgeStrip" />}
 
           </div>
@@ -584,6 +624,11 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                 <p>{otherSectorsCoverage[locale]}</p>
                 <DawabitGraphic locale={locale} id="badgeStrip" />
               </div>
+              <section className="dawabit-coverage-maintenance" aria-labelledby="dawabit-library-current">
+                <Eyebrow>{locale === "ar" ? "مكتبة المتطلبات التنظيمية" : "REGULATORY LIBRARY"}</Eyebrow>
+                <h2 id="dawabit-library-current">{locale === "ar" ? "تحديث المكتبة التنظيمية" : "Keeping the library current"}</h2>
+                <p>{libraryMaintenanceText[locale]}</p>
+              </section>
             </div>
           </section>
           <section className="section form-section">
@@ -649,7 +694,7 @@ function InnerContent({ locale, path }: { locale: Locale; path: string }) {
                   {ui.explore[locale]}
                 </Button>
               </div>
-              <DawabitVisual locale={locale} id="overview" />
+              <DawabitGraphic locale={locale} id="badgeStrip" />
             </div>
           </section>
           <Closing locale={locale} />
@@ -793,7 +838,7 @@ export function SitePage({ locale, path }: { locale: Locale; path: string }) {
           "@type": "Organization",
           name: "Treehouse Consulting",
           url: config.siteUrl,
-          logo: `${config.siteUrl}/brand/treehouse-favicon-v4.svg`,
+          logo: `${config.siteUrl}/brand/treehouse-logo-primary-v4.svg`,
         }
       : path === "dawabit"
         ? {

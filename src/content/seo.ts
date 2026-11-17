@@ -7,14 +7,14 @@ export const seo = {
     ),
     description: t(
       "Dawabit assesses your policies and procedures against every applicable regulatory requirement, taken directly from the source, and reports a clear verdict for each.",
-      "يقيّم ضوابط سياساتكم وإجراءاتكم مقابل كل متطلب تنظيمي منطبق، مأخوذ من المصدر مباشرة، ويصدر نتيجة واضحة لكل متطلب.",
+      "تُقيّم «ضوابط» سياساتكم وإجراءاتكم مقابل كل متطلب تنظيمي ينطبق عليكم، مأخوذ مباشرة من المصدر، وتقدم نتيجة واضحة مدعومة بالدليل لكل متطلب.",
     ),
   },
   "dawabit/how-it-works": {
-    title: t("How Dawabit Works | Treehouse", "كيف يعمل ضوابط | تري هاوس"),
+    title: t("How Dawabit Works | Treehouse", "كيف تعمل «ضوابط» | تري هاوس"),
     description: t(
       "From regulatory library to evidenced findings in five steps. See how Dawabit assesses policies against regulatory requirements.",
-      "من المكتبة التنظيمية إلى النتائج الموثقة في خمس خطوات. تعرّف على كيفية تقييم ضوابط للسياسات مقابل المتطلبات التنظيمية.",
+      "من المكتبة التنظيمية إلى النتائج الموثقة في خمس خطوات. تعرّف على كيفية تقييم «ضوابط» للسياسات مقابل المتطلبات التنظيمية.",
     ),
   },
   "dawabit/coverage": {
@@ -24,7 +24,7 @@ export const seo = {
     ),
     description: t(
       "See the regulators and markets covered by Dawabit across the UK, the UAE and Saudi Arabia.",
-      "اطّلع على الجهات الرقابية والأسواق التي يغطيها ضوابط في المملكة المتحدة والإمارات والسعودية.",
+      "اطّلع على الجهات الرقابية والأسواق التي تغطيها «ضوابط» في المملكة المتحدة والإمارات والسعودية.",
     ),
   },
   "dawabit/faq": {
@@ -41,7 +41,7 @@ export const seo = {
     ),
     description: t(
       "Compliance assessment, licensing, governance and risk frameworks, regulatory change and independent assurance for regulated organisations in the UK, UAE and Saudi Arabia.",
-      "تقييم الالتزام والترخيص وأطر الحوكمة والمخاطر والتغيير التنظيمي والتأكيد المستقل للمؤسسات المالية في المملكة المتحدة والإمارات والسعودية.",
+      "تقييم الالتزام والترخيص وأطر الحوكمة والمخاطر والتغيير التنظيمي والتأكيد المستقل للجهات الخاضعة للتنظيم في المملكة المتحدة والإمارات والسعودية.",
     ),
   },
   uk: {
@@ -61,7 +61,7 @@ export const seo = {
     ),
     description: t(
       "Regulatory advisory for regulated organisations across the UAE mainland, the DIFC and ADGM.",
-      "استشارات تنظيمية للمؤسسات المالية في البر الرئيسي للإمارات ومركز دبي المالي العالمي وسوق أبوظبي العالمي.",
+      "استشارات تنظيمية للجهات الخاضعة للتنظيم في البر الرئيسي للإمارات ومركز دبي المالي العالمي وسوق أبوظبي العالمي.",
     ),
   },
   "saudi-arabia": {
@@ -71,14 +71,14 @@ export const seo = {
     ),
     description: t(
       "Regulatory advisory and compliance assessment for regulated organisations in Saudi Arabia. Dawabit library available for the Insurance Authority.",
-      "استشارات تنظيمية وتقييم الالتزام للمؤسسات المالية في السعودية. مكتبة هيئة التأمين متاحة في ضوابط.",
+      "استشارات تنظيمية وتقييم الالتزام للجهات الخاضعة للتنظيم في السعودية. مكتبة هيئة التأمين متاحة في ضوابط.",
     ),
   },
   about: {
     title: t("About Treehouse Consulting", "عن تري هاوس للاستشارات"),
     description: t(
       "Meet Treehouse Consulting: a UK regulatory advisory and technology firm serving the United Kingdom and the Gulf.",
-      "تعرّف على تري هاوس للاستشارات، شركة بريطانية للاستشارات التنظيمية والتقنية الرقابية يقودها مسؤولون رقابيون سابقون وتخدم المملكة المتحدة والخليج.",
+      "تعرّف على تري هاوس للاستشارات، شركة بريطانية متخصصة في الاستشارات التنظيمية والتقنية الرقابية، وتخدم الجهات الخاضعة للتنظيم في المملكة المتحدة والخليج.",
     ),
   },
 };
