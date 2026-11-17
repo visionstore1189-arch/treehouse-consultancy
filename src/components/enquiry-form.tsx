@@ -154,7 +154,13 @@ export function EnquiryForm({
   // inbox, final privacy notice, and anti-spam backend are approved.
   if (!enabled) return (
     <div className="form-card form-closed-card" role="status">
-      <p>{c.offline[locale]}</p>
+      <span className="form-closed-icon" aria-hidden="true"><ShieldCheck size={30} strokeWidth={1.2}/></span>
+      <h2>{locale === "ar" ? "تواصلوا مع فريق تري هاوس" : kind === "demo" ? "Request your tailored Dawabit demonstration" : "Speak to our team"}</h2>
+      <p>{locale === "ar" ? "الاستفسارات متاحة حاليًا عبر البريد الإلكتروني مباشرة." : "Online enquiry forms are being prepared. Contact our team directly by email in the meantime."}</p>
+      <a className="form-closed-email" href={`mailto:enquiries@treehouseconsulting.co.uk?subject=${encodeURIComponent(kind === "demo" ? "Dawabit demonstration request" : kind === "coverage" ? "Regulator and sector request" : "Treehouse Consulting enquiry")}`}>
+        enquiries@treehouseconsulting.co.uk <ArrowRight size={17} aria-hidden="true" />
+      </a>
+      <p className="form-closed-privacy">{c.confidential[locale]}</p>
     </div>
   );
   return (
