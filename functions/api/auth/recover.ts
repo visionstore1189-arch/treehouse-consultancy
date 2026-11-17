@@ -10,7 +10,11 @@ export const onRequestPost: PagesFunction<AuthEnv> = async ({ request, env }) =>
     const target = new URL(route, request.url).toString();
     const url = "/auth/v1/recover?redirect_to=" + encodeURIComponent(target);
     const result = await supa(env, url, { method: "POST", body: JSON.stringify({ email: data.email }) });
-    if (result.status === 429 || result.status >= 500) return response({ error: "authentication_unavailable" }, 503);
+    if (!result.ok) {
+      // Preserve the same response for an unknown account, while reporting delivery/configuration failures truthfully.
+      const failure = await result.json().catch(() => ({})) as {code?: string};
+      if (failure.code !== "user_not_found") return response({ error: "authentication_unavailable" }, 503);
+    }
     return response({ ok: true });
   } catch { return response({ error: "authentication_unavailable" }, 503); }
 };

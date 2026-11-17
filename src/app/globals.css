@@ -3893,7 +3893,7 @@ html[dir="rtl"] .brand.treehouse-official-brand > img { object-position: right c
 .portal-login-section .auth-single-card .dawabit-brand-mark small { color: #15362b; }
 
 /* Authenticated demonstration is isolated from account cookies by an opaque iframe origin. */
-.portal-login-section:has(.account-demo) .portal-closed-note { max-width: 1440px; width: 100%; }
+.portal-login-section:has(.account-demo) .portal-closed-note { max-width: 1440px; width: calc(100% - clamp(40px, 8vw, 112px)); }
 .account-demo { width: 100%; min-width: 0; }
 .account-demo h2 { color: #f2faf5; font-size: clamp(22px, 3vw, 32px); margin-block: 20px 10px; }
 .account-demo p { margin-bottom: 20px; }
@@ -3902,3 +3902,6 @@ html[dir="rtl"] .brand.treehouse-official-brand > img { object-position: right c
 
 .account-access-status { border: 1px solid #82b8a1; border-radius: 8px; padding: 20px; background: #092b2b; color: #f2faf5; }
 .account-access-status p { margin-top: 10px; font-size: 14px; }
+
+.portal-login-section .account-signout { color: #f2faf5; border-color: #9dbdb0; background: transparent; }
+.portal-login-section .account-signout:hover { color: #fff; background: #153f38; }
