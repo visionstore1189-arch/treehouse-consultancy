@@ -3651,6 +3651,9 @@ html[dir="rtl"] .dawabit-faq-list details > p { padding: 15px 37px 24px 0; }
 .dawabit-coverage-other { margin-top: 70px; padding: 38px; background: #F1F7F4; border-radius: 12px; border: 1px solid #DDEBE3; }
 .dawabit-coverage-other h2 { font-size: 32px; margin-bottom: 14px; }
 .dawabit-coverage-other > p { max-width: 74ch; }
+.dawabit-coverage-maintenance { margin-top: 42px; padding: 32px 0 8px; border-top: 1px solid #DDE8E4; max-width: 78ch; }
+.dawabit-coverage-maintenance h2 { font-size: clamp(24px,3vw,34px); margin: 14px 0; letter-spacing: -.02em; }
+.dawabit-coverage-maintenance p { font-size: clamp(14px,1.4vw,17px); line-height: 1.8; max-width: 68ch; color: #466073; }
 .dawabit-ai-section { background: #0B1F3A; }
 .dawabit-ai-section h2 { color: white; }
 .dawabit-ai-section .lead { color: #D6E0E8; }
