@@ -2,10 +2,10 @@ import { readFile, readdir, copyFile } from "node:fs/promises";
 import path from "node:path";
 const expected = [
   "",
-  "tibqa",
-  "tibqa/how-it-works",
-  "tibqa/coverage",
-  "tibqa/demo",
+  "dawabit",
+  "dawabit/how-it-works",
+  "dawabit/coverage",
+  "dawabit/demo",
   "services",
   "services/compliance-assessment",
   "services/licensing-and-authorisation",
