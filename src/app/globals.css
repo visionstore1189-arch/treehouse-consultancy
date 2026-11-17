@@ -4080,3 +4080,15 @@ html[dir="rtl"] .site-progress-track > span { transform-origin:right center; }
 .site-back-to-top:focus-visible { outline:3px solid #2fcb8b; outline-offset:4px; }
 @media(max-width:600px) { .site-back-to-top { width:44px; height:44px; } }
 @media(prefers-reduced-motion:reduce) { .site-back-to-top { transition:none; } .site-back-to-top:hover { transform:none; } }
+
+
+/* Final 390px mobile typography review: comfortable reading sizes and clear action targets. */
+@media (max-width: 600px) {
+  .site-footer .footer-brand p { font-size: 14px; line-height: 1.75; }
+  .site-footer .footer-column > p { font-size: 12px; line-height: 1.55; }
+  .site-footer .footer-column a { font-size: 13px; line-height: 1.65; min-height: 38px; display: inline-flex; align-items: center; }
+  .site-footer .footer-legal-links a { font-size: 13px; min-height: 44px; }
+  .site-footer .footer-bottom p, .site-footer .footer-bottom small { font-size: 11px; line-height: 1.8; }
+  .site-header .language-switch { font-size: 13px; }
+  .premium-process-footer > span { font-size: 12px; line-height: 1.55; }
+}
